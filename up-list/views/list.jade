@@ -1,0 +1,30 @@
+extends layout
+block content
+  h1 #{title}
+  //-p * 使用 [Ctrl + F] 快捷键搜索装备 *
+  a#update-link(href = 'list/update') + 添加新记录
+  - if (list.length)
+    table
+      tr
+        th#date 日期
+        th#pool 蛋池
+        th(colspan="2").equip 装备
+        th(colspan="2").equip 装备
+        th(colspan="2").equip 装备
+        th(colspan="2").equip 装备
+        th(colspan="2").equip 装备
+        th(colspan="2").equip 装备
+        th#special 备注
+        th 选项
+      - list.forEach(function (item) {
+      tr.list-line(id = 'tid' + item.id)
+        td.date #{item.date}
+        td.pool #{item.pool}
+        - item.items.forEach(function (n) {
+        td.eid #{n.id}
+        td.ename(title = n.lastUp ? '最近 up 时间: ' + n.lastUp : '', class = (n.lastUp == n.startTime || n.lastUp == '' ? '': 'not-latest')) #{n.name}
+        - })
+        td.special #{item.special}
+        td.delete
+          a(href = '/delete?id=' + item.id) X
+      - })

@@ -1,0 +1,23 @@
+var nodeMailer = require('nodemailer');
+
+var transporter = nodeMailer.createTransport({
+  host: '',
+  secureConnection: true,
+  port: 465,
+  auth: {
+    user: '',
+    pass: ''
+  }
+});
+
+var mailOps = {
+  from: '',
+  to: '',
+  subject: 'Default',
+  text: 'Default text'
+};
+
+exports.sendEmail = function (ops, cb) {
+  var mailOps_ = Object.assign(mailOps, ops);
+  transporter.sendMail(mailOps_, function (err, info) { cb(err, info); });
+}

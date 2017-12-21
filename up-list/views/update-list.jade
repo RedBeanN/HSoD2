@@ -1,0 +1,58 @@
+extends layout
+
+block content
+  form(action = '/list', method = 'post')
+    p#startTime
+      span 开始日期:  
+      input.year(name = 'startYear', type = 'number', value = 2017)
+      input.month(name = 'startMonth', type = 'number', value = 1)
+      input.day(name = 'startDay', type = 'number', value = 1)
+    br
+    p#endTime
+      span 结束日期: 
+      input.year(name = 'endYear', type = 'number', value = 2017)
+      input.month(name = 'endMonth', type = 'number', value = 12)
+      input.day(name = 'endDay', type = 'number', value = 31)
+    br
+    p.item
+      span 装备 1: 
+      input.eid(name = 'id1', type = 'number')
+      input.name(name = 'name1', type = 'text')
+    br
+    p.item
+      span 装备 2: 
+      input.eid(name = 'id2', type = 'number')
+      input.name(name = 'name2', type = 'text')
+    br
+    p.item
+      span 装备 3: 
+      input.eid(name = 'id3', type = 'number')
+      input.name(name = 'name3', type = 'text')
+    br
+    p.item
+      span 装备 4: 
+      input.eid(name = 'id4', type = 'number')
+      input.name(name = 'name4', type = 'text')
+    br
+    p.item
+      span 装备 5: 
+      input.eid(name = 'id5', type = 'number')
+      input.name(name = 'name5', type = 'text')
+    br
+    p.item
+      span 装备 6: 
+      input.eid(name = 'id6', type = 'number')
+      input.name(name = 'name6', type = 'text')
+    br
+    p#pool
+      span 蛋池: 
+      select(name = 'pool')
+        option(value = '公主') 公主 
+        option(value = '魔女') 魔女 
+        option(value = '魔法少女') 魔法少女 
+    br
+    p#special
+      span 备注: 
+      input(name = 'special', type = text)
+    br
+    input(type='submit', value='Submit.')
