@@ -1,5 +1,3 @@
-// import { setTimeout, clearTimeout } from 'timers';
-
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
@@ -74,6 +72,7 @@ exports.updateImg = function(range_, cb) {
   }
 
   function downloadImage(src, dest, cb) {
+    // still have some bugs
     var item = src.split('/')[src.split('/').length - 1];
     // timer
     var time_wrapper = function(req) {
@@ -108,10 +107,24 @@ exports.updateImg = function(range_, cb) {
             cb(null, dest);
           })
         });
+        res.on('abort', function () {
+          clearTimeout(timeout);
+          cb(null, dest);
+        });
       }
     });
     var fn = time_wrapper(request);
     var timeout = setTimeout(fn, 2000);
+    // another handdler
+
+    request.setTimeout(1500, function() {
+      if (req.res && req.res.emit) req.res.emit('end');
+      else {
+        if (req.res && req.res.end) req.res.end();
+        req.abort();
+        cb({message: 'timeout'}, dest);
+      }
+    });
   }
 
   function formatTitle (title) {

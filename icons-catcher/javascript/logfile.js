@@ -27,6 +27,11 @@ exports.logfile = function(path, log, err) {
     },
     isErrorFileEmpty: function () {
       return true;
+    },
+    register: function (conf) {
+      if (conf.path) path = conf.path[conf.path.length - 1] == '/' ? conf.path : (conf.path + '/');
+      if (conf.log) log = conf.log;
+      if (conf.err) err = conf.err;
     }
   }
 }

@@ -23,7 +23,7 @@ var logfile = logfileCreater.logfile('./statics/', 'nohup.out', 'error.log');
 var hourChecking = setInterval(function () {
   logfile.write('[Update] Start @ ' + Date().toString());
   getUpdateMessage(range);
-}, halfHour);
+}, oneHour);
 // halfHour for test
 
 var dailyMail = setInterval(function () { sendStatus(Date()); }, oneDay);
@@ -58,8 +58,8 @@ function getUpdateMessage(range_) {
 function sendEmail(ctr, data) {
   var subject = '图鉴更新啦!';
   var text = '更新了 ' + ctr[0] + ' 个新图鉴:\n' +
-             '\t编号从 ' + data[0] +
-             ' 到 ' + data[data.length - 1];
+             '\t编号从 ' + (data[0] + 1) +
+             ' 到 ' + (data[data.length - 1] + 1);
   mailer.sendEmail({subject: subject, text: text}, function (err, info) {
     if (err) logfile.error(err);
     else logfile.write('[Mail] Update infomation send. Info:' +

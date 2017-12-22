@@ -19,3 +19,6 @@ new
 png
 *.png
 title.txt
+
+html
+titles.json

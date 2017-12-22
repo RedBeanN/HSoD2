@@ -7,7 +7,7 @@ var updater = require('../public/javascripts/up-list-updater.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: '搞事学园' });
 });
 
 router.get('/list', function(req, res, next) {
@@ -33,7 +33,9 @@ router.post('/list', function(req, res, next) {
 });
 
 router.delete('/list/:id', function(req, res, next) {
-  // todo
+  // identify
+  // updater.delete(req.body.id);
+  // res.redirect('/list');
 });
 
 module.exports = router;
