@@ -49,7 +49,7 @@ router.get('/cms', function(req, res, next) {
   arr.sort(function (a, b) {
     var a_ = parseInt(a.id.substring(5));
     var b_ = parseInt(b.id.substring(5));
-    return a_ < b_;
+    return b_ - a_;
   });
   res.render('cms', {titles: arr, title: '公告备份'});
 });

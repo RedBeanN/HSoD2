@@ -2,7 +2,7 @@ var http = require('http');
 var fs = require('fs');
 
 var baseUrl = 'http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List/';
-var basePath = './staitcs/';
+var basePath = './statics/';
 
 module.exports = function getList (server) {
   if (server) baseUrl += ('?build=' + server);

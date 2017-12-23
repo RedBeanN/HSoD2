@@ -33,6 +33,32 @@
           buffRate = 1.3 * allStaticMoveSpeed
         am[0] = function(user, enemy, statusBuffer, dmgBuffer)
   */
+
+  function init() {
+    var sys = {
+      es: [],
+      as: [],
+      am: [],
+      ed: [],
+      props: {
+        moveSpeed: 250,
+        criticalRate: 0.05,
+        hp: 2500
+      }
+    };
+    for (var pin in user.pins) {
+      if (pin.es) {
+        pin.es.forEach((fn) => {
+          es.push(fn);
+        });
+      }
+    }
+    sys.es.forEach(fn => {
+      fn(user);
+    });
+    return sys;
+  }
+
   // functions
   function getRandomResult(prob) { return (prob >= 1 || (prob > 0 && prob <= Math.random())); }
 
