@@ -2,6 +2,7 @@ var http = require('http');
 var fs = require('fs');
 
 var baseUrl = 'http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List/';
+var basePath = './staitcs/';
 
 module.exports = function getList (server) {
   if (server) baseUrl += ('?build=' + server);
@@ -26,7 +27,7 @@ module.exports = function getList (server) {
     var listArr = data.match(listReg);
     // console.log((listArr[0].match(/id=\d+/))[0]);
 
-    var titleList = JSON.parse(fs.readFileSync('./statics/titles.json'));
+    var titleList = JSON.parse(fs.readFileSync(basePath + 'titles.json'));
 
     listArr.forEach(function (li) {
       // parse item
@@ -52,7 +53,8 @@ module.exports = function getList (server) {
 
   function savePage (link, id, date, cb) {
     // console.log('LINK:', link);
-    http.get(baseUrl + '?id=' + id, function (res) {
+    link = link.substring(1, link.length - 1);
+    http.get(link, function (res) {
       var data = '';
       res.on('data', function (chunk) {
         data += chunk;
@@ -66,15 +68,15 @@ module.exports = function getList (server) {
   }
 
   function resolvePath(id, date) {
-    var path = './statics/html/' + date.replace('/', '') + '-' + id + '.html';
+    var path = basePath + 'html/' + date.replace('/', '') + '-' + id + '.html';
     return path;
   }
 
   function updateCmsList (filename, title) {
-    var list = fs.readFileSync('./statics/titles.json');
+    var list = fs.readFileSync(basePath + 'titles.json');
     list = JSON.parse(list);
     if (!list[filename]) list[filename] = title.toString();
-    fs.writeFileSync('./statics/titles.json', JSON.stringify(list));
+    fs.writeFileSync(basePath + 'titles.json', JSON.stringify(list));
   }
 
 // getList();

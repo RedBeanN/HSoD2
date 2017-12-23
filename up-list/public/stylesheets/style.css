@@ -74,6 +74,9 @@ form .year,form .month,form .day,form .eid {
   margin-left: auto;
   margin-right: auto;
 }
+ul {
+  padding: 0;
+}
 
 li {
   list-style: none;
@@ -83,6 +86,12 @@ li {
   width: 720px;
   cursor: pointer;
   padding: 5px;
+  border-collapse: collapse;
+  border-radius: 10px;
+}
+#cms-title {
+  cursor: default;
+  background: #ddd;
 }
 li a {
   width: 660px;
@@ -93,4 +102,7 @@ li span {
 }
 li:hover {
   background: #6cf;
+}
+#cms-title:hover {
+  background: #ddd;
 }
