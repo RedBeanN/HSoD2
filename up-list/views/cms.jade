@@ -1,0 +1,14 @@
+extends layout
+block content
+  - if (titles)
+    div.ul
+      h1 公告板
+      ul
+      - for (var t in titles) {
+        li
+          a(href="cms/"+titles[t].id)
+            div 
+              span.cms-date #{titles[t].id.substring(0,2)}/#{titles[t].id.substring(2,4)} 
+              span.cms-no #{titles[t].id.substring(5)} 
+              | #{titles[t].title}
+      - }

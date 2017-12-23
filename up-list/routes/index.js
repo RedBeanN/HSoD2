@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: '搞事学园' });
 });
 
+// List
 router.get('/list', function(req, res, next) {
   updater.updateList(function (li) {
     res.render('list', {list: li, title: '装备 up 记录'});
@@ -37,5 +38,24 @@ router.delete('/list/:id', function(req, res, next) {
   // updater.delete(req.body.id);
   // res.redirect('/list');
 });
+
+// cms
+router.get('/cms', function(req, res, next) {
+  var titles = JSON.parse(fs.readFileSync('../cms-catcher/statics/titles.json'));
+  var arr = [];
+  for (var t in titles) {
+    arr.push({id: t, title: titles[t]});
+  }
+  arr.sort(function (a, b) {
+    var a_ = parseInt(a.id.substring(5));
+    var b_ = parseInt(b.id.substring(5));
+    return a_ < b_;
+  });
+  res.render('cms', {titles: arr, title: '公告备份'});
+});
+
+router.get('/cms/:id', function(req, res, next) {
+  res.sendfile('public/html/' + req.params.id + '.html');
+})
 
 module.exports = router;
