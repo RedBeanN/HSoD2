@@ -68,6 +68,7 @@ function getUps(link, success, fail) {
 
 function parseUps(page, success, fail) {
   var tableReg = new RegExp(/table.*?<\/table>/, 'g');
+  // for chinese only
   var itemReg = new RegExp(/[\u4e00-\u9fa5]+/, 'g');
   var page_ = page.match(tableReg);
   // console.log(page_);
