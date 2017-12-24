@@ -23,7 +23,7 @@ var logfile = logfileCreater.logfile('./statics/', 'nohup.out', 'error.log');
 var hourChecking = setInterval(function () {
   logfile.write('[Update] Start @ ' + Date().toString());
   getUpdateMessage(range);
-}, oneHour);
+}, halfHour);
 // halfHour for test
 
 var dailyMail = setInterval(function () { sendStatus(Date()); }, oneDay);

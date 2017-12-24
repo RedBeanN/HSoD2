@@ -118,10 +118,10 @@ exports.updateImg = function(range_, cb) {
     // another handdler
 
     request.setTimeout(1500, function() {
-      if (req.res && req.res.emit) req.res.emit('end');
+      if (request.res && request.res.emit) request.res.emit('end');
       else {
-        if (req.res && req.res.end) req.res.end();
-        req.abort();
+        if (request.res && request.res.end) request.res.end();
+        request.abort();
         cb({message: 'timeout'}, dest);
       }
     });
