@@ -68,29 +68,35 @@ function getUps(link, success, fail) {
 
 function parseUps(page, success, fail) {
   var tableReg = new RegExp(/table.*?<\/table>/, 'g');
-  // for chinese only
-  var itemReg = new RegExp(/[\u4e00-\u9fa5]+/, 'g');
+  // var itemReg = new RegExp(/[\u4e00-\u9fa5·]+/, 'g');
+  var itemReg = new RegExp(/>.*?</, 'g');
   var page_ = page.match(tableReg);
   // console.log(page_);
   if (page.indexOf('祈愿') < 0) fail('This page is not about up.');
   else if (!page_) fail('This is not a up page!');
-  else if(page_.length == 1) {
+  else if(page.indexOf('使魔') < 0) {
+    // equips up
     var arr = page_[0].match(itemReg);
-    // console.log('Arr:', arr);
     var items = [];
     if (arr && arr.length) {
       arr.forEach(i => {
-        items.push(i);
+        if (i != '><') {
+          i = i.substring(1, i.length - 1);
+          items.push(i.replace(/&nbsp;/g, ''));
+        }
+        // items.push(i);
       });
       items.push(page.match(/活动时间.*24:00/)[0].match(/\d.*24:00/)[0]);
       success(items);
     } else fail('This is not a up page!');
   } else {
+    // pets up
     var obj = {};
     page_.length = 2;
     page_.forEach(i => {
       var ar = i.match(/nbsp.*?nbsp/g);
-      if (ar) {
+      console.log(ar);
+      if (ar && ar.length >= 3) {
         obj[ar[0].substring(5, ar[0].length - 5)] = ar[2].substring(5, ar[2].length - 5);
       }
     });
