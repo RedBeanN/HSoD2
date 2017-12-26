@@ -55,7 +55,10 @@ router.get('/cms', function(req, res, next) {
 });
 
 router.get('/cms/:id', function(req, res, next) {
-  res.sendfile('public/html/' + req.params.id + '.html');
-})
+  // res.sendfile('public/html/' + req.params.id + '.html');
+  var htmlPath = '../cms-catcher/statics/html/';
+  var page = fs.readFileSync(htmlPath + req.params.id + '.html');
+  res.send(page.toString());
+});
 
 module.exports = router;
