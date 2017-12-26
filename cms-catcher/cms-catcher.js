@@ -43,11 +43,11 @@ module.exports = function getList (server) {
 
       // check if html is already existed
       title_ = title_.substring(3, title_.length - 1);
-      if (!titleList[date_.replace('/', '') + id_]) {
-        savePage(link_, id_, date_, function(filename) {
-          updateCmsList(filename, title_);
-        });
-      }
+      // if (!titleList[date_.replace('/', '') + id_]) {
+      savePage(link_, id_, date_, function(filename) {
+        updateCmsList(filename, title_);
+      });
+      // }
     });
   }
 
