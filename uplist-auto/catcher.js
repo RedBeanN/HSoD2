@@ -118,7 +118,7 @@ main(data => {
     data.length = data.length - 1;
     if (!equips[date]) {
       equips[date] = data;
-      fs.writeFileSync('./equips.json', JSON.stringify(equips));
+      fs.writeFileSync('./equips.json', JSON.stringify(equips, null, 2));
     }
   } else {
     // console.log('使魔:', data);
@@ -130,7 +130,7 @@ main(data => {
         if (prop != '活动时间') pets[data['活动时间']][prop] = data[prop];
       }
       // console.log(JSON.stringify(pets));
-      fs.writeFileSync('./pets.json', JSON.stringify(pets));
+      fs.writeFileSync('./pets.json', JSON.stringify(pets, null, 2));
     }
   }
 });
