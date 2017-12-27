@@ -3,6 +3,13 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+#favicon {
+  width: 72px;
+  height: 72px;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
 h1 {
   margin-top: 0;
 }
