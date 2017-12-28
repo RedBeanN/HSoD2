@@ -94,10 +94,17 @@ function parseUps(page, success, fail) {
     var obj = {};
     page_.length = 2;
     page_.forEach(i => {
-      var ar = i.match(/nbsp.*?nbsp/g);
-      console.log(ar);
-      if (ar && ar.length >= 3) {
-        obj[ar[0].substring(5, ar[0].length - 5)] = ar[2].substring(5, ar[2].length - 5);
+      var ar_ = i.match(/>.*?</g);
+      var ar = [];
+      ar_.forEach(item => {
+        if (item != '><' && item != '>&nbsp;<' && item.indexOf('&gt') == -1) {
+          // drop '><' and ' >>> '
+          ar.push(item.replace(/[(\&nbsp;)<>]/g, ''));
+        }
+      });
+      // console.log(ar);
+      if (ar) {
+        obj[ar[0]] = ar[1];
       }
     });
     // console.log(JSON.stringify(obj));
