@@ -15,7 +15,6 @@ block content
         th(colspan="2").equip 装备
         th(colspan="2").equip 装备
         th#special 备注
-        th 选项
       - list.forEach(function (item) {
       tr.list-line(id = 'tid' + item.id)
         td.date #{item.date}
@@ -25,6 +24,4 @@ block content
         td.ename(title = n.lastUp ? '最近 up 时间: ' + n.lastUp : '', class = (n.lastUp == n.startTime || n.lastUp == '' ? '': 'not-latest')) #{n.name}
         - })
         td.special #{item.special}
-        td.delete
-          a(href = '/delete?id=' + item.id) X
       - })
