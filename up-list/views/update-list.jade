@@ -4,15 +4,15 @@ block content
   form(action = '/list', method = 'post')
     p#startTime
       span 开始日期:  
-      input.year(name = 'startYear', type = 'number', value = 2017)
-      input.month(name = 'startMonth', type = 'number', value = 1)
-      input.day(name = 'startDay', type = 'number', value = 1)
+      input.year(name = 'startYear', type = 'number', value = (new Date()).getFullYear())
+      input.month(name = 'startMonth', type = 'number', value = (new Date()).getMonth() + 1)
+      input.day(name = 'startDay', type = 'number', value = (new Date()).getDate())
     br
     p#endTime
       span 结束日期: 
-      input.year(name = 'endYear', type = 'number', value = 2017)
-      input.month(name = 'endMonth', type = 'number', value = 12)
-      input.day(name = 'endDay', type = 'number', value = 31)
+      input.year(name = 'endYear', type = 'number', value = (new Date()).getFullYear())
+      input.month(name = 'endMonth', type = 'number', value = (new Date()).getMonth() + 1)
+      input.day(name = 'endDay', type = 'number', value = (new Date()).getDate())
     br
     p.item
       span 装备 1: 
