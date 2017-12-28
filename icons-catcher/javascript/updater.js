@@ -32,6 +32,7 @@ exports.updateImg = function(range_, cb) {
 
     function getImg(arr, index) {
       // process.stdout.write('[Process] ' + (index + 1) + ' of ' + range + '\033[K\r');
+      // process.stdout.write(`[Process] ${index + 1} of ${range} \x1b[K\r`);
       if (title[index] != 1) {
         var ai = arr[index].split('/');
         var dest = path.resolve(dir, ai[ai.length - 1]);
@@ -75,56 +76,60 @@ exports.updateImg = function(range_, cb) {
     // still have some bugs
     var item = src.split('/')[src.split('/').length - 1];
     // timer
-    var time_wrapper = function(req) {
-      return function() {
-        req.abort();
-        cb(null, dest);
-      };
-    };
+    // var time_wrapper = function(req) {
+    //   return function() {
+    //     req.abort();
+    //     cb(null, dest);
+    //   };
+    // };
     var request = http.get(src, function (res) {
       if (res.statusCode != 200) {
-        clearTimeout(timeout);
+        // clearTimeout(timeout);
         cb({statusCode: res.statusCode}, dest);
       }
       else {
         res.setEncoding('binary');
-        res.on('error', function (err) {
-          clearTimeout(timeout);
-          console.error('Error occured:', err);
-          cb(err, dest);
-        });
+        // res.on('error', function (err) {
+          // clearTimeout(timeout);
+        //   console.error('Error occured:', err);
+        //   cb(err, dest);
+        // });
         var img = '';
         res.on('data', function (chunk) {
-          clearTimeout(timeout);
+          // clearTimeout(timeout);
           img += chunk;
-          timeout = setTimeout(fn, 2000);
+          // timeout = setTimeout(fn, 2000);
         });
         res.on('end', function (err) {
-          clearTimeout(timeout);
+          // clearTimeout(timeout);
           if (err) console.error('Error ocurred:', err);
           fs.writeFile(dest, img, 'binary', function (err, data) {
             if (err) console.error('[Writing] Error @', item);
             cb(null, dest);
-          })
+          });
         });
-        res.on('abort', function () {
-          clearTimeout(timeout);
-          cb(null, dest);
-        });
+        // res.on('abort', function () {
+        //   clearTimeout(timeout);
+        //   cb(null, dest);
+        // });
       }
     });
-    var fn = time_wrapper(request);
-    var timeout = setTimeout(fn, 2000);
+    // var fn = time_wrapper(request);
+    // var timeout = setTimeout(fn, 2000);
     // another handdler
-
-    request.setTimeout(1500, function() {
-      if (request.res && request.res.emit) request.res.emit('end');
-      else {
-        if (request.res && request.res.end) request.res.end();
-        request.abort();
-        cb({message: 'timeout'}, dest);
-      }
+    request.on('error', function(err) {
+      console.log(err.message ? err.message : err);
+      // clearTimeout(timeout);
+      cb(err, dest);
     });
+    // request.setTimeout(1500, function() {
+    //   if (request.res && request.res.emit) request.res.emit('end');
+    //   else {
+    //     if (request.res && request.res.end) request.res.end();
+    //     request.abort();
+    //     cb({message: 'timeout'}, dest);
+    //   }
+    // });
   }
 
   function formatTitle (title) {
