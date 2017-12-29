@@ -23,7 +23,7 @@
 
     return {
       init: function () {
-        var inputs = document.getElementsByClassName('light-table-filter');
+        var inputs = document.getElementsByClassName('table-filter');
         Arr.forEach.call(inputs, function (input) {
           input.oninput = _onInputEvent;
         });
