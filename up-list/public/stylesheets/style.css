@@ -24,6 +24,10 @@ a {
   text-decoration: none;
 }
 
+table {
+  table-layout: fixed;
+}
+
 table, th, td {
   border: 1px solid gray;
   border-collapse: collapse;
@@ -35,6 +39,10 @@ table, th, td {
 th {
   padding: 5px;
 }
+.ename { width: 112px; }
+.eid { width: 30px; }
+.special { width: 150px; }
+#pool { width: 56px; }
 
 span, p {
   display: inline-block;
@@ -44,6 +52,9 @@ span, p {
 span {
   width: 32px;
   text-align: right;
+}
+#selector {
+  font-style: normal;
 }
 
 .pool {

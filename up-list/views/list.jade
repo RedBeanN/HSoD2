@@ -5,8 +5,9 @@ block content
   p * 使用 [Ctrl + F] 快捷键搜索装备 *
   //- a#update-link(href = 'list/update') + 添加新记录
   - if (list.length)
+  p#selector 蛋池筛选: 
     select(class='light-table-filter' data-table='order-table' placeholder='Filter')
-      option(value='') 蛋池
+      option(value='') 全部
       option(value='公主') 公主
       option(value='魔女') 魔女
       option(value='魔法少女') 魔法少女
