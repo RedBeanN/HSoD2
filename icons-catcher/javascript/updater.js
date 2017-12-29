@@ -1,3 +1,5 @@
+import { clearTimeout } from 'timers';
+
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
@@ -76,13 +78,15 @@ exports.updateImg = function(range_, cb) {
     // still have some bugs
     var item = src.split('/')[src.split('/').length - 1];
     // timer
-    // var time_wrapper = function(req) {
-    //   return function() {
-    //     req.abort();
-    //     cb(null, dest);
-    //   };
-    // };
+    var time_wrapper = function(req) {
+      return function() {
+        req.abort();
+        // cb(null, dest);
+      };
+    };
     var request = http.get(src, function (res) {
+      clearTimeout(timeout);
+
       if (res.statusCode != 200) {
         // clearTimeout(timeout);
         cb({statusCode: res.statusCode}, dest);
@@ -114,13 +118,13 @@ exports.updateImg = function(range_, cb) {
         // });
       }
     });
-    // var fn = time_wrapper(request);
-    // var timeout = setTimeout(fn, 2000);
+    var fn = time_wrapper(request);
+    var timeout = setTimeout(fn, 2000);
     // another handdler
     request.on('error', function(err) {
-      console.log(err.message ? err.message : err);
+      // console.log(err.message ? err.message : err, 'while downloading', item);
       // clearTimeout(timeout);
-      cb(err, dest);
+      cb({message: 'Timeout Error'}, dest);
     });
     // request.setTimeout(1500, function() {
     //   if (request.res && request.res.emit) request.res.emit('end');
