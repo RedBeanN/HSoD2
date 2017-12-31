@@ -16,8 +16,8 @@
     }
 
     function _filter(row) {
-      var text = row.textContent.toLowerCase(),
-        val = _input.value.toLowerCase();
+      var text = row.getElementsByClassName('pool')[0].textContent,
+        val = _input.value;
       row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
     }
 
