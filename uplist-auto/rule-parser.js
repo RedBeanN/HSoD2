@@ -7,14 +7,26 @@ const server = '?region=3_1';
 // never use moe!
 const [princess, pri98, mj, special, moe] = ['high', 'middle', 'custom', 'special', 'moe'];
 
-{
-  parseUp(princess, (err, data) => {
-    if (!err) console.log(JSON.stringify(data, null, 2));
+save();
+save(mj);
+
+function save(pool = princess) {
+  parseUp(pool, (err, data) => {
+    if (!err) {
+      console.log(JSON.stringify(data, null, 2));
+      let ruleData = fs.readFileSync(`./rule-data.${pool}.json`);
+      ruleData = JSON.parse(ruleData);
+      console.log(ruleData);
+      if (ruleData.constuctor != Array) {
+        ruleData.push(data);
+        fs.writeFileSync(`./rule-data.${pool}.json`, JSON.stringify(ruleData, null, 2));
+      } else console.error('Invalid JSON data!');
+    }
   });
 }
 
-function parseUp(type_, cb) {
-  http.get(getUrl(type_), res => {
+function parseUp(pool, cb) {
+  http.get(getUrl(pool), res => {
     let data = '';
     let equips = [];
     res.on('data', chunk => {
@@ -40,8 +52,8 @@ function parseUp(type_, cb) {
   });
 }
 
-function getUrl(type_, server_ = server) {
-  return baseUrl + type_ + server_;
+function getUrl(pool, server_ = server) {
+  return baseUrl + pool + server_;
 }
 
 function parseGod(str) {
