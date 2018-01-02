@@ -1,17 +1,32 @@
 extends layout
 
 block content
+  script(src="/javascripts/index.js")
+  link(rel="stylesheet", href="/stylesheets/index.css")
   h1
     img#favicon(src='/images/favicon.jpg') 
     | #{title}
   br
-  p
-    a(href='/list') Up 记录
-  p
-    a(href='/cms') 公告备份
-  p
-    a(href='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List') 正式服公告
-  p
-    a(href='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List?build=18') 测试服公告
-  p
-    a(href='http://event.mihoyo.com/notice') Bug 公告
+  div#link-container
+    p
+      a(href='/list') Up 记录
+    p
+      a(href='/cms') 公告备份
+    //- p
+    //-   a(href='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List',target='inpage') 正式服公告
+    //- p
+    //-   a(href='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List?build=18', target='inpage') 测试服公告
+    p
+      a(href='http://event.mihoyo.com/notice') Bug 公告
+  br
+  div#main-container
+    div#tab
+      button.page-button#origin(src='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List') origin
+      button.page-button#test(src='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List?build=18') test
+      //- button.page-button#bug-list(src='http://event.mihoyo.com/notice') Bug List
+    div#iframe-container
+      div#iframe-button-container
+        button#iframe-back Back
+        button#iframe-link Link
+        button#iframe-hide Hide
+      iframe#iframe(name='inpage', frameborder=0)

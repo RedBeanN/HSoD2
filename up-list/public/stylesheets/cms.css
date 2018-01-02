@@ -1,0 +1,41 @@
+/*
+  stylesheets for cms
+*/
+
+.ul {
+  width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  font-size: 18px;
+  background: #eee;
+  border: 1px solid white;
+  width: 720px;
+  cursor: pointer;
+  padding: 5px;
+  border-collapse: collapse;
+  border-radius: 10px;
+}
+#cms-title {
+  cursor: default;
+  background: #ddd;
+}
+li a {
+  width: 660px;
+}
+li span {
+  width: 60px;
+  text-align: left;
+}
+li:hover {
+  background: #6cf;
+}
+#cms-title:hover {
+  background: #ddd;
+}

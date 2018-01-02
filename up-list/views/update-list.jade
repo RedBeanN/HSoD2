@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  link(rel="stylesheet", href="/stylesheets/list.css")
   form(action = '/list', method = 'post')
     p#startTime
       span 开始日期:  
@@ -44,7 +45,7 @@ block content
       input.eid(name = 'id6', type = 'number')
       input.name(name = 'name6', type = 'text')
     br
-    p#pool
+    p#pool-selector
       span 蛋池: 
       select(name = 'pool')
         option(value = '公主') 公主 

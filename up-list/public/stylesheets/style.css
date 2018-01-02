@@ -1,6 +1,6 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Microsoft YaHei", Arial, sans-serif;
 }
 
 #favicon {
@@ -10,117 +10,15 @@ body {
   margin-right: 24px;
 }
 
-h1 {
-  margin-top: 0;
+p {
+  margin-left: 10px;
+  display: inline-block;
 }
-
-body > p {
-  font-style: italic;
-  margin-left: 20px;
+span {
+  display: inline-block;
 }
 
 a {
   color: black;
   text-decoration: none;
-}
-
-table {
-  table-layout: fixed;
-}
-
-table, th, td {
-  border: 1px solid gray;
-  border-collapse: collapse;
-  padding-left: 5px;
-  padding-right: 5px;
-  white-space: nowrap;
-}
-
-th {
-  padding: 5px;
-}
-.ename { width: 112px; }
-.eid { width: 30px; }
-.special { width: 150px; }
-#pool { width: 56px; }
-
-span, p {
-  display: inline-block;
-  margin: 2px;
-  margin-right: 5px;
-}
-span {
-  width: 32px;
-  text-align: right;
-}
-#selector {
-  font-style: normal;
-}
-
-.pool {
-  text-align: center;
-}
-
-.eid {
-  text-align: right;
-}
-
-.not-latest {
-  background-color: #ccc;
-}
-
-form span {
-  width: 80px;
-}
-
-form .year,form .month,form .day,form .eid {
-  width: 45px;
-}
-
-#update-link {
-  font-size: 18px;
-  text-decoration: none;
-  color: black;
-}
-
-.delete {
-  text-align: center;
-}
-
-.ul {
-  width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-}
-ul {
-  padding: 0;
-}
-
-li {
-  list-style: none;
-  font-size: 18px;
-  background: #eee;
-  border: 1px solid white;
-  width: 720px;
-  cursor: pointer;
-  padding: 5px;
-  border-collapse: collapse;
-  border-radius: 10px;
-}
-#cms-title {
-  cursor: default;
-  background: #ddd;
-}
-li a {
-  width: 660px;
-}
-li span {
-  width: 60px;
-  text-align: left;
-}
-li:hover {
-  background: #6cf;
-}
-#cms-title:hover {
-  background: #ddd;
 }

@@ -1,0 +1,75 @@
+/*
+  stylesheets for index
+*/
+
+h1 {
+  width: 260px;
+  margin: auto;
+  margin-top: 0;
+}
+
+button {
+  transition-duration: 0.3s;
+  outline: none;
+}
+
+#main-container {
+  width: 768px;
+  margin: auto;
+}
+#link-container {
+  width: 200px;
+  margin: auto;
+}
+
+#tab {
+  margin-bottom: -2px;
+}
+.page-button {
+  width: 388px;
+  position: relative;
+  background: #ccc;
+  cursor: pointer;
+  padding: 5px 10px 3px 10px;
+  border: 1px solid gray;
+  border-bottom: none;
+  margin-right: -8px;
+  border-radius: 10px 10px 0 0;
+}
+.page-button:hover, .page-button:active {
+  background: #ddd;
+}
+#origin { z-index: 3; }
+#test { z-index: 2; }
+#bug-list { z-index: 1; }
+.focus {
+  background: #eee;
+  z-index: 4 !important;
+}
+
+#iframe-container {
+  border: 1px solid gray;
+  display: none;
+}
+iframe {
+  width: 765px;
+  height: 480px;
+}
+
+#iframe-button-container button {
+  background: #eee;
+  border: none;
+  cursor: pointer;
+}
+#iframe-button-container button:hover {
+  background: #ccc;
+}
+#iframe-back {
+  float: left;
+}
+#iframe-link {
+  margin-left: 300px;
+}
+#iframe-hide {
+  float: right;
+}
