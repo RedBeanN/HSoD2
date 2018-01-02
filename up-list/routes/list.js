@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var fs = require('fs');
-var updater = require('../public/javascripts/up-list-updater.js');
+var updater = require('../private/javascripts/up-list-updater.js');
 
 // List
 router.get('/', function(req, res, next) {

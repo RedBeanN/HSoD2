@@ -1,8 +1,8 @@
 var fs = require('fs');
 
 var all, list = [];
-var lastUp = fs.readFileSync('./public/data/last-up');
-var equips_ = fs.readFileSync('./public/data/equips');
+var lastUp = fs.readFileSync('./private/data/last-up');
+var equips_ = fs.readFileSync('./private/data/equips');
 var equips = equips_.toString().split(',');
 // console.log(862, equips[862]);
 lastUp = lastUp.toString().split(',');
@@ -16,9 +16,9 @@ lastUp = lastUp.toString().split(',');
 // };
 exports.updateList = function updateList (cb) {
   list = [];
-  fs.readFile('./public/data/all', function (err, all_) {
+  fs.readFile('./private/data/all', function (err, all_) {
     if (err) console.error(err);
-    // fs.readFile('./public/data/equips', function (err, data) {
+    // fs.readFile('./private/data/equips', function (err, data) {
       // if (err) console.error(err);
       // equips = data.toString().split(',');
       all = JSON.parse(all_);
@@ -46,7 +46,7 @@ exports.updateList = function updateList (cb) {
 };
 
 exports.parseUpdate = function parseUpdate (body) {
-  // equips = fs.readFileSync('./public/data/equips');
+  // equips = fs.readFileSync('./private/data/equips');
   var startTime = '' + body.startYear + '.' +
                   (body.startMonth < 10 ? '0' + body.startMonth : body.startMonth) + '.' +
                   (body.startDay < 10 ? '0' + body.startDay : body.startDay);
@@ -90,17 +90,17 @@ exports.updateAllList = function updateAllList (data) {
   }
   // save changes in all file and last-up file
   // all file is always being changed but list can just read once
-  var all_ = fs.readFileSync('./public/data/all');
+  var all_ = fs.readFileSync('./private/data/all');
   all = JSON.parse(all_);
   all.push(tmp)
   exports.updateLastUp(tmp.startTime, tmp.equips);
-  fs.writeFile('./public/data/all', JSON.stringify(all), function (err) {
+  fs.writeFile('./private/data/all', JSON.stringify(all), function (err) {
     if (err) console.error(err);
   });
 };
 
 exports.updateEquips = function updateEquips (equips) {
-  fs.writeFile('./public/data/equips', equips, function (err) {
+  fs.writeFile('./private/data/equips', equips, function (err) {
     if (err) console.error(err);
   });
 };
@@ -109,5 +109,5 @@ exports.updateLastUp = function updateLastUp (date, arr) {
   arr.forEach(function (id) {
     lastUp[id] = date;
   });
-  fs.writeFileSync('./public/data/last-up', lastUp);
+  fs.writeFileSync('./private/data/last-up', lastUp);
 };
