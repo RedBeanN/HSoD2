@@ -63,6 +63,7 @@ let app = new Vue({
   data: {
     user, equip, type, weaponType,
     selectedType: '',
-    selectedWeapon: ''
+    selectedWeapon: '',
+    selectedSeries: ''
   }
 });

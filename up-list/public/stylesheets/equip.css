@@ -1,5 +1,6 @@
 #app {
   width: 1600px;
+  font-family: 'Microsoft YaHei';
 }
 div {
   border: 1px solid gray;
@@ -42,17 +43,23 @@ div {
 #equip-main {
   width: 1024px;
   height: 576px;
+  background-image: url('/images/equip-background.png');
+  background-size: 1024px 576px;
+  font-weight: bold;
 }
+#top-banner { height: 90px; }
+#equip-banner { height: 50px; }
 #equip-view {
   height: 500px;
 }
 #equip-view-left {
-  width: 60%;
+  width: 50%;
   height: 100%;
   float: left;
 }
 #equip-view-right {
-  width: 35%;
+  width: 39%;
+  margin-right: 50px;
   height: 100%;
   float: right;
 }
@@ -74,4 +81,48 @@ div {
 #equip-skill {
   clear: both;
   height: 300px;
+}
+
+#equip-series {
+  display: inline-block;
+  width: 160px;
+}
+#selector-container {
+  display: inline-block;
+  width: 50px;
+  height: 18px;
+  vertical-align: bottom;
+}
+#selector-container > img {
+  margin-left: 15px;
+  position: absolute;
+}
+#series-selector {
+  display: none;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  height: 400px;
+  overflow: scroll;
+  width: 50px;
+  text-align: center;
+  background: white;
+}
+#equip-series:hover #series-selector {
+  display: inline-block;
+}
+#series-selector li {
+  list-style: none;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+#series-selector li:hover {
+  background: #eee;
+}
+#series-selector li input {
+  display: none;
+}
+#equip-top img {
+  width: 20px;
+  height: 20px;
 }
