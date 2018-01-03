@@ -1,0 +1,77 @@
+#app {
+  width: 1600px;
+}
+div {
+  border: 1px solid gray;
+}
+#app > div {
+  display: inline-block;
+  vertical-align: top;
+}
+#left, #right {
+  width: 280px;
+  margin: 1px;
+  /* height: 768px; */
+}
+#middle {
+  width: 1024px;
+  /* height: 768px; */
+  margin: 1px;
+}
+
+#user span {
+  width: 50px;
+  margin-right: 5px;
+}
+
+#equip-top span {
+  width: 65px;
+  margin-right: 5px;
+  text-align: right;
+}
+#equip-top input {
+  width: 20px;
+}
+#equip-name input {
+  width: 120px;
+}
+#equip-serial input {
+  width: 40px;
+}
+
+#equip-main {
+  width: 1024px;
+  height: 576px;
+}
+#equip-view {
+  height: 500px;
+}
+#equip-view-left {
+  width: 60%;
+  height: 100%;
+  float: left;
+}
+#equip-view-right {
+  width: 35%;
+  height: 100%;
+  float: right;
+}
+#equip-status-left {
+  float: left;
+  width: 48%;
+  height: 150px;
+}
+#equip-status-right {
+  float: right;
+  width: 48%;
+  height: 150px;
+}
+#equip-status p {
+  margin: 5px;
+  margin-left: 10px;
+  display: block;
+}
+#equip-skill {
+  clear: both;
+  height: 300px;
+}

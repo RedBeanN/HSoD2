@@ -1,0 +1,72 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href="/stylesheets/equip.css")
+  script(src="https://cdn.jsdelivr.net/npm/vue")
+  #app
+    #left
+      #user
+        p(v-for='item in user')
+          span {{ item.name }}
+          input(v-model='item.value')
+      #imgs
+    #middle
+      #equip-top
+        p(v-for='(item, key) in equip.top', :id='"equip-" + key')
+          span {{ item.name }} :
+          input(v-model='item.value')
+      #equip-main
+        #user-banner
+          p {{ user.level.value }} | {{ user.name.value }}
+          p {{ user.coin.value }} | {{ user.crystal.value }}
+        #system-banner
+        #equip-banner
+          p
+            span ← 
+            span {{ equip.top.serial.value }} 
+            span {{ equip.top.name.value }} 
+            span {{ '★'.repeat(equip.top.stars.value) }}
+        #equip-view
+          #equip-view-left
+          #equip-view-right
+            #equip-status
+              #equip-status-left
+                p(v-if='equip.top.level')
+                  | {{ 'LV.' + equip.top.level.value }} 
+                  | {{ '最大LV.' + (equip.top.stars.value > 5 ? 99 : 50) }}
+                p(v-if='equip.top.love')
+                  span {{ equip.top.love.name }} 
+                  | {{ equip.top.love.value >= (equip.awaken ? 99 : 50) ?
+                  | '最高' : equip.top.love.value + '/' +
+                  | (equip.awaken ? 99 : 50) }}
+                p(v-if='equip.top.weight')
+                  span {{ equip.top.weight.name }} 
+                  | {{ equip.top.weight.value }}
+                p(v-if='equip.top.adds')
+                  span {{ equip.top.adds.name }} 
+                  | {{ '+' + equip.top.adds.value }}
+              #equip-status-right
+                p {{ selectedWeapon ? selectedWeapon : (selectedType ? selectedType : '') }}
+                p(v-if='selectedWeapon', v-for='(val, key) in weaponType[selectedWeapon]')
+                  span {{ key }} 
+                  span {{ val }}
+            #equip-skill
+              #skill-top
+              #skill-bottom
+      #equip-bottom
+    #right
+      #equip-type
+        p
+          span 装备类型 
+          select(v-model='selectedType')
+            option(value='') 选择装备类型
+            option(v-for='item in type') {{ item }}
+          select(v-if='selectedType == "武器"', v-model='selectedWeapon')
+            option(value='') 选择武器类型
+            option(v-for='(item, key) in weaponType') {{ key }}
+        p(v-if='selectedWeapon', v-for='(item, key) in weaponType[selectedWeapon]')
+          span {{ key }} : 
+          input(v-model='weaponType[selectedWeapon][key]')
+          
+      #equip-break
+  script(src="/javascripts/equip.js")
