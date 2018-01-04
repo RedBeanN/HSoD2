@@ -115,7 +115,8 @@ img {
 }
 #equip-status-right {
   float: right;
-  width: 156px;
+  width: 176px;
+  margin-right: -20px;
   height: 155px;
   padding-top: 15px;
   padding-left: 10px;

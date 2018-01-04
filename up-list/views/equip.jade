@@ -39,12 +39,15 @@ mixin equip-status
         span {{ equip.top.adds.name }} 
         | {{ '+' + equip.top.adds.value }}
     #equip-status-right(v-if='selectedType && (selectedType != "徽章" || (allAdds && addon["移速"]))')
-      p {{ selectedType == "徽章" ? "追加属性" : selectedType }}
+      p(:class='(selectedType == "徽章" || selectedType == "服装" ? "normal" : "buff")')
+        | {{ selectedType == "徽章" ? "追加属性" : selectedType }}
       p(v-if='selectedType', v-for='(val, key) in equipType[selectedType]')
         span(v-if='selectedType == "徽章"') {{ key + ' + ' }}
         span(v-else) {{ key }} 
         span(v-if='addon[key]', :class='(allAdds ? "buff" : "normal")') {{ computedValue(val, key) }}
-        span(v-else-if='key', class='normal') {{ val }}
+        span(v-else-if='key && key != "移速" && key != "攻　速" && key != "射　速"', class='normal') {{ val }}
+        span(v-else-if='key && key != "移速"') {{ val + ' / 秒' }}
+        span(v-else-if='key') {{ val + '%' }}
 
 mixin equip-type
   #equip-type

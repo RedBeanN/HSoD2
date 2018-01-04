@@ -56,8 +56,26 @@ let type = ['服装', '徽章', '武器'];
 let equipType = {
   '服装': { '生命': 2000 },
   '徽章': { '移速': 14.9 },
-  '近战-刀剑': { '攻击力': 0, '载弹': 1, '攻速': 3.3 },
-  '特殊-喷雾': { '攻击力': 0, '载弹': 25, '攻速': 1.7 }
+  '手枪-速射': { '攻击力': 300, '载弹量': 200, '射　速': 10 },
+  '手枪-手炮': { '攻击力': 3000, '载弹量': 20, '射　速': 1.7 },
+  '自动步枪': { '攻击力': 400, '载弹量': 300, '射　速': 10 },
+  '霰弹-独头': { '攻击力': 2500, '载弹量': 34, '射　速': 1.7 },
+  '霰弹-多头': { '攻击力': 2500, '载弹量': 30, '射　速': 1.7 },
+  '狙击': { '攻击力': 3000, '载弹量': 30, '射　速': 4.8 },
+  '单兵火箭': { '攻击力': 2500, '载弹量': 24, '射　速': 1.2 },
+  '近战-刀剑': { '攻击力': 800, '载弹量': '-', '攻　速': 3.3 },
+  '近战-电锯': { '攻击力': 200, '载弹量': '-', '攻　速': 10 },
+  '喷雾-普通': { '攻击力': '-', '载弹量': 25, '射　速': 2.4 },
+  '喷雾-激活': { '攻击力': '-', '载弹量': 15, '射　速': 2.4 },
+  '喷雾-附魔': { '攻击力': '-', '载弹量': 20, '射　速': 2.4 },
+  '特殊': { '攻击力': 800, '载弹量': 200, '射　速': 5 },
+  '投掷': { '攻击力': 800, '载弹量': 10, '射　速': 4.8 },
+  '放置-炮台': { '攻击力': 0, '载弹量': 3, '射　速': 3.3 },
+  '放置-远古兵器': { '攻击力': 2500, '载弹量': 10, '射　速': 3.3 },
+  '放置-人形': { '攻击力': 2200, '载弹量': 9, '射　速': 3.3 },
+  '放置-地雷': { '攻击力': 3000, '载弹量': 10, '射　速': 3.3 },
+  '放置-特殊': { '攻击力': 0, '载弹量': 8, '射　速': 3.3 },
+  '放置-诱导人形': { '生　命': 1, '载弹量': 8, '持　续': '8s' }
 };
 
 let app = new Vue({
@@ -77,7 +95,7 @@ let app = new Vue({
     addon() {
       let adds = {};
       for (let k in this.equipType[this.selectedType]) {
-        if (k == this.addType) adds[k] = true;
+        if (k == this.addType) adds[k] = this.equipType[this.selectedType][k] != '-';
         else adds[k] = false;
       }
       return adds;
@@ -89,15 +107,21 @@ let app = new Vue({
   methods: {
     computedValue: function(val, key) {
       let rate = (key == '生命' ? 0.3 : 0.2);
-      if (key != '移速') return Math.floor(val * (1 +
-            (Number(this.equip.top.adds.value) +
-             Number(this.equip.top.love.value)) *
-             rate * 0.01));
-      else return (+(( Number(this.equip.top.adds.value) +
-        Number(this.equip.top.love.value)).toFixed(1) * 0.1) +
-         '%');
+      if (key == '射　速' || key == '攻　速') {
+        return (val * (1 + this.allAdds * 0.002)).toFixed(1) + ' / 秒';
+      } else if (key == '移速') {
+        return +(this.allAdds * 0.1).toFixed(1) + '%';
+      } else if (typeof val == 'string' && val.indexOf('s') != -1) {
+        val = val.substring(0, val.indexOf('s'));
+        return +(Math.floor(val * (1 + this.allAdds * rate * 0.01))) + 's';
+      } else {
+        return Math.floor(val * (1 + this.allAdds * rate * 0.01));
+      }
     },
     generateArray: function (num) {
+      if (isNaN(Number(num))) num = 6;
+      else if (Number(num) > 10) num = 10;
+      else if (Number(num) < 1) num = 1;
       return Array(Number(num));
     }
   }
