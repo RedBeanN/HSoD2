@@ -52,18 +52,47 @@ let equip = {
   atk: 0,
   payload: 255
 };
-let type = ['衣服', '徽章', '武器'];
-let weaponType = {
-  '近战-刀剑': {'攻击力': 0, '载弹': 1, '攻速': 3.3},
-  '特殊-喷雾': {'攻击力': 0, '载弹': 25, '攻速': 1.7}
+let type = ['服装', '徽章', '武器'];
+let equipType = {
+  '服装': { '生命': 2000 },
+  '徽章': { '移速': 14.9 },
+  '近战-刀剑': { '攻击力': 0, '载弹': 1, '攻速': 3.3 },
+  '特殊-喷雾': { '攻击力': 0, '载弹': 25, '攻速': 1.7 }
 };
 
 let app = new Vue({
   el: '#app',
   data: {
-    user, equip, type, weaponType,
+    user, equip, type, equipType,
     selectedType: '',
     selectedWeapon: '',
-    selectedSeries: ''
+    selectedSeries: '',
+    addType: ''
+  },
+  computed: {
+    selectedWeapon_() {
+      if(this.selectedType == '武器') return this.selectedWeapon;
+      else return '';
+    },
+    addon() {
+      let adds = {};
+      for (let k in this.equipType[this.selectedType]) {
+        if (k == this.addType) adds[k] = true;
+        else adds[k] = false;
+      }
+      return adds;
+    }
+  },
+  methods: {
+    computedValue: function(val, key) {
+      let rate = (key == '生命' ? 0.3 : 0.2);
+      if (key != '移速') return Math.floor(val * (1 +
+            (Number(this.equip.top.adds.value) +
+             Number(this.equip.top.love.value)) *
+             rate * 0.01));
+      else return (+(( Number(this.equip.top.adds.value) +
+        Number(this.equip.top.love.value)).toFixed(1) * 0.1) +
+         '%');
+    }
   }
 });

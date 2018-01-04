@@ -3,7 +3,11 @@
   font-family: 'Microsoft YaHei';
 }
 div {
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
+  background: rgba(0, 0, 0, 0.1)
+}
+img {
+  height: 20px;
 }
 #app > div {
   display: inline-block;
@@ -24,7 +28,9 @@ div {
   width: 50px;
   margin-right: 5px;
 }
-
+#equip-main {
+  color: rgb(114, 114, 114);
+}
 #equip-top span {
   width: 65px;
   margin-right: 5px;
@@ -49,6 +55,15 @@ div {
 }
 #top-banner { height: 90px; }
 #equip-banner { height: 50px; }
+#equip-stars-container {
+  float: right;
+  padding-top: 10px;
+  width: 401px;
+}
+#equip-stars-container img {
+  height: 33px;
+  margin-left: -2.2px;
+}
 #equip-view {
   height: 500px;
 }
@@ -63,20 +78,54 @@ div {
   height: 100%;
   float: right;
 }
+#equip-status p {
+  margin-bottom: 5px;
+  margin-left: 10px;
+  display: block;
+}
 #equip-status-left {
   float: left;
-  width: 48%;
-  height: 150px;
+  width: 217px;
+  height: 155px;
+  padding-top: 14px;
+  padding-left: 12.5px;
+  font-size: 18.2px;
+  background: url('/images/status-left.png') no-repeat 4px 7px;
+  background-size: 224px 159px;
+}
+#equip-status-level {
+  margin-top: 6px;
+}
+#equip-status-love {
+  margin-top: 26px;
+  font-size: 19.5px;
+}
+#equip-status span {
+  margin-right: 4px;
+}
+#equip-status-weight {
+  margin-top: -5px;
+  font-size: 19.5px;
+}
+#equip-status-adds {
+  margin-top: -7px;
+  font-size: 21px;
 }
 #equip-status-right {
   float: right;
-  width: 48%;
-  height: 150px;
+  width: 156px;
+  height: 155px;
+  padding-top: 15px;
+  padding-left: 10px;
+  font-size: 20px;
+  background: url('/images/status-right.png') no-repeat 0px 7px;
+  background-size: 161px 160px;
 }
-#equip-status p {
-  margin: 5px;
-  margin-left: 10px;
-  display: block;
+#equip-status-right p {
+  margin-top: 5px;
+}
+#equip-status-right p span {
+  margin-right: 7px;
 }
 #equip-skill {
   clear: both;
@@ -122,7 +171,20 @@ div {
 #series-selector li input {
   display: none;
 }
-#equip-top img {
-  width: 20px;
-  height: 20px;
+
+#equip-type span {
+  width: 60px;
+}
+#equip-type input {
+  width: 40px;
+}
+#equip-type input[type='radio'] {
+  width: auto;
+}
+
+.buff {
+  color: rgb(255, 151, 0);
+}
+.normal {
+  color: rgb(114, 114, 114);
 }
