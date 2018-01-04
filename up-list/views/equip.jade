@@ -18,7 +18,8 @@ mixin equip-top
         span ]
     p(v-for='(item, key) in equip.top', :id='"equip-" + key')
       span {{ item.name }} :
-      input(v-model='item.value')
+      input(v-model='item.value',
+            :type='item.name == "装备名" ? "text" : "number"')
 
 mixin equip-status
   #equip-status
@@ -83,7 +84,7 @@ block content
               img(v-if='selectedSeries', :src='selectedSeries')
             span {{ equip.top.name.value }} 
             #equip-stars-container
-              img(v-for='s in Array(equip.top.stars.value)',
+              img(v-for='s in generateArray(equip.top.stars.value)',
                   src='/images/star-full.png')
         #equip-view
           #equip-view-left

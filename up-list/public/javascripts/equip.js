@@ -96,6 +96,9 @@ let app = new Vue({
       else return (+(( Number(this.equip.top.adds.value) +
         Number(this.equip.top.love.value)).toFixed(1) * 0.1) +
          '%');
+    },
+    generateArray: function (num) {
+      return Array(Number(num));
     }
   }
 });
