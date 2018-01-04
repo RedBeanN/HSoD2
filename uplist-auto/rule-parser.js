@@ -13,13 +13,24 @@ save(mj);
 function save(pool = princess) {
   parseUp(pool, (err, data) => {
     if (!err) {
-      console.log(JSON.stringify(data, null, 2));
-      let ruleData = fs.readFileSync(`./rule-data.${pool}.json`);
+      // console.log(JSON.stringify(data, null, 2));
+      let ruleData = fs.existsSync(getSavePath(pool)) ?
+        fs.readFileSync(getSavePath(pool)) : '[]';
       ruleData = JSON.parse(ruleData);
-      console.log(ruleData);
-      if (ruleData.constuctor != Array) {
-        ruleData.push(data);
-        fs.writeFileSync(`./rule-data.${pool}.json`, JSON.stringify(ruleData, null, 2));
+      // console.log(ruleData);
+      if (ruleData.constructor === Array) {
+        let exist = false;
+        ruleData.forEach(item => {
+          if (JSON.stringify(item) == JSON.stringify(data)) {
+            exist = true;
+            console.log(`Data ${data.startTime} already exist.`);
+          }
+        });
+        if(!exist) {
+          ruleData.push(data);
+          fs.writeFileSync(getSavePath(pool), JSON.stringify(ruleData, null, 2));
+          console.log(`Update ${pool} completed.`);
+        }
       } else console.error('Invalid JSON data!');
     }
   });
@@ -33,6 +44,7 @@ function parseUp(pool, cb) {
       data += chunk;
     });
     res.on('end', err => {
+      // equips pets
       if (err) console.log(err);
       data = data.toString();
       let date = parseDate(data);
@@ -68,4 +80,8 @@ function parseEquip(str) {
 function parseDate(str) {
   let dateReg = /\d{4}-.*:\d{2}/g;
   return str.match(dateReg)[0];
+}
+
+function getSavePath(pool) {
+  return `./rule-data/${pool}.json`;
 }
