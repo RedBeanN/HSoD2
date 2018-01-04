@@ -1,4 +1,63 @@
 extends layout
+mixin equip-top
+  #equip-top
+    #equip-series
+      span 系列 [
+      div#selector-container
+        img(v-if='selectedSeries', :src='selectedSeries')
+        ul#series-selector
+          - for (let i = 0; i < 39; i++) {
+          -   let prefix = 'http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Series/Series';
+          -   if (i < 10) prefix += '0';
+          -   let src = prefix + i + '.png';
+          li 
+            input(type='radio', value=src, v-model='selectedSeries', id='series-#{i}')
+            label(for='series-#{i}')
+              img(src=src)
+          - }
+        span ]
+    p(v-for='(item, key) in equip.top', :id='"equip-" + key')
+      span {{ item.name }} :
+      input(v-model='item.value')
+
+mixin equip-status
+  #equip-status
+    #equip-status-left
+      p#equip-status-level
+        | {{ 'LV.' + equip.top.level.value }} 
+        | {{ '最大LV.' + (equip.top.stars.value > 5 ? 99 : 50) }}
+      p#equip-status-love
+        span {{ equip.top.love.name }} 
+        | {{ equip.top.love.value >= (equip.awaken ? 99 : 50) ?
+        | '最高' : (equip.top.love.value || '0') + '/' +
+        | (equip.awaken ? 99 : 50) }}
+      p#equip-status-weight
+        span {{ equip.top.weight.name }} 
+        | {{ equip.top.weight.value }}
+      p#equip-status-adds.buff(v-if='equip.top.adds.value != 0')
+        span {{ equip.top.adds.name }} 
+        | {{ '+' + equip.top.adds.value }}
+    #equip-status-right(v-if='selectedType && (selectedType != "徽章" || (allAdds && addon["移速"]))')
+      p {{ selectedType == "徽章" ? "追加属性" : selectedType }}
+      p(v-if='selectedType', v-for='(val, key) in equipType[selectedType]')
+        span(v-if='selectedType == "徽章"') {{ key + ' + ' }}
+        span(v-else) {{ key }} 
+        span(v-if='addon[key]', :class='(allAdds ? "buff" : "normal")') {{ computedValue(val, key) }}
+        span(v-else-if='key', class='normal') {{ val }}
+
+mixin equip-type
+  #equip-type
+    p
+      span 装备类型 
+      select(v-model='selectedType')
+        option(value='') 选择装备类型
+        option(v-for='(item, key) in equipType') {{ key }}
+    p(v-if='selectedType', v-for='(item, key, index) in equipType[selectedType]')
+      span {{ key }} 
+      input(v-model='equipType[selectedType][key]', v-if='selectedType != "徽章"')
+      input(type="radio", :value='key', v-model='addType', id='"type-"+key')
+      label(for='"type-"+key') 选为亲密度加成属性
+
 
 block content
   link(rel="stylesheet", href="/stylesheets/equip.css")
@@ -10,24 +69,7 @@ block content
           input(v-model='item.value')
       #imgs
     #middle
-      #equip-top
-        #equip-series
-          span 系列 
-          div#selector-container
-            img(v-if='selectedSeries', :src='selectedSeries')
-            ul#series-selector
-              - for (let i = 0; i < 39; i++) {
-              -   let prefix = 'http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Series/Series';
-              -   if (i < 10) prefix += '0';
-              -   let src = prefix + i + '.png';
-              li 
-                input(type='radio', value=src, v-model='selectedSeries', id='series-#{i}')
-                label(for='series-#{i}')
-                  img(src=src)
-              - }
-        p(v-for='(item, key) in equip.top', :id='"equip-" + key')
-          span {{ item.name }} :
-          input(v-model='item.value')
+      +equip-top
       #equip-main
         #top-banner
           #user-banner
@@ -36,55 +78,23 @@ block content
           #system-banner
         #equip-banner
           p
-            span ← 
             span {{ equip.top.serial.value }} 
             span 
               img(v-if='selectedSeries', :src='selectedSeries')
             span {{ equip.top.name.value }} 
             #equip-stars-container
-              img(v-for='s in Array(equip.top.stars.value)', src='/images/star-full.png')
+              img(v-for='s in Array(equip.top.stars.value)',
+                  src='/images/star-full.png')
         #equip-view
           #equip-view-left
           #equip-view-right
-            #equip-status
-              #equip-status-left
-                p#equip-status-level
-                  | {{ 'LV.' + equip.top.level.value }} 
-                  | {{ '最大LV.' + (equip.top.stars.value > 5 ? 99 : 50) }}
-                p#equip-status-love
-                  span {{ equip.top.love.name }} 
-                  | {{ equip.top.love.value >= (equip.awaken ? 99 : 50) ?
-                  | '最高' : (equip.top.love.value || '0') + '/' +
-                  | (equip.awaken ? 99 : 50) }}
-                p#equip-status-weight
-                  span {{ equip.top.weight.name }} 
-                  | {{ equip.top.weight.value }}
-                p#equip-status-adds.buff(v-if='equip.top.adds.value != 0')
-                  span {{ equip.top.adds.name }} 
-                  | {{ '+' + equip.top.adds.value }}
-              #equip-status-right(v-if='addType')
-                p {{ selectedType }}
-                p(v-if='selectedType', v-for='(val, key) in equipType[selectedType]')
-                  span(v-if='selectedType == "徽章"') {{ key + ' + ' }}
-                  span(v-else) {{ key }} 
-                  span(v-if='addon[key]', :class='((equip.top.adds.value + equip.top.love.value != 0) ? "buff" : "normal")') {{ computedValue(val, key) }}
-                  span(v-else-if='key', class='normal') {{ val }}
+            +equip-status
             #equip-skill
               #skill-top
               #skill-bottom
       #equip-bottom
     #right
-      #equip-type
-        p
-          span 装备类型 
-          select(v-model='selectedType')
-            option(value='') 选择装备类型
-            option(v-for='(item, key) in equipType') {{ key }}
-        p(v-if='selectedType', v-for='(item, key, index) in equipType[selectedType]')
-          span {{ key }} 
-          input(v-model='equipType[selectedType][key]', v-if='selectedType != "徽章"')
-          input(type="radio", :value='key', v-model='addType', id='"type-"+key')
-          label(for='"type-"+key') 选为亲密度加成属性
+      +equip-type
           
       #equip-break
   script(src="/javascripts/vue.min.js")

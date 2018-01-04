@@ -1,6 +1,6 @@
 #app {
   width: 1600px;
-  font-family: 'Microsoft YaHei';
+  font-family: 'Microsoft YaHei', 'San Francisco', Arial, sans-serif;
 }
 div {
   /* border: 1px solid gray; */

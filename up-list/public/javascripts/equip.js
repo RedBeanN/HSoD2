@@ -66,7 +66,7 @@ let app = new Vue({
     user, equip, type, equipType,
     selectedType: '',
     selectedWeapon: '',
-    selectedSeries: '',
+    selectedSeries: 'http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Series/Series00.png',
     addType: ''
   },
   computed: {
@@ -81,6 +81,9 @@ let app = new Vue({
         else adds[k] = false;
       }
       return adds;
+    },
+    allAdds() {
+      return Number(this.equip.top.adds.value) + Number(this.equip.top.love.value);
     }
   },
   methods: {
