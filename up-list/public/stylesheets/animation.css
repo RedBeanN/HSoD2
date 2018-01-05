@@ -1,0 +1,60 @@
+@keyframes rotate {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes rotate {
+  0%, 100% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes rotate {
+  0%, 100% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes rotate {
+  0%, 100% {
+    -o-transform: rotate(0deg);
+  }
+  100% {
+    -o-transform: rotate(360deg);
+  }
+}
+
+@-ms-keyframes rotate {
+  0%, 100% {
+    -ms-transform: rotate(0deg);
+  }
+  100% {
+    -ms-transform: rotate(360deg);
+  }
+}
+
+.fast-rotate {
+  animation: rotate 32s linear infinite;
+  -webkit-animation: rotate 32s linear infinite;
+  -moz-animation: rotate 32s linear infinite;
+  -o-animation: rotate 32s linear infinite;
+  -ms-animation: rotate 32s linear infinite;
+}
+
+.slow-rotate {
+  animation: rotate 200s linear infinite;
+  -webkit-animation: rotate 200s linear infinite;
+  -moz-animation: rotate 200s linear infinite;
+  -o-animation: rotate 200s linear infinite;
+  -ms-animation: rotate 200s linear infinite;
+}

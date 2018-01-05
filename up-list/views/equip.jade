@@ -68,6 +68,7 @@ mixin equip-type
 
 
 block content
+  link(rel="stylesheet", href="/stylesheets/animation.css")
   link(rel="stylesheet", href="/stylesheets/equip.css")
   #app
     #left
@@ -79,6 +80,11 @@ block content
     #middle
       +equip-top
       #equip-main
+        #background-container
+          img#mid-top.fast-rotate(src='/images/ring-mid-top.png')
+          img#left-bottom.slow-rotate(src='/images/ring-left-bot.png')
+          img#right-top.fast-rotate(src='/images/ring-right-top.png')
+          img#right-bottom.slow-rotate(src='/images/ring-right-bot.png')
         #top-banner
           #user-banner
             #user-image
@@ -91,6 +97,7 @@ block content
                 span#user-coin {{ user.coin.value }}
                 span#user-crystal {{ user.crystal.value }}
           #system-banner
+            img(src='/images/system-bar.png')
         #equip-banner
           p
             span#equip-banner-serial 编号 {{ equip.top.serial.value }} 

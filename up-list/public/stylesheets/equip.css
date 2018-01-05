@@ -59,14 +59,48 @@ img {
   background-image: url('/images/equip-background.png');
   background-size: 1024px 576px;
   font-weight: bold;
+  position: absolute;
+  overflow: hidden;
 }
+#equip-main > div {
+  position: relative;
+  z-index: 5;
+}
+#background-container img {
+  position: absolute;
+  z-index: 1;
+}
+#mid-top {
+  height: 198px;
+  left: 329px;
+  top: -117px;
+}
+#left-bottom {
+  height: 1090px;
+  left: -429px;
+  top: -54px;
+  z-index: 4;
+}
+#right-top {
+  height: 287px;
+  right: 88px;
+  top: 118px;
+}
+#right-bottom {
+  height: 500px;
+  right: -218px;
+  top: 476px;
+}
+
 #top-banner { height: 90px; }
 
 #user-banner {
   color: white;
   height: 90px;
+  width: 400px;
   background: url('/images/user-bar.png') no-repeat;
   background-size: 320px 94px;
+  display: inline-block;
 }
 #user-banner > div {
   display: inline-block;
@@ -99,6 +133,12 @@ img {
   width: 80px;
 }
 #user-crystal { margin-left: 26px; }
+
+#system-banner {
+  float: right;
+  height: 0;
+}
+#system-banner img { height: 136.6px; }
 
 #equip-banner {
   height: 50px;
