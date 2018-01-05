@@ -2,10 +2,9 @@
   width: 1600px;
   font-family: 'Microsoft YaHei', 'Heiti SC', 'San Francisco', Arial, sans-serif;
 }
-div {
-  /* border: 1px solid gray; */
+/* div {
   background: rgba(0, 0, 0, 0.1)
-}
+} */
 img {
   height: 20px;
 }
@@ -28,6 +27,7 @@ img {
   width: 50px;
   margin-right: 5px;
 }
+#user input { width: 120px; }
 #equip-main {
   color: rgb(114, 114, 114);
 }
@@ -37,6 +37,11 @@ img {
 }
 #equip-top input {
   width: 35px;
+}
+#awaken-checkbox {
+  width: 10px !important;
+  height: 10px;
+  margin-left: 10px;
 }
 #equip-series > span, #equip-series > div > span {
   width: 65px;
@@ -56,7 +61,73 @@ img {
   font-weight: bold;
 }
 #top-banner { height: 90px; }
-#equip-banner { height: 50px; }
+
+#user-banner {
+  color: white;
+  height: 90px;
+  background: url('/images/user-bar.png') no-repeat;
+  background-size: 320px 94px;
+}
+#user-banner > div {
+  display: inline-block;
+  vertical-align: top;
+}
+#user-image {
+  width: 65px;
+  height: 65px;
+  margin-left: 12px;
+  margin-top: 11px;
+  border-radius: 50%;
+  background-size: 65px 65px;
+}
+#user-detail p {
+  margin-top: 10px;
+}
+#user-level {
+  font-size: 17.2px;
+  width: 60px;
+}
+#user-name {
+  font-size: 17.7px;
+  margin-left: 18px;
+  width: 140px;
+  text-align: center;
+}
+#user-bottom { margin-top: 14px !important; }
+#user-coin {
+  margin-left: 19px;
+  width: 80px;
+}
+#user-crystal { margin-left: 26px; }
+
+#equip-banner {
+  height: 50px;
+  background: url('/images/equip-bar.png') no-repeat -1px 5px;
+  background-size: 1024px 45px;
+}
+#equip-banner-serial {
+  width: 120px;
+  margin-left: 128px;
+  margin-top: -3px;
+  color: white;
+  font-size: 22px;
+}
+#equip-banner-img > img {
+  width: 39px;
+  height: 39px;
+  vertical-align: bottom;
+  margin-left: 21px;
+  margin-bottom: -8px;
+  margin-top: -10px;
+}
+#equip-banner-name {
+  margin-left: 6px;
+  margin-top: -10px;
+  margin-bottom: -2px;
+  vertical-align: bottom;
+  font-size: 24px;
+}
+
 #equip-stars-container {
   float: right;
   padding-top: 10px;
@@ -79,6 +150,10 @@ img {
   margin-right: 50px;
   height: 100%;
   float: right;
+}
+#equip-status {
+  position: absolute;
+  width: 400px;
 }
 #equip-status p {
   margin-bottom: 5px;
@@ -133,6 +208,18 @@ img {
 #equip-skill {
   clear: both;
   height: 300px;
+}
+#equip-awaken-widget {
+  position: relative;
+  width: 50px;
+  margin-left: -50px;
+  height: 50px;
+}
+#awaken-image {
+  vertical-align: top;
+  margin-top: -121px;
+  margin-left: -2px;
+  height: 130px;
 }
 
 #equip-series {

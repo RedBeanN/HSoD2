@@ -20,6 +20,8 @@ mixin equip-top
       span {{ item.name }} :
       input(v-model='item.value',
             :type='item.name == "装备名" ? "text" : "number"')
+    input#awaken-checkbox(type="checkbox", name="awaken", v-model='equip.awaken')
+    label(for='awaken-checkbox') 觉醒
 
 mixin equip-status
   #equip-status
@@ -48,6 +50,8 @@ mixin equip-status
         span(v-else-if='key && key != "移速" && key != "攻　速" && key != "射　速"', class='normal') {{ val }}
         span(v-else-if='key && key != "移速"') {{ val + ' / 秒' }}
         span(v-else-if='key') {{ val + '%' }}
+    #equip-awaken-widget(v-if='equip.awaken')
+      img#awaken-image(src='/images/awaken-widget.png')
 
 mixin equip-type
   #equip-type
@@ -70,22 +74,29 @@ block content
       #user
         p(v-for='item in user')
           span {{ item.name }}
-          input(v-model='item.value')
+          input(v-model='item.value', :type='item.name == "昵称" ? "text" : "number"')
       #imgs
     #middle
       +equip-top
       #equip-main
         #top-banner
           #user-banner
-            p {{ user.level.value }} | {{ user.name.value }}
-            p {{ user.coin.value }} | {{ user.crystal.value }}
+            #user-image
+            #user-detail
+              p#user-top
+                span#user-level LV.{{ user.level.value }}
+                span#user-name {{ user.name.value }}
+              br
+              p#user-bottom
+                span#user-coin {{ user.coin.value }}
+                span#user-crystal {{ user.crystal.value }}
           #system-banner
         #equip-banner
           p
-            span {{ equip.top.serial.value }} 
-            span 
+            span#equip-banner-serial 编号 {{ equip.top.serial.value }} 
+            span#equip-banner-img
               img(v-if='selectedSeries', :src='selectedSeries')
-            span {{ equip.top.name.value }} 
+            span#equip-banner-name {{ equip.top.name.value }} 
             #equip-stars-container
               img(v-for='s in generateArray(equip.top.stars.value)',
                   src='/images/star-full.png')
