@@ -1,51 +1,18 @@
 let user = {
-  level: {
-    name: '等级',
-    value: 380
-  },
-  name: {
-    name: '昵称',
-    value: 'RB'
-  },
-  coin: {
-    name: '金币',
-    value: 65536
-  },
-  crystal: {
-    name: '水晶',
-    value: 8088
-  }
+  level:   { name: '等级', value: 380 },
+  name:    { name: '昵称', value: 'RB' },
+  coin:    { name: '金币', value: 65536 },
+  crystal: { name: '水晶', value: 8088 }
 };
 let equip = {
   top: {
-    serial: {
-      name: '编号',
-      value: 2333
-    },
-    name: {
-      name: '装备名',
-      value: '巴斯克维尔的猎犬'
-    },
-    stars: {
-      name: '星级',
-      value: 6
-    },
-    level: {
-      name: '等级',
-      value: 99
-    },
-    love: {
-      name: '亲密度',
-      value: 50
-    },
-    adds: {
-      name: '追加等级',
-      value: 99
-    },
-    weight: {
-      name: '负重',
-      value: 25
-    }
+    serial: { name: '编号', value: 2333 },
+    name:   { name: '装备名', value: '巴斯克维尔的猎犬' },
+    stars:  { name: '星级', value: 6 },
+    level:  { name: '等级', value: 99 },
+    love:   { name: '亲密度', value: 50 },
+    adds:   { name: '追加等级', value: 99 },
+    weight: { name: '负重', value: 25 }
   },
   awaken: false,
   type: '徽章',
