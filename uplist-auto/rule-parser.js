@@ -14,8 +14,23 @@ function save(pool = princess) {
   parseUp(pool, (err, data) => {
     if (!err) {
       // console.log(JSON.stringify(data, null, 2));
-      let ruleData = fs.existsSync(getSavePath(pool)) ?
-        fs.readFileSync(getSavePath(pool)) : '[]';
+      let isPet = false, pets = [];
+      if (data.equips.constructor === Array) {
+        data.equips.forEach(i => {
+          if (i.indexOf('×9') != -1) {
+            isPet = true;
+            pets.push(i.substring(0, i.indexOf('×9')));
+          }
+        });
+        console.log(pets);
+      }
+      if (isPet) {
+        delete data.equips;
+        data.pets = pets;
+      }
+      let pool_ = isPet ? 'pet' : pool;
+      let ruleData = fs.existsSync(getSavePath(pool_)) ?
+        fs.readFileSync(getSavePath(pool_)) : '[]';
       ruleData = JSON.parse(ruleData);
       // console.log(ruleData);
       if (ruleData.constructor === Array) {
@@ -28,8 +43,8 @@ function save(pool = princess) {
         });
         if(!exist) {
           ruleData.push(data);
-          fs.writeFileSync(getSavePath(pool), JSON.stringify(ruleData, null, 2));
-          console.log(`Update ${pool} completed.`);
+          fs.writeFileSync(getSavePath(pool_), JSON.stringify(ruleData, null, 2));
+          console.log(`Update ${pool_} completed.`);
         }
       } else console.error('Invalid JSON data!');
     }
