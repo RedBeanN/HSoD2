@@ -268,12 +268,18 @@ img {
 }
 #selector-container {
   display: inline-block;
+  border: 1px solid #ccc;
   width: 50px;
   height: 18px;
   vertical-align: bottom;
+  position: relative;
+  margin-bottom: -3px;
+  z-index: 8;
+  -webkit-appearance: menulist;
+  -moz-appearance: menulist;
 }
 #selector-container > img {
-  margin-left: 15px;
+  margin-left: 8px;
   position: absolute;
 }
 #series-selector {
@@ -282,12 +288,12 @@ img {
   margin: 0;
   padding: 0;
   height: 400px;
-  overflow: scroll;
   width: 50px;
+  overflow: scroll;
   text-align: center;
   background: white;
 }
-#equip-series:hover #series-selector {
+#series-selector.show-selector {
   display: inline-block;
 }
 #series-selector li {

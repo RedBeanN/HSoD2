@@ -3,7 +3,7 @@ mixin equip-top
   #equip-top
     #equip-series
       span 系列 [
-      div#selector-container
+      div#selector-container(@click='toggleSelector')
         img(v-if='selectedSeries', :src='selectedSeries')
         ul#series-selector
           - for (let i = 0; i < 39; i++) {
@@ -12,10 +12,10 @@ mixin equip-top
           -   let src = prefix + i + '.png';
           li 
             input(type='radio', value=src, v-model='selectedSeries', id='series-#{i}')
-            label(for='series-#{i}')
+            label(for='series-#{i}', @click='hideSelector')
               img(src=src)
           - }
-        span ]
+      | &nbsp; ]
     p(v-for='(item, key) in equip.top', :id='"equip-" + key')
       span {{ item.name }} :
       input(v-model='item.value',

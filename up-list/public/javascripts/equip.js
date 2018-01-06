@@ -1,6 +1,8 @@
+// comment first and last line for test
+((Vue) => {
 let user = {
   level:   { name: '等级', value: 380   },
-  name:    { name: '昵称', value: 'RB'  },
+  name:    { name: '昵称', value: '红豆'  },
   coin:    { name: '金币', value: 65536 },
   crystal: { name: '水晶', value: 8088  }
 };
@@ -90,6 +92,20 @@ let app = new Vue({
       else if (Number(num) > 10) num = 10;
       else if (Number(num) < 1) num = 1;
       return Array(Number(num));
+    },
+    toggleSelector: function (e) {
+      if (e) e.stopPropagation();
+      let ul = document.getElementById('series-selector');
+      if (ul) ul.classList.toggle('show-selector');
+    },
+    hideSelector: function (e) {
+      let ul = document.getElementById('series-selector');
+      if (ul) ul.classList.remove('show-selector');
     }
   }
 });
+document.onclick = function () {
+  app.hideSelector();
+}
+
+})(Vue);
