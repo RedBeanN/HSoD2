@@ -22,7 +22,6 @@ function save(pool = princess) {
             pets.push(i.substring(0, i.indexOf('×9')));
           }
         });
-        console.log(pets);
       }
       if (isPet) {
         delete data.equips;
