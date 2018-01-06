@@ -105,22 +105,13 @@ let app = new Vue({
     downloadImage: function (e) {
       let view = document.getElementById('equip-main');
       let serial = this.equip.top.serial.value;
-      html2canvas(view, {
-        width: 1024,
-        height: 576,
-        logging: false
-      }).then(function (canvas) {
-        // console.log('get canvas');
-        let url = canvas.toDataURL();
-        let img = document.createElement('a');
-        img.setAttribute('href', url);
-        img.setAttribute('download', serial + '.png');
-        // console.log(`create ${img}`);
-        // document.body.append(img);
-        // console.log('appended');
-        img.click();
-        img.remove();
-      });
+      html2canvas(view, { width: 1024, height: 576, logging: false })
+        .then(function (canvas) {
+          let img = document.createElement('a');
+          img.setAttribute('href', canvas.toDataURL());
+          img.setAttribute('download', serial + '.png');
+          img.click();
+        });
     }
   }
 });
