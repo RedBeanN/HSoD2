@@ -28,9 +28,7 @@ img {
   margin-right: 5px;
 }
 #user input { width: 120px; }
-#equip-main {
-  color: rgb(114, 114, 114);
-}
+
 #equip-top span {
   margin-right: 5px;
   text-align: right;
@@ -54,6 +52,7 @@ img {
 }
 
 #equip-main {
+  color: rgb(114, 114, 114);
   width: 1024px;
   height: 576px;
   background-image: url('/images/equip-background.png');
@@ -61,6 +60,7 @@ img {
   font-weight: bold;
   position: absolute;
   overflow: hidden;
+  box-shadow: 3px 3px 30px gray;
 }
 #equip-main > div {
   position: relative;
@@ -289,7 +289,7 @@ img {
   padding: 0;
   height: 400px;
   width: 50px;
-  overflow: scroll;
+  overflow-y: scroll;
   text-align: center;
   background: white;
 }
@@ -298,7 +298,7 @@ img {
 }
 #series-selector li {
   list-style: none;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-top: none;
 }
 #series-selector li:hover {
