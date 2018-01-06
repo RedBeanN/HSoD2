@@ -1,5 +1,5 @@
 // comment first and last line for test
-((Vue) => {
+// ((Vue) => {
 let user = {
   level:   { name: '等级', value: 380   },
   name:    { name: '昵称', value: '红豆'  },
@@ -101,6 +101,26 @@ let app = new Vue({
     hideSelector: function (e) {
       let ul = document.getElementById('series-selector');
       if (ul) ul.classList.remove('show-selector');
+    },
+    downloadImage: function (e) {
+      let view = document.getElementById('equip-main');
+      let serial = this.equip.top.serial.value;
+      html2canvas(view, {
+        width: 1024,
+        height: 576,
+        logging: false
+      }).then(function (canvas) {
+        // console.log('get canvas');
+        let url = canvas.toDataURL();
+        let img = document.createElement('a');
+        img.setAttribute('href', url);
+        img.setAttribute('download', serial + '.png');
+        // console.log(`create ${img}`);
+        // document.body.append(img);
+        // console.log('appended');
+        img.click();
+        img.remove();
+      });
     }
   }
 });
@@ -108,4 +128,4 @@ document.onclick = function () {
   app.hideSelector();
 }
 
-})(Vue);
+// })(Vue);

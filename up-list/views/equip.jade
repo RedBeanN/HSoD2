@@ -76,7 +76,8 @@ block content
         p(v-for='item in user')
           span {{ item.name }}
           input(v-model='item.value', :type='item.name == "昵称" ? "text" : "number"')
-      #imgs
+      #download
+        button(@click='downloadImage') 保存图片
     #middle
       +equip-top
       #equip-main
@@ -120,4 +121,5 @@ block content
           
       #equip-break
   script(src="/javascripts/vue.min.js")
+  script(src="/javascripts/html2canvas.min.js")
   script(src="/javascripts/equip.js")
