@@ -364,6 +364,12 @@ img {
   width: auto;
 }
 
+#equip-bottom {
+  margin-top: 20px;
+}
+.skill-tutorial {
+  padding-left: 30px;
+}
 .skill-setting {
   display: inline-block;
   width: 50%;
@@ -377,6 +383,9 @@ img {
 .skill-setting input {
   margin-right: 10px;
   width: 100px;
+}
+.skill-setting input[type="number"] {
+  width: 30px;
 }
 .skill-input-description {
   width: 70%;

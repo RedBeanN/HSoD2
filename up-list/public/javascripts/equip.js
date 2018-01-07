@@ -62,7 +62,8 @@ let app = new Vue({
     selectedType: '',
     selectedWeapon: '',
     selectedSeries: 'http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Series/Series00.png',
-    addType: ''
+    addType: '',
+    tutorialText: '用#()标记技能描述中的可突破数值 , 在有突破等级时，#()内部的数值可以自动变色'
   },
   computed: {
     formatDesc() {
@@ -74,7 +75,8 @@ let app = new Vue({
       this.equip.skills.forEach(function (skill, index) {
         descArr[index] = [];
         let spl = skill.description.split(/#\(.*?\)/g);
-        let skillData = (skill.description.match(/#\(.*?\)/g)).map(i => {
+        let skillData = [];
+        if (spl.length > 1) skillData = (skill.description.match(/#\(.*?\)/g)).map(i => {
           return i.substring(2, i.length - 1);
         });
         for (let i in spl) {

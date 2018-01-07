@@ -138,6 +138,8 @@ block content
           input.skill-selector(type="radio", value=2, v-model='skillsLength')
           label(for="select-skill-2") 2
         #skill-setting-container(v-if='skillsLength')
+          .skill-tutorial
+            em {{ tutorialText }}
           .skill-setting(v-for='(skill, index) in equip.skills')
             p
               span 技能名
