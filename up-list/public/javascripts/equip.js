@@ -16,6 +16,14 @@ let equip = {
     adds:   { name: '追加等级', value: 99                 },
     weight: { name: '负重',     value: 25                 }
   },
+  skills: [
+    { name: 'N·S·N·D', 
+      description: '根据常驻移速加成提升全伤害 , 比例为#(100%) ; 并减少#(30%)的受到治疗效果',
+      break: 0 },
+    { name: 'Murder Rush',
+      description: '移速提升#(35%) , 侦探少女及海盗少女模式下拾取半径提升#(20)',
+      break: 1 }
+  ],
   awaken: true,
   type: '徽章',
   atk: 0,
@@ -57,6 +65,64 @@ let app = new Vue({
     addType: ''
   },
   computed: {
+    formatDesc() {
+      /* format description
+         return array [desc1, desc2]
+         desc : [text, data, text, data, ...]
+         text can be empty, then text0 = ""    */
+      let descArr = [];
+      this.equip.skills.forEach(function (skill, index) {
+        descArr[index] = [];
+        let spl = skill.description.split(/#\(.*?\)/g);
+        let skillData = (skill.description.match(/#\(.*?\)/g)).map(i => {
+          return i.substring(2, i.length - 1);
+        });
+        for (let i in spl) {
+          descArr[index].push(spl[i]);
+          if(skillData[i]) descArr[index].push(skillData[i]);
+        }
+      });
+      return descArr;
+    },
+    descHTML() {
+      /* it's very danger using rawHTML with user input
+         replace <>&" to &##;
+      */
+      let arr = this.formatDesc;
+      let htmlArr = [];
+      arr.forEach((desc, index) => {
+        if (this.equip.skills[index].break) {
+          let tmp = "";
+          desc.forEach((text, i) => {
+            text = text.replace(/[<>&"]/g, function (c) {
+              return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];
+            });
+            if (i % 2) tmp += `<span class="blue">${text}</span>`;
+            else tmp += text;
+          });
+          htmlArr.push(tmp);
+        } else htmlArr.push(desc.join(''));
+      });
+      return htmlArr;
+    },
+    skillsLength: {
+      get: function () {
+        return this.equip.skills.length;
+      },
+      set: function (newLength) {
+        if (newLength < this.equip.skills.length) {
+          this.equip.skills.splice(Number(newLength));
+        } else {
+          while (this.equip.skills.length < newLength) {
+            this.equip.skills.push({
+              name: '输入名字',
+              description: '输入技能描述',
+              break: 0
+            });
+          }
+        }
+      }
+    },
     selectedWeapon_() {
       if(this.selectedType == '武器') return this.selectedWeapon;
       else return '';
@@ -87,14 +153,8 @@ let app = new Vue({
         return Math.floor(val * (1 + this.allAdds * rate * 0.01));
       }
     },
-    generateArray: function (num) {
-      if (isNaN(Number(num))) num = 6;
-      else if (Number(num) > 10) num = 10;
-      else if (Number(num) < 1) num = 1;
-      return Array(Number(num));
-    },
     toggleSelector: function (e) {
-      if (e) e.stopPropagation();
+      // if (e) e.stopPropagation();
       let ul = document.getElementById('series-selector');
       if (ul) ul.classList.toggle('show-selector');
     },

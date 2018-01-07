@@ -55,10 +55,10 @@ img {
   color: rgb(114, 114, 114);
   width: 1024px;
   height: 576px;
-  background-image: url('/images/equip-background.png');
+  background-image: url('/images/equip-background-example.png');
   background-size: 1024px 576px;
   font-weight: bold;
-  position: absolute;
+  position: relative;
   overflow: hidden;
   box-shadow: 3px 3px 30px gray;
 }
@@ -69,6 +69,7 @@ img {
 #background-container img {
   position: absolute;
   z-index: 1;
+  display: none;
 }
 #mid-top {
   height: 198px;
@@ -192,7 +193,7 @@ img {
   float: right;
 }
 #equip-status {
-  position: absolute;
+  position: relative;
   width: 400px;
 }
 #equip-status p {
@@ -245,10 +246,55 @@ img {
 #equip-status-right p span {
   margin-right: 7px;
 }
+
 #equip-skill {
   clear: both;
-  height: 300px;
+  padding-top: 11px;
+  padding-left: 5px;
+  width: 380px;
 }
+.skill {
+  height: 113px;
+  width: 380px;
+}
+.title-line, .cutoff-line, .desc-line {
+  width: 380px;
+}
+.title-line {
+  height: 32px;
+}
+.cutoff-line {
+  height: 2px;
+  background-color: rgb(255, 151, 0);
+}
+.skill-name {
+  font-size: 24px;
+  float: left;
+  width: 170px;
+  margin-left: 13.6px;
+}
+.skill-break {
+  float: right;
+  margin-right: 10px;
+  margin-top: 3px;
+  margin-bottom: -10px;
+}
+.skill-break img {
+  height: 30px;
+  margin-right: 1px;
+}
+.skill-desc {
+  font-size: 18.25px;
+  line-height: 22.4px;
+  margin-left: 13.6px;
+  margin-top: 2px;
+  width: 320px;
+  word-wrap: break-word;
+}
+.allow-blue .blue {
+  color: #34a4e5;
+}
+
 #equip-awaken-widget {
   position: relative;
   width: 50px;
@@ -316,6 +362,26 @@ img {
 }
 #equip-type input[type='radio'] {
   width: auto;
+}
+
+.skill-setting {
+  display: inline-block;
+  width: 50%;
+}
+.skill-setting p {
+  display: block;
+}
+.skill-setting span {
+  padding-right: 10px;
+}
+.skill-setting input {
+  margin-right: 10px;
+  width: 100px;
+}
+.skill-input-description {
+  width: 70%;
+  height: 60px;
+  margin-left: 10px;
 }
 
 .buff {
