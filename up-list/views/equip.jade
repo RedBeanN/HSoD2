@@ -3,7 +3,7 @@ mixin equip-top
   #equip-top
     #equip-series
       span 系列 [
-      div#selector-container(@click='toggleSelector')
+      div#selector-container(@click.stop='toggleSelector')
         img(v-if='selectedSeries', :src='selectedSeries')
         ul#series-selector
           - for (let i = 0; i < 39; i++) {
@@ -53,6 +53,52 @@ mixin equip-status
     #equip-awaken-widget(v-if='equip.awaken')
       img#awaken-image(src='/images/awaken-widget.png')
 
+mixin equip-main
+  #equip-main
+    #background-container
+      img#mid-top.fast-rotate(src='/images/ring-mid-top.png')
+      img#left-bottom.slow-rotate(src='/images/ring-left-bot.png')
+      img#right-top.fast-rotate(src='/images/ring-right-top.png')
+      img#right-bottom.slow-rotate(src='/images/ring-right-bot.png')
+    #top-banner
+      #user-banner
+        #user-image
+        #user-detail
+          p#user-top
+            span#user-level LV.{{ user.level.value }}
+            span#user-name {{ user.name.value }}
+          br
+          p#user-bottom
+            span#user-coin {{ user.coin.value }}
+            span#user-crystal {{ user.crystal.value }}
+      #system-banner
+        img(src='/images/system-bar.png')
+    #equip-banner
+      p
+        span#equip-banner-serial 编号 {{ equip.top.serial.value }} 
+        span#equip-banner-img
+          img(v-if='selectedSeries', :src='selectedSeries')
+        span#equip-banner-name {{ equip.top.name.value }} 
+        #equip-stars-container
+          img(v-for='s in (Number(equip.top.stars.value) > 10 ? 10 : (Number(equip.top.stars.value) < 1 ? 1 : Number(equip.top.stars.value)))',
+              src='/images/star-full.png')
+    #equip-view
+      #equip-view-left
+      #equip-view-right
+        +equip-status
+        #equip-skill
+          .skill(v-for='(skill, index) in equip.skills', :id='"skill-" + index',
+                 :class='Number(skill.break) ? "allow-blue" : "disable-blue"')
+            .title-line
+              span.skill-name.buff(:id='"skill-name-" + index') {{ skill.name }}
+              span.skill-break(v-if='Number(skill.break)')
+                img(v-for='(k,i) in 10',
+                    :src=`i < skill.break ? "/images/break-point-full.png" :
+                          "/images/break-point-empty.png"`)
+            .cutoff-line
+            .desc-line
+              p.skill-desc(:id='"skill-desc-" + index', v-html='descHTML[index]')
+
 mixin equip-type
   #equip-type
     p
@@ -80,42 +126,27 @@ block content
         button(@click='downloadImage') 保存图片
     #middle
       +equip-top
-      #equip-main
-        #background-container
-          img#mid-top.fast-rotate(src='/images/ring-mid-top.png')
-          img#left-bottom.slow-rotate(src='/images/ring-left-bot.png')
-          img#right-top.fast-rotate(src='/images/ring-right-top.png')
-          img#right-bottom.slow-rotate(src='/images/ring-right-bot.png')
-        #top-banner
-          #user-banner
-            #user-image
-            #user-detail
-              p#user-top
-                span#user-level LV.{{ user.level.value }}
-                span#user-name {{ user.name.value }}
-              br
-              p#user-bottom
-                span#user-coin {{ user.coin.value }}
-                span#user-crystal {{ user.crystal.value }}
-          #system-banner
-            img(src='/images/system-bar.png')
-        #equip-banner
-          p
-            span#equip-banner-serial 编号 {{ equip.top.serial.value }} 
-            span#equip-banner-img
-              img(v-if='selectedSeries', :src='selectedSeries')
-            span#equip-banner-name {{ equip.top.name.value }} 
-            #equip-stars-container
-              img(v-for='s in generateArray(equip.top.stars.value)',
-                  src='/images/star-full.png')
-        #equip-view
-          #equip-view-left
-          #equip-view-right
-            +equip-status
-            #equip-skill
-              #skill-top
-              #skill-bottom
+      +equip-main
       #equip-bottom
+        #skill-selector-container
+          p#skill-selector-title
+            选择技能个数
+          input.skill-selector(type="radio", value=0, v-model='skillsLength')
+          label(for="select-skill-1") 0
+          input.skill-selector(type="radio", value=1, v-model='skillsLength')
+          label(for="select-skill-2") 1
+          input.skill-selector(type="radio", value=2, v-model='skillsLength')
+          label(for="select-skill-2") 2
+        #skill-setting-container(v-if='skillsLength')
+          .skill-setting(v-for='(skill, index) in equip.skills')
+            p
+              span 技能名
+              input.skill-input-name(v-model='skill.name')
+              span 突破等级
+              input.skill-input-break(v-model='skill.break', type='number')
+            p
+              span 技能描述
+            textarea.skill-input-description(v-model='skill.description')
     #right
       +equip-type
           
