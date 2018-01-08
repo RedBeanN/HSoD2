@@ -64,17 +64,21 @@ let imageStyle = {
   left: 0,
   top: 0
 };
+let widgets = {
+  awakenImage: false,
+  pinContainer: true,
+  protectButton: true,
+  unique: true
+};
 
 let app = new Vue({
   el: '#app',
   data: {
-    user, equip, type, equipType, imageStyle, dmgType,
-    showAwakenImage: false,
+    user, equip, type, equipType, imageStyle, dmgType, widgets,
     selectedType: '',
     selectedWeapon: '',
     selectedSeries: 'http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Series/Series00.png',
     addType: '',
-    showUnique: true,
     tutorialText: '用#()标记技能描述中的可突破数值 , 在有突破等级时，#()内部的数值可以自动变色'
   },
   computed: {
@@ -167,8 +171,9 @@ let app = new Vue({
       return {
         width: this.imageStyle.width + 'px',
         height: this.imageStyle.height + 'px',
-        marginLeft: +(this.imageStyle.left - 0.5 * this.imageStyle.width) + 'px',
-        marginTop: +(this.imageStyle.top - 0.5 * this.imageStyle.height) + 'px'
+        transform: 'translate(-50%, -50%)',
+        marginLeft: this.imageStyle.left + 'px',
+        marginTop: this.imageStyle.top + 'px'
       }
     }
   },

@@ -86,14 +86,14 @@ mixin equip-main
     #equip-view
       #equip-view-left
         #equip-image-container
-          #equip-basic-image(v-if='!showAwakenImage')
+          #equip-basic-image(v-if='!widgets.awakenImage')
             img(src='/images/base-pin.png', :style='imageStyleObject')
-            img#pin-container(src='/images/pin-container-6s.png')
+            img#pin-container(src='/images/pin-container-6s.png', v-show='widgets.pinContainer')
           #equip-awaken-image(v-else)
         #equip-unique-container
-          p.buff(v-show='showUnique', :class='(equip.awaken && showAwakenImage) ? "awaken-bg" : ""') 唯一装备 , 带多件无效哟~
+          p.buff(v-show='widgets.unique', :class='(equip.awaken && widgets.awakenImage) ? "awaken-bg" : ""') 唯一装备 , 带多件无效哟~
         #equip-protect-container
-          img(v-show='showUnique', src='/images/protect-button.png')
+          img(v-show='widgets.protectButton', src='/images/protect-button.png')
       #equip-view-right
         +equip-status
         #equip-skill
@@ -134,8 +134,14 @@ block content
           input(v-model='item.value', :type='item.name == "昵称" ? "text" : "number"')
       #upload-image
         p#pin-container-switch
-          input(type="checkbox")
-          lable(for='upload-show-container') 显示徽章框
+          input#show-pin-container(type='checkbox', v-model='widgets.pinContainer')
+          label(for='show-pin-container') 显示徽章框
+          br
+          input#show-unique(type='checkbox', v-model='widgets.unique')
+          label(for="show-unique") 显示唯一装备提示
+          br
+          input#show-protect-button(type='checkbox', v-model='widgets.protectButton')
+          label(for="show-protect-button") 显示解除保护按钮
         input#upload-input(type="file")
       #download
         button(@click='downloadImage') 保存图片
