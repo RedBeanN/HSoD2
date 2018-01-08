@@ -9,28 +9,28 @@ let user = {
 let equip = {
   top: {
     serial: { name: '编号',     value: 805                },
-    name:   { name: '装备名',   value: '巴斯克维尔的猎犬' },
+    name:   { name: '装备名',   value: '疾风术·极' },
     stars:  { name: '星级',     value: 6                  },
     level:  { name: '等级',     value: 99                 },
     love:   { name: '亲密度',   value: 50                 },
     adds:   { name: '追加等级', value: 99                 },
-    weight: { name: '负重',     value: 25                 }
+    weight: { name: '负重',     value: 20                 },
   },
   skills: [
-    { name: 'N·S·N·D', 
+    { name: '其疾如风', 
       dmgType: '',
-      description: '根据常驻移速加成提升全伤害 , 比例为#(100%) ; 并减少#(30%)的受到治疗效果',
+      description: '移速提升#(55%) , 攻速提升#(60%)',
       break: 0 },
-    { name: 'Murder Rush',
+    { name: '其极如风',
       dmgType: '',
-      description: '移速提升#(50%) , 侦探少女及海盗少女模式下拾取半径提升#(20)',
-      break: 10 }
+      description: '移动中造成的伤害提升#(100%) , 每装备一件『无』系列装备 , 效果提升#(15%)',
+      break: 5 },
   ],
   awaken: true,
   type: '徽章',
   atk: 0,
   payload: 255,
-  dmgType: ''
+  dmgType: '',
 };
 let type = ['服装', '徽章', '武器'];
 let equipType = {
@@ -55,31 +55,39 @@ let equipType = {
   '放置-人形':     { '攻击力': 2200, '载弹量': 9,   '射　速': 3.3  },
   '放置-地雷':     { '攻击力': 3000, '载弹量': 10,  '射　速': 3.3  },
   '放置-特殊':     { '攻击力': 0,    '载弹量': 8,   '射　速': 3.3  },
-  '放置-诱导人形': { '生　命': 1,    '载弹量': 8,   '持　续': '8s' }
+  '放置-诱导人形': { '生　命': 1,    '载弹量': 8,   '持　续': '8s' },
 };
-let dmgType = ['none', 'fire', 'light', 'physic', 'poison', 'power', 'snow'];
+let dmgType = ['none', 'physic', 'power', 'snow', 'fire', 'light', 'poison'];
+let dmgTypeCN = ['无', '物理', '能量', '冰', '火', '电', '毒'];
 let imageStyle = {
   width: 64,
   height: 64,
   left: 0,
-  top: 0
+  top: 0,
 };
 let widgets = {
   awakenImage: false,
   pinContainer: true,
   protectButton: true,
-  unique: true
+  unique: true,
+};
+let texts = {
+  unique: '唯一装备 , 带多件无效哟~',
+  tutorial: '用#()标记技能描述中的可突破数值 , 在有突破等级时 , #()内部的数值可以自动变色',
+  sizeCtrl: '移动滑块调整图片大小和位置 , 数值范围不足时可以通过右侧输入框手动输入',
+  download: '点击[保存图片]自动生成并保存做好的图片 , 生成图片需要等待几秒钟',
 };
 
 let app = new Vue({
   el: '#app',
   data: {
-    user, equip, type, equipType, imageStyle, dmgType, widgets,
+    user, equip, type, equipType, imageStyle, dmgType, widgets, texts,
+    downloading: false,
     selectedType: '',
     selectedWeapon: '',
     selectedSeries: 'http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Series/Series00.png',
     addType: '',
-    tutorialText: '用#()标记技能描述中的可突破数值 , 在有突破等级时，#()内部的数值可以自动变色'
+    pinImage: { src: '', exist: false },
   },
   computed: {
     coin() {
@@ -171,10 +179,13 @@ let app = new Vue({
       return {
         width: this.imageStyle.width + 'px',
         height: this.imageStyle.height + 'px',
-        transform: 'translate(-50%, -50%)',
-        marginLeft: this.imageStyle.left + 'px',
-        marginTop: this.imageStyle.top + 'px'
-      }
+        marginLeft: this.imageStyle.left - this.imageStyle.width * 0.5 + 'px',
+        marginTop: this.imageStyle.top - this.imageStyle.height * 0.5 + 'px'
+      };
+    },
+    pinContainerSrc() {
+      if (this.equip.top.stars.value < 7) return '/images/pin-container-6s.png';
+      else return '/images/pin-container-7s.png';
     }
   },
   methods: {
@@ -200,21 +211,58 @@ let app = new Vue({
       let ul = document.getElementById('series-selector');
       if (ul) ul.classList.remove('show-selector');
     },
+    updatePinImage: function (e) {
+      let pinImage = this.pinImage;
+      if (e && e.target && e.target.files[0]) {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+          pinImage.exist = true;
+          pinImage.src = this.result;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+      } else {
+        pinImage.exist = false;
+        pinImage.src = '';
+      }
+    },
     downloadImage: function (e) {
+      this.downloading = true;
       let view = document.getElementById('equip-main');
-      let serial = this.equip.top.serial.value;
+      let top =  this.equip.top;
       html2canvas(view, { width: 1024, height: 576, logging: false })
         .then(function (canvas) {
           let img = document.createElement('a');
           img.setAttribute('href', canvas.toDataURL());
-          img.setAttribute('download', serial + '.png');
+          img.setAttribute('download', `${top.serial.value}-${top.name.value}.png`);
           img.click();
+          app.downloading = false;
         });
+    }
+  },
+  filters: {
+    username (val) {
+      return val.substring(0, 8);
+    },
+    formatNumber (val) {
+      if (val.toString().length < 10) return val;
+      else if (val.toString().length < 13) return val.toString().substring(0, val.toString().length - 6) + '百万';
+      else return ' ? ? ? ';
+    },
+    serialNumber (val) {
+      return val.toString().substring(0, 5);
+    },
+    name (val) {
+      return val.substring(0, 12);
     }
   }
 });
+
 document.onclick = function () {
+  // handle selector display
   app.hideSelector();
-}
+};
+
+document.getElementById('loading-page').remove();
+document.getElementById('app').style.display = 'block';
 
 // })(Vue);

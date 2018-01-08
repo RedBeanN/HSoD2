@@ -58,3 +58,11 @@
   -o-animation: rotate 200s linear infinite;
   -ms-animation: rotate 200s linear infinite;
 }
+
+.loading-rotate {
+  animation: rotate 1s linear infinite;
+  -webkit-animation: rotate 1s linear infinite;
+  -moz-animation: rotate 1s linear infinite;
+  -o-animation: rotate 1s linear infinite;
+  -ms-animation: rotate 1s linear infinite;
+}

@@ -67,31 +67,33 @@ mixin equip-main
         #user-detail
           p#user-top
             span#user-level LV.{{ user.level.value }}
-            span#user-name {{ user.name.value }}
+            span#user-name {{ user.name.value | username }}
           br
           p#user-bottom
-            span#user-coin {{ coin }}
-            span#user-crystal {{ crystal }}
+            span#user-coin {{ user.coin.value | formatNumber }}
+            span#user-crystal {{ user.crystal.value | formatNumber }}
       #system-banner
         img(src='/images/system-bar.png')
     #equip-banner
       p
-        span#equip-banner-serial 编号 {{ equip.top.serial.value }} 
+        span#equip-banner-serial 编号 {{ equip.top.serial.value | serialNumber }} 
         span#equip-banner-img
           img(v-if='selectedSeries', :src='selectedSeries')
-        span#equip-banner-name {{ equip.top.name.value }} 
+        span#equip-banner-name {{ equip.top.name.value | name }} 
         #equip-stars-container
           img(v-for='s in (Number(equip.top.stars.value) > 10 ? 10 : (Number(equip.top.stars.value) < 1 ? 1 : Number(equip.top.stars.value)))',
               src='/images/star-full.png')
     #equip-view
       #equip-view-left
         #equip-image-container
-          #equip-basic-image(v-if='!widgets.awakenImage')
-            img(src='/images/base-pin.png', :style='imageStyleObject')
-            img#pin-container(src='/images/pin-container-6s.png', v-show='widgets.pinContainer')
-          #equip-awaken-image(v-else)
+          #equip-basic-image
+            img(v-if='!pinImage.exist', src='/images/base-pin.png', :style='imageStyleObject')
+            img(v-else, :src='pinImage.src', :style='imageStyleObject')
+            img#pin-container(:src='pinContainerSrc', v-show='widgets.pinContainer')
         #equip-unique-container
-          p.buff(v-show='widgets.unique', :class='(equip.awaken && widgets.awakenImage) ? "awaken-bg" : ""') 唯一装备 , 带多件无效哟~
+          p.buff(v-show='widgets.unique',
+                :class='(equip.awaken && widgets.awakenImage) ? "awaken-bg" : ""')
+                | {{ texts.unique }}
         #equip-protect-container
           img(v-show='widgets.protectButton', src='/images/protect-button.png')
       #equip-view-right
@@ -100,7 +102,7 @@ mixin equip-main
           .skill(v-for='(skill, index) in equip.skills', :id='"skill-" + index',
                  :class='Number(skill.break) ? "allow-blue" : "disable-blue"')
             .title-line
-              span.skill-name.buff(:id='"skill-name-" + index') {{ skill.name }}
+              span.skill-name.buff(:id='"skill-name-" + index') {{ skill.name | name }}
               span.skill-break(v-if='Number(skill.break)')
                 img(v-for='(k,i) in 10',
                     :src=`i < skill.break ? "/images/break-point-full.png" :
@@ -119,14 +121,16 @@ mixin equip-type
     p(v-if='selectedType', v-for='(item, key, index) in equipType[selectedType]')
       span {{ key }} 
       input(v-model='equipType[selectedType][key]', v-if='selectedType != "徽章"')
-      input(type="radio", :value='key', v-model='addType', id='"type-"+key')
-      label(for='"type-"+key') 选为亲密度加成属性
+      input(type="radio", :value='key', v-model='addType', :id='"type-"+key')
+      label(:for='"type-"+key') 选为亲密度加成属性
 
 
 block content
   link(rel="stylesheet", href="/stylesheets/animation.css")
   link(rel="stylesheet", href="/stylesheets/equip.css")
-  #app
+  #loading-page
+    #loading-ring.loading-rotate
+  #app(style='display: none')
     #left
       #user
         p(v-for='item in user')
@@ -142,9 +146,27 @@ block content
           br
           input#show-protect-button(type='checkbox', v-model='widgets.protectButton')
           label(for="show-protect-button") 显示解除保护按钮
-        input#upload-input(type="file")
+        input#pin-input(type="file", @change='updatePinImage($event)', accept='image/*')
+        input#awaken-ctrl(type='checkbox', v-model='widgets.awakenImage')
+        label(for='awaken-ctrl') 作为觉醒图
+        #pin-size-controller
+          p#size-ctrl-hint {{ texts.sizeCtrl }}
+          input#width-ctrl-range(type='range', min='0', max='100', v-model='imageStyle.width')
+          input#width-ctrl-input(type='number', v-model='imageStyle.width')
+          label(for='width-ctrl-input') 宽度
+          input#height-ctrl-range(type='range', min='0', max='100', v-model='imageStyle.height')
+          input#height-ctrl-input(type='number', v-model='imageStyle.height')
+          label(for='height-ctrl-input') 高度
+          input#left-ctrl-range(type='range', min='-100', max='100', v-model='imageStyle.left')
+          input#left-ctrl-input(type='number', v-model='imageStyle.left')
+          label(for='left-ctrl-input') 水平移动
+          input#top-ctrl-range(type='range', min='-100', max='100', v-model='imageStyle.top')
+          input#top-ctrl-input(type='number', v-model='imageStyle.top')
+          label(for='top-ctrl-input') 垂直移动
       #download
-        button(@click='downloadImage') 保存图片
+        button(@click='downloadImage', :disabled='downloading')
+          | {{ downloading ? '保存中' :  '保存图片' }}
+        p {{ texts.download }}
     #middle
       +equip-top
       +equip-main
@@ -160,7 +182,7 @@ block content
           label(for="select-skill-2") 2
         #skill-setting-container(v-if='skillsLength')
           .skill-tutorial
-            em {{ tutorialText }}
+            em {{ texts.tutorial }}
           .skill-setting(v-for='(skill, index) in equip.skills')
             p
               span 技能名
