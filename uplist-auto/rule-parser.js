@@ -7,10 +7,18 @@ const server = '?region=3_1';
 // never use moe!
 const [princess, pri98, mj, special, moe] = ['high', 'middle', 'custom', 'special', 'moe'];
 
-save();
-save(mj);
+saveAll();
+function saveAll() {
+  save(princess, err => {
+    save(mj, err => {
+      save(special, err => {
+        if (!err) console.log('Done!');
+      });
+    });
+  });
+}
 
-function save(pool = princess) {
+function save(pool, cb) {
   parseUp(pool, (err, data) => {
     if (!err) {
       // console.log(JSON.stringify(data, null, 2));
@@ -32,8 +40,8 @@ function save(pool = princess) {
         fs.readFileSync(getSavePath(pool_)) : '[]';
       ruleData = JSON.parse(ruleData);
       // console.log(ruleData);
+      let exist = false;
       if (ruleData.constructor === Array) {
-        let exist = false;
         ruleData.forEach(item => {
           if (JSON.stringify(item) == JSON.stringify(data)) {
             exist = true;
@@ -46,7 +54,8 @@ function save(pool = princess) {
           console.log(`Update ${pool_} completed.`);
         }
       } else console.error('Invalid JSON data!');
-    }
+      cb(null, {isPet, exist});
+    } else cb(err);
   });
 }
 
@@ -63,7 +72,7 @@ function parseUp(pool, cb) {
       data = data.toString();
       let date = parseDate(data);
       data = parseGod(data);
-      if (!data) cb({message: 'no new item'});
+      if (!data || !date) cb(new Error('No item was found.'));
       else {
         data.forEach(i => {
           let tmp = parseEquip(i);
@@ -93,7 +102,7 @@ function parseEquip(str) {
 }
 function parseDate(str) {
   let dateReg = /\d{4}-.*:\d{2}/g;
-  return str.match(dateReg)[0];
+  return str.match(dateReg) ? str.match(dateReg)[0] : '';
 }
 
 function getSavePath(pool) {
