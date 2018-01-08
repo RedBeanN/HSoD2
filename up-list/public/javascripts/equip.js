@@ -1,36 +1,36 @@
 // comment first and last line for test
 // ((Vue) => {
 let user = {
-  level:   { name: '等级', value: 380   },
+  level:   { name: '等级', value: 380     },
   name:    { name: '昵称', value: '红豆'  },
-  coin:    { name: '金币', value: 65536 },
-  crystal: { name: '水晶', value: 8088  }
+  coin:    { name: '金币', value: 65536   },
+  crystal: { name: '水晶', value: 8088    }
 };
 let equip = {
   top: {
-    serial: { name: '编号',     value: 805                },
+    serial: { name: '编号',     value: 3000        },
     name:   { name: '装备名',   value: '疾风术·极' },
-    stars:  { name: '星级',     value: 6                  },
-    level:  { name: '等级',     value: 99                 },
-    love:   { name: '亲密度',   value: 50                 },
-    adds:   { name: '追加等级', value: 99                 },
-    weight: { name: '负重',     value: 20                 },
+    stars:  { name: '星级',     value: 6           },
+    level:  { name: '等级',     value: 99          },
+    love:   { name: '亲密度',   value: 50          },
+    adds:   { name: '追加等级', value: 99          },
+    weight: { name: '负重',     value: 20          },
   },
   skills: [
     { name: '其疾如风', 
-      dmgType: '',
-      description: '移速提升#(55%) , 攻速提升#(60%)',
+      dmgType: 'power',
+      description: '移速提升#(55%) , 攻速提升#(60%) ; 使用近战武器攻击时 , #(20%)概率追加#(50%)武器攻击力的伤害',
       break: 0 },
     { name: '其极如风',
-      dmgType: '',
+      dmgType: 'none',
       description: '移动中造成的伤害提升#(100%) , 每装备一件『无』系列装备 , 效果提升#(15%)',
       break: 5 },
   ],
-  awaken: true,
+  awaken: false,
   type: '徽章',
   atk: 0,
   payload: 255,
-  dmgType: '',
+  dmgType: 'none',
 };
 let type = ['服装', '徽章', '武器'];
 let equipType = {
@@ -57,8 +57,9 @@ let equipType = {
   '放置-特殊':     { '攻击力': 0,    '载弹量': 8,   '射　速': 3.3  },
   '放置-诱导人形': { '生　命': 1,    '载弹量': 8,   '持　续': '8s' },
 };
-let dmgType = ['none', 'physic', 'power', 'snow', 'fire', 'light', 'poison'];
-let dmgTypeCN = ['无', '物理', '能量', '冰', '火', '电', '毒'];
+let dmgType = {
+  'none': '无', 'physic': '物理', 'power': '能量',
+  'snow': '冰', 'fire': '火', 'light': '电', 'poison': '毒' };
 let imageStyle = {
   width: 64,
   height: 64,
@@ -75,7 +76,7 @@ let texts = {
   unique: '唯一装备 , 带多件无效哟~',
   tutorial: '用#()标记技能描述中的可突破数值 , 在有突破等级时 , #()内部的数值可以自动变色',
   sizeCtrl: '移动滑块调整图片大小和位置 , 数值范围不足时可以通过右侧输入框手动输入',
-  download: '点击[保存图片]自动生成并保存做好的图片 , 生成图片需要等待几秒钟',
+  download: '点击 [保存图片] 自动生成并保存做好的图片 , 生成图片需要几秒钟的时间 , 请耐心等待',
 };
 
 let app = new Vue({
@@ -83,10 +84,10 @@ let app = new Vue({
   data: {
     user, equip, type, equipType, imageStyle, dmgType, widgets, texts,
     downloading: false,
-    selectedType: '',
+    selectedType: '徽章',
     selectedWeapon: '',
     selectedSeries: 'http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Series/Series00.png',
-    addType: '',
+    addType: '移速',
     pinImage: { src: '', exist: false },
   },
   computed: {
@@ -153,7 +154,7 @@ let app = new Vue({
             this.equip.skills.push({
               name: '输入名字',
               description: '输入技能描述',
-              dmgType: '',
+              dmgType: 'none',
               break: 0
             });
           }
@@ -186,7 +187,7 @@ let app = new Vue({
     pinContainerSrc() {
       if (this.equip.top.stars.value < 7) return '/images/pin-container-6s.png';
       else return '/images/pin-container-7s.png';
-    }
+    },
   },
   methods: {
     computedValue: function(val, key) {
@@ -237,6 +238,9 @@ let app = new Vue({
           img.click();
           app.downloading = false;
         });
+    },
+    dmgTypeSrc(type) {
+      return `http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Type/${type}.png`;
     }
   },
   filters: {

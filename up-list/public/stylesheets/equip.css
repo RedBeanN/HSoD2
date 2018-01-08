@@ -2,6 +2,7 @@ html {
   width: 100%;
   height: 100%;
 }
+h3 { margin-bottom: 0; }
 body {
   width: calc(100% - 100px);
   height: calc(100% - 100px);
@@ -100,9 +101,6 @@ input {
   width: 10px !important;
   height: 10px;
   margin-left: 10px;
-}
-#equip-series > span, #equip-series > div > span {
-  width: 65px;
 }
 #equip-name input {
   width: 120px;
@@ -227,6 +225,11 @@ input {
   margin-bottom: -2px;
   vertical-align: bottom;
   font-size: 24px;
+}
+#equip-type-view {
+  position: absolute;
+  left: 554px;
+  height: 28px;
 }
 
 #equip-stars-container {
@@ -374,6 +377,7 @@ input {
 .skill {
   height: 113px;
   width: 380px;
+  position: relative;
 }
 .title-line, .cutoff-line, .desc-line {
   width: 380px;
@@ -390,6 +394,12 @@ input {
   float: left;
   position: absolute;
   margin-left: 13.6px;
+}
+.skill-type-view {
+  height: 30.6px;
+  left: 143px;
+  top: 1px;
+  position: absolute;
 }
 .skill-break {
   float: right;
@@ -428,7 +438,7 @@ input {
 
 #equip-series {
   display: inline-block;
-  width: 160px;
+  width: 110px;
 }
 #selector-container {
   display: inline-block;
@@ -481,6 +491,12 @@ input {
 #equip-type input[type='radio'] {
   width: auto;
 }
+#equip-dmg-type select {
+  margin-left: 5px;
+}
+#equip-dmg-type img {
+  vertical-align: top;
+}
 
 #equip-bottom {
   margin-top: 20px;
@@ -504,6 +520,10 @@ input {
 }
 .skill-setting input[type="number"] {
   width: 30px;
+}
+.skill-type {
+  vertical-align: top;
+  margin-left: 5px;
 }
 .skill-input-description {
   width: 70%;

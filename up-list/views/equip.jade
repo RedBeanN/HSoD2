@@ -1,6 +1,7 @@
 extends layout
 mixin equip-top
   #equip-top
+    h3 编辑基本数据
     #equip-series
       span 系列 [
       div#selector-container(@click.stop='toggleSelector')
@@ -80,6 +81,7 @@ mixin equip-main
         span#equip-banner-img
           img(v-if='selectedSeries', :src='selectedSeries')
         span#equip-banner-name {{ equip.top.name.value | name }} 
+        img#equip-type-view(v-if='equip.dmgType != "none"', :src='dmgTypeSrc(equip.dmgType)')
         #equip-stars-container
           img(v-for='s in (Number(equip.top.stars.value) > 10 ? 10 : (Number(equip.top.stars.value) < 1 ? 1 : Number(equip.top.stars.value)))',
               src='/images/star-full.png')
@@ -103,6 +105,7 @@ mixin equip-main
                  :class='Number(skill.break) ? "allow-blue" : "disable-blue"')
             .title-line
               span.skill-name.buff(:id='"skill-name-" + index') {{ skill.name | name }}
+              img.skill-type-view(v-if='skill.dmgType && skill.dmgType != "none"', :src='dmgTypeSrc(skill.dmgType)')
               span.skill-break(v-if='Number(skill.break)')
                 img(v-for='(k,i) in 10',
                     :src=`i < skill.break ? "/images/break-point-full.png" :
@@ -113,16 +116,22 @@ mixin equip-main
 
 mixin equip-type
   #equip-type
+    h3 编辑装备分类
     p
-      span 装备类型 
+      span 装备分类 
       select(v-model='selectedType')
-        option(value='') 选择装备类型
+        option(value='') 选择装备分类
         option(v-for='(item, key) in equipType') {{ key }}
     p(v-if='selectedType', v-for='(item, key, index) in equipType[selectedType]')
       span {{ key }} 
       input(v-model='equipType[selectedType][key]', v-if='selectedType != "徽章"')
       input(type="radio", :value='key', v-model='addType', :id='"type-"+key')
       label(:for='"type-"+key') 选为亲密度加成属性
+  #equip-dmg-type(v-if='selectedType && selectedType != "服装" && selectedType != "徽章"')
+    p 伤害类型
+      select(v-model='equip.dmgType')
+        option(v-for='(value, key) in dmgType', :value='key') {{ value }}
+      img(v-if='equip.dmgType && equip.dmgType != "none"', :src='dmgTypeSrc(equip.dmgType)')
 
 
 block content
@@ -133,10 +142,12 @@ block content
   #app(style='display: none')
     #left
       #user
+        h3 编辑角色信息
         p(v-for='item in user')
           span {{ item.name }}
           input(v-model='item.value', :type='item.name == "昵称" ? "text" : "number"')
       #upload-image
+        h3 编辑装备图片
         p#pin-container-switch
           input#show-pin-container(type='checkbox', v-model='widgets.pinContainer')
           label(for='show-pin-container') 显示徽章框
@@ -144,10 +155,12 @@ block content
           input#show-unique(type='checkbox', v-model='widgets.unique')
           label(for="show-unique") 显示唯一装备提示
           br
+          input#unique-text(type='text', v-model='texts.unique', v-show='widgets.unique')
+          br
           input#show-protect-button(type='checkbox', v-model='widgets.protectButton')
           label(for="show-protect-button") 显示解除保护按钮
         input#pin-input(type="file", @change='updatePinImage($event)', accept='image/*')
-        input#awaken-ctrl(type='checkbox', v-model='widgets.awakenImage')
+        input#awaken-ctrl(type='checkbox', v-model='widgets.awakenImage', :disabled='!equip.awaken')
         label(for='awaken-ctrl') 作为觉醒图
         #pin-size-controller
           p#size-ctrl-hint {{ texts.sizeCtrl }}
@@ -171,6 +184,7 @@ block content
       +equip-top
       +equip-main
       #equip-bottom
+        h3 编辑装备技能
         #skill-selector-container
           p#skill-selector-title
             选择技能个数
@@ -185,12 +199,16 @@ block content
             em {{ texts.tutorial }}
           .skill-setting(v-for='(skill, index) in equip.skills')
             p
-              span 技能名
+              span 技能名:
               input.skill-input-name(v-model='skill.name')
-              span 突破等级
+              span 突破等级:
               input.skill-input-break(v-model='skill.break', type='number')
+              span 伤害类型:
+              select.skill-dmg-type(v-model='skill.dmgType')
+                option(v-for='(value, key) in dmgType', :value='key') {{ value }}
+              img.skill-type(v-if='dmgType[skill.dmgType] && skill.dmgType != "none"', :src='dmgTypeSrc(skill.dmgType)')
             p
-              span 技能描述
+              span 技能描述:
             textarea.skill-input-description(v-model='skill.description')
     #right
       +equip-type
