@@ -18,16 +18,19 @@ let equip = {
   },
   skills: [
     { name: 'N·S·N·D', 
+      dmgType: '',
       description: '根据常驻移速加成提升全伤害 , 比例为#(100%) ; 并减少#(30%)的受到治疗效果',
       break: 0 },
     { name: 'Murder Rush',
-      description: '移速提升#(35%) , 侦探少女及海盗少女模式下拾取半径提升#(20)',
-      break: 1 }
+      dmgType: '',
+      description: '移速提升#(50%) , 侦探少女及海盗少女模式下拾取半径提升#(20)',
+      break: 10 }
   ],
   awaken: true,
   type: '徽章',
   atk: 0,
-  payload: 255
+  payload: 255,
+  dmgType: ''
 };
 let type = ['服装', '徽章', '武器'];
 let equipType = {
@@ -54,18 +57,37 @@ let equipType = {
   '放置-特殊':     { '攻击力': 0,    '载弹量': 8,   '射　速': 3.3  },
   '放置-诱导人形': { '生　命': 1,    '载弹量': 8,   '持　续': '8s' }
 };
+let dmgType = ['none', 'fire', 'light', 'physic', 'poison', 'power', 'snow'];
+let imageStyle = {
+  width: 64,
+  height: 64,
+  left: 0,
+  top: 0
+};
 
 let app = new Vue({
   el: '#app',
   data: {
-    user, equip, type, equipType,
+    user, equip, type, equipType, imageStyle, dmgType,
+    showAwakenImage: false,
     selectedType: '',
     selectedWeapon: '',
     selectedSeries: 'http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Series/Series00.png',
     addType: '',
+    showUnique: true,
     tutorialText: '用#()标记技能描述中的可突破数值 , 在有突破等级时，#()内部的数值可以自动变色'
   },
   computed: {
+    coin() {
+      let coin = this.user.coin.value;
+      if (coin.toString().length < 10) return coin;
+      else return coin.toString().substring(0, coin.toString().length - 6) + '百万';
+    },
+    crystal() {
+      let crystal = this.user.crystal.value;
+      if (crystal.toString().length < 10) return crystal;
+      else return crystal.toString().substring(0, crystal.toString().length - 6) + '百万';
+    },
     formatDesc() {
       /* format description
          return array [desc1, desc2]
@@ -119,6 +141,7 @@ let app = new Vue({
             this.equip.skills.push({
               name: '输入名字',
               description: '输入技能描述',
+              dmgType: '',
               break: 0
             });
           }
@@ -139,6 +162,14 @@ let app = new Vue({
     },
     allAdds() {
       return Number(this.equip.top.adds.value) + Number(this.equip.top.love.value);
+    },
+    imageStyleObject() {
+      return {
+        width: this.imageStyle.width + 'px',
+        height: this.imageStyle.height + 'px',
+        marginLeft: +(this.imageStyle.left - 0.5 * this.imageStyle.width) + 'px',
+        marginTop: +(this.imageStyle.top - 0.5 * this.imageStyle.height) + 'px'
+      }
     }
   },
   methods: {
@@ -147,7 +178,7 @@ let app = new Vue({
       if (key == '射　速' || key == '攻　速') {
         return (val * (1 + this.allAdds * 0.002)).toFixed(1) + ' / 秒';
       } else if (key == '移速') {
-        return +(this.allAdds * 0.1).toFixed(1) + '%';
+        return +(this.allAdds * 0.1).toFixed(1);
       } else if (typeof val == 'string' && val.indexOf('s') != -1) {
         val = val.substring(0, val.indexOf('s'));
         return +(Math.floor(val * (1 + this.allAdds * rate * 0.01))) + 's';
