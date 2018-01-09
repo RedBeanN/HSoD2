@@ -126,12 +126,12 @@ mixin equip-type
       span {{ key }} 
       input(v-model='equipType[selectedType][key]', v-if='selectedType != "徽章"')
       input(type="radio", :value='key', v-model='addType', :id='"type-"+key')
-      label(:for='"type-"+key') 选为亲密度加成属性
+      label(:for='"type-"+key') 亲密度加成
   #equip-dmg-type(v-if='selectedType && selectedType != "服装" && selectedType != "徽章"')
     p 伤害类型
       select(v-model='equip.dmgType')
         option(v-for='(value, key) in dmgType', :value='key') {{ value }}
-      img(v-if='equip.dmgType && equip.dmgType != "none"', :src='dmgTypeSrc(equip.dmgType)')
+      img.skill-type(v-if='equip.dmgType && equip.dmgType != "none"', :src='dmgTypeSrc(equip.dmgType)')
 
 
 block content
@@ -153,10 +153,10 @@ block content
           label(for='show-pin-container') 显示徽章框
           br
           input#show-unique(type='checkbox', v-model='widgets.unique')
-          label(for="show-unique") 显示唯一装备提示
+          label(for="show-unique") 显示装备提示
           br
-          input#unique-text(type='text', v-model='texts.unique', v-show='widgets.unique')
-          br
+          input#unique-text(type='text', v-model='texts.unique', v-if='widgets.unique')
+          br(v-if='widgets.unique')
           input#show-protect-button(type='checkbox', v-model='widgets.protectButton')
           label(for="show-protect-button") 显示解除保护按钮
         input#pin-input(type="file", @change='updatePinImage($event)', accept='image/*')
@@ -194,9 +194,9 @@ block content
           label(for="select-skill-2") 1
           input.skill-selector(type="radio", value=2, v-model='skillsLength')
           label(for="select-skill-2") 2
-        #skill-setting-container(v-if='skillsLength')
-          .skill-tutorial
+          p.skill-tutorial
             em {{ texts.tutorial }}
+        #skill-setting-container(v-if='skillsLength')
           .skill-setting(v-for='(skill, index) in equip.skills')
             p
               span 技能名:
@@ -212,8 +212,7 @@ block content
             textarea.skill-input-description(v-model='skill.description')
     #right
       +equip-type
-          
-      #equip-break
+
   script(src="/javascripts/vue.min.js")
   script(src="/javascripts/html2canvas.min.js")
   script(src="/javascripts/equip.js")

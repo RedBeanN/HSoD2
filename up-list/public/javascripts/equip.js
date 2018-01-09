@@ -1,5 +1,5 @@
 // comment first and last line for test
-// ((Vue) => {
+((Vue) => {
 let user = {
   level:   { name: '等级', value: 380     },
   name:    { name: '昵称', value: '红豆'  },
@@ -269,4 +269,4 @@ document.onclick = function () {
 document.getElementById('loading-page').remove();
 document.getElementById('app').style.display = 'block';
 
-// })(Vue);
+})(Vue);

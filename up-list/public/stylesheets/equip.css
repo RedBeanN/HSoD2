@@ -2,10 +2,14 @@ html {
   width: 100%;
   height: 100%;
 }
-h3 { margin-bottom: 0; }
+h3 {
+  margin: -10px;
+  padding: 10px;
+}
 body {
   width: calc(100% - 100px);
   height: calc(100% - 100px);
+  padding-top: 20px;
   margin: 0;
 }
 #loading-page {
@@ -33,7 +37,7 @@ body {
 img {
   height: 20px;
 }
-input {
+input, select {
   outline: none;
 }
 #app > div {
@@ -45,10 +49,27 @@ input {
   margin: 1px;
   /* height: 768px; */
 }
+#left > div {
+  width: 240px;
+}
+#left > div, #equip-top, #equip-bottom, #right > div {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid gainsboro;
+  box-shadow: 1px 1px 3px gainsboro;
+  transition-duration: 0.3s;
+}
+#left > div:hover, #equip-top:hover, #equip-bottom:hover, #right > div:hover {
+  box-shadow: 1px 1px 10px silver;
+}
 #middle {
   width: 1024px;
   /* height: 768px; */
   margin: 1px;
+}
+#right {
+  margin-left: 20px;
+  width: 260px;
 }
 
 #user span {
@@ -70,6 +91,9 @@ input {
 }
 #pin-size-controller input {
   vertical-align: top;
+}
+#pin-size-controller input[type='range'] {
+  width: 110px;
 }
 #pin-size-controller input[type='number'] {
   width: 40px;
