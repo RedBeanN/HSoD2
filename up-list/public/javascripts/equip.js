@@ -86,7 +86,7 @@ let app = new Vue({
     downloading: false,
     selectedType: '徽章',
     selectedWeapon: '',
-    selectedSeries: 'http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Series/Series00.png',
+    selectedSeries: '/images/icons/Series/Series00.png',
     addType: '移速',
     pinImage: { src: '', exist: false },
   },
@@ -240,7 +240,7 @@ let app = new Vue({
         });
     },
     dmgTypeSrc(type) {
-      return `http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Type/${type}.png`;
+      return `/images/icons/Type/${type}.png`;
     }
   },
   filters: {
