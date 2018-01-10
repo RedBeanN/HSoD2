@@ -7,12 +7,15 @@ const server = '?region=3_1';
 // never use moe!
 const [princess, pri98, mj, special, moe] = ['high', 'middle', 'custom', 'special', 'moe'];
 
-saveAll();
+const oneDay = 24 * 60 * 60 * 1000;
+setInterval(saveAll, oneDay);
+
 function saveAll() {
   save(princess, err => {
     save(mj, err => {
       save(special, err => {
-        if (!err) console.log('Done!');
+        if (!err) console.log(`Auto update completed @ ${Date()}.\n`);
+        else console.error(`Auto update failed @ ${Date()}\n`);
       });
     });
   });
@@ -51,7 +54,7 @@ function save(pool, cb) {
         if(!exist) {
           ruleData.push(data);
           fs.writeFileSync(getSavePath(pool_), JSON.stringify(ruleData, null, 2));
-          console.log(`Update ${pool_} completed.`);
+          // console.log(`Update ${pool_} completed.`);
         }
       } else console.error('Invalid JSON data!');
       cb(null, {isPet, exist});
