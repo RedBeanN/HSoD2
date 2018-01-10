@@ -104,8 +104,8 @@ mixin equip-main
           .skill(v-for='(skill, index) in equip.skills', :id='"skill-" + index',
                  :class='Number(skill.break) ? "allow-blue" : "disable-blue"')
             .title-line
-              span.skill-name.buff(:id='"skill-name-" + index') {{ skill.name | name }}
               img.skill-type-view(v-if='skill.dmgType && skill.dmgType != "none"', :src='dmgTypeSrc(skill.dmgType)')
+              span.skill-name.buff(:id='"skill-name-" + index') {{ skill.name | name }}
               span.skill-break(v-if='Number(skill.break)')
                 img(v-for='(k,i) in 10',
                     :src=`i < skill.break ? "/images/break-point-full.png" :

@@ -1,5 +1,5 @@
 // comment first and last line for test
-((Vue) => {
+// ((Vue) => {
 let user = {
   level:   { name: '等级', value: 380     },
   name:    { name: '昵称', value: '红豆'  },
@@ -116,7 +116,7 @@ let app = new Vue({
         });
         for (let i in spl) {
           descArr[index].push(spl[i]);
-          if(skillData[i]) descArr[index].push(skillData[i]);
+          if(skillData[i] || skillData[i] == '') descArr[index].push(skillData[i]);
         }
       });
       return descArr;
@@ -269,4 +269,4 @@ document.onclick = function () {
 document.getElementById('loading-page').remove();
 document.getElementById('app').style.display = 'block';
 
-})(Vue);
+// })(Vue);
