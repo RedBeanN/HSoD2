@@ -8,14 +8,17 @@ const server = '?region=3_1';
 const [princess, pri98, mj, special, moe] = ['high', 'middle', 'custom', 'special', 'moe'];
 
 const oneDay = 24 * 60 * 60 * 1000;
-setInterval(saveAll, oneDay);
+// setInterval(saveAll, oneDay);
+saveAll();
 
 function saveAll() {
   save(princess, err => {
-    save(mj, err => {
+    if (!err) console.log(`Auto update princess completed @ ${Date()}.`);
+    save(mj, (err, data) => {
+      if (!err) console.log(`Auto update ${data.isPet ? "pet" : "mj"} completed @ ${Date()}.`);
       save(special, err => {
-        if (!err) console.log(`Auto update completed @ ${Date()}.\n`);
-        else console.error(`Auto update failed @ ${Date()}\n`);
+        if (!err) console.log(`Auto update special completed @ ${Date()}.`);
+        else console.error(`Auto update special failed @ ${Date()}. ${err.message}`);
       });
     });
   });
@@ -26,8 +29,8 @@ function save(pool, cb) {
     if (!err) {
       // console.log(JSON.stringify(data, null, 2));
       let isPet = false, pets = [];
-      if (data.equips.constructor === Array) {
-        data.equips.forEach(i => {
+      if (data.data.constructor === Array) {
+        data.data.forEach(i => {
           if (i.indexOf('×9') != -1) {
             isPet = true;
             pets.push(i.substring(0, i.indexOf('×9')));
@@ -35,8 +38,8 @@ function save(pool, cb) {
         });
       }
       if (isPet) {
-        delete data.equips;
-        data.pets = pets;
+        delete data.data;
+        data.data = pets;
       }
       let pool_ = isPet ? 'pet' : pool;
       let ruleData = fs.existsSync(getSavePath(pool_)) ?
@@ -75,14 +78,14 @@ function parseUp(pool, cb) {
       data = data.toString();
       let date = parseDate(data);
       data = parseGod(data);
-      if (!data || !date) cb(new Error('No item was found.'));
+      if (!data || !date) cb(new Error(`No item was found in ${pool}.`));
       else {
         data.forEach(i => {
           let tmp = parseEquip(i);
           equips.push(tmp);
         });
         let [startTime, endTime] = [...date.split('至')];
-        let up = {startTime, endTime, equips};
+        let up = {startTime, endTime, data: equips};
         // console.log(up);
         cb(null, up);
       }
