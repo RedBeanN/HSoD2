@@ -1,4 +1,4 @@
-(function (document) {
+(document => {
   'use strict';
 
   var LightTableFilter = (function (Arr) {

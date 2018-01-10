@@ -1,5 +1,20 @@
 extends layout
 
 block content
+  link(rel='stylesheet', href='/stylesheets/animation.css')
+  link(rel='stylesheet', href='/stylesheets/auto-list.css')
+  #loading-page
+    #loading-ring.loading-rotate
+  #app(style='display: none')
+    #pool-selector
+      button(v-for='(name, pool) in pools', @click='select(pool)') {{ name }}
+    #main-view
+      table#main
+        tr#title
+          th(v-for='title in titles') title
+        tr.row(v-for='row in rows')
+          td.time {{ row.startTime + ' - ' + row,endTime }}
+          td.item(v-for='item in row.data') {{ item }}
+
   script(src='/javascripts/vue.min.js')
   script(src='/javascripts/auto-list.js')
