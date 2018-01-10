@@ -3,13 +3,6 @@ body {
   font: 14px "Microsoft YaHei", Arial, sans-serif;
 }
 
-#favicon {
-  width: 72px;
-  height: 72px;
-  margin-left: 24px;
-  margin-right: 24px;
-}
-
 p {
   margin-left: 10px;
   display: inline-block;

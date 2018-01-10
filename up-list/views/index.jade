@@ -3,30 +3,33 @@ extends layout
 block content
   script(src="/javascripts/index.js")
   link(rel="stylesheet", href="/stylesheets/index.css")
-  h1
-    img#favicon(src='/images/favicon.jpg') 
-    | #{title}
-  br
-  div#link-container
-    p
-      a(href='/list') Up 记录
-    p
-      a(href='/cms') 公告备份
-    //- p
-    //-   a(href='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List',target='inpage') 正式服公告
-    //- p
-    //-   a(href='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List?build=18', target='inpage') 测试服公告
-    p
-      a(href='http://event.mihoyo.com/notice') Bug 公告
-  br
-  div#main-container
-    div#tab
-      button.page-button#origin(src='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List') 正式服公告
-      button.page-button#test(src='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List?build=18') 测试服公告
-      //- button.page-button#bug-list(src='http://event.mihoyo.com/notice') Bug List
-    div#iframe-container
-      div#iframe-button-container
-        button#iframe-back 回到主页
-        button#iframe-link 在新窗口打开
-        button#iframe-hide 隐藏本页
-      iframe#iframe(name='inpage', frameborder=0)
+  #index
+    h1
+      img#favicon(src='/images/favicon-title.png') 
+      | #{title}
+    br
+    div#link-container
+      p
+        a(href='/list') Up 记录 (手动版)
+      p
+        a(href='/list/auto') Up 记录 (自动版)
+      p
+        a(href='/equip') 装备模拟器
+      p
+        a(href='/cms') 正式服公告 (备份版)
+      //- p
+      //-   a(href='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List',target='inpage') 正式服公告
+      //- p
+      //-   a(href='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List?build=18', target='inpage') 测试服公告
+      p
+        a(href='http://event.mihoyo.com/notice') 测试服 Bug 公告
+    br
+    div#main-container
+      div#tab
+        button.page-button#origin(src='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List') 正式服公告
+        button.page-button#test(src='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List?build=18') 测试服公告
+        //- button.page-button#bug-list(src='http://event.mihoyo.com/notice') Bug List
+      div#iframe-container
+        div#iframe-button-container
+          button#iframe-hide 隐藏本页
+        iframe#iframe(name='inpage', frameborder=0)

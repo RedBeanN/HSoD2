@@ -33,4 +33,8 @@ router.delete('/:id', function(req, res, next) {
   // res.redirect('/list');
 });
 
+router.get('/auto', function(req, res, next) {
+  res.render('auto-list');
+});
+
 module.exports = router;

@@ -14,18 +14,12 @@
             btn.classList.remove('focus');
           });
           e.target.classList.add('focus');
-          console.log(`click @ ${src}`);
+          // console.log(`click @ ${src}`);
           frame.src = src;
           // if (server != 3) frame.src += `?build=${server}`;
           container.style.display = 'block';
         };
       });
-
-      let back = document.getElementById('iframe-back');
-      back.onclick = e => {
-        let lastClick = document.getElementsByClassName('focus')[0];
-        lastClick.click();
-      };
 
       let hide = document.getElementById('iframe-hide');
       hide.onclick = e => {
@@ -34,12 +28,6 @@
         let lastClick = document.getElementsByClassName('focus')[0];
         lastClick.classList.remove('focus');
       };
-
-      let il = document.getElementById('iframe-link');
-      il.onclick = e => {
-        if (frame.src) window.open(frame.src);
-      };
-
 
       (document.getElementById('origin')).click();
     }
