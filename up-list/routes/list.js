@@ -37,4 +37,10 @@ router.get('/auto', function(req, res, next) {
   res.render('auto-list');
 });
 
+router.get('/auto/:pool', function(req, res, next) {
+  let path = '../uplist-auto/rule-data/';
+  let data = fs.readFileSync(`${path + req.params.pool}.json`);
+  res.send(JSON.parse(data));
+});
+
 module.exports = router;

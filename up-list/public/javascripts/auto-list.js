@@ -1,0 +1,3 @@
+(Vue => {
+  'use strict';
+})(Vue);
