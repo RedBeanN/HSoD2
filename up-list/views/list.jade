@@ -13,26 +13,31 @@ block content
       option(value='公主') 公主
       option(value='魔女') 魔女
       option(value='魔法少女') 魔法少女
-    table(class='order-table')
-      thead
-        tr
-          th#date 日期
-          th#pool 蛋池
-          th(colspan='2').equip 装备
-          th(colspan='2').equip 装备
-          th(colspan='2').equip 装备
-          th(colspan='2').equip 装备
-          th(colspan='2').equip 装备
-          th(colspan='2').equip 装备
-          th#special 备注
-      tbody
-        - list.forEach(function (item) {
-        tr.list-line(id = 'tid' + item.id)
-          td.date #{item.date}
-          td.pool #{item.pool}
-          - item.items.forEach(function (n) {
-          td.eid #{n.id}
-          td.ename(title = n.lastUp ? '最近 up 时间: ' + n.lastUp : '', class = (n.lastUp == n.startTime || n.lastUp == '' ? '': 'not-latest')) #{n.name}
-          - })
-          td.special #{item.special}
+  p
+    em 由于作者十分 
+      del 懒惰 
+      | 忙碌，这个页面不会再更新了，后续记录请移步 
+      a(href='list/auto') [自动版]
+  table(class='order-table')
+    thead
+      tr
+        th#date 日期
+        th#pool 蛋池
+        th(colspan='2').equip 装备
+        th(colspan='2').equip 装备
+        th(colspan='2').equip 装备
+        th(colspan='2').equip 装备
+        th(colspan='2').equip 装备
+        th(colspan='2').equip 装备
+        th#special 备注
+    tbody
+      - list.forEach(function (item) {
+      tr.list-line(id = 'tid' + item.id)
+        td.date #{item.date}
+        td.pool #{item.pool}
+        - item.items.forEach(function (n) {
+        td.eid #{n.id}
+        td.ename(title = n.lastUp ? '最近 up 时间: ' + n.lastUp : '', class = (n.lastUp == n.startTime || n.lastUp == '' ? '': 'not-latest')) #{n.name}
         - })
+        td.special #{item.special}
+      - })
