@@ -1,11 +1,12 @@
 var http = require('http');
 var fs = require('fs');
 
-var baseUrl = 'http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List/';
+var url = 'http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List/';
 var basePath = './statics/';
 
-module.exports = function getList (server) {
-  if (server) baseUrl += ('?build=' + server);
+module.exports = function getList (server = 3) {
+  baseUrl = url + '?build=' + (+server);
+  // console.log(baseUrl);
   http.get(baseUrl, function (res) {
     var data = '';
     res.setEncoding('utf-8');
@@ -27,7 +28,7 @@ module.exports = function getList (server) {
     var listArr = data.match(listReg);
     // console.log((listArr[0].match(/id=\d+/))[0]);
 
-    var titleList = JSON.parse(fs.readFileSync(basePath + 'titles.json'));
+    // var titleList = JSON.parse(fs.readFileSync(basePath + 'titles.json'));
 
     listArr.forEach(function (li) {
       // parse item
@@ -40,6 +41,9 @@ module.exports = function getList (server) {
       // "01/01"
       var title_ = tmp.match(/xt>.*?</)[0];
       // the title of this page
+      if (title_.indexOf('内容') != -1 || title_.indexOf('福利活动') != -1) {
+        console.log('更新啦');
+      }
 
       // check if html is already existed
       title_ = title_.substring(3, title_.length - 1);
@@ -68,15 +72,16 @@ module.exports = function getList (server) {
   }
 
   function resolvePath(id, date) {
-    var path = basePath + 'html/' + date.replace('/', '') + '-' + id + '.html';
+    // var path = basePath + 'html/' + '/' + date.replace('/', '') + '-' + id + '.html';
+    var path = `${basePath}html/${server}/${date.replace('/', '')}-${id}.html`;
     return path;
   }
 
   function updateCmsList (filename, title) {
     var list = fs.readFileSync(basePath + 'titles.json');
     list = JSON.parse(list);
-    if (!list[filename]) list[filename] = title.toString();
-    fs.writeFileSync(basePath + 'titles.json', JSON.stringify(list));
+    if (!list[server][filename]) list[server][filename] = title.toString();
+    fs.writeFileSync(basePath + 'titles.json', JSON.stringify(list, null, 2));
   }
 
 // getList();
