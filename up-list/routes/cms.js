@@ -5,17 +5,18 @@ var fs = require('fs');
 
 // cms
 router.get('/:server', function(req, res, next) {
+  let server = req.params.server;
   var titles = JSON.parse(fs.readFileSync('../cms-catcher/statics/titles.json'));
   var arr = [];
-  for (var t in titles) {
-    arr.push({id: t, title: titles[t]});
+  for (var t in titles[server]) {
+    arr.push({id: t, title: titles[server][t]});
   }
   arr.sort(function (a, b) {
     var a_ = parseInt(a.id.substring(5));
     var b_ = parseInt(b.id.substring(5));
     return b_ - a_;
   });
-  res.render('cms', {titles: arr, title: '公告备份'});
+  res.render('cms', {titles: arr, title: '公告备份', server});
 });
 
 router.get('/:server/:id', function(req, res, next) {

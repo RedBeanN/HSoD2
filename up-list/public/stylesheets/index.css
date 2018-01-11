@@ -40,7 +40,7 @@ button {
 }
 
 #link-container p {
-  width: calc(20% - 20px);
+  width: calc(33.33% - 20px);
   margin: 0;
   padding: 10px;
   text-align: center;
