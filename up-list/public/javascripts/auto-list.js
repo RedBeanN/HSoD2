@@ -54,6 +54,7 @@ let app = new Vue({
   created: function() {
     // load data here
     this.select('high');
+    this.sortTable();
     // this.loading = false;
   }
 });

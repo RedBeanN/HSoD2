@@ -57,19 +57,19 @@ table {
   margin-top: 20px;
   box-shadow: 2px 2px 10px gray;
 }
-table, tr {
+table, th, tr, td {
   border: 1px solid gainsboro;
   transition-duration: .3s;
 }
 #time:hover {
   cursor: pointer;
-  background: #eee;
+  background: #ddd;
 }
-#time, .time {
-  border-right: 1px solid gainsboro;
+tr.odd {
+  background: #eee;
 }
 tr:hover {
-  background: #eee;
+  background: #ddd;
 }
 #title:hover {
   background: white;

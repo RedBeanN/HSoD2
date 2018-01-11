@@ -16,7 +16,7 @@ block content
         tr#title
           th#time(@click='sortTable') 时间 {{ sorted ? '↓' : '↑' }}
           th(:colspan='maxCols') 内容
-        tr.row(v-for='row in rows')
+        tr.row(v-for='(row, index) in rows', :class='index % 2 ? "even" : "odd"')
           td.time {{ row.startTime + ' - ' + row.endTime }}
           td.item(v-for='index in maxCols') {{ row.data[index - 1] || '' }}
 
