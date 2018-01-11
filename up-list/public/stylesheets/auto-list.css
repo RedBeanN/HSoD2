@@ -1,0 +1,89 @@
+html {
+  height: 100%;
+}
+
+body {
+  padding: 0;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#app {
+  position: absolute;
+  width: calc(100% - 76px);
+  height: calc(100% - 76px);
+  padding: 30px;
+  background: #eee;
+}
+
+#pool-selector {
+  width: 600px;
+  margin: auto;
+  box-shadow: 2px 2px 10px gray;
+}
+#pool-selector button {
+  width: 200px;
+  height: 45px;
+  border-bottom: 5px solid #40c4ff;
+  background: #40c4ff;
+  transition-duration: .3s;
+}
+#pool-selector button:hover {
+  background: #0094cc;
+  border-bottom: 5px solid #0094cc
+}
+#pool-selector button.focus {
+  border-bottom: 5px solid #0094cc;
+}
+
+#hint-container {
+  width: 220px;
+  height: 30px;
+  padding: 10px;
+  font-size: 18px;
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
+}
+
+table {
+  background: white;
+  border-collapse: collapse;
+  margin: auto;
+  margin-top: 20px;
+  box-shadow: 2px 2px 10px gray;
+}
+table, tr {
+  border: 1px solid gainsboro;
+  transition-duration: .3s;
+}
+#time:hover {
+  cursor: pointer;
+  background: #eee;
+}
+#time, .time {
+  border-right: 1px solid gainsboro;
+}
+tr:hover {
+  background: #eee;
+}
+#title:hover {
+  background: white;
+}
+th, td {
+  width: 120px;
+  padding: 10px;
+}
+td.time {
+  width: 300px;
+}
+
+#title {
+  height: 24px;
+  font-weight: normal;
+  color: gray;
+}

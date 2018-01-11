@@ -7,14 +7,19 @@ block content
     #loading-ring.loading-rotate
   #app(style='display: none')
     #pool-selector
-      button(v-for='(name, pool) in pools', @click='select(pool)') {{ name }}
+      button(v-for='(name, pool) in pools', @click='select(pool)',
+             :class='pool == selectedPool ? "focus" : ""') {{ name }}
     #main-view
-      table#main
+      #hint-container(v-if='loading || error')
+        | {{ hintText }}
+      table#main(v-else)
         tr#title
-          th(v-for='title in titles') title
+          th#time(@click='sortTable') 时间 {{ sorted ? '↓' : '↑' }}
+          th(:colspan='maxCols') 内容
         tr.row(v-for='row in rows')
-          td.time {{ row.startTime + ' - ' + row,endTime }}
-          td.item(v-for='item in row.data') {{ item }}
+          td.time {{ row.startTime + ' - ' + row.endTime }}
+          td.item(v-for='index in maxCols') {{ row.data[index - 1] || '' }}
 
   script(src='/javascripts/vue.min.js')
+  script(src='/javascripts/axios.min.js')
   script(src='/javascripts/auto-list.js')
