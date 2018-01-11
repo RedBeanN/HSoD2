@@ -82,7 +82,7 @@ function parseUp(pool, cb) {
       else {
         data.forEach(i => {
           let tmp = parseEquip(i);
-          equips.push(tmp);
+          equips.push(tmp.replace(/\[\d★\]/, ''));
         });
         let [startTime, endTime] = [...date.split('至')];
         let up = {startTime, endTime, data: equips};
