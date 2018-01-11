@@ -12,7 +12,7 @@ var process = require('process');
 exports.updateImg = function(range_, cb) {
 
   var baseUrl = 'http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/';
-  var dir = './statics/png/';
+  var dir = './statics/new/';
   var mimeType = '.png';
   var range = range_ ? range_ : 3000;
   var title;
