@@ -1,8 +1,13 @@
 var http = require('http');
 var fs = require('fs');
+var _path = require('path');
+
+function join(filepath) {
+  return _path.join(__dirname, filepath);
+}
 
 var url = 'http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List/';
-var basePath = './statics/';
+var basePath = '/statics/';
 
 module.exports = function getList (server = 3) {
   baseUrl = url + '?build=' + (+server);
@@ -73,15 +78,15 @@ module.exports = function getList (server = 3) {
 
   function resolvePath(id, date) {
     // var path = basePath + 'html/' + '/' + date.replace('/', '') + '-' + id + '.html';
-    var path = `${basePath}html/${server}/${date.replace('/', '')}-${id}.html`;
+    var path = join(`${basePath}html/${server}/${date.replace('/', '')}-${id}.html`);
     return path;
   }
 
   function updateCmsList (filename, title) {
-    var list = fs.readFileSync(basePath + 'titles.json');
+    var list = fs.readFileSync(join(basePath + 'titles.json'));
     list = JSON.parse(list);
     if (!list[server][filename]) list[server][filename] = title.toString();
-    fs.writeFileSync(basePath + 'titles.json', JSON.stringify(list, null, 2));
+    fs.writeFileSync(join(basePath + 'titles.json'), JSON.stringify(list, null, 2));
   }
 
 // getList();

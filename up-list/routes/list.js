@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var path = require('path');
 
 var fs = require('fs');
 var updater = require('../private/javascripts/up-list-updater.js');
@@ -12,34 +13,28 @@ router.get('/', function(req, res, next) {
   //res.render('list', {list: list, title: '装备 up 记录'});
 });
 
-router.get('/update', function(req, res, next) {
-  res.render('update-list');
-});
+// router.get('/update', function(req, res, next) {
+//   res.render('update-list');
+// });
 
-router.post('/', function(req, res, next) {
-  var data = updater.parseUpdate(req.body);
-  if (data.items[0].id == '') res.status(500).send('Error: Empty item list.');
-  else {
-    // updater.list.push(data);
-    updater.updateAllList(data);
-    // updater.updateEquips();
-    res.redirect('/list');
-  }
-});
-
-router.delete('/:id', function(req, res, next) {
-  // identify
-  // updater.delete(req.body.id);
-  // res.redirect('/list');
-});
+// router.post('/', function(req, res, next) {
+//   var data = updater.parseUpdate(req.body);
+//   if (data.items[0].id == '') res.status(500).send('Error: Empty item list.');
+//   else {
+//     // updater.list.push(data);
+//     updater.updateAllList(data);
+//     // updater.updateEquips();
+//     res.redirect('/list');
+//   }
+// });
 
 router.get('/auto', function(req, res, next) {
   res.render('auto-list');
 });
 
 router.get('/auto/:pool', function(req, res, next) {
-  let path = '../uplist-auto/rule-data/';
-  let data = fs.readFileSync(`${path + req.params.pool}.json`);
+  let path_ = path.join(__dirname, '../../uplist-auto/rule-data/');
+  let data = fs.readFileSync(`${path_ + req.params.pool}.json`);
   res.send(JSON.parse(data));
 });
 

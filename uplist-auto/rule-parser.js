@@ -1,5 +1,6 @@
 const http = require('http');
 const fs = require('fs');
+const path = require('path');
 
 const baseUrl = 'http://cms.mihoyo.com/mihoyo/hsod2_gacha_rules/index.php/gacha/';
 const server = '?region=3_1';
@@ -7,8 +8,8 @@ const server = '?region=3_1';
 // never use moe!
 const [princess, pri98, mj, special, moe] = ['high', 'middle', 'custom', 'special', 'moe'];
 
-const oneDay = 24 * 60 * 60 * 1000;
-// setInterval(saveAll, oneDay);
+const halfDay = 12 * 60 * 60 * 1000;
+// setInterval(saveAll, halfDay);
 saveAll();
 
 function saveAll() {
@@ -51,7 +52,7 @@ function save(pool, cb) {
         ruleData.forEach(item => {
           if (JSON.stringify(item) == JSON.stringify(data)) {
             exist = true;
-            console.log(`Data ${data.startTime} already exist.`);
+            // console.log(`Data ${data.startTime} already exist.`);
           }
         });
         if(!exist) {
@@ -112,5 +113,5 @@ function parseDate(str) {
 }
 
 function getSavePath(pool) {
-  return `./rule-data/${pool}.json`;
+  return path.join(__dirname, `./rule-data/${pool}.json`);
 }

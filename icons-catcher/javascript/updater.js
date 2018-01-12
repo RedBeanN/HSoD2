@@ -3,6 +3,10 @@ var fs = require('fs');
 var path = require('path');
 var process = require('process');
 
+function join(filename) {
+  return path.join(__dirname, filename);
+}
+
 /*
   exports: [
     updateImg(range, callback(ctr[], newItems[]))
@@ -12,14 +16,14 @@ var process = require('process');
 exports.updateImg = function(range_, cb) {
 
   var baseUrl = 'http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/';
-  var dir = './statics/new/';
+  var dir = '../statics/new/';
   var mimeType = '.png';
   var range = range_ ? range_ : 3000;
   var title;
   var ctr = [0, 0, 0]; // save, existed, not-found
   var newItem = [];
 
-  fs.readFile('statics/title.txt', function (err, data) {
+  fs.readFile(join('../statics/title.txt'), function (err, data) {
     if (err) return console.error(err);
     title = formatTitle(data.toString().split(''));
     var index = 0;
@@ -35,7 +39,7 @@ exports.updateImg = function(range_, cb) {
       // process.stdout.write(`[Process] ${index + 1} of ${range} \x1b[K\r`);
       if (title[index] != 1) {
         var ai = arr[index].split('/');
-        var dest = path.resolve(dir, ai[ai.length - 1]);
+        var dest = path.join(__dirname, dir, ai[ai.length - 1]);
         downloadImage(arr[index], dest, function (err, data) {
           if (!err) {
             title[index] = 1;
@@ -54,7 +58,7 @@ exports.updateImg = function(range_, cb) {
   });
 
   function writeTitle(title, cb) {
-    fs.writeFile('./statics/title.txt', title.join(''), function (err, data) {
+    fs.writeFile(join('../statics/title.txt'), title.join(''), function (err, data) {
       if (err) console.error('Writing title.txt error: ', err);
       cb();
     });
@@ -79,59 +83,34 @@ exports.updateImg = function(range_, cb) {
     var time_wrapper = function(req) {
       return function() {
         req.abort();
-        // cb(null, dest);
       };
     };
     var request = http.get(src, function (res) {
       clearTimeout(timeout);
 
       if (res.statusCode != 200) {
-        // clearTimeout(timeout);
         cb({statusCode: res.statusCode}, dest);
       }
       else {
         res.setEncoding('binary');
-        // res.on('error', function (err) {
-          // clearTimeout(timeout);
-        //   console.error('Error occured:', err);
-        //   cb(err, dest);
-        // });
         var img = '';
         res.on('data', function (chunk) {
-          // clearTimeout(timeout);
           img += chunk;
-          // timeout = setTimeout(fn, 2000);
         });
         res.on('end', function (err) {
-          // clearTimeout(timeout);
           if (err) console.error('Error ocurred:', err);
           fs.writeFile(dest, img, 'binary', function (err, data) {
             if (err) console.error('[Writing] Error @', item);
             cb(null, dest);
           });
         });
-        // res.on('abort', function () {
-        //   clearTimeout(timeout);
-        //   cb(null, dest);
-        // });
       }
     });
     var fn = time_wrapper(request);
     var timeout = setTimeout(fn, 2000);
-    // another handdler
     request.on('error', function(err) {
-      // console.log(err.message ? err.message : err, 'while downloading', item);
-      // clearTimeout(timeout);
       cb({message: 'Timeout Error'}, dest);
     });
-    // request.setTimeout(1500, function() {
-    //   if (request.res && request.res.emit) request.res.emit('end');
-    //   else {
-    //     if (request.res && request.res.end) request.res.end();
-    //     request.abort();
-    //     cb({message: 'timeout'}, dest);
-    //   }
-    // });
   }
 
   function formatTitle (title) {
