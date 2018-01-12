@@ -96,11 +96,12 @@ td.time {
   top: 20px;
   height: 30px;
   padding: 10px;
-  background: #ddd;
+  background: #40c4ff;
   width: 260px;
   transition-duration: .3s;
   white-space: nowrap;
   overflow: hidden;
+  box-shadow: 2px 2px 12px gray;
 }
 #filter-input {
   height: 18px;
@@ -109,6 +110,7 @@ td.time {
   padding: 5px;
   font-size: 16px;
   vertical-align: top;
+  color: gray;
 }
 #search-icon {
   height: 30px;
@@ -119,4 +121,6 @@ td.time {
 }
 #equip-filter.collapse {
   width: 30px;
+  background: #ddd;
+  box-shadow: 0px 0px 8px gray;
 }
