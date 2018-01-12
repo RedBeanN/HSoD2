@@ -56,10 +56,12 @@ table {
   margin: auto;
   margin-top: 20px;
   box-shadow: 2px 2px 10px gray;
+  margin-bottom: 40px;
 }
 table, th, tr, td {
   border: 1px solid gainsboro;
   transition-duration: .3s;
+  cursor: default;
 }
 #time:hover {
   cursor: pointer;
@@ -86,4 +88,35 @@ td.time {
   height: 24px;
   font-weight: normal;
   color: gray;
+}
+
+#equip-filter {
+  position: fixed;
+  right: 40px;
+  top: 20px;
+  height: 30px;
+  padding: 10px;
+  background: #ddd;
+  width: 260px;
+  transition-duration: .3s;
+  white-space: nowrap;
+  overflow: hidden;
+}
+#filter-input {
+  height: 18px;
+  width: 210px;
+  margin-left: 5px;
+  padding: 5px;
+  font-size: 16px;
+  vertical-align: top;
+}
+#search-icon {
+  height: 30px;
+}
+
+.hide {
+  display: none;
+}
+#equip-filter.collapse {
+  width: 30px;
 }
