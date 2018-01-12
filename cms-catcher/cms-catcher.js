@@ -41,9 +41,9 @@ module.exports = function getList (server = 3) {
       // "01/01"
       var title_ = tmp.match(/xt>.*?</)[0];
       // the title of this page
-      if (title_.indexOf('内容') != -1 || title_.indexOf('福利活动') != -1) {
-        console.log('更新啦');
-      }
+      // if (title_.indexOf('内容') != -1 || title_.indexOf('福利活动') != -1) {
+      //   console.log('更新啦');
+      // }
 
       // check if html is already existed
       title_ = title_.substring(3, title_.length - 1);
