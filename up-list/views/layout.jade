@@ -6,7 +6,7 @@ html
     link(rel='shortcut icon', href='/favicon.png', type='image/png')
   body
     //- #back-container
-    - if (title.indexOf('主页') == -1) {
+    - if (title && title.indexOf('主页') == -1) {
     a#back-to-index(href='/') 主页
     - }
     block content
