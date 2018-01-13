@@ -9,8 +9,8 @@ const server = '?region=3_1';
 const [princess, pri98, mj, special, moe] = ['high', 'middle', 'custom', 'special', 'moe'];
 
 const halfDay = 12 * 60 * 60 * 1000;
-// setInterval(saveAll, halfDay);
-saveAll();
+setInterval(saveAll, halfDay);
+// saveAll();
 
 function saveAll() {
   save(princess, err => {
