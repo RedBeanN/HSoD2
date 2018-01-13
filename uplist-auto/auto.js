@@ -8,8 +8,8 @@ const server = '?region=3_1';
 // never use moe!
 const [princess, pri98, mj, special, moe] = ['high', 'middle', 'custom', 'special', 'moe'];
 
-const halfDay = 12 * 60 * 60 * 1000;
-setInterval(saveAll, halfDay);
+const fourHour = 4 * 60 * 60 * 1000;
+setInterval(saveAll, fourHour);
 // saveAll();
 
 function saveAll() {
