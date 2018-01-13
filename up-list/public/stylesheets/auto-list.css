@@ -83,6 +83,9 @@ th, td {
 td.time {
   width: 300px;
 }
+td.old {
+  color: gray;
+}
 
 #title {
   height: 24px;
@@ -96,12 +99,13 @@ td.time {
   top: 20px;
   height: 30px;
   padding: 10px;
-  background: #40c4ff;
+  background: #0094cc;
   width: 260px;
   transition-duration: .3s;
   white-space: nowrap;
   overflow: hidden;
   box-shadow: 2px 2px 12px gray;
+  border-radius: 5px;
 }
 #filter-input {
   height: 18px;
@@ -121,6 +125,7 @@ td.time {
 }
 #equip-filter.collapse {
   width: 30px;
-  background: #ddd;
+  background: #40c4ff;
   box-shadow: 0px 0px 8px gray;
+  border-radius: 50%;
 }

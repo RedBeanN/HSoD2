@@ -1,6 +1,16 @@
 // ((Vue, axios) => {
 // 'use strict';
 
+function $$(str) {
+  // simply use $$('#id') or $$('.class')
+  if (typeof str != 'string') throw new Error(`Type Error: ${str} is not a string`);
+  switch(str[0]) {
+    case '#': return document.getElementById(str.substring(1));
+    case '.': return document.getElementsByClassName(str.substring(1));
+    default : return document.getElementsByTagName(str);
+  }
+}
+
 let app = new Vue({
   el: '#app',
   data: {
@@ -24,7 +34,7 @@ let app = new Vue({
       return maxcols;
     },
     searchIcon() {
-      if (this.searchInput.isFocus) return '/images/icons/Material/search_black.png';
+      if (!this.searchInput.isFocus) return '/images/icons/Material/search_black.png';
       else return '/images/icons/Material/search_white.png';
     },
     filterRows() {
@@ -44,7 +54,18 @@ let app = new Vue({
         }
       });
       return fr;
-    }
+    },
+    nameList() {
+      let list = {};
+      this.rows.forEach(row => {
+        row.data.forEach(equip => {
+          if (!list[equip] || (new Date(list[equip])) < (new Date(row.startTime))) {
+            list[equip] = row.startTime.split(' ')[0];
+          }
+        });
+      });
+      return list;
+    },
   },
   methods: {
     select(pool = 'high') {
@@ -80,15 +101,15 @@ let app = new Vue({
     },
     focusSearch() {
       this.searchInput.isFocus = true;
-      document.getElementById('filter-input').classList.remove('hide');
-      document.getElementById('equip-filter').classList.remove('collapse');
-      document.getElementById('filter-input').focus();
+      $$('#filter-input').classList.remove('hide');
+      $$('#equip-filter').classList.remove('collapse');
+      $$('#filter-input').focus();
     },
     blurSearch() {
       if (this.searchInput.text) return;
       this.searchInput.isFocus = false;
-      document.getElementById('filter-input').classList.add('hide');
-      document.getElementById('equip-filter').classList.add('collapse');
+      $$('#filter-input').classList.add('hide');
+      $$('#equip-filter').classList.add('collapse');
     }
   },
   created: function() {
@@ -98,6 +119,6 @@ let app = new Vue({
   }
 });
 
-document.getElementById('loading-page').remove();
-document.getElementById('app').style.display = 'block';
+$$('#loading-page').remove();
+$$('#app').style.display = 'block';
 // })(Vue, axios);

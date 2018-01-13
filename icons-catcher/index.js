@@ -7,6 +7,7 @@
 var updater = require('./javascript/updater.js');
 var mailer = require('./javascript/email.js');
 var logfileCreater = require('./javascript/logfile.js');
+var path = require('path');
 
 var oneHour = 60 * 60 * 1000;
 var halfHour = oneHour / 2;
@@ -15,7 +16,7 @@ var oneWeek = 7 * oneDay;
 
 var range = 2500;
 
-var logfile = logfileCreater.logfile('./statics/', 'nohup.out', 'error.log');
+var logfile = logfileCreater.logfile(path.join(__dirname, './statics/'), 'nohup.out', 'error.log');
 // logfile.init()
 
 // logfile.init('[Process] Start @ ' + Date().toString());
@@ -31,10 +32,10 @@ var dailyMail = setInterval(function () { sendStatus(Date()); }, oneDay);
 var weeklyMail = setInterval(function () {
   var ops = {
     subject: 'Weekly Mail With Log',
-    text: 'Attachment(s): nohup.out',
+    text: 'Attachment(s): nohup.txt',
     attachments: [{
-      filename: 'nohup.out',
-      path: './nohup.out'
+      filename: 'nohup.txt',
+      path: path.join(__dirname, './nohup.out')
     }]
   };
   mailer.sendEmail(ops, function (err, info) {

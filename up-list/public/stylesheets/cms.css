@@ -21,11 +21,11 @@ li {
   border-collapse: collapse;
   transition-duration: .3s;
 }
-li.even, li.odd:hover {
+li.odd {
   background: #eee;
 }
-li.odd, li.even:hover {
-  background: white;
+li:hover {
+  background: #ddd;
 }
 #cms-title {
   cursor: default;

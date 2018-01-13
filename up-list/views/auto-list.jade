@@ -8,7 +8,8 @@ block content
   #app(style='display: none')
     #equip-filter.collapse(@click='focusSearch')
       img#search-icon(:src='searchIcon')
-      input#filter-input.hide(placeholder='搜索', @blur='blurSearch', v-model='searchInput.text')
+      input#filter-input.hide(placeholder='搜索装备或时间',
+            @blur='blurSearch', v-model='searchInput.text')
     #pool-selector
       button(v-for='(name, pool) in pools', @click='select(pool)',
              :class='pool == selectedPool ? "focus" : ""') {{ name }}
@@ -21,7 +22,10 @@ block content
           th(:colspan='maxCols') 内容
         tr.row(v-for='(row, index) in filterRows', :class='index % 2 ? "even" : "odd"')
           td.time {{ row.startTime + ' - ' + row.endTime }}
-          td.item(v-for='index in maxCols') {{ row.data[index - 1] || '' }}
+          td.item(v-for='index in maxCols',
+            :title='row.data[index - 1] ? "最近up时间: " + nameList[row.data[index - 1]] : ""',
+            :class='nameList[row.data[index - 1]] == row.startTime.split(" ")[0] ? "new" : "old"')
+            | {{ row.data[index - 1] || '' }}
 
   script(src='/javascripts/vue.min.js')
   script(src='/javascripts/axios.min.js')
