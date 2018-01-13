@@ -1,5 +1,5 @@
-// ((Vue, axios) => {
-// 'use strict';
+((Vue, axios) => {
+'use strict';
 
 function $$(str) {
   // simply use $$('#id') or $$('.class')
@@ -121,4 +121,4 @@ let app = new Vue({
 
 $$('#loading-page').remove();
 $$('#app').style.display = 'block';
-// })(Vue, axios);
+})(Vue, axios);

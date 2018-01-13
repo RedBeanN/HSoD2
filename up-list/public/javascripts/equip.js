@@ -1,6 +1,8 @@
 // comment first and last line for test
 (Vue => {
 'use strict';
+
+// presets
 let user = {
   level:   { name: '等级', value: 380     },
   name:    { name: '昵称', value: '红豆'  },
@@ -77,7 +79,7 @@ let texts = {
   unique: '唯一装备 , 带多件无效哟~',
   tutorial: '用#()标记技能描述中的可突破数值 , 在有突破等级时 , #()内部的数值可以自动变色',
   sizeCtrl: '移动滑块调整图片大小和位置 , 数值范围不足时可以通过右侧输入框手动输入',
-  download: '点击 [保存图片] 自动生成并保存做好的图片 , 生成图片需要几秒钟的时间 , 请耐心等待',
+  download: '点击 [保存图片] 自动生成并保存做好的图片 , 生成图片需要几秒钟的时间 , 请耐心等待 . (由于 html2canvas 的限制 , 部分控件可能会有绘制错误)',
 };
 
 let app = new Vue({
