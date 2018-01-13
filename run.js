@@ -1,4 +1,5 @@
 let exec = require('child_process').exec;
+let path = require('path');
 
 let iconsCatcher = exec(join('icons-catcher', 'auto.js'), (err, stdout, stderr) => {
   if (err) console.error(err);
@@ -20,6 +21,6 @@ let server = exec(join('up-list', 'bin/www'), (err, stdout, stderr) => {
   console.log(stdout.match(/info.*/)[0]);
 });
 
-function join(path, filename, logfile = 'forever.log') {
-  return `forever start -l E:/Projects/${path}/${logfile} -a ${path}/${filename}`;
+function join(path_, filename, logfile = 'forever.log') {
+  return `forever start -l ${path.join(__dirname, path_, logfile)} -a ${path}/${filename}`;
 }
