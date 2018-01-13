@@ -129,3 +129,7 @@ td.old {
   box-shadow: 0px 0px 8px gray;
   border-radius: 50%;
 }
+#equip-filter:hover {
+  background: #0094cc;
+  box-shadow: 2px 2px 12px gray;
+}
