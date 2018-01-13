@@ -172,7 +172,10 @@ input, select {
   top: 476px;
 }
 
-#top-banner { height: 90px; }
+#top-banner {
+  height: 90px;
+  z-index: 6;
+}
 
 #user-banner {
   color: white;
