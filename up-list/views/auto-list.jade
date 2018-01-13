@@ -17,15 +17,17 @@ block content
       #hint-container(v-if='loading || error')
         | {{ hintText }}
       table#main(v-else)
-        tr#title
-          th#time(@click='sortTable') 时间 {{ sortedFlag ? '↓' : '↑' }}
-          th(:colspan='maxCols') 内容
-        tr.row(v-for='(row, index) in filterRows', :class='index % 2 ? "even" : "odd"')
-          td.time {{ row.startTime + ' - ' + row.endTime }}
-          td.item(v-for='index in maxCols',
-            :title='row.data[index - 1] ? "最近up时间: " + nameList[row.data[index - 1]] : ""',
-            :class='nameList[row.data[index - 1]] == row.startTime.split(" ")[0] ? "new" : "old"')
-            | {{ row.data[index - 1] || '' }}
+        thead
+          tr#title
+            th#time(@click='sortTable') 时间 {{ sortedFlag ? '↓' : '↑' }}
+            th(:colspan='maxCols') 内容
+        tbody
+          tr.row(v-for='(row, index) in filterRows', :class='index % 2 ? "even" : "odd"')
+            td.time {{ row.startTime + ' - ' + row.endTime }}
+            td.item(v-for='index in maxCols',
+              :title='row.data[index - 1] ? "最近up时间: " + nameList[row.data[index - 1]] : ""',
+              :class='nameList[row.data[index - 1]] == row.startTime.split(" ")[0] ? "new" : "old"')
+              | {{ row.data[index - 1] || '' }}
 
   script(src='/javascripts/vue.min.js')
   script(src='/javascripts/axios.min.js')

@@ -8,7 +8,7 @@ var updater = require('../private/javascripts/up-list-updater.js');
 // List
 router.get('/', function(req, res, next) {
   updater.updateList(function (li) {
-    res.render('list', {list: li, title: '装备 up 记录'});
+    res.render('list', {list: li, title: '装备 up 记录(旧) - 搞事学园'});
   });
   //res.render('list', {list: list, title: '装备 up 记录'});
 });
@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
 // });
 
 router.get('/auto', function(req, res, next) {
-  res.render('auto-list');
+  res.render('auto-list', {title: '装备 up 记录 - 搞事学园'});
 });
 
 router.get('/auto/:pool', function(req, res, next) {

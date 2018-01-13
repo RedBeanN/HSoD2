@@ -1,6 +1,7 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  h1 404 Not Found
+  p 这个页面不存在啦！
+    a(href='/') 点我一下
+    | ，回去吧回去吧

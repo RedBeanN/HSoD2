@@ -17,7 +17,7 @@ router.get('/:server', function(req, res, next) {
     var b_ = parseInt(b.id.substring(5));
     return b_ - a_;
   });
-  res.render('cms', {titles: arr, title: '公告备份', server});
+  res.render('cms', {titles: arr, title: '公告备份 - 搞事学园', server});
 });
 
 router.get('/:server/:id', function(req, res, next) {
