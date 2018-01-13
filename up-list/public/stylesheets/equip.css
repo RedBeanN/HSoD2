@@ -404,7 +404,7 @@ input, select {
   height: 32px;
 }
 .cutoff-line {
-  height: 2px;
+  height: 1.5px;
   background-color: rgb(255, 151, 0);
 }
 .skill-name {
