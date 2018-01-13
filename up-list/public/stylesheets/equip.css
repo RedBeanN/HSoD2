@@ -136,7 +136,6 @@ input, select {
   color: rgb(114, 114, 114);
   width: 1024px;
   height: 576px;
-  /* background-image: url('/images/equip-background-example.png'); */
   background-size: 1024px 576px;
   font-weight: bold;
   position: relative;
@@ -150,7 +149,6 @@ input, select {
 #background-container img {
   position: absolute;
   z-index: 1;
-  /* display: none; */
 }
 #mid-top {
   height: 198px;
@@ -158,9 +156,9 @@ input, select {
   top: -117px;
 }
 #left-bottom {
-  height: 1090px;
-  left: -429px;
-  top: -54px;
+  height: 1095px;
+  left: -432px;
+  top: -58px;
   z-index: 4;
 }
 #right-top {
