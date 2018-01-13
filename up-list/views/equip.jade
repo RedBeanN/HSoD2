@@ -23,6 +23,8 @@ mixin equip-top
             :type='item.name == "装备名" ? "text" : "number"')
     input#awaken-checkbox(type="checkbox", name="awaken", v-model='equip.awaken')
     label(for='awaken-checkbox') 觉醒
+    input#special-checkbox(type='checkbox', v-model='useSpecialStar')
+    label(for="special-checkbox") 使用特殊版星星
 
 mixin equip-status
   #equip-status
@@ -84,7 +86,7 @@ mixin equip-main
         img#equip-type-view(v-if='equip.dmgType != "none"', :src='dmgTypeSrc(equip.dmgType)')
         #equip-stars-container
           img(v-for='s in (Number(equip.top.stars.value) > 10 ? 10 : (Number(equip.top.stars.value) < 1 ? 1 : Number(equip.top.stars.value)))',
-              src='/images/star-full.png')
+              :src='starSrc')
     #equip-view
       #equip-view-left
         #equip-image-container

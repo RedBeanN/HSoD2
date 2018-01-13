@@ -92,6 +92,7 @@ let app = new Vue({
     selectedSeries: '/images/icons/Series/series00.png',
     addType: '移速',
     pinImage: { src: '', exist: false },
+    useSpecialStar: false,
   },
   computed: {
     coin() {
@@ -191,6 +192,10 @@ let app = new Vue({
       if (this.equip.top.stars.value < 7) return '/images/pin-container-6s.png';
       else return '/images/pin-container-7s.png';
     },
+    starSrc() {
+      if (!this.useSpecialStar) return '/images/star-full.png';
+      else return '/images/star-full-special.png';
+    }
   },
   methods: {
     computedValue: function(val, key) {

@@ -120,6 +120,11 @@ input, select {
   height: 10px;
   margin-left: 10px;
 }
+#special-checkbox {
+  width: 10px !important;
+  height: 10px;
+  margin-left: 10px;
+}
 #equip-name input {
   width: 120px;
 }
