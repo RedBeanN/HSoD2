@@ -60,8 +60,8 @@ mixin equip-status
 mixin equip-main
   #equip-main
     #background-container
-      img#mid-top.fast-rotate(src='/images/ring-mid-top.png')
       img#left-bottom.slow-rotate(src='/images/ring-left-bot.png')
+      img#mid-top.fast-rotate(src='/images/ring-mid-top.png')
       img#right-top.fast-rotate(src='/images/ring-right-top.png')
       img#right-bottom.slow-rotate(src='/images/ring-right-bot.png')
     #top-banner
@@ -161,6 +161,8 @@ block content
           br
           input#show-protect-button(type='checkbox', v-model='widgets.protectButton')
           label(for="show-protect-button") 显示解除保护按钮
+        br
+        | 上传装备图片: 
         input#pin-input(type="file", @change='updatePinImage($event)', accept='image/*')
         br
         input#awaken-ctrl(type='checkbox', v-model='widgets.awakenImage', :disabled='!equip.awaken')
