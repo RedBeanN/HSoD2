@@ -8,7 +8,7 @@ mixin equip-top
         img(v-if='selectedSeries', :src='selectedSeries')
         ul#series-selector
           - for (let i = 0; i < 46; i++) {
-          -   let prefix = '/images/icons/Series/Series';
+          -   let prefix = '/images/icons/Series/series';
           -   if (i < 10) prefix += '0';
           -   let src = prefix + i + '.png';
           li 

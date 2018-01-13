@@ -87,7 +87,7 @@ let app = new Vue({
     downloading: false,
     selectedType: '徽章',
     selectedWeapon: '',
-    selectedSeries: '/images/icons/Series/Series00.png',
+    selectedSeries: '/images/icons/Series/series00.png',
     addType: '移速',
     pinImage: { src: '', exist: false },
   },
