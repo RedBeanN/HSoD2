@@ -22,5 +22,5 @@ let server = exec(join('up-list', 'bin/www'), (err, stdout, stderr) => {
 });
 
 function join(path_, filename, logfile = 'forever.log') {
-  return `forever start -l ${path.join(__dirname, path_, logfile)} -a ${path}/${filename}`;
+  return `forever start -l ${path.join(__dirname, path_, logfile)} -a ${path_}/${filename}`;
 }
