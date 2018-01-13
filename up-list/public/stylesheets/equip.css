@@ -224,6 +224,7 @@ input, select {
   height: 50px;
   background: url('/images/equip-bar.png') no-repeat -1px 5px;
   background-size: 1024px 45px;
+  z-index: 6;
 }
 #equip-banner-serial {
   width: 120px;
