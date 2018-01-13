@@ -1,16 +1,16 @@
 let exec = require('child_process').exec;
 
-let iconsCatcher = exec(join('icons-catcher', 'index.js'), (err, stdout, stderr) => {
+let iconsCatcher = exec(join('icons-catcher', 'auto.js'), (err, stdout, stderr) => {
   if (err) console.error(err);
   console.log(stdout.match(/info.*/)[0]);
 });
 
-let cmsCatch = exec(join('cms-catcher', 'test.js'), (err, stdout, stderr) => {
+let cmsCatch = exec(join('cms-catcher', 'auto.js'), (err, stdout, stderr) => {
   if (err) console.error(err);
   console.log(stdout.match(/info.*/)[0]);
 });
 
-let uplist = exec(join('uplist-auto', 'rule-parser.js'), (err, stdout, stderr) => {
+let uplist = exec(join('uplist-auto', 'auto.js'), (err, stdout, stderr) => {
   if (err) console.error(err);
 console.log(stdout.match(/info.*/)[0]);
 });
