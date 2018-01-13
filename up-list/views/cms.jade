@@ -12,7 +12,7 @@ block content
             | 标题
         - for (var t in titles) {
         li(class=t % 2 ? "even" : "odd")
-          a(href=server + '/' + titles[t].id)
+          a(href=server + '/' + titles[t].id, target='_blank')
             div 
               span.cms-date #{titles[t].id.substring(0,2)}/#{titles[t].id.substring(2,4)} 
               span.cms-no #{titles[t].id.substring(5)} 
