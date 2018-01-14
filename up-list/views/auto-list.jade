@@ -1,8 +1,8 @@
 extends layout
 
 block content
-  link(rel='stylesheet', href='/stylesheets/animation.css')
-  link(rel='stylesheet', href='/stylesheets/auto-list.css')
+  link(rel='stylesheet', href='/dist/css/animation.min.css')
+  link(rel='stylesheet', href='/dist/css/auto-list.min.css')
   #loading-page
     #loading-ring.loading-rotate
   #app(style='display: none')
@@ -29,6 +29,6 @@ block content
               :class='nameList[row.data[index - 1]] == row.startTime.split(" ")[0] ? "new" : "old"')
               | {{ row.data[index - 1] || '' }}
 
-  script(src='/javascripts/vue.min.js')
-  script(src='/javascripts/axios.min.js')
-  script(src='/javascripts/auto-list.js')
+  //- script(src='/javascripts/vue.min.js')
+  //- script(src='/javascripts/axios.min.js')
+  script(src='/dist/js/auto-list.min.js')

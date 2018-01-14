@@ -137,8 +137,8 @@ mixin equip-type
 
 
 block content
-  link(rel="stylesheet", href="/stylesheets/animation.css")
-  link(rel="stylesheet", href="/stylesheets/equip.css")
+  link(rel="stylesheet", href="/dist/css/animation.min.css")
+  link(rel="stylesheet", href="/dist/css/equip.min.css")
   #loading-page
     #loading-ring.loading-rotate
   #app(style='display: none')
@@ -217,6 +217,6 @@ block content
       +equip-top
       +equip-type
 
-  script(src="/javascripts/vue.min.js")
-  script(src="/javascripts/html2canvas.min.js")
-  script(src="/javascripts/equip.js")
+  //- script(src="/javascripts/vue.min.js")
+  //- script(src="/javascripts/html2canvas.min.js")
+  script(src="/dist/js/equip.min.js")

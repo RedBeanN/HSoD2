@@ -1,3 +1,6 @@
+//import('vue.min.js');
+//import('axios.min.js');
+
 ((Vue, axios) => {
 'use strict';
 

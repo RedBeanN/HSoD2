@@ -1,5 +1,7 @@
 // comment first and last line for test
-(Vue => {
+//import('vue.min.js');
+//import('html2canvas.min.js');
+(() => {
 'use strict';
 
 // presets
@@ -277,4 +279,4 @@ document.onclick = function () {
 document.getElementById('loading-page').remove();
 document.getElementById('app').style.display = 'block';
 
-})(Vue);
+})();
