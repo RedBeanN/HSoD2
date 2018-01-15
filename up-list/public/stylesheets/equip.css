@@ -126,10 +126,10 @@ input, select {
   margin-left: 10px;
 }
 #equip-name input {
-  width: 120px;
+  width: 120px !important;
 }
 #equip-serial input {
-  width: 50px;
+  width: 50px !important;
 }
 
 #equip-main {
