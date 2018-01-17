@@ -17,7 +17,7 @@ function $$(str) {
 let app = new Vue({
   el: '#app',
   data: {
-    pools: {'high': '公主', 'custom': '魔女', 'special': '魔法少女'},
+    pools: {'high': '公主', 'custom': '魔女', 'special': '魔法少女', 'pets': '使魔'},
     rows: [],
     loading: true, error: false,
     hintText: '加载中...',
@@ -81,11 +81,43 @@ let app = new Vue({
       this.hintText = '加载中...';
       axios.get(`/list/auto/${pool}`)
         .then(res => {
-          app.rows = res.data;
-          app.loading = false;
-          app.error = false;
-          app.sortedFlag = true;
-          app.sortTable();
+          if (pool == 'pets') {
+            let rows = res.data;
+            axios.get('/list/auto/pet-map')
+              .then(mapRes => {
+                let map = mapRes.data;
+                let petRows = [];
+                rows.forEach(row => {
+                  let tmp = {
+                    startTime: row.startTime,
+                    endTime: row.endTime,
+                    data: []
+                  };
+                  row.data.forEach(i => {
+                    tmp.data.push(i);
+                    tmp.data.push(map[i] || '?');
+                  });
+                  petRows.push(tmp);
+                });
+                app.rows = petRows;
+                app.loading = false;
+                app.error = false;
+                app.sortedFlag = true;
+                app.sortTable();
+              })
+              .catch(err => {
+                app.hintText = '拉取使魔资料出错！';
+                app.loading = false;
+                app.error = true;
+                console.log(err);
+              });
+          } else {
+            app.rows = res.data;
+            app.loading = false;
+            app.error = false;
+            app.sortedFlag = true;
+            app.sortTable();
+          }
         })
         .catch(err => {
           app.hintText = '没有找到数据';
