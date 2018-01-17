@@ -189,8 +189,8 @@ function min(da, db) { return new Date(da) < new Date(db) ? da : db }
 function max(da, db) { return new Date(da) > new Date(db) ? da : db }
 /* 查重部分结束 */
 
-/* 一个简易的 document.getElementxxx 的包
-   为了避免和 jQuery 冲突使用 $$()
+/* 一个简易的 document.getElement(s)BySth 的包装
+   为了避免和 jQuery 冲突，使用 $$()
 */
 function $$(str) {
   if (typeof str != 'string') throw new Error(`Type Error: ${str} is not a string`);
