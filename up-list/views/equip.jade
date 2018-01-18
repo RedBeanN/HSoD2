@@ -7,15 +7,16 @@ mixin equip-top
       div#selector-container(@click.stop='toggleSelector')
         img(v-if='selectedSeries', :src='selectedSeries')
         ul#series-selector
-          - for (let i = 0; i < 46; i++) {
-          -   let prefix = '/images/icons/Series/series';
-          -   if (i < 10) prefix += '0';
-          -   let src = prefix + i + '.png';
-          li 
-            input(type='radio', value=src, v-model='selectedSeries', id='series-#{i}')
-            label(for='series-#{i}', @click='hideSelector')
-              img(src=src)
-          - }
+          li
+            input(type='radio', :value='series[0]',
+                  v-model='selectedSeries', id='series-0')
+            label(for='series-0', @click='hideSelector')
+              img(:src='series[0]')
+          li(v-for='index in 46')
+            input(type='radio', :value='series[index]',
+                  v-model='selectedSeries', :id='"series-" + index')
+            label(:for='"series-" + index', @click='hideSelector')
+              img(:src='series[index]')
       | &nbsp; ]
     p(v-for='(item, key) in equip.top', :id='"equip-" + key')
       span {{ item.name }} :
@@ -55,7 +56,7 @@ mixin equip-status
         span(v-else-if='key') {{ val + '%' }}
         span(v-if='selectedType == "徽章"') %
     #equip-awaken-widget(v-if='equip.awaken')
-      img#awaken-image(src='/images/awaken-widget.png')
+      img#awaken-image(:src='widgetsImgs["awaken-widget"]')
 
 mixin equip-main
   #equip-main
@@ -76,7 +77,7 @@ mixin equip-main
             span#user-coin {{ user.coin.value | formatNumber }}
             span#user-crystal {{ user.crystal.value | formatNumber }}
       #system-banner
-        img(src='/images/system-bar.png')
+        img(:src='widgetsImgs["system-bar"]')
     #equip-banner
       p
         span#equip-banner-serial 编号 {{ equip.top.serial.value | serialNumber }} 
@@ -91,15 +92,16 @@ mixin equip-main
       #equip-view-left
         #equip-image-container
           #equip-basic-image
-            img(v-if='!pinImage.exist', src='/images/base-pin.png', :style='imageStyleObject')
+            img(v-if='!pinImage.exist', :src='widgetsImgs["base-pin"]', :style='imageStyleObject')
             img(v-else, :src='pinImage.src', :style='imageStyleObject')
             img#pin-container(:src='pinContainerSrc', v-show='widgets.pinContainer')
         #equip-unique-container
           p.buff(v-show='widgets.unique',
-                :class='(equip.awaken && widgets.awakenImage) ? "awaken-bg" : ""')
+                :class='(equip.awaken && widgets.awakenImage) ? "awaken-bg" : ""',
+                :style='(equip.awaken && widgets.awakenImage) ? uniqueBgStyle : {}')
                 | {{ texts.unique }}
         #equip-protect-container
-          img(v-show='widgets.protectButton', src='/images/protect-button.png')
+          img(v-show='widgets.protectButton', :src='widgetsImgs["protect-button"]')
       #equip-view-right
         +equip-status
         #equip-skill
@@ -110,8 +112,8 @@ mixin equip-main
               span.skill-name.buff(:id='"skill-name-" + index') {{ skill.name | name }}
               span.skill-break(v-if='Number(skill.break)')
                 img(v-for='(k,i) in 10',
-                    :src=`i < skill.break ? "/images/break-point-full.png" :
-                          "/images/break-point-empty.png"`)
+                    :src=`i < skill.break ? widgetsImgs['break-point-full'] :
+                          widgetsImgs['break-point-empty']`)
             .cutoff-line
             .desc-line
               p.skill-desc(:id='"skill-desc-" + index', v-html='descHTML[index]')
@@ -217,6 +219,5 @@ block content
       +equip-top
       +equip-type
 
-  //- script(src="/javascripts/vue.min.js")
-  //- script(src="/javascripts/html2canvas.min.js")
+  script(src="/dist/js/images.min.js")
   script(src="/dist/js/equip.min.js")

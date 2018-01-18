@@ -1,7 +1,7 @@
-// comment first and last line for test
 //import('vue.min.js');
 //import('html2canvas.min.js');
-(() => {
+
+window.onload = () => {
 'use strict';
 
 // presets
@@ -91,7 +91,7 @@ let app = new Vue({
     downloading: false,
     selectedType: '徽章',
     selectedWeapon: '',
-    selectedSeries: '/images/icons/Series/series00.png',
+    selectedSeries: icons.series['series00.png'],
     addType: '移速',
     pinImage: { src: '', exist: false },
     useSpecialStar: false,
@@ -190,13 +190,41 @@ let app = new Vue({
         marginTop: this.imageStyle.top - this.imageStyle.height * 0.5 + 'px'
       };
     },
+    uniqueBgStyle () {
+      return {
+        background: `url(${images['unique-background.png']})`,
+        backgroundSize: '400px'
+      }
+    },
     pinContainerSrc() {
-      if (this.equip.top.stars.value < 7) return '/images/pin-container-6s.png';
-      else return '/images/pin-container-7s.png';
+      if (this.equip.top.stars.value < 7) return images['pin-container-6s.png'];
+      else return images['pin-container-7s.png'];
     },
     starSrc() {
-      if (!this.useSpecialStar) return '/images/star-full.png';
-      else return '/images/star-full-special.png';
+      if (!this.useSpecialStar) return images['star-full.png'];
+      else return images['star-full-special.png'];
+    },
+    series () {
+      let series = [];
+      for (let i = 0; i < 46; i++) {
+        let index = +i;
+        if (i < 10) index = '0' + index;
+        series.push(icons.series[`series${index}.png`]);
+      }
+      return series;
+    },
+    widgetsImgs () {
+      return {
+        'awaken-widget': images['awaken-widget.png'],
+        'base-pin': images['base-pin.png'],
+        'break-point-empty': images['break-point-empty.png'],
+        'break-point-full': images['break-point-full.png'],
+        'equip-bar': images['equip-bar.png'],
+        'protect-button': images['protect-button.png'],
+        'status-left': images['status-left.png'],
+        'status-right': images['status-right.png'],
+        'system-bar': images['system-bar.png'],
+      }
     }
   },
   methods: {
@@ -250,7 +278,7 @@ let app = new Vue({
         });
     },
     dmgTypeSrc(type) {
-      return `/images/icons/Type/${type}.png`;
+      return icons.types[`${type}.png`];
     }
   },
   filters: {
@@ -276,7 +304,23 @@ document.onclick = function () {
   app.hideSelector();
 };
 
-document.getElementById('loading-page').remove();
-document.getElementById('app').style.display = 'block';
+$$('equip-banner').style.background = `url(${images['equip-bar.png']}) no-repeat -1px 5px`;
+$$('equip-banner').style.backgroundSize = '1024px 45px';
 
-})();
+$$('equip-status-left').style.background = `url(${images['status-left.png']}) no-repeat 4px 7px`;
+$$('equip-status-left').style.backgroundSize = '224px 159px';
+
+$$('equip-status-right').style.background = `url(${images['status-right.png']}) no-repeat 0px 7px`;
+$$('equip-status-right').style.backgroundSize = '161px 160px';
+
+$$('user-banner').style.background = `url(${images['user-bar.png']}) no-repeat`;
+$$('user-banner').style.backgroundSize = '320px 94px';
+
+$$('loading-page').remove();
+$$('app').style.display = 'block';
+
+function $$(str) {
+  return document.getElementById(str);
+}
+
+};

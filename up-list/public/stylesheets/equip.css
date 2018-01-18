@@ -181,8 +181,8 @@ input, select {
   color: white;
   height: 90px;
   width: 400px;
-  background: url('/images/user-bar.png') no-repeat;
-  background-size: 320px 94px;
+  /* background: url('/images/user-bar.png') no-repeat;
+  background-size: 320px 94px; */
   display: inline-block;
 }
 #user-banner > div {
@@ -225,8 +225,8 @@ input, select {
 
 #equip-banner {
   height: 50px;
-  background: url('/images/equip-bar.png') no-repeat -1px 5px;
-  background-size: 1024px 45px;
+  /* background: url('/images/equip-bar.png') no-repeat -1px 5px; */
+  /* background-size: 1024px 45px; */
   z-index: 6 !important;
 }
 #equip-banner-serial {
@@ -311,10 +311,10 @@ input, select {
   transform: translate(-50%);
   white-space: nowrap;
 }
-.awaken-bg {
+/* .awaken-bg {
   background-image: url('/images/unique-background.png');
   background-size: 400px;
-}
+} */
 #equip-protect-container {
   margin-top: 36px;
 }
@@ -348,8 +348,8 @@ input, select {
   padding-top: 14px;
   padding-left: 12.5px;
   font-size: 18.2px;
-  background: url('/images/status-left.png') no-repeat 4px 7px;
-  background-size: 224px 159px;
+  /* background: url('/images/status-left.png') no-repeat 4px 7px; */
+  /* background-size: 224px 159px; */
 }
 #equip-status-level {
   margin-top: 6px;
@@ -378,8 +378,8 @@ input, select {
   padding-top: 15px;
   padding-left: 10px;
   font-size: 20px;
-  background: url('/images/status-right.png') no-repeat 0px 7px;
-  background-size: 161px 160px;
+  /* background: url('/images/status-right.png') no-repeat 0px 7px; */
+  /* background-size: 161px 160px; */
 }
 #equip-status-right p {
   margin-top: 4px;
