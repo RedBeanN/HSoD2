@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>装备模拟器 - 搞事学园</title>
+    <link rel="stylesheet" href="/dist/css/style.min.css">
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  </head>
+  <body><a id="back-to-index" href="/">主页</a>
+    <link rel="stylesheet" href="/dist/css/animation.min.css">
+    <link rel="stylesheet" href="/dist/css/equip.min.css">
+    <div id="loading-page">
+      <div id="loading-ring" class="loading-rotate"></div>
+    </div>
+    <div id="app" style="display: none">
+      <div id="left">
+        <div id="user">
+          <h3>编辑角色信息</h3>
+          <p v-for="item in user"><span>{{ item.name }}</span>
+            <input v-model="item.value" :type="item.name == &quot;昵称&quot; ? &quot;text&quot; : &quot;number&quot;">
+          </p>
+        </div>
+        <div id="upload-image">
+          <h3>编辑装备图片</h3>
+          <p id="pin-container-switch">
+            <input id="show-pin-container" type="checkbox" v-model="widgets.pinContainer">
+            <label for="show-pin-container">显示徽章框</label><br>
+            <input id="show-unique" type="checkbox" v-model="widgets.unique">
+            <label for="show-unique">显示装备提示</label><br>
+            <input id="unique-text" type="text" v-model="texts.unique" :disabled="!widgets.unique"><br>
+            <input id="show-protect-button" type="checkbox" v-model="widgets.protectButton">
+            <label for="show-protect-button">显示解除保护按钮</label>
+          </p><br>上传装备图片: 
+          <input id="pin-input" type="file" @change="updatePinImage($event)" accept="image/*"><br>
+          <input id="awaken-ctrl" type="checkbox" v-model="widgets.awakenImage" :disabled="!equip.awaken">
+          <label for="awaken-ctrl">作为觉醒图</label>
+          <div id="pin-size-controller">
+            <p id="size-ctrl-hint">{{ texts.sizeCtrl }}</p>
+            <input id="width-ctrl-range" type="range" min="0" max="100" v-model="imageStyle.width">
+            <input id="width-ctrl-input" type="number" v-model="imageStyle.width">
+            <label for="width-ctrl-input">宽度</label>
+            <input id="height-ctrl-range" type="range" min="0" max="100" v-model="imageStyle.height">
+            <input id="height-ctrl-input" type="number" v-model="imageStyle.height">
+            <label for="height-ctrl-input">高度</label>
+            <input id="left-ctrl-range" type="range" min="-100" max="100" v-model="imageStyle.left">
+            <input id="left-ctrl-input" type="number" v-model="imageStyle.left">
+            <label for="left-ctrl-input">水平移动</label>
+            <input id="top-ctrl-range" type="range" min="-100" max="100" v-model="imageStyle.top">
+            <input id="top-ctrl-input" type="number" v-model="imageStyle.top">
+            <label for="top-ctrl-input">垂直移动</label>
+          </div>
+        </div>
+        <div id="download">
+          <button @click="downloadImage" :disabled="downloading">{{ downloading ? '保存中' :  '保存图片' }}</button>
+          <p>{{ texts.download }}</p>
+        </div>
+      </div>
+      <div id="middle">
+        <div id="equip-main">
+          <div id="background-container"><img id="left-bottom" src="/images/ring-left-bot.png" class="slow-rotate"/><img id="mid-top" src="/images/ring-mid-top.png" class="fast-rotate"/><img id="right-top" src="/images/ring-right-top.png" class="fast-rotate"/><img id="right-bottom" src="/images/ring-right-bot.png" class="slow-rotate"/></div>
+          <div id="top-banner">
+            <div id="user-banner">
+              <div id="user-image"></div>
+              <div id="user-detail">
+                <p id="user-top"><span id="user-level">LV.{{ user.level.value }}</span><span id="user-name">{{ user.name.value | username }}</span></p><br/>
+                <p id="user-bottom"><span id="user-coin">{{ user.coin.value | formatNumber }}</span><span id="user-crystal">{{ user.crystal.value | formatNumber }}</span></p>
+              </div>
+            </div>
+            <div id="system-banner"><img :src="widgetsImgs[&quot;system-bar&quot;]"/></div>
+          </div>
+          <div id="equip-banner">
+            <p><span id="equip-banner-serial">编号 {{ equip.top.serial.value | serialNumber }} </span><span id="equip-banner-img"><img v-if="selectedSeries" :src="selectedSeries"/></span><span id="equip-banner-name">{{ equip.top.name.value | name }} </span><img id="equip-type-view" v-if="equip.dmgType != &quot;none&quot;" :src="dmgTypeSrc(equip.dmgType)"/>
+              <div id="equip-stars-container"><img v-for="s in (Number(equip.top.stars.value) &gt; 10 ? 10 : (Number(equip.top.stars.value) &lt; 1 ? 1 : Number(equip.top.stars.value)))" :src="starSrc"/></div>
+            </p>
+          </div>
+          <div id="equip-view">
+            <div id="equip-view-left">
+              <div id="equip-image-container">
+                <div id="equip-basic-image"><img v-if="!pinImage.exist" :src="widgetsImgs[&quot;base-pin&quot;]" :style="imageStyleObject"/><img v-else="v-else" :src="pinImage.src" :style="imageStyleObject"/><img id="pin-container" :src="pinContainerSrc" v-show="widgets.pinContainer"/></div>
+              </div>
+              <div id="equip-unique-container">
+                <p v-show="widgets.unique" :class="(equip.awaken &amp;&amp; widgets.awakenImage) ? &quot;awaken-bg&quot; : &quot;&quot;" :style="(equip.awaken &amp;&amp; widgets.awakenImage) ? uniqueBgStyle : {}" class="buff">{{ texts.unique }}</p>
+              </div>
+              <div id="equip-protect-container"><img v-show="widgets.protectButton" :src="widgetsImgs[&quot;protect-button&quot;]"/></div>
+            </div>
+            <div id="equip-view-right">
+              <div id="equip-status">
+                <div id="equip-status-left">
+                  <p id="equip-status-level">
+                    {{ 'LV.' + equip.top.level.value }} 
+                    {{ '最大LV.' + (equip.top.stars.value > 5 ? 99 : 50) }}
+                  </p>
+                  <p id="equip-status-love"><span>{{ equip.top.love.name }} </span>{{ equip.top.love.value >= (equip.awaken ? 99 : 50) ?
+                    '最高' : (equip.top.love.value || '0') + '/' +
+                    (equip.awaken ? 99 : 50) }}
+                  </p>
+                  <p id="equip-status-weight"><span>{{ equip.top.weight.name }} </span>{{ equip.top.weight.value }}</p>
+                  <p id="equip-status-adds" v-if="equip.top.adds.value != 0" class="buff"><span>{{ equip.top.adds.name }} </span>{{ '+' + equip.top.adds.value }}</p>
+                </div>
+                <div id="equip-status-right" v-if="selectedType &amp;&amp; (selectedType != &quot;徽章&quot; || (allAdds &amp;&amp; addon[&quot;移速&quot;]))">
+                  <p :class="(selectedType == &quot;徽章&quot; || selectedType == &quot;服装&quot; ? &quot;normal&quot; : &quot;buff&quot;)">{{ selectedType == "徽章" ? "追加属性" : selectedType }}</p>
+                  <p v-if="selectedType" v-for="(val, key) in equipType[selectedType]"><span v-if="selectedType == &quot;徽章&quot;">{{ key + ' + ' }}</span><span v-else="v-else">{{ key }} </span><span v-if="addon[key]" :class="(allAdds ? &quot;buff&quot; : &quot;normal&quot;)">{{ computedValue(val, key) }}</span><span v-else-if="key &amp;&amp; key != &quot;移速&quot; &amp;&amp; key != &quot;攻　速&quot; &amp;&amp; key != &quot;射　速&quot;" class="normal">{{ val }}</span><span v-else-if="key &amp;&amp; key != &quot;移速&quot;">{{ val + ' / 秒' }}</span><span v-else-if="key">{{ val + '%' }}</span><span v-if="selectedType == &quot;徽章&quot;">%</span></p>
+                </div>
+                <div id="equip-awaken-widget" v-if="equip.awaken"><img id="awaken-image" :src="widgetsImgs[&quot;awaken-widget&quot;]"/></div>
+              </div>
+              <div id="equip-skill">
+                <div v-for="(skill, index) in equip.skills" :id="&quot;skill-&quot; + index" :class="Number(skill.break) ? &quot;allow-blue&quot; : &quot;disable-blue&quot;" class="skill">
+                  <div class="title-line"><img v-if="skill.dmgType &amp;&amp; skill.dmgType != &quot;none&quot;" :src="dmgTypeSrc(skill.dmgType)" class="skill-type-view"/><span :id="&quot;skill-name-&quot; + index" class="skill-name buff">{{ skill.name | name }}</span><span v-if="Number(skill.break)" class="skill-break"><img v-for="(k,i) in 10" :src="i &lt; skill.break ? widgetsImgs['break-point-full'] :
+                          widgetsImgs['break-point-empty']"/></span></div>
+                  <div class="cutoff-line"></div>
+                  <div class="desc-line">
+                    <p :id="&quot;skill-desc-&quot; + index" v-html="descHTML[index]" class="skill-desc"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="equip-bottom">
+          <h3>编辑装备技能</h3>
+          <div id="skill-selector-container">
+            <p id="skill-selector-title">选择技能个数</p>
+            <input type="radio" value="0" v-model="skillsLength" class="skill-selector">
+            <label for="select-skill-1">0</label>
+            <input type="radio" value="1" v-model="skillsLength" class="skill-selector">
+            <label for="select-skill-2">1</label>
+            <input type="radio" value="2" v-model="skillsLength" class="skill-selector">
+            <label for="select-skill-2">2</label>
+            <p class="skill-tutorial"><em>{{ texts.tutorial }}</em></p>
+          </div>
+          <div id="skill-setting-container" v-if="skillsLength">
+            <div v-for="(skill, index) in equip.skills" class="skill-setting">
+              <p><span>技能名:</span>
+                <input v-model="skill.name" class="skill-input-name"><span>突破等级:</span>
+                <input v-model="skill.break" type="number" class="skill-input-break"><span>伤害类型:</span>
+                <select v-model="skill.dmgType" class="skill-dmg-type">
+                  <option v-for="(value, key) in dmgType" :value="key">{{ value }}</option>
+                </select><img v-if="dmgType[skill.dmgType] &amp;&amp; skill.dmgType != &quot;none&quot;" :src="dmgTypeSrc(skill.dmgType)" class="skill-type">
+              </p>
+              <p><span>技能描述:</span></p>
+              <textarea v-model="skill.description" class="skill-input-description"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="right">
+        <div id="equip-top">
+          <h3>编辑基本数据</h3>
+          <div id="equip-series">系列 [ 
+            <div id="selector-container" @click.stop="toggleSelector"><img v-if="selectedSeries" :src="selectedSeries"/>
+              <ul id="series-selector">
+                <li>
+                  <input type="radio" :value="series[0]" v-model="selectedSeries" id="series-0"/>
+                  <label for="series-0" @click="hideSelector"><img :src="series[0]"/></label>
+                </li>
+                <li v-for="index in 45">
+                  <input type="radio" :value="series[index]" v-model="selectedSeries" :id="&quot;series-&quot; + index"/>
+                  <label :for="&quot;series-&quot; + index" @click="hideSelector"><img :src="series[index]"/></label>
+                </li>
+              </ul>
+            </div>&nbsp; ]
+          </div>
+          <p v-for="(item, key) in equip.top" :id="&quot;equip-&quot; + key"><span>{{ item.name }} :</span>
+            <input v-model="item.value" :type="item.name == &quot;装备名&quot; ? &quot;text&quot; : &quot;number&quot;"/>
+          </p>
+          <input id="awaken-checkbox" type="checkbox" name="awaken" v-model="equip.awaken"/>
+          <label for="awaken-checkbox">觉醒</label>
+          <input id="special-checkbox" type="checkbox" v-model="useSpecialStar"/>
+          <label for="special-checkbox">使用特殊版星星</label>
+        </div>
+        <div id="equip-type">
+          <h3>编辑装备分类</h3>
+          <p><span>装备分类 </span>
+            <select v-model="selectedType">
+              <option value="">选择装备分类</option>
+              <option v-for="(item, key) in equipType">{{ key }}</option>
+            </select>
+          </p>
+          <p v-if="selectedType" v-for="(item, key, index) in equipType[selectedType]"><span>{{ key }} </span>
+            <input v-model="equipType[selectedType][key]" v-if="selectedType != &quot;徽章&quot;"/>
+            <input type="radio" :value="key" v-model="addType" :id="&quot;type-&quot;+key"/>
+            <label :for="&quot;type-&quot;+key">亲密度加成</label>
+          </p>
+          <div id="equip-dmg-type" v-if="selectedType &amp;&amp; selectedType != &quot;服装&quot; &amp;&amp; selectedType != &quot;徽章&quot;">
+            <p>伤害类型
+              <select v-model="equip.dmgType">
+                <option v-for="(value, key) in dmgType" :value="key">{{ value }}</option>
+              </select><img v-if="equip.dmgType &amp;&amp; equip.dmgType != &quot;none&quot;" :src="dmgTypeSrc(equip.dmgType)" class="skill-type"/>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/dist/js/images.min.js"></script>
+    <script src="/dist/js/equip.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>up 记录 - 搞事学园</title>
+    <link rel="stylesheet" href="/dist/css/style.min.css">
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  </head>
+  <body><a id="back-to-index" href="/">主页</a>
+    <link rel="stylesheet" href="/dist/css/animation.min.css">
+    <link rel="stylesheet" href="/dist/css/auto-list.min.css">
+    <div id="loading-page">
+      <div id="loading-ring" class="loading-rotate"></div>
+    </div>
+    <div id="app" style="display: none">
+      <div id="equip-filter" @click="focusSearch" class="collapse"><img id="search-icon" :src="searchIcon">
+        <input id="filter-input" placeholder="搜索装备或时间" @blur="blurSearch" v-model="searchInput.text" class="hide">
+      </div>
+      <div id="pool-selector">
+        <button v-for="(name, pool) in pools" @click="select(pool)" :class="pool == selectedPool ? &quot;focus&quot; : &quot;&quot;">{{ name }}</button>
+      </div>
+      <div id="main-view">
+        <div id="hint-container" v-if="loading || error">{{ hintText }}</div>
+        <table id="main" v-else>
+          <thead>
+            <tr id="title">
+              <th id="time" @click="sortTable">时间 {{ sortedFlag ? '↓' : '↑' }}</th>
+              <th :colspan="maxCols">内容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(row, index) in filterRows" :class="index % 2 ? &quot;even&quot; : &quot;odd&quot;" class="row">
+              <td class="time">{{ row.startTime + ' - ' + row.endTime }}</td>
+              <td v-for="index in maxCols" :title="row.data[index - 1] ? &quot;最近up时间: &quot; + nameList[row.data[index - 1]] : &quot;&quot;" :class="nameList[row.data[index - 1]] == row.startTime.split(&quot; &quot;)[0] ? &quot;new&quot; : &quot;old&quot;" class="item">{{ row.data[index - 1] || '' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="/dist/js/auto-list.min.js"></script>
+  </body>
+</html>

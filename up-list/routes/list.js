@@ -29,7 +29,11 @@ router.get('/', function(req, res, next) {
 // });
 
 router.get('/auto', function(req, res, next) {
-  res.render('auto-list', {title: '装备 up 记录 - 搞事学园'});
+  // res.render('auto-list', {title: '装备 up 记录 - 搞事学园'});
+  fs.readFile(path.join(__dirname, '../public/html/auto-list.html'), (err, data) => {
+    if (err) res.statusCode(404).send();
+    else res.send(data.toString());
+  });
 });
 
 router.get('/auto/:pool', function(req, res, next) {
