@@ -185,7 +185,7 @@ let app = new Vue({
     imageStyleObject() {
       return {
         width: this.imageStyle.width + 'px',
-        height: this.imageStyle.height + 'px',
+        height: this.imageStyle.height == '0' ? 'auto' : (this.imageStyle.height + 'px'),
         marginLeft: this.imageStyle.left - this.imageStyle.width * 0.5 + 'px',
         marginTop: this.imageStyle.top - this.imageStyle.height * 0.5 + 'px'
       };
@@ -206,7 +206,7 @@ let app = new Vue({
     },
     series () {
       let series = [];
-      for (let i = 0; i < 46; i++) {
+      for (let i = 0; i < 47; i++) {
         let index = +i;
         if (i < 10) index = '0' + index;
         series.push(icons.series[`series${index}.png`]);

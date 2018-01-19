@@ -152,7 +152,7 @@
                   <input type="radio" :value="series[0]" v-model="selectedSeries" id="series-0"/>
                   <label for="series-0" @click="hideSelector"><img :src="series[0]"/></label>
                 </li>
-                <li v-for="index in 45">
+                <li v-for="index in 46">
                   <input type="radio" :value="series[index]" v-model="selectedSeries" :id="&quot;series-&quot; + index"/>
                   <label :for="&quot;series-&quot; + index" @click="hideSelector"><img :src="series[index]"/></label>
                 </li>
@@ -160,7 +160,7 @@
             </div>&nbsp; ]
           </div>
           <p v-for="(item, key) in equip.top" :id="&quot;equip-&quot; + key"><span>{{ item.name }} :</span>
-            <input v-model="item.value" :type="item.name == &quot;装备名&quot; ? &quot;text&quot; : &quot;number&quot;"/>
+            <input v-model="item.value" :type="item.name == &quot;装备名&quot; || item.name == &quot;编号&quot; ? &quot;text&quot; : &quot;number&quot;"/>
           </p>
           <input id="awaken-checkbox" type="checkbox" name="awaken" v-model="equip.awaken"/>
           <label for="awaken-checkbox">觉醒</label>
