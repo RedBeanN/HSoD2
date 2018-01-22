@@ -16,6 +16,13 @@ body {
   margin: 0;
 }
 
+#loading-hint {
+  display: block;
+  margin: auto;
+  margin-top: 30px;
+  text-align: center;
+}
+
 #app {
   width: 1600px;
   margin: auto;
