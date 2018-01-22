@@ -353,8 +353,8 @@ $$('app').style.display = 'block';
 $$('readme-button').onclick = function () {
   $$('readme-page').classList.toggle('hide');
 }
-$$('readme-page').onclick = function () {
-  $$('readme-page').classList.toggle('hide');
+$$('readme-page').onclick = function (e) {
+  if(e.target === $$('readme-page')) $$('readme-page').classList.toggle('hide');
 }
 
 function $$(str) {
