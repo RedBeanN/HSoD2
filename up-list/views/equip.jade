@@ -218,6 +218,12 @@ block content
     #right
       +equip-top
       +equip-type
+    #readme-switch
+      button#readme-button ？
+    #readme-page.hide
+      #readme-container(v-if='readme')
+        h4.readme-title {{ readme.title }}
+        pre(v-for='p in readme.para') {{ p }}
 
   script(src="/dist/js/images.min.js")
   script(src="/dist/js/equip.min.js")

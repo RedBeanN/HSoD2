@@ -9,11 +9,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/equip', function (req, res, next) {
-  // res.render('equip', { title: '装备模拟器 - 搞事学园' });
-  fs.readFile(path.join(__dirname, '../public/html/equip.html'), (err, data) => {
-    if (err) res.statusCode(404).send(err);
-    else res.send(data.toString());
-  });
+  res.render('equip', { title: '装备模拟器 - 搞事学园' });
+  // fs.readFile(path.join(__dirname, '../public/html/equip.html'), (err, data) => {
+  //   if (err) res.statusCode(404).send(err);
+  //   else res.send(data.toString());
+  // });
 });
 
 module.exports = router;
