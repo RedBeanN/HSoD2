@@ -12,7 +12,7 @@ mixin equip-top
                   v-model='selectedSeries', id='series-0')
             label(for='series-0', @click='hideSelector')
               img(:src='series[0]')
-          li(v-for='index in 45')
+          li(v-for='index in 46')
             input(type='radio', :value='series[index]',
                   v-model='selectedSeries', :id='"series-" + index')
             label(:for='"series-" + index', @click='hideSelector')
