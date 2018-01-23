@@ -44,7 +44,7 @@ mixin equip-status
       p#equip-status-adds.buff(v-if='equip.top.adds.value != 0')
         span {{ equip.top.adds.name }} 
         | {{ '+' + equip.top.adds.value }}
-    #equip-status-right(v-if='selectedType && (selectedType != "徽章" || (allAdds && addon["移速"]))')
+    #equip-status-right(v-show='selectedType && (selectedType != "徽章" || (allAdds && addon["移速"]))')
       p(:class='(selectedType == "徽章" || selectedType == "服装" ? "normal" : "buff")')
         | {{ selectedType == "徽章" ? "追加属性" : selectedType }}
       p(v-if='selectedType', v-for='(val, key) in equipType[selectedType]')
