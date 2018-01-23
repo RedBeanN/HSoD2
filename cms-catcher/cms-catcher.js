@@ -70,7 +70,7 @@ module.exports = function getList (server = 3) {
       });
       res.on('end', function (err) {
         if (err) console.log(err);
-        fs.writeFileSync(resolvePath(id, date), data);
+        fs.writeFileSync(resolvePath(id, date), data, 'utf-8');
         cb(date.replace('/', '') + '-' + id);
       });
     });
