@@ -358,6 +358,8 @@ $$('readme-page').onclick = function (e) {
   if(e.target === $$('readme-page')) $$('readme-page').classList.toggle('hide');
 }
 
+$$('readme-button').click();
+
 function $$(str) {
   return document.getElementById(str);
 }
