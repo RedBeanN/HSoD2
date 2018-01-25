@@ -7,7 +7,7 @@
 let app = new Vue({
   el: '#app',
   data: {
-    pools: {'high': '公主', 'custom': '魔女', 'special': '魔法少女', 'pets': '使魔'},
+    pools: {'high': '公主', 'custom': '魔女', 'special': '魔法少女', 'pet': '使魔'},
     rows: [],
     loading: true, error: false,
     hintText: '加载中...',
@@ -72,7 +72,7 @@ let app = new Vue({
       this.hintText = '加载中...';
       axios.get(`/list/auto/${pool}`)
         .then(res => {
-          if (pool == 'pets') {
+          if (pool == 'pet') {
             let rows = res.data;
             axios.get('/list/auto/pet-map')
               .then(mapRes => {
