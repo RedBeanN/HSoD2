@@ -116,7 +116,7 @@ let app = new Vue({
         });
     },
     sortTable() {
-      checkDumplicate(this.rows);
+      if (this.selectedPool == 'high') checkDumplicate(this.rows);
       this.sortedFlag = !this.sortedFlag;
       let sortedFlag = this.sortedFlag;
       this.rows.sort((pre, now) => {
