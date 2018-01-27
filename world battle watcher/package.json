@@ -1,0 +1,7 @@
+{
+  "name": "world-battle-watcher",
+  "version": "",
+  "dependencies": {
+    "node-schedule": "^1.3.0"
+  }
+}
