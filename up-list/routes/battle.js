@@ -5,7 +5,7 @@ let path = require('path');
 let fs = require('fs');
 
 router.get('/', (req, res) => {
-  res.render('worldbattle');
+  res.render('worldbattle', { title: '阵营战记录 - 搞事学园' });
 });
 
 router.get('/:data', (req, res) => {
