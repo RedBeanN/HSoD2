@@ -60,7 +60,7 @@ function parseMainData (main, data) {
   let rows = [];
   for (let key in data) {
     let row = {
-      '时间': key,
+      '时间': key.substring(5),
       '左方阵营总分': data[key][0],
       '右方阵营总分': data[key][1],
     };
@@ -77,7 +77,7 @@ function parseScores (scores, data) {
   let rows = [];
   for (let key in data) {
     let row = {
-      '时间': key,
+      '时间': key.substring(5),
       '左方阵营前 1000 分数线': data[key][2],
       '右方阵营前 1000 分数线': data[key][3],
       '左方阵营前 2000 分数线': data[key][4],
@@ -98,7 +98,7 @@ function parseDelta (delta, data) {
   let rows = [];
   for (let key in data) {
     let row = {
-      '时间': key,
+      '时间': key.substring(5),
       '左方阵营总分': data[key][0],
       '右方阵营总分': data[key][1],
     };
