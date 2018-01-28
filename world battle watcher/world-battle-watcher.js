@@ -1,5 +1,10 @@
 let http = require('http');
-
+/*
+  {
+    "2018-01-01 00:00": [0,0,0,0,0,0]
+    [left-total, right-total, left-1000, right-1000, left-2000, right-2000]
+  }
+  */
 // module.exports = function watcher () {}
 let baseUrl = 'http://event.mihoyo.com/worldbattle5/';
 http.get(baseUrl, res => {
