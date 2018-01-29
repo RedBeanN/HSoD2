@@ -1,3 +1,5 @@
+// get faction data per 10 min
+
 let schedule = require('node-schedule');
 
 let rule = new schedule.RecurrenceRule();
