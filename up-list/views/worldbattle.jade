@@ -2,26 +2,36 @@ extends layout
 
 block content
   link(rel="stylesheet", href="dist/css/v-charts.min.css")
-  #app(style='width: 100%')
-    ve-line#main(:data='charts.main',
-      :title='charts.main.title',
-      :loading='settings.loading',
-      :legend-position='settings.legendPosition',
-      :style='styles.fullScreen')
-    ve-line#scores(:data='charts.scores',
-      :title='charts.scores.title',
-      :loading='settings.loading',
-      :legend-position='settings.legendPosition',
-      :style='styles.halfScreen')
-    ve-line#delta(:data='charts.delta',
-      :title='charts.delta.title',
-      :loading='settings.loading',
-      :legend-position='settings.legendPosition',
-      :style='styles.halfScreen')
+  link(rel="stylesheet", href="dist/css/worldbattle.min.css")
+  #title
+    h1 阵营战实时记录
+  #app
+    button#refresh(@click='loadData') 刷新
+    #charts
+      ve-line#main(:data='charts.main',
+        :title='charts.main.title',
+        :loading='settings.loading',
+        :legend-position='settings.legendPosition',
+        :colors='settings.colors',
+        :settings='chartSettings')
+      ve-line#scores(:data='charts.scores',
+        :title='charts.scores.title',
+        :loading='settings.loading',
+        :legend-position='settings.legendPosition',
+        :colors='settings.colors',
+        :style='styles.halfScreen',
+        :settings='chartSettings')
+      ve-line#delta(:data='charts.delta',
+        :title='charts.delta.title',
+        :loading='settings.loading',
+        :legend-position='settings.legendPosition',
+        :colors='settings.colors',
+        :style='styles.halfScreen',
+        :settings='chartSettings')
 
-  script(src="javascripts/vue.min.js")
-  script(src="javascripts/axios.min.js")
-  script(src="javascripts/echarts.min.js")
-  script(src="javascripts/line.min.js")
-  script(src="javascripts/worldbattle.js")
-  //- script(src="dist/js/worldbattle.min.js")
+  //- script(src="javascripts/vue.min.js")
+  //- script(src="javascripts/axios.min.js")
+  //- script(src="javascripts/echarts.min.js")
+  //- script(src="javascripts/line.min.js")
+  //- script(src="javascripts/worldbattle.js")
+  script(src="dist/js/worldbattle.min.js")

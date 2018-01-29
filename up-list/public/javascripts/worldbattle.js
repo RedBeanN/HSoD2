@@ -25,16 +25,16 @@ let app = new Vue({
     settings: {
       legendPosition: 'top',
       loading: false,
+      colors: ['#fa5788', '#83b9ff']
     },
     styles: {
-      fullScreen: {
-        width: '100%',
-        display: 'block'
-      },
       halfScreen: {
-        width: '50%',
+        width: 'calc(50% - 60px)',
         display: 'inline-block'
       },
+    },
+    chartSettings: {
+      scale: [true, true]
     }
   },
   created () { this.loadData() },
@@ -45,11 +45,11 @@ let app = new Vue({
       let main = this.charts.main;
       let scores = this.charts.scores;
       let delta = this.charts.delta;
-      axios.get('/worldbattle/fake-data').then(res => {
+      axios.get('/worldbattle/data').then(res => {
         let data = res.data;
         parseMainData(main, data);
         parseScores(scores, data);
-        parseDelta(delta, data);
+        parseDelta(delta, main);
         settings.loading = false;
       });
     }
@@ -61,15 +61,15 @@ function parseMainData (main, data) {
   for (let key in data) {
     let row = {
       '时间': key.substring(5),
-      '左方阵营总分': data[key][0],
-      '右方阵营总分': data[key][1],
+      '九霄阵营总分': data[key]['faction_total_point'][1],
+      '琪亚娜阵营总分': data[key]['faction_total_point'][2],
     };
     rows.push(row);
   }
   main.columns =  [
     '时间',
-    '左方阵营总分',
-    '右方阵营总分',
+    '九霄阵营总分',
+    '琪亚娜阵营总分',
   ];
   main.rows = rows;
 }
@@ -78,53 +78,36 @@ function parseScores (scores, data) {
   for (let key in data) {
     let row = {
       '时间': key.substring(5),
-      '左方阵营前 1000 分数线': data[key][2],
-      '右方阵营前 1000 分数线': data[key][3],
-      '左方阵营前 2000 分数线': data[key][4],
-      '右方阵营前 2000 分数线': data[key][5],
+      '九霄阵营前 1000 分数线': data[key]['faction_1000_point'][1],
+      '琪亚娜阵营前 1000 分数线': data[key]['faction_1000_point'][2],
     };
     rows.push(row);
   }
   scores.columns =  [
     '时间',
-    '左方阵营前 1000 分数线',
-    '右方阵营前 1000 分数线',
-    '左方阵营前 2000 分数线',
-    '右方阵营前 2000 分数线',
+    '九霄阵营前 1000 分数线',
+    '琪亚娜阵营前 1000 分数线',
   ];
   scores.rows = rows;
 }
-function parseDelta (delta, data) {
+function parseDelta (delta, main_) {
   let rows = [];
-  for (let key in data) {
+  let main = main_.rows;
+  for (let i = 1; i < main.length; i++) {
+    let now = main[i], pre = main[i - 1];
     let row = {
-      '时间': key.substring(5),
-      '左方阵营总分': data[key][0],
-      '右方阵营总分': data[key][1],
+      '时间': now['时间'],
+      '九霄阵营分数变化': now['九霄阵营总分'] - pre['九霄阵营总分'],
+      '琪亚娜阵营分数变化': now['琪亚娜阵营总分'] - pre['琪亚娜阵营总分']
     };
     rows.push(row);
   }
-  let deltas = [];
-  deltas.push({
-    '时间': rows[0]['时间'],
-    '左方阵营分数变化': /*rows[0]['左方阵营总分']*/10,
-    '右方阵营分数变化': /*rows[0]['右方阵营总分']*/10
-  });
-  for (let i = 1; i < rows.length; i++) {
-    let pre = rows[i - 1], now = rows[i];
-    let dy = {
-      '时间': now['时间'],
-      '左方阵营分数变化': now['左方阵营总分'] - pre['左方阵营总分'],
-      '右方阵营分数变化': now['右方阵营总分'] - pre['右方阵营总分']
-    };
-    deltas.push(dy);
-  }
   delta.columns = [
     '时间',
-    '左方阵营分数变化',
-    '右方阵营分数变化'
+    '九霄阵营分数变化',
+    '琪亚娜阵营分数变化'
   ];
-  delta.rows = deltas;
+  delta.rows = rows;
 }
 
 // })(Vue, axios);
