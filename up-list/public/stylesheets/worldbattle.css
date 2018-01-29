@@ -1,0 +1,51 @@
+body {
+  background: #eee;
+}
+#app, #charts {
+  width: 100%;
+}
+#title {
+  width: 240px;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20px;
+  margin: auto;
+  text-align: center;
+  background: #40c4ff;
+  box-shadow: 2px 2px 10px gainsboro;
+}
+#title h1 {
+  margin: 0;
+  font-weight: normal;
+}
+
+#refresh {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background: #40c4ff;
+  box-shadow: 2px 2px 10px gainsboro;
+  transition-duration: .3s;
+  z-index: 10;
+}
+#refresh:hover {
+  background: #0094cc;
+  box-shadow: 2px 2px 10px gray;
+  color: white;
+}
+
+#charts > div {
+  background: white;
+  margin: 20px;
+  padding: 10px;
+}
+#main {
+  width: calc(100% - 60px) !important;
+}
