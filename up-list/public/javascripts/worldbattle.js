@@ -3,7 +3,7 @@
 //import('echarts.min.js');
 //import('line.min.js');
 
-// ((Vue, axios) => {
+((Vue, axios) => {
 'use strict';
 let app = new Vue({
   el: '#app',
@@ -58,6 +58,7 @@ let app = new Vue({
 });
 function parseMainData (main, data) {
   let rows = [];
+  let totalDelta = 0;
   for (let key in data) {
     let row = {
       '时间': key.substring(5),
@@ -65,6 +66,7 @@ function parseMainData (main, data) {
       '琪亚娜阵营总分': data[key]['faction_total_point'][2],
     };
     rows.push(row);
+    totalDelta = data[key]['faction_total_point'][1] - data[key]['faction_total_point'][2];
   }
   main.columns =  [
     '时间',
@@ -72,6 +74,7 @@ function parseMainData (main, data) {
     '琪亚娜阵营总分',
   ];
   main.rows = rows;
+  main.title.text = `总分 (分差: ${totalDelta > 0 ? totalDelta : -totalDelta})`;
 }
 function parseScores (scores, data) {
   let rows = [];
@@ -110,4 +113,4 @@ function parseDelta (delta, main_) {
   delta.rows = rows;
 }
 
-// })(Vue, axios);
+})(Vue, axios);
