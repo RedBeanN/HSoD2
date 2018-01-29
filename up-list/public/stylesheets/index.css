@@ -51,6 +51,9 @@ button {
 #link-container p:hover {
   background-color: #0094cc;
 }
+#link-container p.disabled {
+  cursor: initial;
+}
 
 #tab {
   margin-bottom: -2px;
