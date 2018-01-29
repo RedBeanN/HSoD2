@@ -51,8 +51,11 @@ http.get(baseUrl, res => {
 });
 function getDateString() {
   let date = new Date();
-  let day = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-  let time = `${date.getHours()}:${date.getMinutes()}`;
+  let day = `${date.getFullYear()}-${addZero(date.getMonth() + 1)}-${addZero(date.getDate())}`;
+  let time = `${addZero(date.getHours())}:${addZero(date.getMinutes())}`;
   return `${day} ${time}`;
+}
+function addZero(num) {
+  return num > 10 ? num : '0' + +num;
 }
 }
