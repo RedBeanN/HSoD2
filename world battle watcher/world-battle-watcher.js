@@ -38,9 +38,10 @@ http.get(baseUrl, res => {
     fs.readFile('./data.json', (err, dt_) => {
       if (err) console.log(err);
       let dt = JSON.parse(dt_);
-      let date = (new Date()).toString();
-      console.log(date);
-      dt[date] = JSON.parse(data);
+      let date = getDateString();
+      let data_ = JSON.parse(data);
+      // console.log(date);
+      dt[date] = data_.data;
       // console.log(JSON.stringify(dt, null, 2));
       fs.writeFile('./data.json', JSON.stringify(dt, null, 2), err => {
         if (err) console.error(err);
@@ -48,4 +49,10 @@ http.get(baseUrl, res => {
     });
   });
 });
+function getDateString() {
+  let date = new Date();
+  let day = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  let time = `${date.getHours()}:${date.getMinutes()}`;
+  return `${day} ${time}`;
+}
 }

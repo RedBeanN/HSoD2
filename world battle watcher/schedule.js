@@ -6,5 +6,6 @@ rule.minute = [0, 10, 20, 30, 40, 50];
 let watcher = require('./world-battle-watcher');
 
 let job = schedule.scheduleJob(rule, () => {
-  console.log(`Schedule start @ ${Date()}`);
+  watcher();
+  console.log(`Schedule completed @ ${Date()}`);
 });
