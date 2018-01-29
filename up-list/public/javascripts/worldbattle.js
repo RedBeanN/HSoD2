@@ -21,11 +21,20 @@ let app = new Vue({
         columns: [], rows: [],
         title: { text: '分数变化' }
       },
+      leftMargin: {
+        columns: [], rows: [],
+        title: { text: '分差变化 (九霄 - 琪亚娜)' }
+      },
+      rightMargin: {
+        columns: [], rows: [],
+        title: { text: '分差变化 (琪亚娜 - 九霄)' }
+      }
     },
     settings: {
       legendPosition: 'top',
       loading: false,
-      colors: ['#fa5788', '#83b9ff']
+      colors: ['#fa5788', '#83b9ff'],
+      inverseColors: ['#83b9ff', '#fa5788']
     },
     styles: {
       halfScreen: {
@@ -33,8 +42,15 @@ let app = new Vue({
         display: 'inline-block'
       },
     },
-    chartSettings: {
-      scale: [true, true]
+    chartSettings: { scale: [true, true] },
+    areaChart: {
+      scale: [true, true],
+      area: true
+    },
+    zoom: {
+      type: 'slider',
+      start: 0,
+      end: 100
     }
   },
   created () { this.loadData() },
@@ -45,11 +61,14 @@ let app = new Vue({
       let main = this.charts.main;
       let scores = this.charts.scores;
       let delta = this.charts.delta;
+      let leftMargin = this.charts.leftMargin;
+      let rightMargin = this.charts.rightMargin;
       axios.get('/worldbattle/data').then(res => {
         let data = res.data;
         parseMainData(main, data);
         parseScores(scores, data);
         parseDelta(delta, main);
+        parseMargin(leftMargin, rightMargin, main);
         settings.loading = false;
       });
     }
@@ -111,6 +130,26 @@ function parseDelta (delta, main_) {
     '琪亚娜阵营分数变化'
   ];
   delta.rows = rows;
+}
+function parseMargin (lm, rm, main_) {
+  let lr = [], rr = [];
+  let main = main_.rows;
+  for (let i = 0; i < main.length; i++) {
+    let now = main[i];
+    let margin = now['九霄阵营总分'] - now['琪亚娜阵营总分'];
+    lr.push({
+      '时间': now['时间'],
+      '分差': margin
+    });
+    rr.push({
+      '时间': now['时间'],
+      '分差': -margin
+    });
+  }
+  lm.columns = [ '时间', '分差' ];
+  lm.rows = lr;
+  rm.columns = [ '时间', '分差' ];
+  rm.rows = rr;
 }
 
 })(Vue, axios);
