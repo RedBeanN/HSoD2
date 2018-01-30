@@ -46,6 +46,6 @@ body {
   margin: 20px;
   padding: 10px;
 }
-#main {
+#main, #margin-delta {
   width: calc(100% - 60px) !important;
 }

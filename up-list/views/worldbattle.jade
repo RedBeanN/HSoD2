@@ -31,7 +31,7 @@ block content
         :style='styles.halfScreen',
         :settings='chartSettings',
         :data-zoom='zoom')
-      ve-line#leftMargin(:data='charts.leftMargin',
+      ve-line#left-margin(:data='charts.leftMargin',
         :title='charts.leftMargin.title',
         :loading='settings.loading',
         :legend-position='settings.legendPosition',
@@ -40,7 +40,7 @@ block content
         :settings='areaChart',
         :data-zoom='zoom',
         :legend-visible='false')
-      ve-line#rightMargin(:data='charts.rightMargin',
+      ve-line#right-margin(:data='charts.rightMargin',
         :title='charts.rightMargin.title',
         :loading='settings.loading',
         :legend-position='settings.legendPosition',
@@ -49,6 +49,15 @@ block content
         :settings='areaChart',
         :data-zoom='zoom',
         :legend-visible='false')
+      ve-line#margin-delta(:data='charts.marginDelta',
+        :title='charts.marginDelta.title',
+        :loading='settings.loading',
+        :legend-position='settings.legendPosition',
+        :colors='settings.inverseColors',
+        :settings='areaChart',
+        :data-zoom='zoom',
+        :legend-visible='false',
+        :visual-map='visualMap')
 
   //- script(src="javascripts/vue.min.js")
   //- script(src="javascripts/axios.min.js")

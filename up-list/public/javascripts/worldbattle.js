@@ -23,11 +23,15 @@ let app = new Vue({
       },
       leftMargin: {
         columns: [], rows: [],
-        title: { text: '分差变化 (九霄 - 琪亚娜)' }
+        title: { text: '分差 (九霄 - 琪亚娜)' }
       },
       rightMargin: {
         columns: [], rows: [],
-        title: { text: '分差变化 (琪亚娜 - 九霄)' }
+        title: { text: '分差 (琪亚娜 - 九霄)' }
+      },
+      marginDelta: {
+        columns: [], rows: [],
+        title: { text: '分差变化' }
       }
     },
     settings: {
@@ -51,9 +55,20 @@ let app = new Vue({
       type: 'slider',
       start: 0,
       end: 100
-    }
+    },
+    visualMap: [{
+      type: 'piecewise',
+      pieces: [
+        {max: -1, label: '九霄', color: '#fa5788'},
+        {min: 0, label: '琪亚娜', color: '#83b9ff'}
+      ],
+      right: 0,
+      top: 0
+    }]
   },
-  created () { this.loadData() },
+  created () {
+    this.loadData();
+  },
   methods: {
     loadData () {
       let settings = this.settings;
@@ -63,12 +78,13 @@ let app = new Vue({
       let delta = this.charts.delta;
       let leftMargin = this.charts.leftMargin;
       let rightMargin = this.charts.rightMargin;
+      let marginDelta = this.charts.marginDelta;
       axios.get('/worldbattle/data').then(res => {
         let data = res.data;
         parseMainData(main, data);
         parseScores(scores, data);
         parseDelta(delta, main);
-        parseMargin(leftMargin, rightMargin, main);
+        parseMargin(leftMargin, rightMargin, marginDelta, main);
         settings.loading = false;
       });
     }
@@ -131,12 +147,21 @@ function parseDelta (delta, main_) {
   ];
   delta.rows = rows;
 }
-function parseMargin (lm, rm, main_) {
-  let lr = [], rr = [];
+function parseMargin (lm, rm, delta, main_) {
+  let lr = [], rr = [], dm = [];
   let main = main_.rows;
   for (let i = 0; i < main.length; i++) {
     let now = main[i];
     let margin = now['九霄阵营总分'] - now['琪亚娜阵营总分'];
+    if (i != 0) {
+      let pre = main[i - 1];
+      let preMargin = pre['九霄阵营总分'] - pre['琪亚娜阵营总分'];
+      let deltaMargin = preMargin - margin;
+      dm.push({
+        '时间': now['时间'],
+        '分差变化': deltaMargin
+      });
+    }
     lr.push({
       '时间': now['时间'],
       '分差': margin
@@ -150,6 +175,8 @@ function parseMargin (lm, rm, main_) {
   lm.rows = lr;
   rm.columns = [ '时间', '分差' ];
   rm.rows = rr;
+  delta.columns = ['时间', '分差变化'];
+  delta.rows = dm;
 }
 
 })(Vue, axios);
