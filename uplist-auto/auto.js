@@ -57,7 +57,7 @@ function save(pool, cb) {
         });
         if(!exist) {
           ruleData.push(data);
-          fs.writeFileSync(getSavePath(pool_), JSON.stringify(ruleData, null, 2));
+          fs.writeFileSync(getSavePath(pool_), JSON.stringify(ruleData, null, 2), 'utf8');
           // console.log(`Update ${pool_} completed.`);
         }
       } else console.error('Invalid JSON data!');
