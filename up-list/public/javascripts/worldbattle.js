@@ -23,11 +23,11 @@ let app = new Vue({
       },
       leftMargin: {
         columns: [], rows: [],
-        title: { text: '分差 (九霄 - 琪亚娜)' }
+        title: { text: '分差 (闇★Revolution - Kirakira☆気分)' }
       },
       rightMargin: {
         columns: [], rows: [],
-        title: { text: '分差 (琪亚娜 - 九霄)' }
+        title: { text: '分差 (Kirakira☆気分 - 闇★Revolution)' }
       },
       marginDelta: {
         columns: [], rows: [],
@@ -59,8 +59,8 @@ let app = new Vue({
     visualMap: [{
       type: 'piecewise',
       pieces: [
-        {max: -1, label: '九霄', color: '#fa5788'},
-        {min: 0, label: '琪亚娜', color: '#83b9ff'}
+        {max: -1, label: '闇★Revolution', color: '#fa5788'},
+        {min: 0, label: 'Kirakira☆気分', color: '#83b9ff'}
       ],
       right: 0,
       top: 0
@@ -97,16 +97,16 @@ function parseMainData (main, data) {
   for (let key in data) {
     let row = {
       '时间': key.substring(5),
-      '九霄阵营总分': data[key]['faction_total_point'][1],
-      '琪亚娜阵营总分': data[key]['faction_total_point'][2],
+      '闇★Revolution': data[key]['faction_total_point'][1],
+      'Kirakira☆気分': data[key]['faction_total_point'][2],
     };
     rows.push(row);
     totalDelta = data[key]['faction_total_point'][1] - data[key]['faction_total_point'][2];
   }
   main.columns =  [
     '时间',
-    '九霄阵营总分',
-    '琪亚娜阵营总分',
+    '闇★Revolution',
+    'Kirakira☆気分',
   ];
   main.rows = rows;
   main.title.subtext = `分差: ${totalDelta > 0 ? totalDelta : -totalDelta}`;
@@ -116,15 +116,15 @@ function parseScores (scores, data) {
   for (let key in data) {
     let row = {
       '时间': key.substring(5),
-      '九霄阵营前 1000 分数线': data[key]['faction_1000_point'][1],
-      '琪亚娜阵营前 1000 分数线': data[key]['faction_1000_point'][2],
+      '闇★Revolution 前 1000 分数线': data[key]['faction_1000_point'][1],
+      'Kirakira☆気分 前 1000 分数线': data[key]['faction_1000_point'][2],
     };
     rows.push(row);
   }
   scores.columns =  [
     '时间',
-    '九霄阵营前 1000 分数线',
-    '琪亚娜阵营前 1000 分数线',
+    '闇★Revolution 前 1000 分数线',
+    'Kirakira☆気分 前 1000 分数线',
   ];
   scores.rows = rows;
 }
@@ -135,15 +135,15 @@ function parseDelta (delta, main_) {
     let now = main[i], pre = main[i - 1];
     let row = {
       '时间': now['时间'],
-      '九霄阵营分数变化': now['九霄阵营总分'] - pre['九霄阵营总分'],
-      '琪亚娜阵营分数变化': now['琪亚娜阵营总分'] - pre['琪亚娜阵营总分']
+      '闇★Revolution': now['闇★Revolution'] - pre['闇★Revolution'],
+      'Kirakira☆気分': now['Kirakira☆気分'] - pre['Kirakira☆気分']
     };
     rows.push(row);
   }
   delta.columns = [
     '时间',
-    '九霄阵营分数变化',
-    '琪亚娜阵营分数变化'
+    '闇★Revolution',
+    'Kirakira☆気分'
   ];
   delta.rows = rows;
 }
@@ -153,10 +153,10 @@ function parseMargin (lm, rm, delta, main_) {
   let main = main_.rows;
   for (let i = 0; i < main.length; i++) {
     let now = main[i];
-    let margin = now['九霄阵营总分'] - now['琪亚娜阵营总分'];
+    let margin = now['闇★Revolution'] - now['Kirakira☆気分'];
     if (i != 0) {
       let pre = main[i - 1];
-      let preMargin = pre['九霄阵营总分'] - pre['琪亚娜阵营总分'];
+      let preMargin = pre['闇★Revolution'] - pre['Kirakira☆気分'];
       let deltaMargin = preMargin - margin;
       dm.push({
         '时间': now['时间'],
@@ -182,7 +182,7 @@ function parseMargin (lm, rm, delta, main_) {
   rm.rows = rr;
   delta.columns = ['时间', '分差变化'];
   delta.rows = dm;
-  delta.title.subtext = `${(pos / sum * 100).toFixed(2)}% : ${(neg / sum * 100).toFixed(2)}%`;
+  delta.title.subtext = `☆${(pos / sum * 100).toFixed(2)}% : ★${(neg / sum * 100).toFixed(2)}%`;
 }
 
 })(Vue, axios);
