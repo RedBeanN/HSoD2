@@ -109,7 +109,7 @@ function parseMainData (main, data) {
     '琪亚娜阵营总分',
   ];
   main.rows = rows;
-  main.title.text = `总分 (分差: ${totalDelta > 0 ? totalDelta : -totalDelta})`;
+  main.title.subtext = `(分差: ${totalDelta > 0 ? totalDelta : -totalDelta})`;
 }
 function parseScores (scores, data) {
   let rows = [];
@@ -149,6 +149,7 @@ function parseDelta (delta, main_) {
 }
 function parseMargin (lm, rm, delta, main_) {
   let lr = [], rr = [], dm = [];
+  let pos = 0, neg = 0, sum = 0;
   let main = main_.rows;
   for (let i = 0; i < main.length; i++) {
     let now = main[i];
@@ -161,6 +162,10 @@ function parseMargin (lm, rm, delta, main_) {
         '时间': now['时间'],
         '分差变化': deltaMargin
       });
+      // sum
+      sum++;
+      if (deltaMargin > 0) pos++;
+      else neg ++;
     }
     lr.push({
       '时间': now['时间'],
@@ -177,6 +182,7 @@ function parseMargin (lm, rm, delta, main_) {
   rm.rows = rr;
   delta.columns = ['时间', '分差变化'];
   delta.rows = dm;
+  delta.title.subtext = `偏差值: ${(pos / sum * 100).toFixed(2)}% : ${(neg / sum * 100).toFixed(2)}%`;
 }
 
 })(Vue, axios);
