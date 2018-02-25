@@ -156,19 +156,19 @@ $$('#app').style.display = 'block';
 function checkDumplicate(arr, now = 1, saved = 0) {
   if (arr.constructor != Array) throw new Error('Type Error: input data is not an array.');
   if (now >= arr.length) return;
-  if (arr[now].data.length > arr[saved].data.length) {
+  // if (arr[now].data.length > arr[saved].data.length) {
     if (spliceFrom(arr[now].data, arr[saved].data)) {
       arr[saved].startTime = min(arr[saved].startTime, arr[now].startTime);
       arr[saved].endTime = max(arr[saved].endTime, arr[now].endTime);
     } else saved = now;
-  } else {
-    if (spliceFrom(arr[saved].data, arr[now].data)) {
-      arr[now].startTime = min(arr[saved].startTime, arr[now].startTime);
-      arr[now].endTime = max(arr[saved].endTime, arr[now].endTime);
-    } else saved = now;
-  }
+  // } else {
+  //   if (spliceFrom(arr[saved].data, arr[now].data)) {
+  //     arr[now].startTime = min(arr[saved].startTime, arr[now].startTime);
+  //     arr[now].endTime = max(arr[saved].endTime, arr[now].endTime);
+  //   } else saved = now;
+  // }
   now++;
-  checkDumplicate(arr, now, saved);
+  return checkDumplicate(arr, now, saved);
 }
 function spliceFrom(a, b) {
   if (a.constructor != Array || b.constructor != Array) {
