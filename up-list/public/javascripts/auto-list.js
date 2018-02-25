@@ -108,7 +108,6 @@ let app = new Vue({
             app.sortedFlag = true;
             app.sortTable();
           }
-          if (this.selectedPool == 'high') checkDumplicate(this.rows);
         })
         .catch(err => {
           app.hintText = '没有找到数据';
@@ -117,6 +116,7 @@ let app = new Vue({
         });
     },
     sortTable() {
+      if (this.selectedPool == 'high') checkDumplicate(this.rows);
       this.sortedFlag = !this.sortedFlag;
       let sortedFlag = this.sortedFlag;
       this.rows.sort((pre, now) => {
@@ -183,6 +183,7 @@ function spliceFrom(a, b) {
       }
     }
   }
+  // if(isDumplicated) console.log(a, b);
   return isDumplicated;
 }
 function min(da, db) { return new Date(da) < new Date(db) ? da : db }
