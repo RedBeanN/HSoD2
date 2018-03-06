@@ -29,8 +29,8 @@
         lastClick.classList.remove('focus');
       };
 
-      let factionRefresh = $$('#fw-refresh');
-      factionRefresh.onclick = updateFw;
+      // let factionRefresh = $$('#fw-refresh');
+      // factionRefresh.onclick = updateFw;
 
       let toggleFw = $$('#toggle-fw');
       toggleFw.onclick = e => {
@@ -38,7 +38,7 @@
         toggleFw.innerText = toggleFw.innerText === '-' ? '+' : '-';
       };
 
-      factionRefresh.click();
+      // factionRefresh.click();
       ($$('#origin')).click();
     }
   });
