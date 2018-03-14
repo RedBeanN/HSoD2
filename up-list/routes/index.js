@@ -16,4 +16,8 @@ router.get('/equip', function (req, res, next) {
   // });
 });
 
+router.get('/stigmata', function (req, res, next) {
+  res.render('stigmata', { title: '圣痕模拟器 - 搞事学园' });
+});
+
 module.exports = router;
