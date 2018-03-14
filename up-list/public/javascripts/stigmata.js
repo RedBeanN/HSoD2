@@ -8,6 +8,7 @@ let app = new Vue({
   data: {},
   methods: {
     select: function (selected) {
+      // change stigmata page
       Array.prototype.forEach.call($$('.option'), op => {
         op.classList.remove('selected');
       });

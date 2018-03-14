@@ -1,0 +1,83 @@
+/* kiana */
+.kiana #icon-1 {
+  left: 224px;
+  top: 105px;
+  background-position-x: -128px;
+  background-position-y: -256px;
+  transform: scale(.55);
+}
+.kiana #icon-2 {
+  left: 224px;
+  top: 210px;
+  background-position-y: -64px;
+}
+.kiana #icon-3 {
+  left: 100px;
+  top: 200px;
+  background-position-x: -256px;
+  background-position-y: -384px;
+}
+.kiana #icon-4 {
+  left: 150px;
+  top: 130px;
+  background-position-y: -192px;
+  transform: scale(.9)
+}
+.kiana #icon-5 {
+  left: 95px;
+  top: 50px;
+  background-position-y: -256px;
+  transform: scale(.9);
+}
+.kiana #icon-6 {
+  left: 40px;
+  top: 150px;
+  background-position-y: -128px;
+}
+.kiana #icon-7 {
+  left: 350px;
+  top: 200px;
+  background-position-x: -384px;
+  background-position-y: -256px;
+}
+.kiana #icon-8 {
+  left: 300px;
+  top: 130px;
+  background-position-y: -384px;
+  transform: scale(.9);
+}
+.kiana #icon-9 {
+  left: 355px;
+  top: 50px;
+  background-position-y: -320px;
+  transform: scale(.9);
+}
+.kiana #icon-10 {
+  left: 410px;
+  top: 150px;
+  background-position-x: -320px;
+  background-position-y: -320px;
+}
+.kiana #icon-11 {
+  left: 224px;
+  top: 335px;
+  background-position-x: -64px;
+  background-position-y: -320px;
+}
+.kiana #icon-12 {
+  left: 224px;
+  top: 405px;
+  background-position-x: -320px;
+}
+.kiana #icon-13 {
+  left: 150px;
+  top: 375px;
+  background-position-x: -256px;
+  background-position-y: -128px;
+}
+.kiana #icon-14 {
+  left: 298px;
+  top: 375px;
+  background-position-x: -192px;
+  background-position-y: -192px;
+}

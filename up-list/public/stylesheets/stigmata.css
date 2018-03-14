@@ -27,12 +27,17 @@
 
 #stigmata {
   width: 512px;
-  height: 512px;;
+  height: 512px;
+  position: relative;
 }
 #stigmata.kiana { background-image: url('/images/stigmata/Kiana.png'); }
 #stigmata.bronya { background-image: url('/images/stigmata/Bronya.png'); }
 #stigmata.theresa { background-image: url('/images/stigmata/Theresa.png'); }
 
 .stigmata-icon {
-  background-image: url('/images/stigmata/icons.png');
+  background-image: url('/images/stigmata/icons-min.png');
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  transform: scale(.7);
 }
