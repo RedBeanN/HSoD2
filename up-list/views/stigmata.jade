@@ -2,6 +2,18 @@ extends layout
 block content
   link(rel="stylesheet", href="/stylesheets/stigmata.css")
   //- link(rel="stylesheet", href="/dist/css/stigmata.min.css")
-  #main
+  #app
+    #stigmata-selector
+      .option.kiana(@click='select("kiana")')
+        p 琪亚娜·卡斯兰娜
+      .option.bronya(@click='select("bronya")')
+        p 布洛妮娅·扎伊切克
+      .option.theresa(@click='select("theresa")')
+        p 德莉莎·阿波卡利斯
+    #stigmata-container
+      #stigmata
+        .stigmata-icon(v-for='i in 14', :id='"icon-" + i')
+      #info
+  script(src="/javascripts/vue.min.js")
   script(src="/javascripts/stigmata.js")
   //- script(src="/dist/js/stigmata.min.js")

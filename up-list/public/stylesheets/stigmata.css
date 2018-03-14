@@ -1,0 +1,38 @@
+#stigmata-selector {
+  text-align: center;
+}
+#stigmata-selector .option {
+  background-image: url('/images/stigmata/stigmata.png');
+  width: 150px;
+  height: 130px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+.option p {
+  margin: 0;
+  margin-top: 60px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0px 0px 5px blue;
+}
+#stigmata-selector .option.selected { height: 150px; }
+.option.kiana { background-position-y: 0px; }
+.option.theresa { background-position-y: -280px; }
+.option.bronya { background-position-y: -560px; }
+.option.kiana.selected { background-position-y: -140px; }
+.option.theresa.selected { background-position-y: -420px; }
+.option.bronya.selected { background-position-y: -700px; }
+
+#stigmata {
+  width: 512px;
+  height: 512px;;
+}
+#stigmata.kiana { background-image: url('/images/stigmata/Kiana.png'); }
+#stigmata.bronya { background-image: url('/images/stigmata/Bronya.png'); }
+#stigmata.theresa { background-image: url('/images/stigmata/Theresa.png'); }
+
+.stigmata-icon {
+  background-image: url('/images/stigmata/icons.png');
+}
