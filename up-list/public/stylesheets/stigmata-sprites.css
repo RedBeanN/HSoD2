@@ -1,4 +1,7 @@
 /* kiana */
+.kiana .stigmata-icon {
+  transform: scale(.7);
+}
 .kiana #icon-1 {
   left: 224px;
   top: 105px;
@@ -80,4 +83,192 @@
   top: 375px;
   background-position-x: -192px;
   background-position-y: -192px;
+}
+
+/* bronya */
+.bronya .stigmata-icon {
+  transform: scale(.8)
+}
+.bronya #icon-1 {
+  left: 224px;
+  top: 165px;
+  background-position-x: -64px;
+  background-position-y: -256px;
+  transform: scale(.6)
+}
+.bronya #icon-2 {
+  left: 190px;
+  top: 235px;
+  background-position-x: -128px;
+  background-position-y: -64px;
+}
+.bronya #icon-3 {
+  left: 130px;
+  top: 140px;
+  background-position-x: -384px;
+  background-position-y: -64px;
+}
+.bronya #icon-4 {
+  left: 95px;
+  top: 50px;
+  background-position-x: -320px;
+  background-position-y: -64px;
+}
+.bronya #icon-5 {
+  left: 115px;
+  top: 335px;
+  background-position-x: 64px;
+  background-position-y: -64px;
+}
+.bronya #icon-6 {
+  left: 85px;
+  top: 230px;
+  background-position-x: -128px;
+  background-position-y: -384px;
+  transform: scale(1)
+}
+.bronya #icon-7 {
+  left: 40px;
+  top: 145px;
+  background-position-x: -128px;
+  background-position-y: 64px;
+  transform: scale(1);
+}
+.bronya #icon-8 {
+  left: 258px;
+  top: 235px;
+  background-position-x: -256px;
+  background-position-y: -64px;
+}
+.bronya #icon-9 {
+  left: 318px;
+  top: 140px;
+  background-position-x: -64px;
+  background-position-y: 64px;
+}
+.bronya #icon-10 {
+  left: 353px;
+  top: 50px;
+  background-position-x: -192px;
+  background-position-y: -64px;
+}
+.bronya #icon-11 {
+  left: 313px;
+  top: 335px;
+  background-position-x: -64px;
+  background-position-y: -384px;
+}
+.bronya #icon-12 {
+  left: 373px;
+  top: 230px;
+  background-position-x: -128px;
+  background-position-y: -192px;
+  transform: scale(1);
+}
+.bronya #icon-13 {
+  left: 408px;
+  top: 145px;
+  background-position-x: -128px;
+  background-position-y: -320px;
+  transform: scale(1);
+}
+.bronya #icon-14 {
+  left: 224px;
+  top: 420px;
+  background-position-x: -128px;
+  background-position-y: -128px;
+}
+
+/* theresa */
+.theresa .stigmata-icon {
+  transform: scale(.8)
+}
+.theresa #icon-1 {
+  left: 224px;
+  top: 175px;
+  background-position-x: -320px;
+  background-position-y: -128px;
+  transform: scale(.6)
+}
+.theresa #icon-2 {
+  left: 130px;
+  top: 260px;
+  background-position-x: -192px;
+  background-position-y: -320px;
+}
+.theresa #icon-3 {
+  left: 224px;
+  top: 425px;
+  background-position-x: -256px;
+  background-position-y: -192px;
+}
+.theresa #icon-4 {
+  left: 318px;
+  top: 260px;
+  background-position-x: -192px;
+  background-position-y: -384px;
+}
+.theresa #icon-5 {
+  left: 50px;
+  top: 175px;
+  background-position-x: -192px;
+  background-position-y: -256px;
+}
+.theresa #icon-6 {
+  left: 125px;
+  top: 90px;
+  background-position-x: -384px;
+  background-position-y: -128px;
+}
+.theresa #icon-7 {
+  left: 125px;
+  top: 390px;
+  background-position-x: 64px;
+  background-position-y: -128px;
+}
+.theresa #icon-8 {
+  left: 50px;
+  top: 340px;
+  background-position-x: 64px;
+  background-position-y: -192px;
+  transform: scale(1);
+}
+.theresa #icon-9 {
+  left: -5px;
+  top: 250px;
+  background-position-x: -256px;
+  background-position-y: -256px;
+  transform: scale(1);
+}
+.theresa #icon-10 {
+  left: 398px;
+  top: 175px;
+  background-position-x: -320px;
+  background-position-y: -192px;
+}
+.theresa #icon-11 {
+  left: 323px;
+  top: 90px;
+  background-position-x: -192px;
+  background-position-y: 64px;
+}
+.theresa #icon-12 {
+  left: 323px;
+  top: 390px;
+  background-position-x: -384px;
+  background-position-y: -192px;
+}
+.theresa #icon-13 {
+  left: 398px;
+  top: 340px;
+  background-position-x: -256px;
+  background-position-y: -320px;
+  transform: scale(1);
+}
+.theresa #icon-14 {
+  left: 458px;
+  top: 250px;
+  background-position-x: -256px;
+  background-position-y: 64px;
+  transform: scale(1);
 }
