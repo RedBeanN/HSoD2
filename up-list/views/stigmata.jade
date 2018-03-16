@@ -5,21 +5,43 @@ block content
   //- link(rel="stylesheet", href="/dist/css/stigmata.min.css")
   #app
     #stigmata-selector
-      .option.kiana(@click='select("kiana")')
+      .option.kiana(@click='selectStigmata("kiana")')
         p 琪亚娜·卡斯兰娜
-      .option.bronya(@click='select("bronya")')
+      .option.bronya(@click='selectStigmata("bronya")')
         p 布洛妮娅·扎伊切克
-      .option.theresa(@click='select("theresa")')
+      .option.theresa(@click='selectStigmata("theresa")')
         p 德莉莎·阿波卡利斯
     #stigmata-container
-      #stigmata
+      #stigmata(:class='character')
         .stigmata-icon(v-for='i in 14',
           :id='"icon-" + i',
-          :class='i > 1 ? "disabled" : "selected"')
+          :class='isAbled[i - 1] ? "" : "disabled"',
+          @click='selectIcon(i)')
           .icon-ring
           .selected-ring
-          .level {{ currentLevel[i-1] + '/' + levels[i - 1] }}
+          .level(v-show='currentLevel[i - 1] !== maxLevel[i - 1]')
+            | {{ currentLevel[i - 1] + '/' + maxLevel[i - 1] }}
       #info
+        #all
+          p {{ stigmataName }} 
+            span LV {{ totalLevel }}/45
+          br
+          p 下一级消耗 
+            span {{ nextCost }}
+        #present
+          p 速度提升
+          p
+            button(@click='minus(selected - 1)',
+              :disabled='!currentLevel[selected - 1] || \
+                !(character != "kiana" || selected != 1 || \
+                currentLevel[selected - 1] > 1)')
+                  | -
+            | LV {{ currentLevel[selected - 1] + ' / ' + maxLevel[selected - 1] }}
+            button(@click='add(selected - 1)',
+              :disabled='currentLevel[selected - 1] == maxLevel[selected - 1] || \
+                !isAbled[selected - 1]')
+                  | +
+          p 总消耗 {{ totalCost }}
   script(src="/javascripts/vue.min.js")
   script(src="/javascripts/stigmata.js")
   //- script(src="/dist/js/stigmata.min.js")

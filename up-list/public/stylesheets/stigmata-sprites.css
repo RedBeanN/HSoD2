@@ -1,3 +1,16 @@
+/* all icons */
+.stigmata-icon {
+  background-image: url('/images/stigmata/icons-min.png');
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  overflow: visible;
+  cursor: pointer;
+}
+.stigmata-icon.disabled {
+  opacity: .6;
+}
+
 /* kiana */
 .kiana .stigmata-icon {
   transform: scale(.7);
@@ -273,7 +286,17 @@
   transform: scale(1);
 }
 
-/* special ring */
+/* icon styles */
+.icon-ring {
+  width: 76px;
+  height: 76px;
+  background-image: url('/images/stigmata/UI.png');
+  background-position-y: -220px;
+  background-position-x: -3px;
+  margin-left: -6px;
+  margin-top: -6px;
+}
+/* special rings */
 .kiana #icon-2 .icon-ring, .kiana #icon-12 .icon-ring,
 .bronya #icon-4 .icon-ring, .bronya #icon-10 .icon-ring,
 .theresa #icon-6 .icon-ring, .theresa #icon-11 .icon-ring {
@@ -284,4 +307,34 @@
   height: 94px;
   margin-left: -14px;
   margin-top: -14px;
+}
+
+.selected .selected-ring {
+  background-image: url('/images/stigmata/UI.png');;
+  background-position-x: -290px;
+  background-position-y: -226px;
+  width: 116px;
+  height: 116px;
+  margin-left: -26px;
+  margin-top: -24px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: scale(.8);
+}
+
+.stigmata-icon .level {
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  width: 48px;
+  height: 22px;
+  position: absolute;
+  left: 7px;
+  top: 64px;
+  transform: none;
+  background-image: url('/images/stigmata/UI.png');
+  background-position-x: -93px;
+  background-position-y: -1px;
 }
