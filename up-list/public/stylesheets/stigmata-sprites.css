@@ -272,3 +272,16 @@
   background-position-y: 64px;
   transform: scale(1);
 }
+
+/* special ring */
+.kiana #icon-2 .icon-ring, .kiana #icon-12 .icon-ring,
+.bronya #icon-4 .icon-ring, .bronya #icon-10 .icon-ring,
+.theresa #icon-6 .icon-ring, .theresa #icon-11 .icon-ring {
+  background-position-x: -85px;
+  background-position-y: -222px;
+  transform: scale(.8);
+  width: 94px;
+  height: 94px;
+  margin-left: -14px;
+  margin-top: -14px;
+}

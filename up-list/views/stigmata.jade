@@ -13,7 +13,12 @@ block content
         p 德莉莎·阿波卡利斯
     #stigmata-container
       #stigmata
-        .stigmata-icon(v-for='i in 14', :id='"icon-" + i')
+        .stigmata-icon(v-for='i in 14',
+          :id='"icon-" + i',
+          :class='i > 1 ? "disabled" : "selected"')
+          .icon-ring
+          .selected-ring
+          .level {{ currentLevel[i-1] + '/' + levels[i - 1] }}
       #info
   script(src="/javascripts/vue.min.js")
   script(src="/javascripts/stigmata.js")
