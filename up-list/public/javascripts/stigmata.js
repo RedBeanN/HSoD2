@@ -33,25 +33,35 @@ let app = new Vue({
       [11], [12, 13], [2, 11], [6, 12]
     ],
     selected: 1,
-    totalLevel: 1,
-    totalCost: 0,
   },
   computed: {
     maxLevel () { return maxLevel[this.character] || maxLevel['kiana']; },
     nextCost () { return cost[this.totalLevel] || 0; },
     stigmataName () { return stigmataName[this.character]; },
+    totalLevel () {
+      return this.currentLevel.reduce((pre, cur) => {
+        return pre + cur;
+      });
+    },
+    totalCost () {
+      return cost.reduce((pre, cur, index) => {
+        return index < this.totalLevel ? pre + cur : pre;
+      });
+    },
   },
   methods: {
     selectStigmata (selected) {
       // change stigmata page
       forEach($$('.option'), op => { op.classList.remove('selected'); });
       $$(`.${selected}`)[0].classList.add('selected');
-      // reset data
-      for (let i in this.currentLevel) { this.currentLevel[i] = 0 }
-      if (selected === 'kiana') this.currentLevel[0] = 1;
-      this.totalLevel = this.currentLevel[0];
-      this.totalCost = 0;
       this.character = selected;
+      // reset data
+      for (let i in this.currentLevel) {
+        this.currentLevel[i] = 0;
+        this.isAbled[i] = 0;
+      }
+      this.isAbled[0] = 1;
+      this.add(0);
     },
     selectIcon (selected) {
       forEach($$('.stigmata-icon'), icon => {
@@ -62,9 +72,7 @@ let app = new Vue({
     },
     minus (s) {
       if (this.currentLevel[s] > 0) {
-        let isMinusable = !(this.character === 'kiana' &&
-                            this.selected === 1 &&
-                            this.currentLevel[0] === 1);
+        let isMinusable = !(this.selected === 1 && this.currentLevel[0] === 1);
         // set isAbled when max
         if (this.currentLevel[s] === this.maxLevel[s]) {
           this.next[s].forEach(i => {
@@ -78,7 +86,6 @@ let app = new Vue({
         // minus after set isAbled
         if (isMinusable) {
           Vue.set(this.currentLevel, s, this.currentLevel[s] - 1);
-          this.totalCost -= cost[this.totalLevel--];
         } else alert('请先重置后续天赋！');
       }
     },
@@ -86,7 +93,6 @@ let app = new Vue({
       if (this.currentLevel[s] < this.maxLevel[s]) {
         // add before set isAbled
         Vue.set(this.currentLevel, s, this.currentLevel[s] + 1);
-        this.totalCost += cost[this.totalLevel++];
         // set isAbled when max
         if (this.currentLevel[s] === this.maxLevel[s]) {
           this.next[s].forEach(i => {

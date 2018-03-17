@@ -33,8 +33,7 @@ block content
           p
             button(@click='minus(selected - 1)',
               :disabled='!currentLevel[selected - 1] || \
-                !(character != "kiana" || selected != 1 || \
-                currentLevel[selected - 1] > 1)')
+                !(selected != 1 || currentLevel[selected - 1] > 1)')
                   | -
             | LV {{ currentLevel[selected - 1] + ' / ' + maxLevel[selected - 1] }}
             button(@click='add(selected - 1)',
