@@ -35,10 +35,11 @@ var weeklyMail = setInterval(function () {
     text: 'Attachment(s): nohup.txt',
     attachments: [{
       filename: 'nohup.txt',
-      path: path.join(__dirname, './nohup.out')
+      path: path.join(__dirname, './statics/nohup.out')
     }]
   };
   mailer.sendEmail(ops, function (err, info) {
+    logfile.init();
     if (err) console.error(err);
     else logfile.write('[Mail] Weekly log send. Info:' +
                         (info.response ? info.response : info));
