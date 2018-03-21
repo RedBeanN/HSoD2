@@ -19,7 +19,29 @@ const stigmataName = {
   'kiana': '誓约之翼',
   'bronya': '守护回路',
   'theresa': '真实之瞳'
-}
+};
+const skillName = {
+  'kiana': [],
+  'bronya': [],
+  'theresa': []
+};
+const next = {
+  'kiana': [
+    [1], [2, 6, 10], [3, 12], [4, 5], [],
+    [], [7, 13], [8, 9], [], [],
+    [11], [12, 13], [2, 11], [6, 12]
+  ],
+  'bronya': [
+    [1, 7], [2, 4], [3], [], [5, 13],
+    [6], [], [8, 10], [9], [],
+    [11, 13], [12], [], [4, 10]
+  ],
+  'theresa': [
+    [1, 3], [2, 4], [1, 3, 6, 11], [2, 9], [2, 5],
+    [4, 10], [7], [8], [], [3, 10],
+    [5, 9], [12], [13], []
+  ]
+};
 
 let app = new Vue({
   el: '#app',
@@ -27,17 +49,13 @@ let app = new Vue({
     character: 'kiana',
     currentLevel: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     isAbled: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    next: [
-      [1], [2, 6, 10], [3, 12], [4, 5], [],
-      [], [7, 13], [8, 9], [], [],
-      [11], [12, 13], [2, 11], [6, 12]
-    ],
     selected: 1,
   },
   computed: {
     maxLevel () { return maxLevel[this.character] || maxLevel['kiana']; },
     nextCost () { return cost[this.totalLevel] || 0; },
     stigmataName () { return stigmataName[this.character]; },
+    next () { return next[this.character] || next['kiana']; },
     totalLevel () {
       return this.currentLevel.reduce((pre, cur) => {
         return pre + cur;
@@ -80,6 +98,8 @@ let app = new Vue({
             if (this.isAbled[i] === 1) {
               if (this.currentLevel[i] != 0) isMinusable = false;
             }
+          });
+          this.next[s].forEach(i => {
             if (isMinusable) Vue.set(this.isAbled, i, this.isAbled[i] - 1);
           });
         }
