@@ -7,8 +7,11 @@ const vlist = [
   "4.0", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6", "4.7", "4.8", "4.9",
   "5.0", "5.1"
 ];
+const clist = ['5.0', '5.1'];
+const onehour = 60 * 60 * 1000;
 
 getAll(vlist);
+setInterval(getAll(clist), onehour);
 
 function getAll (vlist) {
   fs.readFile(path.join(__dirname, 'statics/data.json'), (err, _data) => {
