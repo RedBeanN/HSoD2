@@ -133,3 +133,14 @@ td.old {
   background: #0094cc;
   box-shadow: 2px 2px 12px gray;
 }
+
+.buglist th, .buglist td {
+  width: 50px;
+  text-align: center;
+}
+th.text, td.text {
+  width: 800px;
+}
+td.text {
+  text-align: left;
+}

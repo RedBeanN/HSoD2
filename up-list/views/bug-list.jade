@@ -1,0 +1,41 @@
+extends layout
+block content
+  link(rel='stylesheet', href='/dist/css/animation.min.css')
+  link(rel='stylesheet', href='/dist/css/auto-list.min.css')
+  #loading-page
+    #loading-ring.loading-rotate
+  #app(style='display: none')
+    #equip-filter.collapse(@click='focusSearch')
+      img#search-icon(:src='searchIcon')
+      input#filter-input.hide(placeholder='搜索关键词',
+            @blur='blurSearch', v-model='searchInput.text')
+    #main
+      #hint-container(v-if='loading || error')
+        | {{ hintText }}
+      table#main.buglist(v-else)
+        thead
+          tr#title
+            th
+              select(v-model='versionFilter')
+                option(value='') 全部
+                option(v-for='version in versions', value='version') {{ version }}
+            th 编号
+            th 类型
+            th 状态
+            th.text 内容
+            th 时间
+        tbody
+          tr.row(v-for='(row, index) in filterRows')
+            td {{ row.version }}
+            td {{ row.id }}
+            td {{ row.type }}
+            td {{ row.status }}
+            td.text
+              a(:href='"http://event.mihoyo.com/notice/news.php?id=" + row.id', target='_blank')
+                | {{ row.title }}
+            td {{ row.startdate }}
+
+  script(src='/javascripts/vue.min.js')
+  script(src='/javascripts/axios.min.js')
+  script(src='/javascripts/bug-list.js')
+  //- script(src='/dist/js/bug-list.min.js')

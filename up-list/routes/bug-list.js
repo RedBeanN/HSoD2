@@ -26,3 +26,5 @@ router.get('/data/:version', (req, res, next) => {
     }
   });
 });
+
+module.exports = router;
