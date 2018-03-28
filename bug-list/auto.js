@@ -5,7 +5,7 @@ const http = require('http'),
 const vlist = [
   "3.2", "3.3", "3.4", "3.5", "3.6", "3.7", "3.7.5", "3.8", "3.9",
   "4.0", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6", "4.7", "4.8", "4.9",
-  "5.0"
+  "5.0", "5.1"
 ];
 
 getAll(vlist);
@@ -25,7 +25,6 @@ function getAll (vlist) {
       });
     }
     scope(0, vlist, () => {
-      console.log('Done.');
       fs.writeFile(path.join(__dirname, 'statics/data.json'), JSON.stringify(all, null, 2), err => {
         if (err) console.error(err);
       });
