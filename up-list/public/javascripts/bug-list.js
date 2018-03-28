@@ -11,7 +11,7 @@
   let app = new Vue({
     el: '#app',
     data: {
-      loading: false, error: false, versions,
+      loading: true, error: false, versions,
       hintText: 'loading...',
       searchInput: {
         isFocus: false,
@@ -68,6 +68,7 @@
       axios.get('/buglist/data')
         .then(function (res) {
           app.buglist = res.data;
+          app.loading = false;
         })
         .catch(function (err) {
           app.hintText = err;
