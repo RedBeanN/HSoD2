@@ -18,7 +18,7 @@ block content
             th
               select(v-model='versionFilter')
                 option(value='') 全部
-                option(v-for='version in versions', value='version') {{ version }}
+                option(v-for='version in versions', :value='version') {{ version }}
             th 编号
             th 类型
             th 状态
