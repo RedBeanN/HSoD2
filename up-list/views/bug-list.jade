@@ -29,13 +29,13 @@ block content
             td {{ row.version }}
             td {{ row.id }}
             td {{ row.type }}
-            td {{ row.status }}
+            td(:style='statusStyle[row.status]') {{ row.status }}
             td.text
               a(:href='"http://event.mihoyo.com/notice/news.php?id=" + row.id', target='_blank')
                 | {{ row.title }}
             td {{ row.startdate }}
 
-  script(src='/javascripts/vue.min.js')
-  script(src='/javascripts/axios.min.js')
-  script(src='/javascripts/bug-list.js')
-  //- script(src='/dist/js/bug-list.min.js')
+  //- script(src='/javascripts/vue.min.js')
+  //- script(src='/javascripts/axios.min.js')
+  //- script(src='/javascripts/bug-list.js')
+  script(src='/dist/js/bug-list.min.js')

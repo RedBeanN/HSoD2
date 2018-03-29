@@ -17,6 +17,12 @@
         isFocus: false,
         text: ''
       },
+      statusStyle: {
+        '未处理': { color: '#1E40FE' },
+        '已处理': { color: '#46CB47' },
+        '进行中': { color: '#B212CE' },
+        '不处理': { color: 'red' },
+      },
       versionFilter: '',
       buglist: {}
     },
@@ -51,6 +57,15 @@
       },
     },
     methods: {
+      sortTable() {
+        this.sortedFlag = !this.sortedFlag;
+        let sortedFlag = this.sortedFlag;
+        for (let rows in this.buglist) {
+          this.buglist[rows].sort((pre, now) => {
+            return pre.id - now.id;
+          });
+        }
+      },
       focusSearch() {
         this.searchInput.isFocus = true;
         $$('#filter-input').classList.remove('hide');
@@ -69,6 +84,7 @@
         .then(function (res) {
           app.buglist = res.data;
           app.loading = false;
+          app.sortTable();
         })
         .catch(function (err) {
           app.hintText = err;
