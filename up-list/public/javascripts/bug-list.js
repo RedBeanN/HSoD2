@@ -92,6 +92,10 @@
             .then(res => {
               app.buglist[ver][index].title = res.data;
               $$(`#t2s-${e}`).innerHTML = '干掉了！';
+            })
+            .catch(err => {
+              $$(`#t2s-${e}`).innerHTML = '失败了……';
+              console.log(err);
             });
         }
       }
