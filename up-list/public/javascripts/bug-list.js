@@ -77,6 +77,23 @@
         this.searchInput.isFocus = false;
         $$('#filter-input').classList.add('hide');
         $$('#equip-filter').classList.add('collapse');
+      },
+      t2s(ver, id, e) {
+        let text = '', index = -1;
+        this.buglist[ver].forEach((row, _index) => {
+          if (row.id == id) {
+            text = row.title;
+            index = _index;
+          }
+        });
+        if (index != -1) {
+          $$(`#t2s-${e}`).innerHTML = '正在干掉...';
+          axios.get(encodeURI(`t2s?text=${text}`))
+            .then(res => {
+              app.buglist[ver][index].title = res.data;
+              $$(`#t2s-${e}`).innerHTML = '干掉了！';
+            });
+        }
       }
     },
     created: function () {

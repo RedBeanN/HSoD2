@@ -23,6 +23,7 @@ block content
             th 类型
             th 状态
             th.text 内容
+            th.t2s 干掉繁体字
             th 时间
         tbody
           tr.row(v-for='(row, index) in filterRows')
@@ -33,6 +34,7 @@ block content
             td.text
               a(:href='"http://event.mihoyo.com/notice/news.php?id=" + row.id', target='_blank')
                 | {{ row.title }}
+            td.t2s(@click='t2s(row.version, row.id, index)', :id='"t2s-" + index') 干！
             td {{ row.startdate }}
 
   //- script(src='/javascripts/vue.min.js')

@@ -144,3 +144,6 @@ th.text, td.text {
 td.text {
   text-align: left;
 }
+th.t2s, td.t2s {
+  width: 100px;
+}
