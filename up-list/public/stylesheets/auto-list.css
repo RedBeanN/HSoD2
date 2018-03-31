@@ -135,7 +135,7 @@ td.old {
 }
 
 .buglist th, .buglist td {
-  width: 50px;
+  width: 45px;
   text-align: center;
 }
 th.text, td.text {
@@ -145,5 +145,5 @@ td.text {
   text-align: left;
 }
 th.t2s, td.t2s {
-  width: 100px;
+  width: 70px;
 }

@@ -95,7 +95,7 @@
             })
             .catch(err => {
               $$(`#t2s-${e}`).innerHTML = '失败了……';
-              console.log(err);
+              console.error(err);
             });
         }
       }
