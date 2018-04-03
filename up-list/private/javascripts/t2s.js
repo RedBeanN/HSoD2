@@ -4,7 +4,7 @@ const qs = require('querystring');
 function t2s(text) {
   return new Promise((resolve, reject) => {
     let _data = qs.stringify(Object.assign({
-      config: 't2s.json',
+      config: 'tw2sp.json',
       precise: 0
     }, { text }));
     let options = {
