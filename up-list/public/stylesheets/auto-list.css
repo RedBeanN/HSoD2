@@ -147,3 +147,10 @@ td.text {
 th.t2s, td.t2s {
   width: 70px;
 }
+.t2s button {
+  width: 80px;
+}
+.t2s button:disabled {
+  background: inherit;
+  cursor: initial;
+}

@@ -88,14 +88,15 @@
         });
         if (index != -1) {
           $$(`#t2s-${e}`).innerHTML = '正在干掉...';
-          axios.get(encodeURI(`t2s?text=${text}`))
+          axios.get(encodeURI(`convert/tw2sp?text=${text}`))
             .then(res => {
               app.buglist[ver][index].title = res.data;
               $$(`#t2s-${e}`).innerHTML = '干掉了！';
+              $$(`#t2s-${e}`).setAttribute('disabled', 'disabled');
             })
             .catch(err => {
               $$(`#t2s-${e}`).innerHTML = '失败了……';
-              console.error(err);
+              setTimeout(() => { $$(`#t2s-${e}`).innerHTML = '再干一次?' }, 1000)
             });
         }
       }

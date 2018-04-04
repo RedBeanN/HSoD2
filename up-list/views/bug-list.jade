@@ -34,7 +34,8 @@ block content
             td.text
               a(:href='"http://event.mihoyo.com/notice/news.php?id=" + row.id', target='_blank')
                 | {{ row.title }}
-            td.t2s(@click='t2s(row.version, row.id, index)', :id='"t2s-" + index') 干！
+            td.t2s
+              button(@click='t2s(row.version, row.id, index)', :id='"t2s-" + index') 干！
             td {{ row.startdate }}
 
   //- script(src='/javascripts/vue.min.js')
