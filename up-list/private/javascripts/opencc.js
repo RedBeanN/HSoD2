@@ -1,10 +1,14 @@
 const http = require('http');
 const qs = require('querystring');
 
-function t2s(text) {
+function opencc(text, conf) {
+  /*
+    text: text to be converted
+    conf: t2s s2t tw2sp ...
+  */
   return new Promise((resolve, reject) => {
     let _data = qs.stringify(Object.assign({
-      config: 'tw2sp.json',
+      config: (conf || 't2s') + '.json',
       precise: 0
     }, { text }));
     let options = {
@@ -33,4 +37,4 @@ function t2s(text) {
   });
 }
 
-module.exports = t2s;
+module.exports = opencc;

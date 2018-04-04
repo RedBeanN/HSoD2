@@ -3,7 +3,7 @@ var router = express.Router();
 var path = require('path');
 var fs = require('fs');
 
-const t2s = require('../private/javascripts/t2s');
+const opencc = require('../private/javascripts/opencc');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -22,17 +22,14 @@ router.get('/stigmata', function (req, res, next) {
   res.render('stigmata', { title: '圣痕模拟器 - 搞事学园' });
 });
 
-router.get('/t2s', (req, res, next) => {
+router.get('/convert/:conf', (req, res, next) => {
+  let conf = req.params.conf;
   if (!req.query.text) res.send('?');
   else {
     let text = req.query.text;
-    t2s(text)
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.send(err);
-      });
+    opencc(text, conf)
+      .then(data => { res.send(data) })
+      .catch(err => { res.send(err) });
   }
 });
 
