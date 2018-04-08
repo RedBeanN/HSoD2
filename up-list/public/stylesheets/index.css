@@ -173,3 +173,12 @@ iframe {
   float: right;
   margin-right: 10px;
 }
+
+#footer {
+  position: absolute;
+  width: 400px;
+  left: 50%;
+  margin-left: -200px;
+  text-align: center;
+  bottom: 0;
+}
