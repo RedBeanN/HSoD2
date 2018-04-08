@@ -11,7 +11,7 @@ const clist = ['5.0', '5.1'];
 const onehour = 60 * 60 * 1000;
 
 getAll(vlist);
-setInterval(getAll(clist), onehour);
+setInterval(() => { getAll(clist) }, onehour);
 
 function getAll (vlist) {
   fs.readFile(path.join(__dirname, 'statics/data.json'), (err, _data) => {
