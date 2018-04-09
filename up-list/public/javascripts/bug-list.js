@@ -24,6 +24,7 @@
         '不处理': { color: 'red' },
       },
       versionFilter: '',
+      selectedVersion: '',
       buglist: {}
     },
     computed: {
@@ -33,14 +34,13 @@
       },
       rows() {
         let rows = [];
-        if (this.versionFilter && this.buglist[this.versionFilter]) {
-          rows.push(...this.buglist[this.versionFilter]);
-        } else {
+        if (this.versionFilter) return this.buglist;
+        else {
           for (let ver in this.buglist) {
             rows.push(...this.buglist[ver]);
           }
+          return rows.reverse();
         }
-        return rows.reverse();
       },
       filterRows() {
         let fr = [];
@@ -59,10 +59,15 @@
     methods: {
       sortTable() {
         this.sortedFlag = !this.sortedFlag;
-        let sortedFlag = this.sortedFlag;
-        for (let rows in this.buglist) {
-          this.buglist[rows].sort((pre, now) => {
-            return pre.id - now.id;
+        if (!this.versionFilter) {
+          for (let rows in this.buglist) {
+            this.buglist[rows].sort((pre, now) => {
+              return pre.id - now.id;
+            });
+          }
+        } else {
+          this.buglist.sort((pre, now) => {
+            return now.id - pre.id;
           });
         }
       },
@@ -78,39 +83,50 @@
         $$('#filter-input').classList.add('hide');
         $$('#equip-filter').classList.add('collapse');
       },
-      t2s(ver, id, e) {
-        let text = '', index = -1;
-        this.buglist[ver].forEach((row, _index) => {
-          if (row.id == id) {
-            text = row.title;
-            index = _index;
-          }
-        });
-        if (index != -1) {
-          $$(`#t2s-${e}`).innerHTML = '正在干掉...';
-          axios.get(encodeURI(`convert/tw2sp?text=${text}`))
-            .then(res => {
-              app.buglist[ver][index].title = res.data;
-              $$(`#t2s-${e}`).innerHTML = '干掉了！';
-              $$(`#t2s-${e}`).setAttribute('disabled', 'disabled');
-            })
-            .catch(err => {
-              $$(`#t2s-${e}`).innerHTML = '失败了……';
-              setTimeout(() => { $$(`#t2s-${e}`).innerHTML = '再干一次?' }, 1000)
-            });
-        }
+      getBugList(v) {
+        this.hintText = 'loading...';
+        this.loading = true;
+        axios.get('/buglist/data/' + (v || ''))
+          .then(function (res) {
+            if (v) app.buglist = JSON.parse(JSON.stringify(res.data));
+            else app.buglist = res.data;
+            app.loading = false;
+            app.versionFilter = v;
+            app.selectedVersion = v;
+            app.sortTable();
+          })
+          .catch(function (err) {
+            console.error(err);
+            app.hintText = err;
+          });
+      },
+      t2s(ver, id, index) {
+        let text = $$('#row-' + index).getElementsByClassName('text')[0].innerHTML;
+        $$(`#t2s-${index}`).innerHTML = '正在干掉...';
+        axios.get(encodeURI(`convert/t2s?text=${text}`))
+          .then(res => {
+            // app.buglist[ver][index].title = res.data;
+            $$('#row-' + index).getElementsByClassName('text')[0].innerHTML = res.data;
+            $$(`#t2s-${index}`).innerHTML = '干掉了！';
+            $$(`#t2s-${index}`).setAttribute('disabled', 'disabled');
+          })
+          .catch(err => {
+            $$(`#t2s-${index}`).innerHTML = '失败了……';
+            setTimeout(() => { $$(`#t2s-${index}`).innerHTML = '再干一次?' }, 1000)
+          });
       }
     },
     created: function () {
-      axios.get('/buglist/data')
-        .then(function (res) {
-          app.buglist = res.data;
-          app.loading = false;
-          app.sortTable();
-        })
-        .catch(function (err) {
-          app.hintText = err;
-        });
+      // axios.get('/buglist/data')
+      //   .then(function (res) {
+      //     app.buglist = res.data;
+      //     app.loading = false;
+      //     app.sortTable();
+      //   })
+      //   .catch(function (err) {
+      //     app.hintText = err;
+      //   });
+      this.getBugList('5.1');
     }
   });
 

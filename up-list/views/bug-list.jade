@@ -10,13 +10,11 @@ block content
       input#filter-input.hide(placeholder='搜索关键词',
             @blur='blurSearch', v-model='searchInput.text')
     #main
-      #hint-container(v-if='loading || error')
-        | {{ hintText }}
-      table#main.buglist(v-else)
+      table#main.buglist
         thead
           tr#title
             th
-              select(v-model='versionFilter')
+              select(v-model='selectedVersion', @change='getBugList(selectedVersion)')
                 option(value='') 全部
                 option(v-for='version in versions', :value='version') {{ version }}
             th 编号
@@ -26,7 +24,9 @@ block content
             th.t2s 干掉繁体字
             th 时间
         tbody
-          tr.row(v-for='(row, index) in filterRows')
+          tr#hint-container(v-show='loading || error')
+            td(colspan=7) {{ hintText }}
+          tr.row(v-for='(row, index) in filterRows', v-show='!loading', :id='"row-" + index')
             td {{ row.version }}
             td {{ row.id }}
             td {{ row.type }}
