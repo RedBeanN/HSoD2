@@ -33,12 +33,10 @@
         else return '/images/icons/Material/search_white.png';
       },
       rows() {
-        let rows = [];
         if (this.versionFilter) return this.buglist;
         else {
-          for (let ver in this.buglist) {
-            rows.push(...this.buglist[ver]);
-          }
+          let rows = [];
+          for (let ver in this.buglist) rows.push(...this.buglist[ver]);
           return rows.reverse();
         }
       },
@@ -61,14 +59,10 @@
         this.sortedFlag = !this.sortedFlag;
         if (!this.versionFilter) {
           for (let rows in this.buglist) {
-            this.buglist[rows].sort((pre, now) => {
-              return pre.id - now.id;
-            });
+            this.buglist[rows].sort((pre, now) => pre.id - now.id );
           }
         } else {
-          this.buglist.sort((pre, now) => {
-            return now.id - pre.id;
-          });
+          this.buglist.sort((pre, now) => now.id - pre.id );
         }
       },
       focusSearch() {
@@ -83,11 +77,11 @@
         $$('#filter-input').classList.add('hide');
         $$('#equip-filter').classList.add('collapse');
       },
-      getBugList(v) {
+      getBugList(v = '') {
         this.hintText = 'loading...';
         this.loading = true;
-        axios.get('/buglist/data/' + (v || ''))
-          .then(function (res) {
+        axios.get('/buglist/data/' + v)
+          .then(res => {
             if (v) app.buglist = JSON.parse(JSON.stringify(res.data));
             else app.buglist = res.data;
             app.loading = false;
@@ -95,7 +89,7 @@
             app.selectedVersion = v;
             app.sortTable();
           })
-          .catch(function (err) {
+          .catch(err => {
             console.error(err);
             app.hintText = err;
           });
