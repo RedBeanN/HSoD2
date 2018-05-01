@@ -29,34 +29,33 @@ mixin equip-top
 
 mixin equip-status
   #equip-status
-    #equip-status-left
-      p#equip-status-level
-        | {{ 'LV.' + equip.top.level.value }} 
-        | {{ '最大LV.' + (equip.top.stars.value > 5 ? 99 : 50) }}
-      p#equip-status-love
-        span {{ equip.top.love.name }} 
-        | {{ equip.top.love.value >= (equip.awaken ? 99 : 50) ?
-        | '最高' : (equip.top.love.value || '0') + '/' +
-        | (equip.awaken ? 99 : 50) }}
-      p#equip-status-weight
-        span {{ equip.top.weight.name }} 
-        | {{ equip.top.weight.value }}
-      p#equip-status-adds.buff(v-if='equip.top.adds.value != 0')
-        span {{ equip.top.adds.name }} 
-        | {{ '+' + equip.top.adds.value }}
-    #equip-status-right(v-show='selectedType && (selectedType != "徽章" || (allAdds && addon["移速"]))')
-      p(:class='(selectedType == "徽章" || selectedType == "服装" ? "normal" : "buff")')
-        | {{ selectedType == "徽章" ? "追加属性" : selectedType }}
-      p(v-if='selectedType', v-for='(val, key) in equipType[selectedType]')
-        span(v-if='selectedType == "徽章"') {{ key + ' + ' }}
-        span(v-else) {{ key }} 
+    #equip-status-top
+      #equip-status-type.buff
+        | {{ selectedType }}
+      #equip-status-level
+        img(src='/images/level.png')
+        span#level
+          | {{ +equip.top.level.value + ' / ' + +(equip.top.stars.value > 5 ? 99 : 50) }}
+      #equip-status-weight
+        p 负重
+          span {{ equip.top.weight.value }}
+      #equip-status-love
+        p {{ equip.top.love.name }}
+          span
+          | {{ equip.top.love.value >= (equip.awaken ? 99 : 50) ?
+          | '最高' : (equip.top.love.value || '0') + '/' +
+          | (equip.awaken ? 99 : 50) }}
+    #equip-status-cutoff
+      img(src='/images/status-cutoff.png')
+    #equip-status-bot
+      .equip-status-detail(v-if='selectedType', v-for='(val, key) in equipType[selectedType]')
+        p(v-if='selectedType == "徽章"') {{ key + ' ' }}
+          span.buff +
+        p(v-else) {{ key }} 
         span(v-if='addon[key]', :class='(allAdds ? "buff" : "normal")') {{ computedValue(val, key) }}
         span(v-else-if='key && key != "移速" && key != "攻　速" && key != "射　速"', class='normal') {{ val }}
         span(v-else-if='key && key != "移速"') {{ val + ' / 秒' }}
         span(v-else-if='key') {{ val + '%' }}
-        span(v-if='selectedType == "徽章"') %
-    #equip-awaken-widget(v-if='equip.awaken')
-      img#awaken-image(:src='widgetsImgs["awaken-widget"]')
 
 mixin equip-main
   #equip-main
@@ -77,7 +76,7 @@ mixin equip-main
             span#user-coin {{ user.coin.value | formatNumber }}
             span#user-crystal {{ user.crystal.value | formatNumber }}
       #system-banner
-        img(:src='widgetsImgs["system-bar"]')
+        img(src='/images/system-bar.png')
     #equip-banner
       p
         span#equip-banner-serial 编号 {{ equip.top.serial.value | serialNumber }} 
@@ -90,9 +89,14 @@ mixin equip-main
               :src='starSrc')
     #equip-view
       #equip-view-left
+        #equip-awaken-widget(v-if='equip.awaken')
+          #awaken-scale
+          #awaken-change
+        #equip-lock-widget
+          #lock.is-locked(@click='toggleLock')
         #equip-image-container
           #equip-basic-image
-            img(v-if='!pinImage.exist', :src='widgetsImgs["base-pin"]', :style='imageStyleObject')
+            img(v-if='!pinImage.exist', src='/images/base-pin.png', :style='imageStyleObject')
             img(v-else, :src='pinImage.src', :style='imageStyleObject')
             img#pin-container(:src='pinContainerSrc', v-show='widgets.pinContainer')
         #equip-unique-container
@@ -101,19 +105,16 @@ mixin equip-main
                 :style='(equip.awaken && widgets.awakenImage) ? uniqueBgStyle : {}')
                 | {{ texts.unique }}
         #equip-protect-container
-          img(v-show='widgets.protectButton', :src='widgetsImgs["protect-button"]')
+          img(v-show='widgets.protectButton', src='/images/button.png')
       #equip-view-right
         +equip-status
         #equip-skill
-          .skill(v-for='(skill, index) in equip.skills', :id='"skill-" + index',
-                 :class='Number(skill.break) ? "allow-blue" : "disable-blue"')
+          .skill(v-for='(skill, index) in equip.skills', :id='"skill-" + index')
             .title-line
               img.skill-type-view(v-if='skill.dmgType && skill.dmgType != "none"', :src='dmgTypeSrc(skill.dmgType)')
               span.skill-name.buff(:id='"skill-name-" + index') {{ skill.name | name }}
               span.skill-break(v-if='Number(skill.break)')
-                img(v-for='(k,i) in 10',
-                    :src=`i < skill.break ? widgetsImgs['break-point-full'] :
-                          widgetsImgs['break-point-empty']`)
+                div.break-point(v-for='(k,i) in 10', :class=`i < skill.break ? 'full' : 'empty'`)
             .cutoff-line
             .desc-line
               p.skill-desc(:id='"skill-desc-" + index', v-html='descHTML[index]')
@@ -140,7 +141,8 @@ mixin equip-type
 
 block content
   link(rel="stylesheet", href="/dist/css/animation.min.css")
-  link(rel="stylesheet", href="/dist/css/equip.min.css")
+  //- link(rel="stylesheet", href="/dist/css/equip.min.css")
+  link(rel="stylesheet", href="/stylesheets/equip.css")
   #loading-page
     #loading-ring.loading-rotate
     #loading-hint 初次加载可能需要较长时间 , 请耐心等待...
@@ -163,7 +165,7 @@ block content
           input#unique-text(type='text', v-model='texts.unique', :disabled='!widgets.unique')
           br
           input#show-protect-button(type='checkbox', v-model='widgets.protectButton')
-          label(for="show-protect-button") 显示解除保护按钮
+          label(for="show-protect-button") 显示『强化』按钮
         br
         | 上传装备图片: 
         input#pin-input(type="file", @change='updatePinImage($event)', accept='image/*')
@@ -226,5 +228,10 @@ block content
         h4.readme-title {{ readme.title }}
         pre(v-for='p in readme.para') {{ p }}
 
-  script(src="/dist/js/images.min.js")
+  //- script(src="/dist/js/images.min.js")
   script(src="/dist/js/equip.min.js")
+  //- script(src="/javascripts/icons.min.js")
+  //- script(src="/javascripts/vue.min.js")
+  //- script(src="/javascripts/html2canvas.min.js")
+  //- script(src="/javascripts/readme.min.js")
+  //- script(src="/javascripts/equip.js")

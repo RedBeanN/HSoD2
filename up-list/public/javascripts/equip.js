@@ -1,3 +1,4 @@
+//import('icons.min.js');
 //import('vue.min.js');
 //import('html2canvas.min.js');
 //import('readme.min.js');
@@ -79,7 +80,7 @@ let widgets = {
   unique: true,
 };
 let texts = {
-  unique: '唯一装备 , 带多件无效哟~',
+  unique: '唯一装备 , 装备多件无效哟~',
   tutorial: '用#()标记技能描述中的可突破数值 , 在有突破等级时 , #()内部的数值可以自动变色',
   sizeCtrl: '移动滑块调整图片大小和位置 , 数值范围不足时可以通过右侧输入框手动输入',
   download: '点击 [保存图片] 自动生成并保存做好的图片 , 生成图片需要几秒钟的时间 , 请耐心等待 . (由于 html2canvas 的限制 , 部分控件可能会有绘制错误)',
@@ -136,7 +137,7 @@ let app = new Vue({
       let arr = this.formatDesc;
       let htmlArr = [];
       arr.forEach((desc, index) => {
-        if (this.equip.skills[index].break) {
+        // if (this.equip.skills[index].break) {
           let tmp = "";
           desc.forEach((text, i) => {
             text = text.replace(/[<>&"]/g, function (c) {
@@ -146,7 +147,7 @@ let app = new Vue({
             else tmp += text;
           });
           htmlArr.push(tmp);
-        } else htmlArr.push(desc.join(''));
+        // } else htmlArr.push(desc.join(''));
       });
       return htmlArr;
     },
@@ -194,17 +195,17 @@ let app = new Vue({
     },
     uniqueBgStyle () {
       return {
-        background: `url(${images['unique-background.png']})`,
+        background: `url('/images/unique-background.png')`,
         backgroundSize: '400px'
       }
     },
     pinContainerSrc() {
-      if (this.equip.top.stars.value < 7) return images['pin-container-6s.png'];
-      else return images['pin-container-7s.png'];
+      if (this.equip.top.stars.value < 7) return '/images/pin-container-6s.png';
+      else return '/images/pin-container-7s.png';
     },
     starSrc() {
-      if (!this.useSpecialStar) return images['star-full.png'];
-      else return images['star-full-special.png'];
+      if (!this.useSpecialStar) return '/images/star-full.png';
+      else return '/images/star-full-special.png';
     },
     series () {
       let series = [];
@@ -215,19 +216,6 @@ let app = new Vue({
       }
       return series;
     },
-    widgetsImgs () {
-      return {
-        'awaken-widget': images['awaken-widget.png'],
-        'base-pin': images['base-pin.png'],
-        'break-point-empty': images['break-point-empty.png'],
-        'break-point-full': images['break-point-full.png'],
-        'equip-bar': images['equip-bar.png'],
-        'protect-button': images['protect-button.png'],
-        'status-left': images['status-left.png'],
-        'status-right': images['status-right.png'],
-        'system-bar': images['system-bar.png'],
-      }
-    }
   },
   methods: {
     computedValue: function(val, key) {
@@ -235,7 +223,7 @@ let app = new Vue({
       if (key == '射　速' || key == '攻　速') {
         return (val * (1 + this.allAdds * 0.002)).toFixed(1) + ' / 秒';
       } else if (key == '移速') {
-        return +(this.allAdds * 0.1).toFixed(1);
+        return +(this.allAdds * 0.1).toFixed(1) + '%';
       } else if (typeof val == 'string' && val.indexOf('s') != -1) {
         val = val.substring(0, val.indexOf('s'));
         return +(Math.floor(val * (1 + this.allAdds * rate * 0.01))) + 's';
@@ -282,6 +270,9 @@ let app = new Vue({
     dmgTypeSrc(type) {
       return icons.types[`${type}.png`];
     },
+    toggleLock() {
+      $$('lock').classList.toggle('is-locked');
+    },
   },
   filters: {
     username (val) {
@@ -305,18 +296,6 @@ document.onclick = function () {
   // handle selector display
   app.hideSelector();
 };
-
-$$('equip-banner').style.background = `url(${images['equip-bar.png']}) no-repeat -1px 5px`;
-$$('equip-banner').style.backgroundSize = '1024px 45px';
-
-$$('equip-status-left').style.background = `url(${images['status-left.png']}) no-repeat 4px 7px`;
-$$('equip-status-left').style.backgroundSize = '224px 159px';
-
-$$('equip-status-right').style.background = `url(${images['status-right.png']}) no-repeat 0px 7px`;
-$$('equip-status-right').style.backgroundSize = '161px 160px';
-
-$$('user-banner').style.background = `url(${images['user-bar.png']}) no-repeat`;
-$$('user-banner').style.backgroundSize = '320px 94px';
 
 $$('loading-page').remove();
 $$('app').style.display = 'block';

@@ -143,6 +143,7 @@ input, select {
   color: rgb(114, 114, 114);
   width: 1024px;
   height: 576px;
+  /* background: url('/images/equip-sample.png'); */
   background-size: 1024px 576px;
   font-weight: bold;
   position: relative;
@@ -188,8 +189,8 @@ input, select {
   color: white;
   height: 90px;
   width: 400px;
-  /* background: url('/images/user-bar.png') no-repeat;
-  background-size: 320px 94px; */
+  background: url('/images/user-bar.png') no-repeat;
+  background-size: 320px 94px;
   display: inline-block;
 }
 #user-banner > div {
@@ -217,7 +218,11 @@ input, select {
   width: 140px;
   text-align: center;
 }
-#user-bottom { margin-top: 14px !important; }
+#user-bottom {
+  margin-top: 14px !important;
+  font-size: 13.6px;
+  margin-left: 11px;
+}
 #user-coin {
   margin-left: 19px;
   width: 80px;
@@ -232,13 +237,13 @@ input, select {
 
 #equip-banner {
   height: 50px;
-  /* background: url('/images/equip-bar.png') no-repeat -1px 5px; */
-  /* background-size: 1024px 45px; */
+  background: url('/images/equip-bar.png') no-repeat -1px 5px;
+  background-size: 1024px 45px;
   z-index: 6 !important;
 }
 #equip-banner-serial {
   width: 120px;
-  margin-left: 128px;
+  margin-left: 120px;
   margin-top: -3px;
   color: white;
   font-size: 22px;
@@ -247,7 +252,7 @@ input, select {
   width: 39px;
   height: 39px;
   vertical-align: bottom;
-  margin-left: 21px;
+  margin-left: 28px;
   margin-bottom: -8px;
   margin-top: -10px;
 }
@@ -326,11 +331,9 @@ input, select {
   margin-top: 36px;
 }
 #equip-protect-container img {
-  height: 43px;
-  margin-left: 2px;
-  margin-top: 1px;
-  transform: translate(-50%);
-  filter: drop-shadow(0 0 3px #3472e5);
+  height: 54px;
+  margin-left: -120px;
+  margin-top: -5px;
 }
 
 #equip-view-right {
@@ -341,68 +344,61 @@ input, select {
 }
 #equip-status {
   position: relative;
-  width: 400px;
+  width: 369px;
+  height: 151px;
+  top: 10px;
+  left: 21px;
+  border: 1px solid #3ba7e6;
+  border-radius: 15px;
+  box-shadow: 0 0 5px;
+  font-size: 20.5px;
+  background-color: white;
+}
+#equip-status-top, #equip-status-bot {
+  column-count: 2;
+  padding-top: 8px;
+  width: 379px;
+}
+#equip-status-top {
+  height: 65px;
+}
+#equip-status > div > div {
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+#equip-status-level img {
+  margin-left: -2px;
+  margin-top: 4px;
+}
+#equip-status-level #level {
+  vertical-align: top;
+  margin-left: 6.5px;
+}
+#equip-status-cutoff {
+  transform: scale(.9);
+  padding-left: 5px;
+  height: 2px;
+  margin-top: 4.5px;
+  margin-bottom: -2px;
+}
+#equip-status-cutoff img {
+  position: absolute;
+  height: 2px;
 }
 #equip-status p {
-  margin-bottom: 5px;
-  margin-left: 10px;
-  display: block;
-}
-#equip-status-left {
-  float: left;
-  width: 217px;
-  height: 155px;
-  padding-top: 14px;
-  padding-left: 12.5px;
-  font-size: 18.2px;
-  /* background: url('/images/status-left.png') no-repeat 4px 7px; */
-  /* background-size: 224px 159px; */
-}
-#equip-status-level {
-  margin-top: 6px;
-}
-#equip-status-love {
-  margin-top: 26px;
-  font-size: 19.5px;
+  margin: 0;
 }
 #equip-status span {
-  margin-right: 4px;
+  margin-left: 6px;
 }
-#equip-status-weight {
-  margin-top: -5px;
-  font-size: 19.5px;
-}
-#equip-status-adds {
-  margin-top: -7px;
-  font-size: 21px;
-}
-#equip-status-right {
-  float: right;
-  width: 176px;
-  margin-right: -20px;
-  margin-bottom: -10px;
-  height: 155px;
-  padding-top: 15px;
-  padding-left: 10px;
-  font-size: 20px;
-  /* background: url('/images/status-right.png') no-repeat 0px 7px; */
-  /* background-size: 161px 160px; */
-}
-#equip-status-right p {
-  margin-top: 4px;
-  margin-left: 9px;
-  font-size: 20.7px;
-}
-#equip-status-right p span {
-  margin-right: 7px;
-}
+
 .buff {
   margin-right: 0 !important;
 }
 
 #equip-skill {
   clear: both;
-  padding-top: 11px;
+  padding-top: 27px;
   padding-left: 5px;
   width: 380px;
 }
@@ -439,9 +435,18 @@ input, select {
   margin-top: 3px;
   margin-bottom: -10px;
 }
-.skill-break img {
-  height: 30px;
-  margin-right: 1px;
+.skill-break .break-point {
+  background: url(/images/break-point.png);
+  height: 22px;
+  width: 15px;
+  display: inline-block;
+  transform: scale(.9);
+  margin-top: 2px;
+  margin-right: 2px;
+  margin-left: -3.45px;
+}
+.skill-break .break-point.full {
+  background-position-x: 15.5px;
 }
 .skill-desc {
   font-size: 18.25px;
@@ -451,21 +456,41 @@ input, select {
   width: 345px;
   word-wrap: break-word;
 }
-.allow-blue .blue {
+.blue {
   color: #34a4e5;
 }
 
-#equip-awaken-widget {
-  position: relative;
-  width: 50px;
-  margin-left: -50px;
+#equip-view-left #equip-awaken-widget {
+  position: absolute;
+  margin-left: 96px;
+  margin-top: 29px;
+  transform: scale(.9);
+}
+#equip-awaken-widget div {
+  background-image: url('/images/awaken-ui.png');
+  width: 35px;
+  height: 40px;
+}
+#awaken-scale {
+  background-position-x: 71px;
+}
+#awaken-change {
+  margin-top: 33px;
+}
+
+#equip-view-left #equip-lock-widget {
+  position: absolute;
+  margin-left: 535px;
+  margin-top: 24px;
+  transform: scale(1.2);
+}
+#equip-lock-widget #lock {
+  background-image: url('/images/lock.png');
+  width: 40px;
   height: 50px;
 }
-#awaken-image {
-  vertical-align: top;
-  margin-top: -121px;
-  margin-left: -2px;
-  height: 130px;
+#lock.is-locked {
+  background-position-x: -39px;
 }
 
 #equip-series {
