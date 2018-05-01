@@ -16,6 +16,13 @@ body {
   margin: 0;
 }
 
+#loading-percentage {
+  width: 50px;
+  text-align: center;
+  margin: auto;
+  position: relative;
+  margin-top: -38px;
+}
 #loading-hint {
   display: block;
   margin: auto;
@@ -304,6 +311,9 @@ input, select {
 #equip-image-container img {
   position: absolute;
 }
+#equip-basic-image {
+  margin-left: 7px;
+}
 #pin-container {
   width: 280px;
   height: auto;
@@ -319,7 +329,7 @@ input, select {
   padding-top: 10px;
   text-align: center;
   margin-top: -13px;
-  margin-left: 2px;
+  margin-left: 9px;
   transform: translate(-50%);
   white-space: nowrap;
 }

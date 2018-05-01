@@ -141,10 +141,12 @@ mixin equip-type
 
 block content
   link(rel="stylesheet", href="/dist/css/animation.min.css")
-  //- link(rel="stylesheet", href="/dist/css/equip.min.css")
-  link(rel="stylesheet", href="/stylesheets/equip.css")
+  link(rel="stylesheet", href="/dist/css/equip.min.css" )
+  //- link(rel="stylesheet", href="/stylesheets/equip.css")
+  script(src="/dist/js/loading.min.js")
   #loading-page
     #loading-ring.loading-rotate
+    #loading-percentage 0%
     #loading-hint 初次加载可能需要较长时间 , 请耐心等待...
   #app(style='display: none')
     #left

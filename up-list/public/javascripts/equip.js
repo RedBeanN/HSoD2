@@ -3,7 +3,7 @@
 //import('html2canvas.min.js');
 //import('readme.min.js');
 
-window.onload = () => {
+(() => {
 'use strict';
 
 // presets
@@ -313,4 +313,4 @@ function $$(str) {
   return document.getElementById(str);
 }
 
-};
+})();
