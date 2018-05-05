@@ -360,7 +360,7 @@ input, select {
   left: 21px;
   border: 1px solid #3ba7e6;
   border-radius: 15px;
-  box-shadow: 0 0 5px;
+  box-shadow: 0 0 5px #bbb;
   font-size: 20.5px;
   background-color: white;
 }
@@ -463,7 +463,7 @@ input, select {
   line-height: 22.4px;
   margin-left: 13.6px;
   margin-top: 2px;
-  width: 345px;
+  width: 364px;
   word-wrap: break-word;
 }
 .blue {
@@ -496,7 +496,7 @@ input, select {
 }
 #equip-lock-widget #lock {
   background-image: url('/images/lock.png');
-  width: 40px;
+  width: 38px;
   height: 50px;
 }
 #lock.is-locked {
