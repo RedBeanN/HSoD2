@@ -8,10 +8,10 @@
 
 // presets
 let user = {
-  level:   { name: '等级', value: 380     },
-  name:    { name: '昵称', value: '红豆'  },
-  coin:    { name: '金币', value: 65536   },
-  crystal: { name: '水晶', value: 8088    }
+  level:   { name: '等级', value: 380        },
+  name:    { name: '昵称', value: '搞事学园' },
+  coin:    { name: '金币', value: 65536      },
+  crystal: { name: '水晶', value: 8088       }
 };
 let equip = {
   top: {
