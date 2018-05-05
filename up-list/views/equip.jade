@@ -45,17 +45,19 @@ mixin equip-status
           | {{ equip.top.love.value >= (equip.awaken ? 99 : 50) ?
           | '最高' : (equip.top.love.value || '0') + '/' +
           | (equip.awaken ? 99 : 50) }}
-    #equip-status-cutoff(v-show='selectedType != "徽章" || addon["移速"]')
+    #equip-status-cutoff(v-show='selectedType != "徽章" || allAdds')
       img(src='/images/status-cutoff.png')
     #equip-status-bot
-      .equip-status-detail(v-if='selectedType', v-for='(val, key) in equipType[selectedType]')
-        p(v-if='selectedType == "徽章"', v-show='addon["移速"]') {{ key + ' ' }}
+      .equip-status-detail(v-if='selectedType',
+          v-for='(val, key) in equipType[selectedType]',
+          v-show='selectedType != "徽章" || allAdds')
+        p(v-if='selectedType == "徽章"') {{ key + ' ' }}
           span(:class='(addon[key] ? "buff" : "normal")') +
         p(v-else) {{ key }}
         span(v-if='addon[key]', :class='(allAdds ? "buff" : "normal")') {{ computedValue(val, key) }}
         span(v-else-if='key && key != "移速" && key != "攻　速" && key != "射　速"', class='normal') {{ val }}
         span(v-else-if='key && key != "移速"') {{ val + ' / 秒' }}
-        span(v-else-if='key && addon[key]') {{ val + '%' }}
+        span(v-else-if='key') {{ val + '%' }}
 
 mixin equip-main
   #equip-main
