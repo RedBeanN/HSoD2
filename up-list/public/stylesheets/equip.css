@@ -517,6 +517,7 @@ input, select {
   position: relative;
   margin-bottom: -3px;
   z-index: 8;
+  appearance: menulist;
   -webkit-appearance: menulist;
   -moz-appearance: menulist;
 }

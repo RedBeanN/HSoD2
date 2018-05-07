@@ -200,11 +200,11 @@ block content
         h3 编辑装备技能
         #skill-selector-container
           p#skill-selector-title 选择技能个数
-          input.skill-selector(type="radio", value=0, v-model='skillsLength')
-          label(for="select-skill-1") 0
-          input.skill-selector(type="radio", value=1, v-model='skillsLength')
-          label(for="select-skill-2") 1
-          input.skill-selector(type="radio", value=2, v-model='skillsLength')
+          input.skill-selector#select-skill-0(type="radio", value=0, v-model='skillsLength')
+          label(for="select-skill-0") 0
+          input.skill-selector#select-skill-1(type="radio", value=1, v-model='skillsLength')
+          label(for="select-skill-1") 1
+          input.skill-selector#select-skill-2(type="radio", value=2, v-model='skillsLength')
           label(for="select-skill-2") 2
           p.skill-tutorial
             em {{ texts.tutorial }}
