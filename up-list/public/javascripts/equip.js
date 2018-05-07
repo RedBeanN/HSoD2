@@ -137,17 +137,15 @@ let app = new Vue({
       let arr = this.formatDesc;
       let htmlArr = [];
       arr.forEach((desc, index) => {
-        // if (this.equip.skills[index].break) {
-          let tmp = "";
-          desc.forEach((text, i) => {
-            text = text.replace(/[<>&"]/g, function (c) {
-              return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];
-            });
-            if (i % 2) tmp += `<span class="blue">${text}</span>`;
-            else tmp += text;
+        let tmp = "";
+        desc.forEach((text, i) => {
+          text = text.replace(/[<>&"]/g, function (c) {
+            return {'<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;'}[c];
           });
-          htmlArr.push(tmp);
-        // } else htmlArr.push(desc.join(''));
+          if (i % 2) tmp += `<span class="blue">${text}</span>`;
+          else tmp += text;
+        });
+        htmlArr.push(tmp);
       });
       return htmlArr;
     },
