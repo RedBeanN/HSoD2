@@ -385,6 +385,11 @@ input, select {
   vertical-align: top;
   margin-left: 6.5px;
 }
+#equip-status-level #adds {
+  vertical-align: top;
+  margin-left: 12px;
+  margin-right: -12px;
+}
 #equip-status-cutoff {
   transform: scale(.9);
   padding-left: 5px;
@@ -401,10 +406,6 @@ input, select {
 }
 #equip-status span {
   margin-left: 6px;
-}
-
-.buff {
-  margin-right: 0 !important;
 }
 
 #equip-skill {

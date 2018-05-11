@@ -12,26 +12,22 @@ function opencc(text, conf) {
       precise: 0
     }, { text }));
     let options = {
-      hostname:'opencc.byvoid.com',
-      port:80,
-      path:'/convert',
-      method:'POST',
-      headers:{
-        'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
-        'Content-Length':Buffer.byteLength(_data)
+      hostname: 'opencc.byvoid.com',
+      port: 80,
+      path: '/convert',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Content-Length': Buffer.byteLength(_data)
       }
     };
     let req = http.request(options, function(res) {
-        let data = '';
-        res.setEncoding('utf-8');
-        res.on('data', chunk => { data += chunk; });
-        res.on('end',function(){
-          resolve(data);
-        });
+      let data = '';
+      res.setEncoding('utf-8');
+      res.on('data', chunk => data += chunk );
+      res.on('end', () => resolve(data) );
     });
-    req.on('error',function(err){
-      reject(err);
-    });
+    req.on('error', err => reject(err) );
     req.write(_data);
     req.end();
   });

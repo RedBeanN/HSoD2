@@ -36,6 +36,7 @@ mixin equip-status
         img(src='/images/level.png')
         span#level
           | {{ +equip.top.level.value + ' / ' + +(equip.top.stars.value > 5 ? 99 : 50) }}
+        span#adds.buff(v-show='equip.top.adds.value') + {{ equip.top.adds.value }}
       #equip-status-weight
         p 负重
           span {{ equip.top.weight.value }}
