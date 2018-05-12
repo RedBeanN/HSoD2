@@ -109,6 +109,8 @@ mixin equip-main
         #equip-protect-container
           img(v-show='widgets.protectButton', src='/images/button.png')
       #equip-view-right
+        #watermark
+          | 搞事学园 @ hsod2.hongshn.xyz/equip
         +equip-status
         #equip-skill
           .skill(v-for='(skill, index) in equip.skills', :id='"skill-" + index')

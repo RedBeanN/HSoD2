@@ -677,3 +677,11 @@ input, select {
   font-family: 'Microsoft YaHei', Arial, Helvetica, sans-serif;
   font-size: 18px;
 }
+
+#watermark {
+  position: absolute;
+  transform: rotate(90deg);
+  right: 320px;
+  top: 135px;
+  opacity: .2;
+}
