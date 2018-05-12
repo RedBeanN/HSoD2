@@ -333,10 +333,10 @@ input, select {
   transform: translate(-50%);
   white-space: nowrap;
 }
-/* .awaken-bg {
+.awaken-bg {
   background-image: url('/images/unique-background.png');
   background-size: 400px;
-} */
+}
 #equip-protect-container {
   margin-top: 36px;
 }
@@ -344,6 +344,7 @@ input, select {
   height: 54px;
   margin-left: -120px;
   margin-top: -5px;
+  position: absolute;
 }
 
 #equip-view-right {

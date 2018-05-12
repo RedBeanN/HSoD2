@@ -104,8 +104,7 @@ mixin equip-main
             img#pin-container(:src='pinContainerSrc', v-show='widgets.pinContainer')
         #equip-unique-container
           p.buff(v-show='widgets.unique',
-                :class='(equip.awaken && widgets.awakenImage) ? "awaken-bg" : ""',
-                :style='(equip.awaken && widgets.awakenImage) ? uniqueBgStyle : {}')
+                :class='(equip.awaken && widgets.awakenImage) ? "awaken-bg" : ""')
                 | {{ texts.unique }}
         #equip-protect-container
           img(v-show='widgets.protectButton', src='/images/button.png')

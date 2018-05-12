@@ -188,12 +188,6 @@ let app = new Vue({
         marginTop: this.imageStyle.top - this.imageStyle.height * 0.5 + 'px'
       };
     },
-    uniqueBgStyle () {
-      return {
-        background: `url('/images/unique-background.png')`,
-        backgroundSize: '400px'
-      }
-    },
     pinContainerSrc() {
       if (this.equip.top.stars.value < 7) return '/images/pin-container-6s.png';
       else return '/images/pin-container-7s.png';
