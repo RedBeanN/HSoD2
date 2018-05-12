@@ -158,7 +158,7 @@ block content
         h3 编辑角色信息
         p(v-for='item in user')
           span {{ item.name }}
-          input(v-model='item.value', :type='item.name == "昵称" ? "text" : "number"', :disabled='item.name == "昵称"')
+          input(v-model='item.value', :type='item.name == "昵称" ? "text" : "number"')
       #upload-image
         h3 编辑装备图片
         p#pin-container-switch
