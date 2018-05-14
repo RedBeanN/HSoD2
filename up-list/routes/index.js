@@ -33,4 +33,8 @@ router.get('/convert/:conf', (req, res, next) => {
   }
 });
 
+router.get('/lotting', function (req, res, next) {
+  res.render('lotting', { title: '随机抽签 - 搞事学园' });
+});
+
 module.exports = router;

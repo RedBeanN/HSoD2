@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href="dist/css/lotting.min.css")
+  #app
+    p 在下面输入抽签参加者 , 以半角逗号或换行分隔
+    p 懒得写样式 , 嫌长得丑有本事你把我打死
+    textarea#pool-input(name="pool", v-model='input')
+    button#submit(@click='roll') 抽签
+    #result
+      p 点击按钮开始抽签
+      p 抽签结果 : {{ result }}
+    #random-number
+      p 只想要一个随机数 ?
+        span
+          input#min(type="number", name="min", v-model.number='randomMin')
+          | - 
+          input#max(type="number", name="max", v-model.number='randomMax')
+        button(@click='randomNumber') 按一下这个
+      p 结果 : {{ randomResult }}
+  //- script(src="javascripts/vue.min.js")
+  script(src="dist/js/lotting.min.js")
