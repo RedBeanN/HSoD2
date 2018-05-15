@@ -493,6 +493,7 @@ input, select {
 
 #equip-view-left #equip-lock-widget {
   position: absolute;
+  z-index: 16;
   margin-left: 535px;
   margin-top: 24px;
   transform: scale(1.2);
