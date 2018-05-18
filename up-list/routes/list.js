@@ -38,7 +38,7 @@ router.get('/auto', function(req, res, next) {
 
 router.get('/auto/:pool', function(req, res, next) {
   let path_ = path.join(__dirname, '../../uplist-auto/rule-data/');
-  let data = fs.readFileSync(`${path_ + req.params.pool}.json`);
+  let data = fs.readFileSync(`${path_ + req.params.pool}.json`, 'utf-8');
   res.send(JSON.parse(data));
 });
 
