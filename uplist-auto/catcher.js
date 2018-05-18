@@ -119,17 +119,17 @@ function parseUps(page, success, fail) {
 main(data => {
   if (data.constructor === Array) {
     // console.log('装备:', data);
-    var equips = fs.readFileSync('./equips.json');
+    var equips = fs.readFileSync('./equips.json', 'utf-8');
     equips = JSON.parse(equips);
     var date = data[data.length - 1];
     data.length = data.length - 1;
     if (!equips[date]) {
       equips[date] = data;
-      fs.writeFileSync('./equips.json', JSON.stringify(equips, null, 2));
+      fs.writeFileSync('./equips.json', JSON.stringify(equips, null, 2), 'utf-8');
     }
   } else {
     // console.log('使魔:', data);
-    var pets = fs.readFileSync('./pets.json');
+    var pets = fs.readFileSync('./pets.json', 'utf-8');
     pets = JSON.parse(pets);
     if (!pets[data['活动时间']]) {
       pets[data['活动时间']] = {};
@@ -137,7 +137,7 @@ main(data => {
         if (prop != '活动时间') pets[data['活动时间']][prop] = data[prop];
       }
       // console.log(JSON.stringify(pets));
-      fs.writeFileSync('./pets.json', JSON.stringify(pets, null, 2));
+      fs.writeFileSync('./pets.json', JSON.stringify(pets, null, 2), 'utf-8');
     }
   }
 });
