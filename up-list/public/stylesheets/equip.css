@@ -449,7 +449,7 @@ input, select {
   margin-bottom: -10px;
 }
 .skill-break .break-point {
-  background: url(/images/break-point.png);
+  background: url('/images/break-point.png');
   height: 22px;
   width: 15px;
   display: inline-block;
