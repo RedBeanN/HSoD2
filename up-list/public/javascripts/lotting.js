@@ -18,7 +18,7 @@
     methods: {
       roll () {
         if (!this.inputArray.length) return;
-        this.result = this.inputArray[getRandomNumber(0, this.inputArray.length)];
+        this.result = this.inputArray[getRandomNumber(0, this.inputArray.length - 1)];
       },
       randomNumber () {
         this.randomResult = getRandomNumber(this.randomMin, this.randomMax);
