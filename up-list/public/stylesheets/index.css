@@ -167,11 +167,16 @@ iframe {
   margin-bottom: 10px;
 }
 #ad p q {
-  margin-left: 20px;
+  margin-left: 5px;
+  width: 150px;
+  display: inline-block;
 }
 #ad p span.from {
   float: right;
   margin-right: 10px;
+}
+#ad img {
+  width: 160px;
 }
 
 #footer {
