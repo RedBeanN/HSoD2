@@ -5,47 +5,12 @@
 		"delisha.2048/texture_00.png"
 	],
 	"motions":{
-		"shake":[
-			{"file":"motions/1.mtn","sound":"sound/theresa_live2d_001.wav","text":155060,"sound_delay":-2}
-		],
-		"flick_head":[
-			{"file":"motions/2.mtn","sound":"sound/theresa_live2d_002.wav","text":155061,"sound_delay":-2}
-		],
-		"tap_face":[
-			{"file":"motions/2.mtn","sound":"sound/theresa_live2d_002.wav","text":155061,"sound_delay":-2}
-		],
-		"tap_breast":[
-			{"file":"motions/4.mtn","sound":"sound/theresa_live2d_004.wav","text":155063,"sound_delay":-2}
-		],
-		"tap_belly":[
-			{"file":"motions/4.mtn","sound":"sound/theresa_live2d_004.wav","text":155063,"sound_delay":-2}
-		],
-		"tap_leg":[
-			{"file":"motions/4.mtn","sound":"sound/theresa_live2d_004.wav","text":155063,"sound_delay":-2}
-		],
-		"mail":[
-			{"file":"motions/idle.mtn"}
-		],
-		"morning":[
-			{"file":"motions/idle.mtn"}
-		],
 		"idle":[
+			{"file":"motions/1.mtn","sound":"sound/theresa_live2d_001.wav","text":155068,"sound_delay":-2},
+			{"file":"motions/2.mtn","sound":"sound/theresa_live2d_002.wav","text":155068,"sound_delay":-2},
+			{"file":"motions/4.mtn","sound":"sound/theresa_live2d_004.wav","text":155068,"sound_delay":-2},
 			{"file":"motions/9.mtn","sound":"sound/theresa_live2d_009.wav","text":155068,"sound_delay":-2},
-			{"file":"motions/idle.mtn"}
-		],
-		"activity":[
-			{"file":"motions/9.mtn","sound":"sound/theresa_live2d_009.wav","text":155068,"sound_delay":-2}
-		],
-		"born":[
-			{"file":"motions/15.mtn","sound":"sound/theresa_live2d_015.wav","text":155074,"sound_delay":-2}
-		],
-		"friend":[
-			{"file":"motions/idle.mtn"}
-		],
-		"afternoon":[
-			{"file":"motions/idle.mtn"}
-		],
-		"evening":[
+			{"file":"motions/15.mtn","sound":"sound/theresa_live2d_0015.wav","text":155068,"sound_delay":-2},
 			{"file":"motions/idle.mtn"}
 		]
 	},

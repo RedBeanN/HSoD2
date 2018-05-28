@@ -36,8 +36,8 @@ function initTips(){
             });
             $.each(result.click, function (index, tips){
                 $(tips.selector).click(function (){
-                    var text = tips.text;
-                    if(Array.isArray(tips.text)) text = tips.text[Math.floor(Math.random() * tips.text.length + 1)-1];
+                    var text = tips.text[chara];
+                    if(Array.isArray(tips.text[chara])) text = tips.text[chara][Math.floor(Math.random() * tips.text[chara].length + 1)-1];
                     text = text.renderTip({text: $(this).text()});
                     showMessage(text, 3000);
                 });
