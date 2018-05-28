@@ -70,6 +70,27 @@ block content
           br
           q 群聊号码: 638285670
         img(src='images/QRCode.jpg')
+  link(rel="stylesheet", href="/live2d/css/live2d.css")
+  #landlord
+    .message(style="opacity: 0;")
+    canvas#live2d.live2d(width='280', height='450')
+    #mute-button 取消静音
+  script(type="text/javascript").
+    var message_Path = '/live2d/';
+  script(type="text/javascript", src="/live2d/js/jquery.min.js")
+  script(type="text/javascript", src="/live2d/js/live2d.js")
+  script(type="text/javascript", src="/live2d/js/message.js")
+  script(type="text/javascript").
+    window.onload = loadlive2d("live2d", "/live2d/model/seele/model.json");
+    $('#mute-button').click(function () {
+      if ($(this).text() === '取消静音') {
+        $(this).text('静音');
+        window.myMute = true;
+      } else {
+        $(this).text('取消静音');
+        window.myMute = false;
+      }
+    });
   #footer
     p Copyright © 2018 搞事学园 
       a(href='http://www.miitbeian.gov.cn', target='_blank') 粤ICP备18035925号

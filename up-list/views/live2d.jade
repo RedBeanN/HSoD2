@@ -1,0 +1,34 @@
+html
+  head
+    title Live2D
+  //- body(onload='sampleApp1()')
+  body
+    link(rel="stylesheet", href="/live2d/css/live2d.css")
+    #landlord
+      //- .message(style="opacity: 0;")
+      canvas#live2d.live2d(width='280', height='450')
+      //- .hide-button HIDE
+    script(type="text/javascript").
+      var message_Path = '/live2d/';
+      var home_Path = 'https://haremu.com/';
+    script(type="text/javascript", src="/live2d/js/jquery.min.js")
+    script(type="text/javascript", src="/live2d/js/live2d.js")
+    //- script(type="text/javascript", src="/live2d/js/message.js")
+    script(type="text/javascript").
+        loadlive2d("live2d", "/live2d/model/xier/model.json")
+    //- p
+    //-   button#btnChange.active change
+    //- did
+    //-   canvas#glcanvas
+    //- #myconsole
+
+    //- script(src="/live2d/lib/live2d.min.js")
+    //- script(src="/live2d/framework/Live2DFramework.js")
+
+    //- script(src="/live2d/src/utils/MatrixStack.js")
+    //- script(src="/live2d/src/utils/ModelSettingJson.js")
+    //- script(src="/live2d/src/PlatformManager.js")
+    //- script(src="/live2d/src/LAppDefine.js")
+    //- script(src="/live2d/src/LAppModel.js")
+    //- script(src="/live2d/src/LAppLive2DManager.js")
+    //- script(src="/live2d/src/SampleApp1.js")

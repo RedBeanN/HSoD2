@@ -1,0 +1,28 @@
+{
+  "name": "xier",
+  "id": "xier",
+  "encrypt": "false",
+  "version": "1.0",
+  "list": [
+    {
+      "id": "expressions",
+      "character": "expressions",
+      "costume": []
+    },
+    {
+      "id": "motions",
+      "character": "motions",
+      "costume": []
+    },
+    {
+      "id": "sound",
+      "character": "sound",
+      "costume": []
+    },
+    {
+      "id": "xier",
+      "character": "xier",
+      "costume": []
+    }
+  ]
+}

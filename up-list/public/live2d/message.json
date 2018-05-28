@@ -1,0 +1,24 @@
+{
+    "mouseover": [
+        {
+            "selector": "#link-container a",
+            "text": ["要看看 {text} 么？"]
+        },
+        {
+            "selector": ".searchbox",
+            "text": ["在找什么东西呢，需要帮忙吗？"]
+        }
+    ],
+    "click": [
+        {
+            "selector": "#landlord #live2d",
+            "text": [
+                "想要把喜欢的东西吃掉的心情……这就是恋爱吗 ?",
+                "战斗要开始了 , 希儿也来帮忙吧!",
+                "(蹭蹭) 不错的味道呢 !",
+                "呐 , 能为了我去死吗 ?",
+                "呜哇哇 ~ 吓了一跳呢 !"
+            ]
+        }
+    ]
+}

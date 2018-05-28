@@ -1,0 +1,52 @@
+{
+	"version":"Live2D Model Setting",
+	"model":"model.moc",
+	"textures":[
+		"seele.2048/texture_00.png"
+	],
+	"motions":{
+		"idle":[
+			{"file":"motions/idle.mtn"},
+			{"file":"motions/001.mtn","sound":"sound/vo_zere_partner_010_jp.wav","text":155030,"sound_delay":-5},
+			{"file":"motions/002.mtn","sound":"sound/vo_zere_partner_012_jp.wav","text":155032,"sound_delay":-2},
+			{"file":"motions/003.mtn","sound":"sound/vo_zere_partner_012_jp.wav","text":155032,"sound_delay":-2},
+			{"file":"motions/007.mtn","sound":"sound/vo_zere_partner_008_jp.wav","text":155028,"sound_delay":-2},
+			{"file":"motions/008.mtn","sound":"sound/vo_zere_partner_019_jp.wav","text":155039,"sound_delay":-2},
+			{"file":"motions/010.mtn","sound":"sound/vo_zere_partner_001_jp.wav","text":155021,"sound_delay":-2},
+			{"file":"motions/012.mtn","sound":"sound/vo_zere_partner_003_jp.wav","text":155023,"sound_delay":-4},
+			{"file":"motions/014.mtn","sound":"sound/vo_zere_partner_002_jp.wav","text":155022,"sound_delay":-2},
+			{"file":"motions/019.mtn","sound":"sound/vo_zere_partner_010_jp.wav","text":155030,"sound_delay":-5}
+		]
+	},
+	"physics":"physics.json",
+	"name":"seele",
+	"layout":
+	{
+		"image_height": 920,
+		"image_center_y": 0.45,
+		"head_center_y": 0.25,
+		"time_to_max_speed": 0.08,
+		"face_max_angle": 20
+	},
+	"hit_areas":
+	[
+		{"name":"head", "id":"D_CORE_HEAD"},
+		{"name":"face", "id":"D_CORE_FACE"},
+		{"name":"breast", "id":"D_CORE_BREAST"},
+		{"name":"belly", "id":"D_CORE_BELLY"},
+		{"name":"leg", "id":"D_CORE_LEG"}
+	],
+	"expressions":
+	[
+	 {"name":"f01","file":"expressions/f01.exp.json"},
+	 {"name":"f02","file":"expressions/f02.exp.json"},
+	 {"name":"f03","file":"expressions/f03.exp.json"},
+	 {"name":"f04","file":"expressions/f05.exp.json"},
+	 {"name":"f05","file":"expressions/f06.exp.json"},
+	 {"name":"f06","file":"expressions/f07.exp.json"}
+	],
+	"motion_settings":
+	{
+		"idle":{"cd":25}
+	}
+}
