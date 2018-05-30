@@ -3382,11 +3382,11 @@
           default:
             alert("profile _$6 _$Ui : " + t)
         }
-        arguments.length < 2 && (i = !0), i && console.log("profile : " + t.PROFILE_NAME);
-        for (var e in t) at[e] = t[e], i && console.log("  [" + e + "] = " + t[e])
+        // arguments.length < 2 && (i = !0), i && console.log("profile : " + t.PROFILE_NAME);
+        // for (var e in t) at[e] = t[e], i && console.log("  [" + e + "] = " + t[e])
       }, at.init = function () {
         if (at._$6b) {
-          console.log("Live2D %s", at._$2s), at._$6b = !1;
+          // console.log("Live2D %s", at._$2s), at._$6b = !1;
           !0, at.initProfile()
         }
       }, at.getVersionStr = function () {

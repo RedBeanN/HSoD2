@@ -26,7 +26,7 @@ function initTips(){
         url: `${message_Path}message.json`,
         dataType: "json",
         success: function (result){
-            console.log(result);
+            // console.log(result);
             window.texts = result.click[0].text[chara]
             $.each(result.mouseover, function (index, tips){
                 $(tips.selector).mouseover(function (){
