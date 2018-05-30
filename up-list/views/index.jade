@@ -76,12 +76,12 @@ block content
     canvas#live2d.live2d(width='280', height='450')
     #mute-button 取消静音
   script(type="text/javascript").
-    var message_Path = '/live2d/';
+    let message_Path = '/live2d/';
+    let chara = ['seele', 'thresa'][Math.floor(Math.random() + 0.5)];
   script(type="text/javascript", src="/live2d/js/jquery.min.js")
   script(type="text/javascript", src="/live2d/js/message.js")
   script(type="text/javascript", src="/live2d/js/live2d.js")
   script(type="text/javascript").
-    let chara = ['seele', 'thresa'][Math.floor(Math.random() + 0.5)];
     window.onload = loadlive2d("live2d", `/live2d/model/${chara}/model.json`);
     $('#mute-button').click(function () {
       if ($(this).text() === '取消静音') {
