@@ -7,15 +7,15 @@
 	"motions":{
 		"idle":[
 			{"file":"motions/idle.mtn"},
-			{"file":"motions/001.mtn","sound":"sound/vo_zere_partner_001_jp.wav","text":155030,"sound_delay":-5},
-			{"file":"motions/002.mtn","sound":"sound/vo_zere_partner_002_jp.wav","text":155032,"sound_delay":-2},
-			{"file":"motions/003.mtn","sound":"sound/vo_zere_partner_003_jp.wav","text":155032,"sound_delay":-2},
-			{"file":"motions/007.mtn","sound":"sound/vo_zere_partner_007_jp.wav","text":155028,"sound_delay":-2},
-			{"file":"motions/008.mtn","sound":"sound/vo_zere_partner_008_jp.wav","text":155039,"sound_delay":-2},
-			{"file":"motions/010.mtn","sound":"sound/vo_zere_partner_010_jp.wav","text":155021,"sound_delay":-2},
-			{"file":"motions/012.mtn","sound":"sound/vo_zere_partner_012_jp.wav","text":155023,"sound_delay":-4},
-			{"file":"motions/014.mtn","sound":"sound/vo_zere_partner_014_jp.wav","text":155022,"sound_delay":-2},
-			{"file":"motions/019.mtn","sound":"sound/vo_zere_partner_019_jp.wav","text":155030,"sound_delay":-5}
+			{"file":"motions/001.mtn","sound":"sound/vo_zere_partner_001_jp.wav","text":4,"sound_delay":-5},
+			{"file":"motions/002.mtn","sound":"sound/vo_zere_partner_002_jp.wav","text":2,"sound_delay":-2},
+			{"file":"motions/003.mtn","sound":"sound/vo_zere_partner_003_jp.wav","text":8,"sound_delay":-2},
+			{"file":"motions/007.mtn","sound":"sound/vo_zere_partner_007_jp.wav","text":5,"sound_delay":-2},
+			{"file":"motions/008.mtn","sound":"sound/vo_zere_partner_008_jp.wav","text":7,"sound_delay":-2},
+			{"file":"motions/010.mtn","sound":"sound/vo_zere_partner_010_jp.wav","text":0,"sound_delay":-2},
+			{"file":"motions/012.mtn","sound":"sound/vo_zere_partner_012_jp.wav","text":1,"sound_delay":-4},
+			{"file":"motions/014.mtn","sound":"sound/vo_zere_partner_014_jp.wav","text":3,"sound_delay":-2},
+			{"file":"motions/019.mtn","sound":"sound/vo_zere_partner_019_jp.wav","text":6,"sound_delay":-5}
 		]
 	},
 	"physics":"physics.json",
