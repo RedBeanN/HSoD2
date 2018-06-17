@@ -13,16 +13,13 @@
     el: '#app',
     data: {
       loading: true, error: false, versions,
-      hintText: 'loading...',
-      searchInput: {
-        isFocus: false,
-        text: ''
-      },
+      hintText: '加载中...',
+      searchInput: { isFocus: false, text: '' },
       statusStyle: {
         '未处理': { color: '#1E40FE' },
         '已处理': { color: '#46CB47' },
         '进行中': { color: '#B212CE' },
-        '不处理': { color: 'red' },
+        '不处理': { color: 'red'     },
       },
       versionFilter: '',
       selectedVersion: '',
@@ -31,28 +28,26 @@
     computed: {
       searchIcon() {
         if (!this.searchInput.isFocus) return '/images/icons/Material/search_black.png';
-        else return '/images/icons/Material/search_white.png';
+        return '/images/icons/Material/search_white.png';
       },
       rows() {
         if (this.versionFilter) return this.buglist;
-        else {
-          let rows = [];
-          for (let ver in this.buglist) rows.push(...this.buglist[ver]);
-          return rows.reverse();
-        }
+        let rows = [];
+        for (let ver in this.buglist) rows.push(...this.buglist[ver]);
+        return rows.reverse();
       },
       filterRows() {
-        let fr = [];
         let text = this.searchInput.text;
-        this.rows.forEach(row => {
+        if (text === '') return this.rows;
+        return this.rows.filter(row => {
           for (let i in row) {
-            if (row[i].indexOf(text) != -1) {
-              fr.push(row);
-              break;
+            if (row[i].indexOf(text) !== -1) {
+              return true;
             }
           }
+          return false;
         });
-        return fr;
+        // return fr;
       },
     },
     methods: {
@@ -79,7 +74,7 @@
         $$('#equip-filter').classList.add('collapse');
       },
       getBugList(v = '') {
-        this.hintText = 'loading...';
+        this.hintText = '加载中...';
         this.loading = true;
         axios.get('/buglist/data/' + v)
           .then(res => {
@@ -95,32 +90,30 @@
             app.hintText = err;
           });
       },
-      t2s(ver, id, index) {
-        let text = $$('#row-' + index).getElementsByClassName('text')[0].innerHTML;
-        $$(`#t2s-${index}`).innerHTML = '正在干掉...';
-        axios.get(encodeURI(`convert/t2s?text=${text}`))
-          .then(res => {
-            // app.buglist[ver][index].title = res.data;
-            $$('#row-' + index).getElementsByClassName('text')[0].innerHTML = res.data;
-            $$(`#t2s-${index}`).innerHTML = '干掉了！';
-            $$(`#t2s-${index}`).setAttribute('disabled', 'disabled');
-          })
-          .catch(err => {
-            $$(`#t2s-${index}`).innerHTML = '失败了……';
-            setTimeout(() => { $$(`#t2s-${index}`).innerHTML = '再干一次?' }, 1000)
-          });
+      t2s(e) {
+        /**
+         *  convert Tradition Chinese to Simplified Chinise
+         *  using OpenCC
+         *  API: /convert/tw2sp?text=
+         */
+        if (e.target.tagName.toLowerCase() === 'button') {
+          let index = e.target.getAttribute('index');
+          let text = $$('#row-' + index).getElementsByClassName('text')[0].innerHTML;
+          e.target.innerHTML = '正在干掉...';
+          axios.get(encodeURI(`convert/tw2sp?text=${text}`))
+            .then(res => {
+              $$('#row-' + index).getElementsByClassName('text')[0].innerHTML = res.data;
+              e.target.innerHTML = '干掉了！';
+              e.target.setAttribute('disabled', 'disabled');
+            })
+            .catch(() => {
+              e.target.innerHTML = '失败了……';
+              setTimeout(() => { e.target.innerHTML = '再干一次?' }, 1000)
+            });
+        }
       }
     },
     created: function () {
-      // axios.get('/buglist/data')
-      //   .then(function (res) {
-      //     app.buglist = res.data;
-      //     app.loading = false;
-      //     app.sortTable();
-      //   })
-      //   .catch(function (err) {
-      //     app.hintText = err;
-      //   });
       this.getBugList(versions[0]);
     }
   });
