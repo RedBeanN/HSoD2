@@ -4,7 +4,7 @@ var updater = require('./javascript/updater');
 
 console.log('[Local Process] Update start.');
 
-updater.updateImg(2500, function(ctr, data) {
+updater.updateImg(3000, function(ctr, data) {
   console.log('[Local Process] Update completed.');
   console.log('[ Saved: ' + ctr[0] +
         ' ]    [ Existed: ' + ctr[1] +
