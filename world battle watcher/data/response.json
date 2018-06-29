@@ -1,0 +1,65 @@
+{
+  "code": 200,
+  "data": {
+    "top_data": [{
+      "id": 1,
+      "score": 339
+    }, {
+      "id": 2,
+      "score": 0
+    }, {
+      "id": 3,
+      "score": 0
+    }, {
+      "id": 4,
+      "score": 0
+    }, {
+      "id": 5,
+      "score": 0
+    }, {
+      "id": 6,
+      "score": 0
+    }],
+    "round_data": {
+      "details": [{
+        "faction_data": [],
+        "round": 1,
+        "status": 2
+      }, {
+        "faction_data": [{
+          "id": 1,
+          "score": 295
+        }, {
+          "id": 2,
+          "score": 195
+        }, {
+          "id": 3,
+          "score": 285
+        }, {
+          "id": 5,
+          "score": 135
+        }, {
+          "id": 6,
+          "score": 210
+        }],
+        "round": 2,
+        "status": 1
+      }],
+      "current_round": 2,
+      "current_round_status": 1
+    },
+    "user": {
+      "first_faction": "2",
+      "uid": "50070535",
+      "region": "1",
+      "war_id": "3902",
+      "nickname": "官测 红豆",
+      "faction": "2",
+      "rank": "312",
+      "point": "0",
+      "rank_point_time": "1529208000",
+      "status": 2
+    }
+  },
+  "msg": "获取成功"
+}
