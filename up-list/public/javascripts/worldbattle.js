@@ -79,7 +79,7 @@ let app = new Vue({
       let leftMargin = this.charts.leftMargin;
       let rightMargin = this.charts.rightMargin;
       let marginDelta = this.charts.marginDelta;
-      axios.get('/worldbattle/data').then(res => {
+      axios.get('/worldbattle/20181/data').then(res => {
         let data = res.data;
         parseMainData(main, data);
         parseScores(scores, data);
