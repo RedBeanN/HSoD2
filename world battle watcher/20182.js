@@ -15,23 +15,16 @@ async function getData (url, params) {
 
 async function getAllData (arr) {
   return new Promise(resolve => {
-    let a = [];
+    const a = [];
     const promises = arr.map(async data => await getData(baseUrl, data));
-    promises.forEach(p => {
-      p.then(res => {
-        console.log(res.code);
-        a.push(JSON.stringify(res));
-      });
-    });
-    Promise.all(promises).then(() => {
-      resolve(a);
-    });
+    promises.forEach(p => p.then(res => a.push(JSON.stringify(res))));
+    Promise.all(promises).then(() => resolve(a));
   });
 }
 
 async function getDataArray () {
   const data = require('./20182/urldata.json');
-  let a = await getAllData(data);
+  const a = await getAllData(data);
   console.log(a[0] === a[1]);
 }
 
