@@ -24,14 +24,27 @@ function getFormatedDate () {
   return s;
 }
 
+function parseData (data) {
+  let top = [], round = [];
+  let {top_data, round_data} = data;
+  if (!top_data || !round_data) console.error('connot find data');
+  let current = round_data.current_round - 1;
+  top_data.forEach(item => top[item.id - 1] = item.score);
+  let roundData = round_data.details[current];
+  if (roundData.round - 1 !== current) console.error('error round');
+  roundData.faction_data.forEach(item => round[item.id - 1] = item.score);
+  return {top, round};
+}
+
 function watcher () {
   getData().then(data => {
     let _data = {
       time: getFormatedDate(),
-      data: data.data
+      data: parseData(data.data)
     };
     json.push(_data);
-    fs.writeFileSync(path.resolve(__dirname,'./data.json'), JSON.stringify(json, null, 2))
+    fs.writeFileSync(path.resolve(__dirname,'./data.json'), JSON.stringify(json))
+    // console.log(JSON.stringify(_data, null ,2));
   });
 }
 
