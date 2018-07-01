@@ -1,8 +1,9 @@
-const axios = require('axios');
-const fs = require('fs');
-const path = require('path');
-const json = require('./data.json');
-const raw = require('./raw.json');
+const axios = require('axios'),
+      fs = require('fs'),
+      path = require('path');
+
+const json = require('./data.json'),
+      raw = require('./raw.json');
 
 const baseUrl = 'http://event.mihoyo.com/activity_api/crossfaction/status';
 
@@ -14,8 +15,8 @@ async function getData (url = baseUrl) {
   });
 }
 
+function format (n) { return n < 10 ? '0' + n : n.toString() }
 function getFormatedDate () {
-  function format(n) { return n < 10 ? '0' + n : n.toString() }
   let date = new Date();
   let s = format(date.getFullYear()) + '-' +
           format(date.getMonth() + 1) + '-' +
@@ -26,7 +27,7 @@ function getFormatedDate () {
 }
 
 function parseData (data) {
-  let top = [], round = [];
+  const top = [], round = [];
   let { top_data, round_data } = data;
   if (!top_data || !round_data) console.error('connot find data');
 
@@ -34,37 +35,36 @@ function parseData (data) {
   let roundData = round_data.details[current];
   if (roundData.round - 1 !== current) console.error('error round');
 
-  top_data.forEach(item => top[item.id - 1] = item.score);
-  roundData.faction_data.forEach(item => {
-    return round[item.id - 1] = item.score
-  });
+  top_data.forEach(i => top[i.id - 1] = i.score);
+  roundData.faction_data.forEach(i => round[i.id - 1] = i.score);
 
   return { top, round };
 }
 
-function saveRawData(time, data) {
+function saveRawData (time, data) {
   raw.push({time, data});
   fs.writeFile(
     path.resolve(__dirname, './raw.json'),
     JSON.stringify(raw),
-    console.error
+    () => {}
   );
 }
 
 function watcher () {
+  const t = getFormatedDate();
   getData().then(data => {
     let _data = {
-      time: getFormatedDate(),
+      time: t,
       data: parseData(data.data)
     };
     json.push(_data);
     fs.writeFile(
       path.resolve(__dirname,'./data.json'),
       JSON.stringify(json),
-      console.error
-    )
+      () => {}
+    );
     // console.log(JSON.stringify(_data, null ,2));
-    saveRawData(_data.time, data.data);
+    saveRawData(t, data.data);
   });
 }
 
