@@ -34,7 +34,7 @@ button {
 }
 
 #link-container, #main-container {
-  width: 768px;
+  width: 767px;
   margin: auto;
   box-shadow: 2px 2px 10px gray;
 }
@@ -53,6 +53,12 @@ button {
 }
 #link-container p.disabled {
   cursor: initial;
+}
+#link-container p.disabled:hover {
+  background: #40c4ff;
+}
+#link-container p.disabled a {
+  color: gray;
 }
 
 #tab {
