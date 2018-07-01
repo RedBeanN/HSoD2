@@ -226,7 +226,7 @@ input, select {
   text-align: center;
 }
 #user-bottom {
-  margin-top: 14px !important;
+  margin-top: 12.5px !important;
   font-size: 13.6px;
   margin-left: 11px;
 }
@@ -321,16 +321,24 @@ input, select {
 }
 #equip-unique-container {
   margin-top: 124px;
+  height: 31px !important;
+}
+.unique-container {
+  width: 400px;
+  margin-left: -195px;
+  text-align: center;
+  height: 47px;
+  line-height: 44px;
+  margin-top: -13px;
 }
 #equip-unique-container p {
-  font-size: 20.9px;
-  width: 400px;
-  height: 37px;
-  padding-top: 10px;
+  font-size: 17.7px;
+  /* width: 400px; */
+  padding-top: 12px;
   text-align: center;
-  margin-top: -13px;
+  margin-top: -11px;
   margin-left: 9px;
-  transform: translate(-50%);
+  /* transform: translate(-50%); */
   white-space: nowrap;
 }
 .awaken-bg {
@@ -503,7 +511,7 @@ input, select {
   width: 38px;
   height: 50px;
 }
-#lock.is-locked {
+#lock.unlock {
   background-position-x: -39px;
 }
 

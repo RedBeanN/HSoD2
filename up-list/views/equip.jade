@@ -36,7 +36,7 @@ mixin equip-status
         img(src='/images/level.png')
         span#level
           | {{ +equip.top.level.value + ' / ' + +(equip.top.stars.value > 5 ? 99 : 50) }}
-        span#adds.buff(v-show='equip.top.adds.value') + {{ equip.top.adds.value }}
+        span#adds.buff(v-show='equip.top.adds.value > 0') + {{ equip.top.adds.value }}
       #equip-status-weight
         p 负重
           span {{ equip.top.weight.value }}
@@ -96,15 +96,15 @@ mixin equip-main
           #awaken-scale
           #awaken-change
         #equip-lock-widget
-          #lock.is-locked(@click='toggleLock')
+          #lock(@click='toggleLock')
         #equip-image-container
           #equip-basic-image
             img(v-if='!pinImage.exist', src='/images/base-pin.png', :style='imageStyleObject')
             img(v-else, :src='pinImage.src', :style='imageStyleObject')
             img#pin-container(:src='pinContainerSrc', v-show='widgets.pinContainer')
         #equip-unique-container
-          p.buff(v-show='widgets.unique',
-                :class='(equip.awaken && widgets.awakenImage) ? "awaken-bg" : ""')
+          .unique-container(:class='(equip.awaken && widgets.awakenImage) ? "awaken-bg" : ""')
+            p.buff(v-show='widgets.unique')
                 | {{ texts.unique }}
         #equip-protect-container
           img(v-show='widgets.protectButton', src='/images/button.png')
@@ -128,15 +128,15 @@ mixin equip-type
     h3 编辑装备分类
     p
       span 装备分类 
-      select(v-model='selectedType')
+      select(v-model='selectedType', @change='selectType')
         option(value='') 选择装备分类
-        option(v-for='(item, key) in equipType') {{ key }}
+        option(v-for='(item, key) in equipType', :value='key') {{ key }}
     p(v-if='selectedType', v-for='(item, key, index) in equipType[selectedType]')
       span {{ key }} 
       input(v-model='equipType[selectedType][key]', v-if='selectedType != "徽章"')
       input(type="radio", :value='key', v-model='addType', :id='"type-"+key')
       label(:for='"type-"+key') 亲密度加成
-    #equip-dmg-type(v-if='selectedType && selectedType != "服装" && selectedType != "徽章"')
+    #equip-dmg-type(v-show='selectedType && selectedType != "服装" && selectedType != "徽章"')
       p 伤害类型
         select(v-model='equip.dmgType')
           option(v-for='(value, key) in dmgType', :value='key') {{ value }}
@@ -192,10 +192,10 @@ block content
           input#top-ctrl-range(type='range', min='-100', max='100', v-model='imageStyle.top')
           input#top-ctrl-input(type='number', v-model='imageStyle.top')
           label(for='top-ctrl-input') 垂直移动
-      #download
-        button(@click='downloadImage', :disabled='downloading')
-          | {{ downloading ? '保存中' :  '保存图片' }}
-        p {{ texts.download }}
+      //- #download
+      //-   button(@click='downloadImage', :disabled='downloading')
+      //-     | {{ downloading ? '保存中' :  '保存图片' }}
+      //-   p {{ texts.download }}
     #middle
       +equip-main
       #equip-bottom

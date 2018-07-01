@@ -1,6 +1,5 @@
 //import('icons.min.js');
 //import('vue.min.js');
-//import('html2canvas.min.js');
 //import('readme.min.js');
 
 (() => {
@@ -243,24 +242,34 @@ let app = new Vue({
         pinImage.src = '';
       }
     },
-    downloadImage: function (e) {
-      this.downloading = true;
-      let view = document.getElementById('equip-main');
-      let top =  this.equip.top;
-      html2canvas(view, { width: 1024, height: 576, logging: false })
-        .then(function (canvas) {
-          let img = document.createElement('a');
-          img.setAttribute('href', canvas.toDataURL());
-          img.setAttribute('download', `${top.serial.value}-${top.name.value}.png`);
-          img.click();
-          app.downloading = false;
-        });
-    },
+    // downloadImage: function (e) {
+    //   this.downloading = true;
+    //   let view = document.getElementById('equip-main');
+    //   let top =  this.equip.top;
+    //   html2canvas(view, { width: 1024, height: 576, logging: false })
+    //     .then(function (canvas) {
+    //       let img = document.createElement('a');
+    //       img.setAttribute('href', canvas.toDataURL());
+    //       img.setAttribute('download', `${top.serial.value}-${top.name.value}.png`);
+    //       img.click();
+    //       app.downloading = false;
+    //     });
+    // },
     dmgTypeSrc(type) {
       return icons.types[`${type}.png`];
     },
     toggleLock() {
-      $$('lock').classList.toggle('is-locked');
+      $$('lock').classList.toggle('unlock');
+    },
+    selectType(e) {
+      let v = e.target.value;
+      if (v === '服装' || v === '徽章' || v.indexOf('喷雾') !== -1) {
+        this.equip.dmgType = 'none';
+      }
+      if (v !== '') {
+        let t = this.equipType[v];
+        for (let i in t) return this.addType = i;
+      }
     },
   },
   filters: {
