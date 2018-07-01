@@ -9,7 +9,7 @@ router.get('/20181/', (req, res) => {
 });
 
 router.get('/20181/:data', (req, res) => {
-  fs.readFile(path.join(__dirname, `../../world battle watcher/${req.params.data}.json`), (err, data) => {
+  fs.readFile(path.join(__dirname, `../../world battle watcher/20181/${req.params.data}.json`), (err, data) => {
     if (err) res.status(404).send(err);
     else res.send(JSON.parse(data));
   });
