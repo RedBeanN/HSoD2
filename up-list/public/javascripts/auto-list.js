@@ -53,7 +53,7 @@ let app = new Vue({
       let list = {};
       this.rows.forEach(row => {
         row.data.forEach(equip => {
-          if (!list[equip] || (new Date(list[equip])) < (new Date(row.startTime))) {
+          if (!list[equip] || (new Date(list[equip].replace(/-/g, '/'))) < (new Date(row.startTime.replace(/-/g, '/')))) {
             list[equip] = row.startTime.split(' ')[0];
           }
         });
@@ -120,8 +120,8 @@ let app = new Vue({
       this.sortedFlag = !this.sortedFlag;
       let sortedFlag = this.sortedFlag;
       this.rows.sort((pre, now) => {
-        let preTime = new Date(pre.startTime);
-        let nowTime = new Date(now.startTime);
+        let preTime = new Date(pre.startTime.replace(/-/g, '/'));
+        let nowTime = new Date(now.startTime.replace(/-/g, '/'));
         return sortedFlag ? preTime - nowTime : nowTime - preTime;
       });
     },
