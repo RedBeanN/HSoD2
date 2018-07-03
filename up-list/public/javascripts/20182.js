@@ -37,9 +37,11 @@ const app = new Vue({
   methods: {
     loadData () {
       const self = this;
+      self.settings.loading = true;
       axios.get('/worldbattle/20182/minify').then(res => {
         let data = res.data;
         parseChartData(self.charts.main, data);
+        self.settings.loading = false;
       });
     },
   },
