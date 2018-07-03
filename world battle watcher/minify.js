@@ -3,7 +3,7 @@ const schedule = require('node-schedule'),
       path = require('path');
 
 let rule = new schedule.RecurrenceRule();
-rule.minute = [1, 31];
+rule.minute = [11, 41];
 
 // let job = schedule.scheduleJob(rule, () => {
   fs.readFile(
@@ -15,7 +15,7 @@ rule.minute = [1, 31];
       if (Array.isArray(json)) {
         let fil = json.filter(item => {
           let min = item.time.substr(-2);
-          if (min === '00' || min === '30') return true;
+          if (min === '10' || min === '40') return true;
           return false;
         }).map(item => {
           last.top = item.data.top;
