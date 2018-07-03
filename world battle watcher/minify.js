@@ -5,7 +5,7 @@ const schedule = require('node-schedule'),
 let rule = new schedule.RecurrenceRule();
 rule.minute = [1, 31];
 
-let job = schedule.scheduleJob(rule, () => {
+// let job = schedule.scheduleJob(rule, () => {
   fs.readFile(
     path.resolve(__dirname, '20182/data.json'),
     (err, data) => {
@@ -32,4 +32,4 @@ let job = schedule.scheduleJob(rule, () => {
       }
     }
   );
-});
+// });
