@@ -29,8 +29,8 @@
         lastClick.classList.remove('focus');
       };
 
-      // let factionRefresh = $$('#fw-refresh');
-      // factionRefresh.onclick = updateFw;
+      let factionRefresh = $$('#fw-refresh');
+      factionRefresh.onclick = updateFw;
 
       let toggleFw = $$('#toggle-fw');
       toggleFw.onclick = e => {
@@ -38,7 +38,7 @@
         toggleFw.innerText = toggleFw.innerText === '-' ? '+' : '-';
       };
 
-      // factionRefresh.click();
+      factionRefresh.click();
       ($$('#origin')).click();
     }
   });
@@ -46,13 +46,17 @@
 function updateFw () {
   $$('#faction-score').classList.add('loading');
   let http = new sAjax();
-  http.get('http://event.mihoyo.com/factionWar/', (err, data) => {
+  http.get('/worldbattle/20182/last', (err, data) => {
     if (err) console.error(err);
-    let score = (JSON.parse(data)).data;
-    $$('#left-total').innerText = score['faction_total_point'][1];
-    $$('#right-total').innerText = score['faction_total_point'][2];
-    $$('#left-line').innerText = score['faction_1000_point'][1];
-    $$('#right-line').innerText = score['faction_1000_point'][2];
+    let json = JSON.parse(data);
+    Array.prototype.forEach.call(
+      $$('.faction'),
+      (item, index) => {
+        // item.innerText = json.top[index];
+        $$('.line', item)[0].innerText = json.top[index];
+        $$('.score', item)[0].innerText = json.round[index];
+      }
+    );
     $$('#faction-score').classList.remove('loading');
   }, true);
 }
@@ -82,12 +86,12 @@ function sAjax () {
   }
 }
 
-function $$(str) {
+function $$(str, self = document) {
   if (typeof str != 'string') throw new Error(`Type Error: ${str} is not a string`);
   switch(str[0]) {
-    case '#': return document.getElementById(str.substring(1));
-    case '.': return document.getElementsByClassName(str.substring(1));
-    default : return document.getElementsByTagName(str);
+    case '#': return self.getElementById(str.substring(1));
+    case '.': return self.getElementsByClassName(str.substring(1));
+    default : return self.getElementsByTagName(str);
   }
 }
 })();
