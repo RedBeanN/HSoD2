@@ -49,12 +49,13 @@ function updateFw () {
   http.get('/worldbattle/20182/last', (err, data) => {
     if (err) console.error(err);
     let json = JSON.parse(data);
+    const text = json.round.length ? '凉凉' : '筹备中';
     Array.prototype.forEach.call(
       $$('.faction'),
       (item, index) => {
         // item.innerText = json.top[index];
         $$('.line', item)[0].innerText = json.top[index];
-        $$('.score', item)[0].innerText = json.round[index] || '凉凉';
+        $$('.score', item)[0].innerText = json.round[index] || text;
       }
     );
     $$('#faction-score').classList.remove('loading');
