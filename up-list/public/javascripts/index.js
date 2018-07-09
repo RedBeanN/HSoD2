@@ -55,7 +55,9 @@ function updateFw () {
       (item, index) => {
         // item.innerText = json.top[index];
         $$('.line', item)[0].innerText = json.top[index];
-        $$('.score', item)[0].innerText = json.round[index] || text;
+        $$('.score', item)[0].innerText = json.round.length &&
+          json.round[index] !== null ?
+          json.round[index] : text;
       }
     );
     $$('#faction-score').classList.remove('loading');
