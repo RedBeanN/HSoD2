@@ -5,12 +5,12 @@ const schedule = require('node-schedule'),
 let rule = new schedule.RecurrenceRule();
 rule.minute = [11, 41];
 
-let job = schedule.scheduleJob(rule, () => {
+// let job = schedule.scheduleJob(rule, () => {
   fs.readFile(
     path.resolve(__dirname, '20182/data.json'),
     (err, data) => {
       if (err) console.error(err);
-      const last = { top: [], round: [] };
+      // const last = { top: [], round: [] };
       let json = JSON.parse(data);
       if (Array.isArray(json)) {
         let fil = json.filter(item => {
@@ -18,15 +18,16 @@ let job = schedule.scheduleJob(rule, () => {
           if (min === '10' || min === '40') return true;
           return false;
         }).map(item => {
-          last.top = item.data.top;
-          for (let i = 0; i < 6; i++) {
-            last.round[i] = item.data.round[i] || last.round[i];
-          }
+          // last.top = item.data.top;
+          // for (let i = 0; i < 6; i++) {
+          //   last.round[i] = item.data.round[i] || last.round[i];
+          // }
           return {
             time: item.time,
             data: item.data.top
           };
         });
+        const last = json[json.length - 1].data;
         fs.writeFile(
           path.resolve(__dirname, '20182/minify.json'),
           JSON.stringify(fil),
@@ -44,4 +45,4 @@ let job = schedule.scheduleJob(rule, () => {
       }
     }
   );
-});
+// });
