@@ -4,6 +4,13 @@ html
     title= title
     link(rel='stylesheet', href='/dist/css/style.min.css')
     link(rel='shortcut icon', href='/favicon.png', type='image/png')
+    //- PWA specific
+    link(rel="manifest", href="/manifest.json")
+    //- for iOS safari
+    link(rel="apple-touch-icon", href="/favicon.jpg")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="white")
+    //- script(src="/javascripts/sw-loader.js")
   body
     //- #back-container
     - if (title && title.indexOf('主页') == -1) {

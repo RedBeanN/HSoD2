@@ -1,0 +1,13 @@
+{
+  "short_name": "搞事学园",
+  "name": "搞事学园",
+  "icon": [
+      {
+          "src": "/favicon.png",
+          "type": "image/png",
+          "sizes": "48x48"
+      }
+  ],
+  "start_url": "/",
+  "display": "standalone"
+}
