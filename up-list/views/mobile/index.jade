@@ -18,10 +18,6 @@ block content
         img(src='/images/favicon-title.png')
     #drawer.mdui-drawer
       a.mdui-list-item(v-for='item in drawer', :href='item.url') {{item.name}}
-    .mdui-card(v-for='card in cards')
-      .mdui-card-primary
-        .mdui-card-primary-title {{ card.title }}
-      .mdui-card-content {{ card.content }}
     .mdui-card
       .mdui-card-primary
         .mdui-card-primary-title 古树战争
@@ -35,4 +31,8 @@ block content
           td.pet {{ pet.name }}
           td.line {{ pet.top }}
           td.score {{ pet.round }}
+    .mdui-card(v-for='card in cards')
+      .mdui-card-primary
+        .mdui-card-primary-title {{ card.title }}
+      .mdui-card-content {{ card.content }}
   script(src="/m/js/index.js")
