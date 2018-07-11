@@ -39,7 +39,7 @@
       };
 
       factionRefresh.click();
-      ($$('#origin')).click();
+      // ($$('#origin')).click();
     }
   });
 

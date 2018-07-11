@@ -29,3 +29,6 @@ data.json
 raw.json
 minify.json
 last.json
+
+*.crt
+*.key

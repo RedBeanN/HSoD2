@@ -2,7 +2,9 @@ let CACHE = 'network-or-cache';
 
 const precache = function precache () {
   return caches.open(CACHE).then(c => {
-    return c.addAll(['./']);
+    return c.addAll([
+      '/',
+    ]);
   });
 };
 
@@ -32,5 +34,5 @@ self.addEventListener('install', e => {
 self.addEventListener('fetch', e => {
   console.log('[SW] Serving.');
   if (e.request.method !== 'GET') return;
-  e.responseWith(fromCache());
+  e.responseWith(fromCache(e.request));
 });
