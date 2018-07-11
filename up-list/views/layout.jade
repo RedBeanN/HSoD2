@@ -2,6 +2,7 @@ doctype html
 html
   head
     title= title
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel='stylesheet', href='/dist/css/style.min.css')
     link(rel='shortcut icon', href='/favicon.png', type='image/png')
     //- PWA specific
@@ -11,7 +12,7 @@ html
     meta(name="apple-mobile-web-app-capable" content="yes")
     meta(name="apple-mobile-web-app-status-bar-style" content="white")
     script(src="/javascripts/sw-loader.js")
-  body
+  body.mdui-drawer-body-left.mdui-appbar-with-toolbar.mdui-theme-primary-light-blue
     //- #back-container
     - if (title && title.indexOf('主页') == -1) {
     a#back-to-index(href='/') 主页

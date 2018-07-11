@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+  link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/mdui/0.4.1/css/mdui.min.css")
+  link(rel="stylesheet", href='/m/css/index.css')
+  script(src="//cdnjs.cloudflare.com/ajax/libs/mdui/0.4.1/js/mdui.min.js")
+  script(src="/javascripts/vue.min.js")
+  script(src="/javascripts/axios.min.js")
+  //- script(src="m/js/index.js")
+  //- link(rel="stylesheet", href="m/css/index.css")
+  #app.mdui-color-theme
+    header.mdui-appbar.mdui-appbar-fixed
+      .mdui-toolbar.mdui-color-theme
+        span.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(mdui-drawer="{target:'#drawer'}")
+          i.mdui-icon.material-icons menu
+        .mdui-typo-title 搞事学园
+        .mdui-toolbar-spacer
+        img(src='/images/favicon-title.png')
+    #drawer.mdui-drawer
+      a.mdui-list-item(v-for='item in drawer', :href='item.url') {{item.name}}
+    .mdui-card(v-for='card in cards')
+      .mdui-card-primary
+        .mdui-card-primary-title {{ card.title }}
+      .mdui-card-content {{ card.content }}
+    .mdui-card
+      .mdui-card-primary
+        .mdui-card-primary-title 古树战争
+      table#fw.mdui-table
+        thead
+          td
+            img#fw-refresh(src='/images/icons/Material/refresh_black.png', @click='updatePets')
+          td 分数线
+          td 争夺分
+        tr.faction(v-for='pet in pets')
+          td.pet {{ pet.name }}
+          td.line {{ pet.top }}
+          td.score {{ pet.round }}
+  script(src="/m/js/index.js")
