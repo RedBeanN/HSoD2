@@ -30,7 +30,9 @@ const app = new Vue({
       axios.get('/worldbattle/20182/last').then(res => {
         for (let i = 0; i < self.pets.length; i++) {
           self.pets[i].top = res.data.top[i];
-          self.pets[i].round = res.data.round[i];
+          self.pets[i].round = res.data.round[i] ?
+            res.data.round[i] : res.data.round[i] === null ?
+            '凉凉' : '筹备中';
         }
       });
     }
