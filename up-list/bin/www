@@ -9,10 +9,11 @@ var debug = require('debug')('up-list:server');
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
+var path = require('path');
 
 const options = {
-  key: fs.readFileSync('./public/https.key'),
-  cert: fs.readFileSync('./public/https.crt')
+  key: fs.readFileSync(path.join(__dirname, '../public/https.key')),
+  cert: fs.readFileSync(path.join(__dirname, '../public/https.crt'))
 };
 
 /**

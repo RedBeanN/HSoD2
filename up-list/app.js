@@ -18,6 +18,15 @@ var app = express();
 // user compression
 app.use(compression());
 
+// force https
+app.all('*', (req, res, next) => {
+  if(req.protocol !== 'https') {
+    let resp = 'https://' + req.hostname + req.url;
+    console.log(resp, req.hostname, req.url);
+    res.redirect(resp);
+  } else next();
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

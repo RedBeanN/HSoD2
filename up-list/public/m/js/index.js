@@ -1,10 +1,11 @@
+window.onload = () => {
 const $$ = mdui.JQ;
 
 const app = new Vue({
   el: '#app',
   data: {
     cards: [{
-      title: '移动端测试版发布啦 !',
+      title: '搞事学园移动端测试版发布啦 !',
       content: '目前功能还不完善 , 有任何意见建议欢迎发送到 me@hongshn.xyz ~'
     }, {
       title: '关于 PWA',
@@ -39,10 +40,11 @@ const app = new Vue({
             '凉凉' : '筹备中';
         }
         $$('#fw').css('opacity', '1');
-      });
+      }).catch(console.log);
     }
   },
   created () {
     this.updatePets();
   }
 });
+}
