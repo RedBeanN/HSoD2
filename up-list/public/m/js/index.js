@@ -26,7 +26,8 @@ const app = new Vue({
       { url: '/cms/18',            name: '测试服公告备份' },
       { url: '/buglist',           name: '测试服 BUG 记录' },
       { url: '/worldbattle/20182', name: '阵营战记录' },
-    ]
+    ],
+    drawerInst: null,
   },
   methods: {
     updatePets () {
@@ -41,6 +42,16 @@ const app = new Vue({
         }
         $$('#fw').css('opacity', '1');
       }).catch(console.log);
+    },
+    toggleDrawer () {
+      const d = $$('#drawer');
+      const self = this;
+      if (!d.hasClass('mdui-drawer-open')) {
+        $$('body').one('click', () => {
+          self.toggleDrawer();
+        });
+      }
+      d.toggleClass('mdui-drawer-open');
     }
   },
   created () {
