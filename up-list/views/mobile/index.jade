@@ -6,10 +6,10 @@ block content
   script(src="/m/js/mdui.min.js")
   script(src="/javascripts/vue.min.js")
   script(src="/javascripts/axios.min.js")
-  #app.mdui-color-theme
+  #app.mdui-color-theme(@click='closeDrawer')
     header.mdui-appbar.mdui-appbar-fixed
       .mdui-toolbar.mdui-color-theme
-        span.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(@click.stop='toggleDrawer')
+        span.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(@click.stop='openDrawer')
           i.mdui-icon.material-icons menu
         .mdui-typo-title 搞事学园
         .mdui-toolbar-spacer

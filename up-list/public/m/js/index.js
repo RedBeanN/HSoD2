@@ -43,15 +43,12 @@ const app = new Vue({
         $$('#fw').css('opacity', '1');
       }).catch(console.log);
     },
-    toggleDrawer () {
-      const d = $$('#drawer');
-      const self = this;
-      if (!d.hasClass('mdui-drawer-open')) {
-        $$('body').one('click', () => {
-          self.toggleDrawer();
-        });
-      }
-      d.toggleClass('mdui-drawer-open');
+    openDrawer () {
+      $$('#drawer').addClass('mdui-drawer-open');
+    },
+    closeDrawer (e) {
+      if (e.target && e.target.getAttribute('id') === 'drawer') return;
+      $$('#drawer').removeClass('mdui-drawer-open');
     }
   },
   created () {
