@@ -42,17 +42,13 @@ const app = new Vue({
         }
         $$('#fw').css('opacity', '1');
       }).catch(console.log);
-    },
-    openDrawer () {
-      $$('#drawer').addClass('mdui-drawer-open');
-    },
-    closeDrawer (e) {
-      if (e.target && e.target.getAttribute('id') === 'drawer') return;
-      $$('#drawer').removeClass('mdui-drawer-open');
     }
   },
   created () {
     this.updatePets();
+  },
+  mounted () {
+    mdui.mutation();
   }
 });
 }

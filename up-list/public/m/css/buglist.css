@@ -1,0 +1,22 @@
+#progress {
+  margin-top: 29px;
+}
+#search.mdui-textfield-expanded {
+  width: 40%;
+}
+
+img {
+  width: 30px;
+}
+.mdui-card {
+  margin-top: 10px;
+}
+#back-to-index {
+  display: none;
+}
+.mdui-drawer {
+  background-color: white;
+}
+.mdui-drawer a {
+  color: black !important;
+}

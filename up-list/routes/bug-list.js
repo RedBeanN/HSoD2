@@ -4,8 +4,12 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 
+const mobile = require('../private/javascripts/mobile');
+
 router.get('/', (req, res, next) => {
-  res.render('bug-list', {title: 'bug 记录 - 搞事学园'});
+  let ua = req.headers['user-agent'];
+  if (mobile.isMobile(ua)) res.render('mobile/buglist', { title: 'bug 记录 - 搞事学园' });
+  else res.render('bug-list', {title: 'bug 记录 - 搞事学园'});
 });
 
 router.get('/data', (req, res, next) => {
@@ -25,6 +29,13 @@ router.get('/data/:version', (req, res, next) => {
       else res.send(404, 'cannot find version ' + ver);
     }
   });
+});
+
+router.get('/versions', (req, res, next) => {
+  fs.readFile(path.join(__dirname, '../../bug-list/statics/versions.json'), (err, data) => {
+    if (err) res.send(404, err.message);
+    else res.send(data);
+  })
 });
 
 module.exports = router;

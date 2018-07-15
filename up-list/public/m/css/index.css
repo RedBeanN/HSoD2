@@ -4,3 +4,6 @@ img {
 .mdui-card {
   margin-top: 10px;
 }
+a.mdui-list-item {
+  color: black !important;
+}

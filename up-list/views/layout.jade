@@ -14,15 +14,10 @@ html
     script(type='text/javascript').
       (() => {
         if ('serviceWorker' in navigator) {
-          console.log('Init serviceWorker.');
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-              console.log('SW registration succesful.', registration.scope);
-            })
-            .catch(console.error);
+          navigator.serviceWorker.register('/sw.js');
         } else console.log('Connot find serviceWorker in this browser.');
       })();
-  body.mdui-drawer-body-left.mdui-appbar-with-toolbar.mdui-theme-primary-light-blue
+  body.mdui-drawer-body-left.mdui-appbar-with-tab-larger.mdui-theme-primary-indigo.mdui-theme-accent-pink
     //- #back-container
     - if (title && title.indexOf('主页') == -1) {
     a#back-to-index(href='/') 主页

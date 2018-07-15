@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-v1';
+const CACHENAME = 'hsod2-201807151';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -41,6 +41,11 @@ self.addEventListener('install', e => {
        * cache files one by one
        */
       cacheForUrls(cache, urls, 1);
+      caches.keys().then(cacheNames => {
+        return Promise.all(cacheNames.map(cacheName => {
+          if (cacheName !== CACHENAME) return caches.delete(cacheName);
+        }));
+      });
       return cache.add(urls[0]);
     })
     .catch(() => {
