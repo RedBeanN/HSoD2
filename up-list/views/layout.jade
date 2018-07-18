@@ -11,16 +11,11 @@ html
     link(rel="apple-touch-icon", href="/favicon.jpg")
     meta(name="apple-mobile-web-app-capable" content="yes")
     meta(name="apple-mobile-web-app-status-bar-style" content="white")
-    script(type='text/javascript').
-      (() => {
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/sw.js');
-        } else console.log('Connot find serviceWorker in this browser.');
-      })();
   body.mdui-drawer-body-left.mdui-appbar-with-tab-larger.mdui-theme-primary-indigo.mdui-theme-accent-pink
     //- #back-container
     - if (title && title.indexOf('主页') == -1) {
     a#back-to-index(href='/') 主页
     - }
     block content
-  
+    script(type='text/javascript').
+      if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
