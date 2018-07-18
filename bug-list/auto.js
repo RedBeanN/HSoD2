@@ -2,22 +2,17 @@ const http = require('http'),
       fs = require('fs'),
       path = require('path');
 
-const vlist = [
-  "3.2", "3.3", "3.4", "3.5", "3.6", "3.7", "3.7.5", "3.8", "3.9",
-  "4.0", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6", "4.7", "4.8", "4.9",
-  "5.0", "5.1", "5.2", "5.3"
-];
-const clist = ['5.2', '5.3'];
-const onehour = 60 * 60 * 1000;
+const halfHour = 30 * 60 * 1000;
+let currentVersions = [];
 
-getAll(vlist);
-setInterval(() => { getAll(clist) }, onehour);
+getAll(getVersions());
+getCurrentVersions();
+setInterval(() => { getAll(getCurrentVersions()) }, halfHour);
 
 function getAll (vlist) {
   fs.readFile(path.join(__dirname, 'statics/data.json'), (err, _data) => {
     if (err) console.error(err);
     let all = JSON.parse(_data);
-    let v = '5.0';
 
     function scope (current, list, cb) {
       if (!list[current]) return cb();
@@ -51,4 +46,20 @@ function getData (version, callback) {
       callback(err, JSON.parse(str));
     });
   });
+}
+
+function getVersions () {
+  return JSON.parse(fs.readFileSync(path.join(__dirname, 'statics/versions.json')));
+}
+
+function getCurrentVersions () {
+  fs.readFile(path.join(__dirname, 'statics/versions.json'), (err, data) => {
+    if (err) console.error(err);
+    if (Array.isArray(data)) currentVersions = [data[1], data[0]];
+    else {
+      let arr = JSON.parse(data);
+      if (Array.isArray(arr)) currentVersions = [arr[1], arr[0]];
+    }
+  });
+  return currentVersions;
 }
