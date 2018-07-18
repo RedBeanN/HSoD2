@@ -37,13 +37,14 @@ const app = new Vue({
       const self = this;
       return new Promise((resolve, reject) => {
         axios.get('/buglist/versions').then(res => {
-          self.versions = res.data;
+          self.versions = ['全部', ...res.data];
           resolve(res.data);
         });
       });
     },
     loadList (v, e) {
       const self = this;
+      v = v === '全部' ? '' : v;
       // this.cards = [loadingCard];
       showLoading();
       $$('.mdui-tab-active').removeClass('mdui-tab-active');
@@ -78,7 +79,7 @@ const app = new Vue({
     const self = this;
     this.loadVersions().then(ver => {
       // self.loadList(ver[0]);
-      const e = {target: $$('.version-select')[0]};
+      const e = {target: $$('.version-select')[1]};
       self.loadList(ver[0], e);
     });
   },

@@ -29,9 +29,9 @@ block content
       //-   .mdui-card-primary-title {{ card.title }}
       //-   .mdui-card-primary-subtitle {{ card.subtitle }}
       .mdui-card-content
-        | {{ card.title ? '[' + card.title + ']' : '' }}
         strong(v-show='card.status', :style='color[card.status]')
           | [{{ card.status }}]
+        | {{ card.title ? '[' + card.title + ']' : '' }}
         | {{ card.subtitle }}
         br
         .content(:id='"card-" + card.id') {{ card.content }}
