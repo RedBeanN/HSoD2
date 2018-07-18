@@ -44,7 +44,7 @@ const app = new Vue({
     },
     loadList (v, e) {
       const self = this;
-      this.cards = [loadingCard];
+      // this.cards = [loadingCard];
       showLoading();
       $$('.mdui-tab-active').removeClass('mdui-tab-active');
       $$(e.target).addClass('mdui-tab-active');
