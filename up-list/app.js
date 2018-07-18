@@ -22,7 +22,6 @@ app.use(compression());
 app.all('*', (req, res, next) => {
   if(req.protocol !== 'https') {
     let resp = 'https://' + req.hostname + req.url;
-    console.log(resp, req.hostname, req.url);
     res.redirect(resp);
   } else next();
 });
