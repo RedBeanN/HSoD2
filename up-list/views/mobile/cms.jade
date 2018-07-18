@@ -3,6 +3,7 @@ extends ../layout
 block content
   link(rel="stylesheet", href="/m/css/mdui.min.css")
   link(rel="stylesheet", href="/m/css/mdui-layout.css")
+  link(rel="stylesheet", href="/m/css/cms.css")
   script(src="/m/js/mdui.min.js")
   script(src="/javascripts/vue.min.js")
   script(src="/javascripts/axios.min.js")
@@ -11,9 +12,9 @@ block content
   #app.mdui-color-theme
     .mdui-appbar.mdui-appbar-fixed.mdui-app-bar-scroll-hide
       .mdui-toolbar.mdui-color-theme
-        span.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(@click='backToHome')
+        a.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(href='/')
           i.mdui-icon.material-icons home
-        .mdui-typo-title bug 记录
+        .mdui-typo-title 公告记录
         .mdui-toolbar-spacer
         #search.mdui-textfield.mdui-textfield-expandable.mdui-float-right
           button.mdui-textfield-icon.mdui-btn.mdui-btn-icon
@@ -23,16 +24,8 @@ block content
             i.mdui-icon.material-icons close
         img(src='/images/favicon-title.png')
       .mdui-tab.mdui-color-theme
-        a.version-select.mdui-ripple(v-for='ver in versions', @click.prevent='loadList(ver, $event)') {{ ver }}
+        a#server-3.servers.mdui-ripple(@click='changeServer(3)') 正式服
+        a#server-18.servers.mdui-ripple(@click='changeServer(18)') 测试服
     .mdui-card(v-for='card in filteredCards')
-      //- .mdui-card-primary
-      //-   .mdui-card-primary-title {{ card.title }}
-      //-   .mdui-card-primary-subtitle {{ card.subtitle }}
-      .mdui-card-content
-        strong(v-show='card.status', :style='color[card.status]')
-          | [{{ card.status }}]
-        | {{ card.title ? '[' + card.title + ']' : '' }}
-        | {{ card.subtitle }}
-        br
-        .content(:id='"card-" + card.id') {{ card.content }}
-  script(src="/m/js/buglist.js")
+      .mdui-card-content {{ card.date }} {{ card.title }}
+  script(src="/m/js/cms.js")

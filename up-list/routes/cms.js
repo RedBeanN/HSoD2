@@ -4,7 +4,24 @@ var path = require('path');
 
 var fs = require('fs');
 
+const mobile = require('../private/javascripts/mobile');
+
 // cms
+router.get('/', (req, res) => {
+  res.render('mobile/cms', {title: 'CMS'});
+});
+router.get('/data/:server', (req, res) => {
+  const server = req.params.server;
+  fs.readFile(path.join(__dirname, '../../cms-catcher/statics/titles.json'), {encoding: 'utf-8'}, (err, data) => {
+    if (err) res.statusCode(404).send();
+    else {
+      let titles = JSON.parse(data);
+      if (titles[server]) res.send(titles[server]);
+      else res.send({});
+    }
+  });
+});
+
 router.get('/:server', function(req, res, next) {
   let server = req.params.server;
   var titles = JSON.parse(fs.readFileSync(path.join(__dirname, '../../cms-catcher/statics/titles.json')));
