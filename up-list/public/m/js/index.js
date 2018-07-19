@@ -36,7 +36,7 @@ const app = new Vue({
         for (let i = 0; i < self.pets.length; i++) {
           self.pets[i].top = res.data.top[i];
           self.pets[i].round = res.data.round[i] ?
-            res.data.round[i] : res.data.round[i] === null ?
+            res.data.round[i] : res.data.round.length ?
             '凉凉' : '筹备中';
         }
         $$('#fw').css('opacity', '1');
