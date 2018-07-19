@@ -1,5 +1,11 @@
+body.mdui-appbar-with-tab-larger {
+  padding-top: 110px;
+}
 #progress {
-  margin-top: 36px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
 }
 #search.mdui-textfield-expanded {
   width: 40%;

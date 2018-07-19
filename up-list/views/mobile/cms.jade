@@ -3,7 +3,6 @@ extends ../layout
 block content
   link(rel="stylesheet", href="/m/css/mdui.min.css")
   link(rel="stylesheet", href="/m/css/mdui-layout.css")
-  link(rel="stylesheet", href="/m/css/cms.css")
   script(src="/m/js/mdui.min.js")
   script(src="/javascripts/vue.min.js")
   script(src="/javascripts/axios.min.js")
@@ -26,6 +25,15 @@ block content
       .mdui-tab.mdui-color-theme
         a#server-3.servers.mdui-ripple(@click='changeServer(3)') 正式服
         a#server-18.servers.mdui-ripple(@click='changeServer(18)') 测试服
-    .mdui-card(v-for='card in filteredCards')
-      .mdui-card-content {{ card.date }} {{ card.title }}
+    .cards
+      .mdui-card(v-for='card in filteredCards')
+        .mdui-card-content [ {{ card.date }} ] {{ card.title }}
+        .mdui-card-actions
+          button.mdui-btn.mdui-ripple.mdui-shadow-1.mdui-float-right(@click='read(card.key, card.title)') 详情
+            i.mdui-icon.mdui-icon-right.material-icons details
+    .mdui-dialog#dialog
+      #dialog-content.mdui-dialog-content
+      .mdui-dialog-actions
+        button.mdui-btn.mdui-ripple.mdui-shadow-1
+          i.mdui-icon.material-icons(mdui-dialog-cancel) close
   script(src="/m/js/cms.js")
