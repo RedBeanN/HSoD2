@@ -29,7 +29,7 @@ block content
       .mdui-card(v-for='card in filteredCards')
         .mdui-card-content [ {{ card.date }} ] {{ card.title }}
         .mdui-card-actions
-          button.mdui-btn.mdui-ripple.mdui-shadow-1.mdui-float-right(@click='read(card.key, card.title)') 详情
+          button.mdui-btn.mdui-ripple.mdui-shadow-1.mdui-float-right(@click='read(card.key)') 详情
             i.mdui-icon.mdui-icon-right.material-icons details
     .mdui-dialog#dialog
       #dialog-content.mdui-dialog-content
