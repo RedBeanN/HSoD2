@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-201807152';
+const CACHENAME = 'hsod2-201807200';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -23,24 +23,41 @@ const urls = [
   '/live2d/model/seele/seele.2048/texture_00.png',
   '/live2d/model/thresa/delisha.2048/texture_00.png',
 ];
+const excludes = [
+  /**
+   * These assets will never be saved.
+   */
+  'data', 'last', 'nocache',
+  /**
+   * Avoid Mixed Content Error over HTTPS
+   */
+  'mihoyo', 'cms/'
+];
 const statics = [
   /**
    * These statics assets will be saved when the user
    *   visit the same page at twice.
    */
-  '/m/', '/live2d/', '/images/',
-  '/css/', '/js/', '/stylesheets/', '/javascripts/',
+  // libs
+  'vue', 'axios', 'mdui', 'html2canvas', 'echarts',
+  // resources
+  'images', 'icons', 'fonts', 'animation',
+  // others
+  'manifest', 'live2d', 'spine'
 ];
 const laterPrecache = [];
 
 self.addEventListener('install', e => {
-  console.log('The service worker is installed.');
+  // console.log('The service worker is installed.');
   e.waitUntil(
     caches.open(CACHENAME).then(cache => {
       /**
        * cache files one by one
        */
       cacheForUrls(cache, urls, 1);
+      /**
+       * Delete redundant caches.
+       */
       caches.keys().then(cacheNames => {
         return Promise.all(cacheNames.map(cacheName => {
           if (cacheName !== CACHENAME) return caches.delete(cacheName);
@@ -63,10 +80,24 @@ self.addEventListener('fetch', e => {
    * NOTE: that the origin host must be match to the SSL crt,
    *   or FailedToFetch errors will break the app and the SW.
    */
-  e.respondWith(caches.match(e.request).then(res => {
-    if (res) return res;
-    // console.log('No cache. Try to cache', e.request.url);
-    if (!isRequestCacheable(e.request.url)) return fetch(e.request);
+  if (!isRequestCacheable(e.request.url)) return fetch(e.request);
+  else e.respondWith(caches.match(e.request).then(res => {
+    if (res) {
+      /**
+       * Return cached response and renew the cache.
+       * Statics files will not be cached again.
+       * This is usually used to update the html page itself.
+       * NOTE: The page will not be updated until next visit.
+       */
+      if (!isRequestStatic(e.request.url)) fetch(e.request).then(_res => {
+        caches.open(CACHENAME).then(cache => {
+          cache.put(e.request, _res);
+        });
+      }).catch(_ => {
+        // Do nothing if fetch failed.
+      });
+      return res;
+    }
     /**
      * If request is cacheable, cache response for it.
      */
@@ -128,6 +159,13 @@ function isRequestCacheable (url) {
   /**
    * Cache statics files only.
    */
+  if (!url) return false;
+  for (let e of excludes) {
+    if (url.indexOf(e) !== -1) return false;
+  }
+  return true;
+}
+function isRequestStatic (url) {
   if (!url) return false;
   for (let s of statics) {
     if (url.indexOf(s) !== -1) return true;
