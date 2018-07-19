@@ -11,7 +11,7 @@ block content
   #app.mdui-color-theme
     .mdui-appbar.mdui-appbar-fixed.mdui-app-bar-scroll-hide
       .mdui-toolbar.mdui-color-theme
-        span.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(@click='backToHome')
+        a.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(href='/')
           i.mdui-icon.material-icons home
         .mdui-typo-title bug 记录
         .mdui-toolbar-spacer
@@ -21,10 +21,10 @@ block content
           input.mdui-textfield-input.mdui-text-color-white(type='text', placeholder="搜索", v-model='searchInput')
           button.mdui-textfield-close.mdui-btn.mdui-btn-icon(@click='searchInput=""')
             i.mdui-icon.material-icons close
-        img(src='/images/favicon-title.png')
+        img(src='/images/favicon-r.png')
       .mdui-tab.mdui-color-theme
         a.version-select.mdui-ripple(v-for='ver in versions', @click.prevent='loadList(ver, $event)') {{ ver }}
-    .mdui-card(v-for='card in filteredCards')
+    .mdui-card(v-for='card in filteredCards', :key='card.id')
       //- .mdui-card-primary
       //-   .mdui-card-primary-title {{ card.title }}
       //-   .mdui-card-primary-subtitle {{ card.subtitle }}
@@ -35,4 +35,11 @@ block content
         | {{ card.subtitle }}
         br
         .content(:id='"card-" + card.id') {{ card.content }}
+      .mdui-card-actions
+        a.mdui-btn.mdui-float-right.mdui-ripple.mdui-shadow-1(
+          :href='"http://event.mihoyo.com/notice/news.php?id=" + card.id',
+          target='_blank') 详情
+          i.mdui-icon.mdui-icon-right.material-icons open_in_new
+        button.mdui-btn.mdui-float-right.mdui-ripple.mdui-shadow-1(@click='t2s(card.id, card.content, $event)')
+          | 干掉繁体字！
   script(src="/m/js/buglist.js")

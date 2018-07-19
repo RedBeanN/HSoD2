@@ -37,7 +37,7 @@ const app = new Vue({
       const self = this;
       return new Promise((resolve, reject) => {
         axios.get('/buglist/versions').then(res => {
-          self.versions = ['全部', ...res.data];
+          self.versions = [...res.data, '全部'];
           resolve(res.data);
         });
       });
@@ -70,16 +70,29 @@ const app = new Vue({
         }
       });
     },
-    backToHome () {
+    t2s (cid, content, e) {
       showLoading();
-      location.href = '/';
-    },
+      $$(e.target).html('<div class="mdui-spinner mdui-spinner-colorful"></div>');
+      axios.get(
+        encodeURI(`/convert/t2s?text=${content}`)
+      ).then(res => {
+        $$(`#card-${cid}`).text(res.data);
+        $$(e.target).text('干掉啦 !').attr('disabled', '');
+      }).catch(_ => {
+        $$(e.target).text('失败了...');
+        setTimeout(() => {
+          $$(e.target).text('再来一次 ?');
+        }, 1000);
+      }).then(_ => {
+        hideLoading();
+      });
+    }
   },
   created () {
     const self = this;
     this.loadVersions().then(ver => {
       // self.loadList(ver[0]);
-      const e = {target: $$('.version-select')[1]};
+      const e = {target: $$('.version-select')[0]};
       self.loadList(ver[0], e);
     });
   },
