@@ -3,15 +3,10 @@ const $$ = mdui.JQ;
 $$('#back-to-index').remove();
 $$('body').removeClass('mdui-drawer-body-left');
 
-const loadingCard = {
-  title: 'Loading',
-  subtitle: '加载中，请稍候'
-};
-
 const app = new Vue({
   el: '#app',
   data: {
-    cards: [ loadingCard ],
+    cards: [],
     versions: [],
     searchInput: '',
     color: {
@@ -98,6 +93,7 @@ const app = new Vue({
   },
   mounted () {
     mdui.mutation();
+    $$('.cards').css('display', 'block');
   }
 });
 

@@ -6,8 +6,6 @@ block content
   script(src="/m/js/mdui.min.js")
   script(src="/javascripts/vue.min.js")
   script(src="/javascripts/axios.min.js")
-  #progress.mdui-progress
-    .mdui-progress-indeterminate
   #app.mdui-color-theme
     .mdui-appbar.mdui-appbar-fixed.mdui-app-bar-scroll-hide
       .mdui-toolbar.mdui-color-theme
@@ -25,7 +23,9 @@ block content
       .mdui-tab.mdui-color-theme
         a#server-3.servers.mdui-ripple(@click='changeServer(3)') 正式服
         a#server-18.servers.mdui-ripple(@click='changeServer(18)') 测试服
-    .cards
+      #progress.mdui-progress
+        .mdui-progress-indeterminate
+    .cards(style='display:none')
       .mdui-card(v-for='card in filteredCards')
         .mdui-card-content [ {{ card.date }} ] {{ card.title }}
         .mdui-card-actions

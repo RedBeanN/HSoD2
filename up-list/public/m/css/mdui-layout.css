@@ -3,9 +3,6 @@ body.mdui-appbar-with-tab-larger {
 }
 #progress {
   position: fixed;
-  left: 0;
-  bottom: 0;
-  z-index: 100;
 }
 #search.mdui-textfield-expanded {
   width: 40%;
@@ -13,6 +10,9 @@ body.mdui-appbar-with-tab-larger {
 
 img {
   width: 30px;
+}
+.cards {
+  margin-top: 20px;
 }
 .mdui-card {
   margin-top: 10px;

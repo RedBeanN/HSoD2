@@ -60,6 +60,7 @@ const app = new Vue({
   },
   mounted () {
     mdui.mutation();
+    $$('.cards').css('display', 'block');
   }
 });
 
