@@ -72,7 +72,7 @@ const app = new Vue({
     },
     t2s (cid, content, e) {
       showLoading();
-      $$(e.target).html('<div class="mdui-spinner mdui-spinner-colorful"></div>');
+      $$(e.target).text('正在干掉...');
       axios.get(
         encodeURI(`/convert/t2s?text=${content}`)
       ).then(res => {
