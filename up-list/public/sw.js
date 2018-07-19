@@ -16,6 +16,14 @@ const urls = [
   '/javascripts/vue.min.js',
   '/javascripts/axios.min.js',
   /**
+   * Pages of the whole site.
+   */
+  '/cms',
+  '/buglist',
+  '/list/auto',
+  '/worldbattle/20182',
+  '/equip',
+  /**
    * The following files are important and large,
    *   so cache them at the first time.
    */
