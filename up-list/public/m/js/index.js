@@ -22,7 +22,7 @@ const app = new Vue({
     drawer: [
       { url: '/list/auto',         name: 'UP 记录' },
       { url: '/equip',             name: '装备模拟器' },
-      { url: '/cms',               name: '公告备份' },
+      { url: '/cms',               name: '公告记录' },
       { url: '/buglist',           name: '测试服 BUG 记录' },
       { url: '/worldbattle/20182', name: '阵营战记录' },
     ],
