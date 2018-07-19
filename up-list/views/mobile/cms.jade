@@ -21,7 +21,7 @@ block content
           input.mdui-textfield-input.mdui-text-color-white(type='text', placeholder="搜索", v-model='searchInput')
           button.mdui-textfield-close.mdui-btn.mdui-btn-icon(@click='searchInput=""')
             i.mdui-icon.material-icons close
-        img(src='/images/favicon-title.png')
+        img(src='/images/favicon-r.png')
       .mdui-tab.mdui-color-theme
         a#server-3.servers.mdui-ripple(@click='changeServer(3)') 正式服
         a#server-18.servers.mdui-ripple(@click='changeServer(18)') 测试服
@@ -34,6 +34,6 @@ block content
     .mdui-dialog#dialog
       #dialog-content.mdui-dialog-content
       .mdui-dialog-actions
-        button.mdui-btn.mdui-ripple.mdui-shadow-1
-          i.mdui-icon.material-icons(mdui-dialog-cancel) close
+        button.mdui-btn.mdui-ripple.mdui-shadow-1(mdui-dialog-cancel)
+          i.mdui-icon.material-icons close
   script(src="/m/js/cms.js")
