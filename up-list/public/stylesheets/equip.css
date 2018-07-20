@@ -1,3 +1,9 @@
+@font-face {  
+  font-family: 'msyh';
+  src: url('/m/fonts/msyh.ttc');
+  font-weight: bold;
+}
+
 html {
   width: 100%;
   height: 100%;
@@ -156,6 +162,7 @@ input, select {
   position: relative;
   overflow: hidden;
   box-shadow: 3px 3px 30px gray;
+  font-family: 'msyh', 'Microsoft YaHei', 'Heiti SC', 'San Francisco', Arial, sans-serif;
 }
 #equip-main > div {
   position: relative;
