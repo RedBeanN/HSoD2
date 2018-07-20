@@ -1,6 +1,6 @@
 @font-face {  
   font-family: 'msyh';
-  src: url('/m/fonts/msyh.ttc');
+  src: local('Microsoft YaHei'), url('/m/fonts/msyh.woff');
   font-weight: bold;
 }
 
