@@ -8,7 +8,9 @@ const app = new Vue({
   data: {
     cards: [],
     versions: [],
+    types: ['全部', '装备', '常规', '活动', '报错', '兼容', '意见'],
     searchInput: '',
+    typeInput: '',
     color: {
       '未处理': { color: '#1E40FE' },
       '已处理': { color: '#46CB47' },
@@ -18,8 +20,9 @@ const app = new Vue({
   },
   computed: {
     filteredCards () {
-      if (this.searchInput === '') return this.cards;
+      // if (this.searchInput === '') return this.cards;
       return this.cards.filter(item => {
+        if (item.title && item.title.indexOf(this.typeInput) === -1) return false;
         for (let i in item) {
           if (item[i].indexOf(this.searchInput) !== -1) return true;
         }
@@ -42,12 +45,17 @@ const app = new Vue({
       v = v === '全部' ? '' : v;
       // this.cards = [loadingCard];
       showLoading();
-      $$('.mdui-tab-active').removeClass('mdui-tab-active');
+      $$('.mdui-tab-active.version-select').removeClass('mdui-tab-active');
       $$(e.target).addClass('mdui-tab-active');
       axios.get('/buglist/data/' + v).then(res => {
         self.parseData(res.data, v);
         hideLoading();
       });
+    },
+    filterType (t, e) {
+      this.typeInput = t === '全部' ? '' : t;
+      $$('.mdui-tab-active.type-select').removeClass('mdui-tab-active');
+      $$(e.target).addClass('mdui-tab-active');
     },
     parseData (data, v) {
       let arr = [];
@@ -87,8 +95,8 @@ const app = new Vue({
     const self = this;
     this.loadVersions().then(ver => {
       // self.loadList(ver[0]);
-      const e = {target: $$('.version-select')[0]};
-      self.loadList(ver[0], e);
+      self.loadList(ver[0], {target: $$('.version-select')[0]});
+      self.filterType(self.types[0], {target: $$('.type-select')[0]});
     });
   },
   mounted () {

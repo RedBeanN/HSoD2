@@ -3,6 +3,7 @@ extends ../layout
 block content
   link(rel="stylesheet", href="/m/css/mdui.min.css")
   link(rel="stylesheet", href="/m/css/mdui-layout.css")
+  link(rel="stylesheet", href="/m/css/buglist.css")
   script(src="/m/js/mdui.min.js")
   script(src="/javascripts/vue.min.js")
   script(src="/javascripts/axios.min.js")
@@ -22,6 +23,8 @@ block content
         img(src='/images/favicon-r.png')
       .mdui-tab.mdui-color-theme
         a.version-select.mdui-ripple(v-for='ver in versions', @click.prevent='loadList(ver, $event)') {{ ver }}
+      .mdui-tab.mdui-color-theme
+        a.type-select.mdui-ripple(v-for='type in types', @click.prevent='filterType(type, $event)') {{ type }}
       #progress.mdui-progress
         .mdui-progress-indeterminate
     .cards(style='display:none')
