@@ -15,7 +15,7 @@ function opencc (text, _conf = 't2s') {
   return new Promise((resolve, reject) => {
     try {
       resolve(nodeOpenCC[confMap[_conf]](text));
-    } catch {
+    } catch (e) {
       reject('?');
     }
   });
