@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-20180721v2';
+const CACHENAME = 'hsod2-2018.07.21v1';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -56,9 +56,10 @@ const statics = [
   // resources
   'images', 'icons', 'fonts', 'animation',
   // others
-  'manifest', 'live2d', 'spine'
+  'manifest', 'live2d', 'spine', 'swVersions'
 ];
 const laterPrecache = [];
+const swVersions = [];
 
 self.addEventListener('install', e => {
   // console.log('The service worker is installed.');
@@ -73,8 +74,23 @@ self.addEventListener('install', e => {
        */
       caches.keys().then(cacheNames => {
         return Promise.all(cacheNames.map(cacheName => {
+          swVersions.push(cacheName);
           if (cacheName !== CACHENAME) return caches.delete(cacheName);
-        }));
+        }))/*.then(_ => {
+          const _blob = new Blob([JSON.stringify(swVersions)], {type : 'application/json'});
+          const _headers = new Headers({
+            'Accept-Ranges': 'bytes',
+            'Cache-Control': 'public, max-age=0',
+            'Content-Type': 'application/json',
+            'Date': (new Date()).toGMTString(),
+            'Last-Modified': (new Date()).toGMTString()
+          })
+          const _res = new Response(_blob, { status: 200, headers: _headers });
+          const _req = new Request('/swVersions');
+          caches.open(CACHENAME).then(cache => {
+            cache.put(_req, _res);
+          });
+        })*/;
       });
       return cache.add(urls[0]);
     })
@@ -93,7 +109,23 @@ self.addEventListener('fetch', e => {
    * NOTE: that the origin host must be match to the SSL crt,
    *   or FailedToFetch errors will break the app and the SW.
    */
-  if (!isRequestCacheable(e.request.url)) return fetch(e.request);
+  if (e.request.url.indexOf('sw') !== -1) {
+    console.log(e.request);
+    return e.respondWith(new Response(
+      new Blob([JSON.stringify(swVersions)], {type : 'application/json'}),
+      {
+        status: 200,
+        headers: new Headers({
+          'Accept-Ranges': 'bytes',
+          'Cache-Control': 'public, max-age=0',
+          'Content-Type': 'application/json',
+          'Date': (new Date()).toGMTString(),
+          'Last-Modified': (new Date()).toGMTString()
+        })
+      }
+    ));
+  }
+  else if (!isRequestCacheable(e.request.url)) return fetch(e.request);
   else e.respondWith(caches.match(e.request).then(res => {
     if (res) {
       /**
@@ -119,7 +151,7 @@ self.addEventListener('fetch', e => {
        * Res can only be read once. Clone it for cache.
        */
       let resp = res.clone();
-      if (!res || res.status !== 200 || res.type !== 'basic') return res;
+      if (!res || res.status !== 200) return res;
       caches.open(CACHENAME).then(cache => {
         cache.put(e.request, resp);
       });

@@ -41,10 +41,25 @@ const app = new Vue({
         }
         $$('#fw').css('opacity', '1');
       }).catch(console.log);
-    }
+    },
+    updateSW () {
+      const self = this;
+      axios.get('/swVersions').then(res => {
+        let versions = res.data;
+        if (Array.isArray(versions)) versions = versions.map(i => {
+          return i.split('-')[1];
+        });
+        self.cards.pop();
+        self.cards.push({
+          title: '正在使用 PWA 版搞事学园',
+          content: `当前使用的数据版本: ${versions.join(', ')}`
+        })
+      })
+    },
   },
   created () {
     this.updatePets();
+    this.updateSW();
   },
   mounted () {
     mdui.mutation();
