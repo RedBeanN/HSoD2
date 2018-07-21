@@ -56,7 +56,7 @@ const statics = [
   // resources
   'images', 'icons', 'fonts', 'animation',
   // others
-  'manifest', 'live2d', 'spine', 'swVersions'
+  'manifest', 'live2d', 'spine'
 ];
 const laterPrecache = [];
 const swVersions = [];
@@ -74,23 +74,8 @@ self.addEventListener('install', e => {
        */
       caches.keys().then(cacheNames => {
         return Promise.all(cacheNames.map(cacheName => {
-          swVersions.push(cacheName);
           if (cacheName !== CACHENAME) return caches.delete(cacheName);
-        }))/*.then(_ => {
-          const _blob = new Blob([JSON.stringify(swVersions)], {type : 'application/json'});
-          const _headers = new Headers({
-            'Accept-Ranges': 'bytes',
-            'Cache-Control': 'public, max-age=0',
-            'Content-Type': 'application/json',
-            'Date': (new Date()).toGMTString(),
-            'Last-Modified': (new Date()).toGMTString()
-          })
-          const _res = new Response(_blob, { status: 200, headers: _headers });
-          const _req = new Request('/swVersions');
-          caches.open(CACHENAME).then(cache => {
-            cache.put(_req, _res);
-          });
-        })*/;
+        }));
       });
       return cache.add(urls[0]);
     })
@@ -109,23 +94,7 @@ self.addEventListener('fetch', e => {
    * NOTE: that the origin host must be match to the SSL crt,
    *   or FailedToFetch errors will break the app and the SW.
    */
-  if (e.request.url.indexOf('sw') !== -1) {
-    console.log(e.request);
-    return e.respondWith(new Response(
-      new Blob([JSON.stringify(swVersions)], {type : 'application/json'}),
-      {
-        status: 200,
-        headers: new Headers({
-          'Accept-Ranges': 'bytes',
-          'Cache-Control': 'public, max-age=0',
-          'Content-Type': 'application/json',
-          'Date': (new Date()).toGMTString(),
-          'Last-Modified': (new Date()).toGMTString()
-        })
-      }
-    ));
-  }
-  else if (!isRequestCacheable(e.request.url)) return fetch(e.request);
+  if (!isRequestCacheable(e.request.url)) return fetch(e.request);
   else e.respondWith(caches.match(e.request).then(res => {
     if (res) {
       /**

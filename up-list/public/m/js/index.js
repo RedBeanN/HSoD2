@@ -44,18 +44,29 @@ const app = new Vue({
     },
     updateSW () {
       const self = this;
-      axios.get('/swVersions').then(res => {
-        let versions = res.data;
-        if (Array.isArray(versions)) versions = versions.map(i => {
-          return i.split('-')[1];
+      // axios.get('/swVersions').then(res => {
+      //   let versions = res.data;
+      //   if (Array.isArray(versions)) versions = versions.map(i => {
+      //     return i.split('-')[1];
+      //   });
+      //   else alert('无法识别的 Service Worker 版本:', versions);
+      //   self.cards.pop();
+      //   self.cards.push({
+      //     title: '正在使用 PWA 版搞事学园',
+      //     content: `当前使用的数据版本: ${versions}`
+      //   })
+      // })
+      if (caches && caches.keys) {
+        caches.keys().then(cachenames => {
+          let names = cachenames.map(i => i.split('-')[1]);
+          if (!names.length) return;
+          self.cards.pop();
+          self.cards.push({
+            title: '正在使用 PWA 版搞事学园',
+            content: `当前使用的数据版本: ${names.join(', ')}`
+          })
         });
-        else alert('无法识别的 Service Worker 版本:', versions);
-        self.cards.pop();
-        self.cards.push({
-          title: '正在使用 PWA 版搞事学园',
-          content: `当前使用的数据版本: ${versions}`
-        })
-      })
+      }
     },
   },
   created () {
