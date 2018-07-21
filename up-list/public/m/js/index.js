@@ -49,10 +49,11 @@ const app = new Vue({
         if (Array.isArray(versions)) versions = versions.map(i => {
           return i.split('-')[1];
         });
+        else alert('无法识别的 Service Worker 版本:', versions);
         self.cards.pop();
         self.cards.push({
           title: '正在使用 PWA 版搞事学园',
-          content: `当前使用的数据版本: ${versions.join(', ')}`
+          content: `当前使用的数据版本: ${versions}`
         })
       })
     },
