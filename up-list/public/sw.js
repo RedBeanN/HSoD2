@@ -59,7 +59,6 @@ const statics = [
   'manifest', 'live2d', 'spine'
 ];
 const laterPrecache = [];
-const swVersions = [];
 
 self.addEventListener('install', e => {
   // console.log('The service worker is installed.');

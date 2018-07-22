@@ -1,35 +1,23 @@
-const http = require('http');
-const qs = require('querystring');
+const nodeOpenCC = require('node-opencc');
 
-function opencc(text, conf) {
-  /*
-    text: text to be converted
-    conf: t2s s2t tw2sp ...
-  */
+const confMap = {
+  'hk2s': 'hongKongToSimplified',
+  's2hk': 'simplifiedToHongKong',
+  's2t': 'simplifiedToTraditional',
+  's2wt': 'simplifiedToTaiwan',
+  't2hk': 'traditionalToHongKong',
+  't2s': 'traditionalToSimplified',
+  't2tw': 'traditionalToTaiwan',
+  'tw2s': 'taiwanToSimplifie',
+};
+
+function opencc (text, _conf = 't2s') {
   return new Promise((resolve, reject) => {
-    let _data = qs.stringify(Object.assign({
-      config: (conf || 't2s') + '.json',
-      precise: 0
-    }, { text }));
-    let options = {
-      hostname: 'opencc.byvoid.com',
-      port: 80,
-      path: '/convert',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'Content-Length': Buffer.byteLength(_data)
-      }
-    };
-    let req = http.request(options, function(res) {
-      let data = '';
-      res.setEncoding('utf-8');
-      res.on('data', chunk => data += chunk );
-      res.on('end', () => resolve(data) );
-    });
-    req.on('error', err => reject(err) );
-    req.write(_data);
-    req.end();
+    try {
+      resolve(nodeOpenCC[confMap[_conf]](text));
+    } catch (e) {
+      reject('?');
+    }
   });
 }
 

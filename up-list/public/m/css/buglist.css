@@ -1,0 +1,15 @@
+@media (max-width: 694px){
+  .cards {
+    margin-top: 70px;
+  }
+}
+@media (min-width: 695px) {
+  .cards {
+    margin-top: 55px;
+  }
+}
+@media (min-width: 900px) {
+  .cards {
+    margin-top: 70px;
+  }
+}
