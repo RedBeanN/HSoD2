@@ -14,7 +14,7 @@ const app = new Vue({
       'pet': '使魔'
     },
     searchInput: '',
-    sortFlag: true,
+    sortedFlag: true,
   },
   computed: {
     filteredRows () {
