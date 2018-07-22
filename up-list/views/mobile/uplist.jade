@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+  link(rel="stylesheet", href="/m/css/mdui.min.css")
+  link(rel="stylesheet", href="/m/css/mdui-layout.css")
+  script(src="/m/js/mdui.min.js")
+  script(src="/javascripts/vue.min.js")
+  script(src="/javascripts/axios.min.js")
+  #app.mdui-color-theme
+    .mdui-appbar.mdui-appbar-fixed.mdui-app-bar-scroll-hide
+      .mdui-toolbar.mdui-color-theme
+        a.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(href='/')
+          i.mdui-icon.material-icons home
+        .mdui-typo-title UP 记录
+        .mdui-toolbar-spacer
+        #search.mdui-textfield.mdui-textfield-expandable.mdui-float-right
+          button.mdui-textfield-icon.mdui-btn.mdui-btn-icon
+            i.mdui-icon.material-icons search
+          input.mdui-textfield-input.mdui-text-color-white(type='text', placeholder="搜索", v-model='searchInput')
+          button.mdui-textfield-close.mdui-btn.mdui-btn-icon(@click='searchInput=""')
+            i.mdui-icon.material-icons close
+        img(src='/images/favicon-r.png')
+      .mdui-tab.mdui-color-theme
+        a.pool-select.mdui-ripple(v-for='(pool, name) in pools', @click.prevent='loadList(name, $event)') {{ pool }}
+      #progress.mdui-progress
+        .mdui-progress-indeterminate
+    .mdui-table-fluid
+      table.mdui-table.mdui-table-hoverable
+        thead
+          tr
+            th.mdui-table-col-numeric 开始时间
+            th.mdui-table-col-numeric 结束时间
+            th(colspan='100') 内容
+        tbody
+          tr(v-for='row in filteredRows')
+            td {{ row.startTime }}
+            td {{ row.endTime }}
+            td(v-for='item in row.data') {{ item }}
+
+  script(src="/m/js/uplist.js")

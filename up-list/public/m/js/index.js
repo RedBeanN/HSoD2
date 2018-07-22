@@ -20,7 +20,7 @@ const app = new Vue({
       { name: '奥菲莉亚', top: '', round: '' },
     ],
     drawer: [
-      { url: '/list/auto',         name: 'UP 记录' },
+      { url: '/list',         name: 'UP 记录' },
       { url: '/equip',             name: '装备模拟器' },
       { url: '/cms',               name: '公告记录' },
       { url: '/buglist',           name: '测试服 BUG 记录' },
@@ -44,18 +44,6 @@ const app = new Vue({
     },
     updateSW () {
       const self = this;
-      // axios.get('/swVersions').then(res => {
-      //   let versions = res.data;
-      //   if (Array.isArray(versions)) versions = versions.map(i => {
-      //     return i.split('-')[1];
-      //   });
-      //   else alert('无法识别的 Service Worker 版本:', versions);
-      //   self.cards.pop();
-      //   self.cards.push({
-      //     title: '正在使用 PWA 版搞事学园',
-      //     content: `当前使用的数据版本: ${versions}`
-      //   })
-      // })
       if (caches && caches.keys) {
         caches.keys().then(cachenames => {
           let names = cachenames.map(i => i.split('-')[1]);
