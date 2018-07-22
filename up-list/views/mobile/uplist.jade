@@ -36,5 +36,7 @@ block content
             td {{ row.startTime }}
             td {{ row.endTime }}
             td(v-for='item in row.data') {{ item }}
+    button.mdui-fab.mdui-fab-fixed.mdui-ripple.mdui-color-theme-accent(@click='backToTop')
+      i.mdui-icon.material-icons publish
 
   script(src="/m/js/uplist.js")

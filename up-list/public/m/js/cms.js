@@ -35,6 +35,7 @@ const app = new Vue({
         $$('#server-' + server).addClass('mdui-tab-active');
         self.currentServer = server;
         mdui.mutation();
+        self.backToTop();
         hideLoading();
       });
     },
@@ -53,6 +54,10 @@ const app = new Vue({
         dialog.open();
         hideLoading();
       });
+    },
+    backToTop () {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
     },
   },
   created () {

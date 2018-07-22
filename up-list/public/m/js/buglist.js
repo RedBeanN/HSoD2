@@ -49,6 +49,7 @@ const app = new Vue({
       $$(e.target).addClass('mdui-tab-active');
       axios.get('/buglist/data/' + v).then(res => {
         self.parseData(res.data, v);
+        self.backToTop();
         hideLoading();
       });
     },
@@ -56,6 +57,7 @@ const app = new Vue({
       this.typeInput = t === '全部' ? '' : t;
       $$('.mdui-tab-active.type-select').removeClass('mdui-tab-active');
       $$(e.target).addClass('mdui-tab-active');
+      this.backToTop();
     },
     parseData (data, v) {
       let arr = [];
@@ -89,7 +91,11 @@ const app = new Vue({
       }).then(_ => {
         hideLoading();
       });
-    }
+    },
+    backToTop () {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    },
   },
   created () {
     const self = this;

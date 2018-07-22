@@ -34,7 +34,6 @@ const app = new Vue({
       const self = this;
       showLoading();
       $$('.mdui-tab-active').removeClass('mdui-tab-active');
-      console.log(e.target);
       $$(e.target).addClass('mdui-tab-active');
       axios.get(`/list/auto/${pool}`).then(res => {
         const table = res.data.map(i => {
@@ -44,6 +43,7 @@ const app = new Vue({
             endTime: i.endTime.replace(/-/g, '/').split(' ')[0]
           }
         });
+        self.backToTop();
         if (pool === 'high') checkDumplicate(table);
         else if (pool === 'pet') return self.loadPet(table);
         self.rows = table.filter(r => r.data.length);
@@ -74,8 +74,11 @@ const app = new Vue({
         return sortedFlag ? preTime - nowTime : nowTime - preTime;
       });
     },
+    backToTop () {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    },
   },
-  created () {},
   mounted () {
     this.loadList('high', { target: $$('.pool-select')[0] });
     mdui.mutation();
