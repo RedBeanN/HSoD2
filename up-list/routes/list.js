@@ -7,10 +7,10 @@ var updater = require('../private/javascripts/up-list-updater.js');
 
 // List
 router.get('/', function(req, res, next) {
-  updater.updateList(function (li) {
-    res.render('list', {list: li, title: '装备 up 记录(旧) - 搞事学园'});
-  });
-  //res.render('list', {list: list, title: '装备 up 记录'});
+  // updater.updateList(function (li) {
+  //   res.render('list', {list: li, title: '装备 up 记录(旧) - 搞事学园'});
+  // });
+  res.render('mobile/uplist', {title: '装备 up 记录 - 搞事学园'});
 });
 
 // router.get('/update', function(req, res, next) {
