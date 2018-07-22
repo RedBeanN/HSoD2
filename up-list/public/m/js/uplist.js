@@ -6,18 +6,7 @@ $$('body').removeClass('mdui-drawer-body-left');
 const app = new Vue({
   el: '#app',
   data: {
-    rows: [{
-      data : [
-        "Casull",
-        "塔罗·皇帝",
-        "阿波罗的战衣",
-        "命运的塔罗牌",
-        "塔罗·塔",
-        "汉谟拉比法典"
-      ],
-      endTime : "2018-03-26 23:59:59",
-      startTime : "2018-03-24 00:00:00"
-    }],
+    rows: [],
     pools: {
       'high': '公主',
       'custom': '魔女',
@@ -44,8 +33,9 @@ const app = new Vue({
     loadList (pool, e) {
       const self = this;
       showLoading();
-      $$('.mdui-tab-active').removeClass('.mdui-tab-active');
-      $$(e.target).addClass('.mdui-tab-active');
+      $$('.mdui-tab-active').removeClass('mdui-tab-active');
+      console.log(e.target);
+      $$(e.target).addClass('mdui-tab-active');
       axios.get(`/list/auto/${pool}`).then(res => {
         const table = res.data.map(i => {
           return {
@@ -85,10 +75,9 @@ const app = new Vue({
       });
     },
   },
-  created () {
-    this.loadList('high', { target: '.pool-select' });
-  },
+  created () {},
   mounted () {
+    this.loadList('high', { target: $$('.pool-select')[0] });
     mdui.mutation();
   },
 });
