@@ -36,7 +36,14 @@ block content
             td {{ row.startTime }}
             td {{ row.endTime }}
             td(v-for='item in row.data') {{ item }}
-    button.mdui-fab.mdui-fab-fixed.mdui-ripple.mdui-color-theme-accent(@click='backToTop')
-      i.mdui-icon.material-icons publish
+    .mdui-fab-wrapper.mdui-fab-fixed(mdui-fab)
+      button.mdui-fab.mdui-ripple.mdui-color-theme-accent
+        i.mdui-icon.material-icons menu
+        i.mdui-icon.material-icons.mdui-fab-opened apps
+      .mdui-fab-dial
+        button.mdui-fab.mdui-fab-mini.mdui-ripple.mdui-color-theme-accent(@click='backToTop')
+          i.mdui-icon.material-icons publish
+        button.mdui-fab.mdui-fab-mini.mdui-ripple.mdui-color-theme-accent(@click='sortTable')
+          i.mdui-icon.material-icons import_export
 
   script(src="/m/js/uplist.js")
