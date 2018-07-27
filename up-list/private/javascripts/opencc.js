@@ -4,11 +4,11 @@ const confMap = {
   'hk2s': 'hongKongToSimplified',
   's2hk': 'simplifiedToHongKong',
   's2t': 'simplifiedToTraditional',
-  's2wt': 'simplifiedToTaiwan',
+  's2tw': 'simplifiedToTaiwan',
   't2hk': 'traditionalToHongKong',
   't2s': 'traditionalToSimplified',
   't2tw': 'traditionalToTaiwan',
-  'tw2s': 'taiwanToSimplifie',
+  'tw2s': 'taiwanToSimplified',
 };
 
 function opencc (text, _conf = 't2s') {
