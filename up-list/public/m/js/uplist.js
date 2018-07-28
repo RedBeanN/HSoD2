@@ -1,7 +1,34 @@
+// tco for checkDumplicate
+function tco(f) {
+  let value, active = false, accumulate = [];
+  return function accumulator() {
+    accumulate.push(arguments);
+    if (!active) {
+      active = true;
+      while(accumulate.length) {
+        value = f.apply(this, accumulate.shift());
+      }
+      active = false;
+      return value;
+    }
+  }
+}
 window.onload = () => {
 const $$ = mdui.JQ;
 $$('#back-to-index').remove();
 $$('body').removeClass('mdui-drawer-body-left');
+function checkDumplicate(arr, now = 1, saved = 0) {
+  if (arr.constructor != Array) throw new Error('Type Error: input data is not an array.');
+  if (now >= arr.length) return;
+  if (!isContinous(arr[now], arr[saved])) return checkDumplicate(arr, now + 1, now);
+  if (spliceFrom(arr[now].data, arr[saved].data)) {
+    arr[saved].startTime = min(arr[saved].startTime, arr[now].startTime);
+    arr[saved].endTime = max(arr[saved].endTime, arr[now].endTime);
+  } else saved = now;
+  now++;
+  return checkDumplicate(arr, now, saved);
+}
+checkDumplicate = tco(checkDumplicate);
 
 const app = new Vue({
   el: '#app',
@@ -36,7 +63,7 @@ const app = new Vue({
       $$('.mdui-tab-active').removeClass('mdui-tab-active');
       $$(e.target).addClass('mdui-tab-active');
       axios.get(`/list/auto/${pool}`).then(res => {
-        this.sortedFlag = true
+        this.sortedFlag = true;
         const table = res.data.map(i => {
           return {
             data: i.data,
@@ -95,17 +122,6 @@ function hideLoading () {
   $$('#progress').css('opacity', 0);
 }
 
-function checkDumplicate(arr, now = 1, saved = 0) {
-  if (arr.constructor != Array) throw new Error('Type Error: input data is not an array.');
-  if (now >= arr.length) return;
-  if (!isContinous(arr[now], arr[saved])) return checkDumplicate(arr, now + 1, now);
-  if (spliceFrom(arr[now].data, arr[saved].data)) {
-    arr[saved].startTime = min(arr[saved].startTime, arr[now].startTime);
-    arr[saved].endTime = max(arr[saved].endTime, arr[now].endTime);
-  } else saved = now;
-  now++;
-  return checkDumplicate(arr, now, saved);
-}
 function spliceFrom(a, b) {
   if (a.constructor != Array || b.constructor != Array) {
     throw new Error('Type Error: input datas are not arrays');
@@ -126,7 +142,6 @@ function max(da, db) { return new Date('20' + da) > new Date('20' + db) ? da : d
 function isContinous (now, pre) {
   let a = new Date('20' + now.startTime);
   let b = new Date('20' + pre.endTime);
-  console.log(now.startTime, pre.endTime, a - b);
   return a - b === 86400000;
 }
 
