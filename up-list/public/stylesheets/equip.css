@@ -1,7 +1,7 @@
 @font-face {  
   font-family: 'msyh';
   src: url('/m/fonts/msyh.woff');
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 html {
@@ -162,7 +162,7 @@ input, select {
   position: relative;
   overflow: hidden;
   box-shadow: 3px 3px 30px gray;
-  font-family: 'msyh', 'Microsoft YaHei', 'Heiti SC', 'San Francisco', Arial, sans-serif;
+  font-family: 'Microsoft YaHei', 'msyh', 'Heiti SC', 'San Francisco', Arial, sans-serif;
 }
 #equip-main > div {
   position: relative;

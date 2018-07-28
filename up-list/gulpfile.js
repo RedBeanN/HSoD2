@@ -24,6 +24,4 @@ gulp.task('minifycss', () => {
          .pipe(gulp.dest('public/dist/css'));
 });
 
-gulp.task('default', () => {
-  gulp.start('minifycss', 'minifyjs');
-});
+gulp.task('default', gulp.parallel('minifycss', 'minifyjs'));
