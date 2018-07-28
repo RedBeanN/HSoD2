@@ -142,7 +142,7 @@ function max(da, db) { return new Date('20' + da) > new Date('20' + db) ? da : d
 function isContinous (now, pre) {
   let a = new Date('20' + now.startTime);
   let b = new Date('20' + pre.endTime);
-  return a - b === 86400000;
+  return a - b <= 86400000;
 }
 
 };
