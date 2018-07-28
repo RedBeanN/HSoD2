@@ -3,10 +3,11 @@ extends ../layout
 block content
   link(rel="stylesheet", href="/m/css/mdui.min.css")
   link(rel="stylesheet", href="/m/css/mdui-layout.css")
+  link(rel="stylesheet", href="/m/css/uplist.css")
   script(src="/m/js/mdui.min.js")
   script(src="/javascripts/vue.min.js")
   script(src="/javascripts/axios.min.js")
-  #app.mdui-color-theme
+  #app
     .mdui-appbar.mdui-appbar-fixed.mdui-app-bar-scroll-hide
       .mdui-toolbar.mdui-color-theme
         a.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(href='/')
@@ -28,8 +29,8 @@ block content
       table.mdui-table.mdui-table-hoverable
         thead
           tr
-            th.mdui-table-col-numeric 开始时间
-            th.mdui-table-col-numeric 结束时间
+            th.1mdui-table-col-numeric 开始时间
+            th.1mdui-table-col-numeric 结束时间
             th(colspan='100') 内容
         tbody
           tr(v-for='row in filteredRows')

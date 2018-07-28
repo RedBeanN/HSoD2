@@ -36,15 +36,16 @@ const app = new Vue({
       $$('.mdui-tab-active').removeClass('mdui-tab-active');
       $$(e.target).addClass('mdui-tab-active');
       axios.get(`/list/auto/${pool}`).then(res => {
+        this.sortedFlag = true
         const table = res.data.map(i => {
           return {
             data: i.data,
-            startTime: i.startTime.replace(/-/g, '/').split(' ')[0],
-            endTime: i.endTime.replace(/-/g, '/').split(' ')[0]
+            startTime: i.startTime.replace(/-/g, '/').split(' ')[0].substr(2),
+            endTime: i.endTime.replace(/-/g, '/').split(' ')[0].substr(2)
           }
         });
         self.backToTop();
-        if (pool === 'high') checkDumplicate(table);
+        if (pool === 'high' || pool === 'special') checkDumplicate(table);
         else if (pool === 'pet') return self.loadPet(table);
         self.rows = table.filter(r => r.data.length);
         self.sortTable();
@@ -57,7 +58,9 @@ const app = new Vue({
       axios.get('/list/auto/pet-map').then(res => {
         const map = res.data;
         self.rows = table.map(r => {
-          r.data = r.data.map(d => map[d] || '?');
+          let data = [];
+          r.data.forEach(d => data.push(d, map[d] || '?'));
+          r.data = data;
           return r;
         });
         self.sortTable();
@@ -69,8 +72,8 @@ const app = new Vue({
       this.sortedFlag = !this.sortedFlag;
       let sortedFlag = this.sortedFlag;
       this.rows.sort((pre, now) => {
-        let preTime = new Date(pre.startTime);
-        let nowTime = new Date(now.startTime);
+        let preTime = new Date('20' + pre.startTime);
+        let nowTime = new Date('20' + now.startTime);
         return sortedFlag ? preTime - nowTime : nowTime - preTime;
       });
     },
@@ -95,6 +98,7 @@ function hideLoading () {
 function checkDumplicate(arr, now = 1, saved = 0) {
   if (arr.constructor != Array) throw new Error('Type Error: input data is not an array.');
   if (now >= arr.length) return;
+  if (!isContinous(arr[now], arr[saved])) return checkDumplicate(arr, now + 1, now);
   if (spliceFrom(arr[now].data, arr[saved].data)) {
     arr[saved].startTime = min(arr[saved].startTime, arr[now].startTime);
     arr[saved].endTime = max(arr[saved].endTime, arr[now].endTime);
@@ -117,7 +121,13 @@ function spliceFrom(a, b) {
   }
   return isDumplicated;
 }
-function min(da, db) { return new Date(da) < new Date(db) ? da : db }
-function max(da, db) { return new Date(da) > new Date(db) ? da : db }
+function min(da, db) { return new Date('20' + da) < new Date('20' + db) ? da : db }
+function max(da, db) { return new Date('20' + da) > new Date('20' + db) ? da : db }
+function isContinous (now, pre) {
+  let a = new Date('20' + now.startTime);
+  let b = new Date('20' + pre.endTime);
+  console.log(now.startTime, pre.endTime, a - b);
+  return a - b === 86400000;
+}
 
 };
