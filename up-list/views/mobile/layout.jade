@@ -8,11 +8,11 @@ html
     //- PWA specific
     link(rel="manifest", href="/manifest.json")
     meta(name='theme-color' content='#3f51b5')
+    //- for iOS safari
+    link(rel="apple-touch-icon", href="/favicon.jpg")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="white")
   body.mdui-drawer-body-left.mdui-appbar-with-tab-larger.mdui-theme-primary-indigo.mdui-theme-accent-pink
-    //- #back-container
-    - if (title && title.indexOf('主页') == -1) {
-    a#back-to-index(href='/') 主页
-    - }
     block content
     script(type='text/javascript').
       if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
