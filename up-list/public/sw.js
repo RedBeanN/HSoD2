@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2018.07.21v1';
+const CACHENAME = 'hsod2-2018.07.31v1';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -58,33 +58,43 @@ const statics = [
   // others
   'manifest', 'live2d', 'spine'
 ];
-const laterPrecache = [];
+const laterPrecache = new (class myArr {
+  constructor() {
+    this.data = [];
+    this.length = 0;
+  }
+  push (item) {
+    for (let i of this.data) {
+      if (i === item) return;
+    }
+    this.length++;
+    return this.data.push(item);
+  };
+  pop () {
+    this.length--;
+    return this.data.pop();
+  };
+});
 
 self.addEventListener('install', e => {
-  // console.log('The service worker is installed.');
-  e.waitUntil(
-    caches.open(CACHENAME).then(cache => {
-      /**
-       * cache files one by one
-       */
-      cacheForUrls(cache, urls, 1);
-      /**
-       * Delete redundant caches.
-       */
-      caches.keys().then(cacheNames => {
-        return Promise.all(cacheNames.map(cacheName => {
-          if (cacheName !== CACHENAME) return caches.delete(cacheName);
-        }));
-      });
-      return cache.add(urls[0]);
-    })
-    .catch(() => {
-      /**
-       * This is only specific for '/'
-       */
-      laterPrecache.push(urls[0]);
-    })
-  );
+  console.log('The service worker is installed.');
+  // e.waitUntil(
+  //   caches.open(CACHENAME).then(cache => {
+  //     /**
+  //      * cache files one by one
+  //      */
+  //     // cacheForUrls(cache, urls, 2);
+  //     self.skipWaiting();
+  //     return cache.add(urls[0]);
+  //   })
+  //   .catch(() => {
+  //     /**
+  //      * This is only specific for '/'
+  //      */
+  //     laterPrecache.push(urls[0]);
+  //   })
+  // );
+  self.skipWaiting();
 });
 
 self.addEventListener('fetch', e => {
@@ -126,6 +136,42 @@ self.addEventListener('fetch', e => {
       return res;
     });
   }));
+});
+
+self.addEventListener('activate', async e => {
+  console.log('Service Worker is activated.');
+  /**
+   * Merge cached files to latest cache,
+   * then delete redundant caches.
+   */
+  const cacheNames = await caches.keys();
+  const C = await caches.open(CACHENAME);
+  /**
+   * If there is any old cache version, get its cached files
+   * and save to current version.
+   */
+  return Promise.all(cacheNames
+    .filter(cacheName => cacheName !== CACHENAME)
+    .map(async cacheName => {
+      console.log(`[SW] Merging cache [${cacheName}] to [${CACHENAME}].`);
+      const cache = await caches.open(cacheName);
+      const keys = await cache.keys();
+      return Promise.all(keys
+        .map(async key => {
+          /**
+           * If the key is already existed, skip.
+           */
+          const exist = await C.match(key);
+          if (exist) return Promise.resolve();
+          const res = await cache.match(key);
+          return C.put(key, res);
+        })
+      ).then(_ => {
+        console.log(`[SW] Merged cache [${cacheName}] to [${CACHENAME}].`);
+        return caches.delete(cacheName);
+      });
+    })
+  );
 });
 
 function cacheForUrls(cache, urls, i) {
@@ -185,5 +231,18 @@ function isRequestStatic (url) {
   }
   return false;
 }
+
+/**
+ * Try cache files failed in install event.
+ */
+setTimeout(_ => {
+caches.open(CACHENAME).then(cache => {
+  for (let url of urls) {
+    cache.match(url).then(res => {
+      if (!res) laterPrecache.push(url);
+    })
+  }
+})
+}, 4000);
 
 })();
