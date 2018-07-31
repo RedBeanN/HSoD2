@@ -5,11 +5,8 @@ const app = new Vue({
   el: '#app',
   data: {
     cards: [{
-      title: '搞事学园移动端测试版发布啦 !',
-      content: '目前功能还不完善 , 有任何意见建议欢迎发送到 me@hongshn.xyz ~'
-    }, {
-      title: '关于 PWA',
-      content: '使用 https 访问本站 , 添加到主屏幕后就能开始使用 PWA 版本啦 !'
+      title: '欢迎来到搞事学园',
+      content: '您正在使用移动端测试版 , 目前功能还不完善 , 有任何意见建议欢迎发送到 me@hongshn.xyz ~'
     }],
     // pets: [
     //   { name: '普洛姆特', top: '', round: '' },
@@ -34,13 +31,20 @@ const app = new Vue({
       { url: '/worldbattle/20182', name: '阵营战记录' },
     ],
     drawerInst: null,
+    swSize: {
+      total: 0,
+      font: 0,
+      image: 0,
+      script: 0,
+      other: 0,
+    },
   },
   computed: {
     balorRate () {
       const crate = this.balor.crate / 100,
-          cadds = this.balor.cadds / 100,
-          minus = this.balor.minus / 100,
-          minmi = this.balor.minmi / 100;
+            cadds = this.balor.cadds / 100,
+            minus = this.balor.minus / 100,
+            minmi = this.balor.minmi / 100;
       const max = (a, b) => a > b ? a : b;
       let baseCri = (2 + cadds) * (this.balor.wz ? 2 : 1);
       let cris = [baseCri];
@@ -76,14 +80,40 @@ const app = new Vue({
         caches.keys().then(cachenames => {
           let names = cachenames.map(i => i.split('-')[1]);
           if (!names.length) return;
-          self.cards.pop();
           self.cards.push({
             title: '正在使用 PWA 版搞事学园',
             content: `当前使用的数据版本: ${names.join(', ')}`
-          })
+          });
+          self.calcSW(cachenames);
         });
       }
     },
+    calcSW (names) {
+      const self = this;
+      for (let name of names) {
+        caches.open(name).then(cache => {
+          cache.keys().then(keys => {
+            for (let key of keys) {
+              cache.match(key).then(res => {
+                res.arrayBuffer().then(ab => {
+                  self.swSize.total += ab.byteLength;
+                  addSize(self.swSize, ab.byteLength, key.url);
+                });
+              });
+            }
+          });
+        });
+      }
+    },
+  },
+  filters: {
+    byte2mb (byte) {
+      if (typeof byte !== 'number') {
+        byte = Number(byte);
+        if (isNaN(byte)) return;
+      }
+      return parseFloat((byte / 1024 / 1024).toFixed(2));
+    }
   },
   created () {
     // this.updatePets();
@@ -91,6 +121,16 @@ const app = new Vue({
   },
   mounted () {
     mdui.mutation();
-  }
+  },
+  updated () {
+    mdui.mutation();
+  },
 });
+function addSize (s, l, url) {
+  if (typeof url !== 'string') return;
+  if (url.indexOf('font') !== -1) return s.font += l;
+  if (url.indexOf('image') !== -1) return s.image += l;
+  if (url.indexOf('js') !== -1) return s.script += l;
+  return s.other += l;
+}
 }

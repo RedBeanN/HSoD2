@@ -60,8 +60,23 @@ block content
         .mdui-textfield.mdui-col-xs-6.mdui-col-md-2
           label.mdui-textfield-label 最高暴击倍率
           input.mdui-textfield-input(v-model='balorRate', readonly)
-    .mdui-card(v-for='card in cards')
+    .mdui-card
       .mdui-card-primary
-        .mdui-card-primary-title {{ card.title }}
-      .mdui-card-content {{ card.content }}
+        .mdui-card-primary-title {{ cards[0].title }}
+      .mdui-card-content {{ cards[0].content }}
+    .mdui-card(v-if='cards[1]')
+      .mdui-card-primary
+        .mdui-card-primary-title {{ cards[1].title }}
+      .mdui-card-content.mdui-container-fluid
+        p {{ cards[1].content }}
+        .mdui-panel.mdui-panel-gapless.mdui-panel-popout(mdui-panel, v-show='swSize.total')
+          .mdui-panel-item
+            .mdui-panel-item-header 已使用的缓存
+              i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
+            .mdui-panel-item-body
+              p 图片 : {{ swSize.image | byte2mb }} MB
+              p 脚本 : {{ swSize.script | byte2mb }} MB
+              p 字体 : {{ swSize.font | byte2mb }} MB
+              p 其他 : {{ swSize.other | byte2mb }} MB
+              p 总计 : {{ swSize.total | byte2mb }} MB
   script(src="/m/js/index.js")
