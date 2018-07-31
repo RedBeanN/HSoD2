@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2018.07.31v1';
+const CACHENAME = 'hsod2-2018.07.31v2';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -58,7 +58,8 @@ const statics = [
   // others
   'manifest', 'live2d', 'spine'
 ];
-const laterPrecache = new (class myArr {
+let caching = false;
+const laterPrecache = new (class uniqueArray {
   constructor() {
     this.data = [];
     this.length = 0;
@@ -78,26 +79,12 @@ const laterPrecache = new (class myArr {
 
 self.addEventListener('install', e => {
   console.log('The service worker is installed.');
-  // e.waitUntil(
-  //   caches.open(CACHENAME).then(cache => {
-  //     /**
-  //      * cache files one by one
-  //      */
-  //     // cacheForUrls(cache, urls, 2);
-  //     self.skipWaiting();
-  //     return cache.add(urls[0]);
-  //   })
-  //   .catch(() => {
-  //     /**
-  //      * This is only specific for '/'
-  //      */
-  //     laterPrecache.push(urls[0]);
-  //   })
-  // );
+  checkAndCache();
   self.skipWaiting();
 });
 
 self.addEventListener('fetch', e => {
+  checkAndCache();
   /**
    * Handling FetchEvent.
    * NOTE: that the origin host must be match to the SSL crt,
@@ -174,6 +161,24 @@ self.addEventListener('activate', async e => {
   );
 });
 
+/**
+ * Check and cache files in urls.
+ */
+function checkAndCache () {
+  if (caching) return;
+  caching = true;
+  setTimeout(_ => {
+    caches.open(CACHENAME).then(cache => {
+      for (let url of urls) {
+        cache.match(url).then(res => {
+          if (!res) laterPrecache.push(url);
+        })
+      }
+      caching = false;
+    })
+  }, 2000)
+}
+
 function cacheForUrls(cache, urls, i) {
   /**
    * Recusive caching files.
@@ -188,17 +193,13 @@ function cacheForUrls(cache, urls, i) {
   }, 200)
 }
 
-let laterTimer = setInterval(() => {
+setInterval(_ => {
   /**
    * Check laterPrecache per 5 sec.
    * If laterPrecache is not empty, cache items in it.
    * Else clear timer.
    */
-  if (!laterPrecache.length) {
-    // console.log('Precached all items after several trials.');
-    clearInterval(laterTimer);
-  } else {
-    // console.log('Try to precache failed items.');
+  if (laterPrecache.length) {
     /**
      * NOTE: Here clear the laterPrecache array.
      * If there is still something failing to cache,
@@ -231,18 +232,5 @@ function isRequestStatic (url) {
   }
   return false;
 }
-
-/**
- * Try cache files failed in install event.
- */
-setTimeout(_ => {
-caches.open(CACHENAME).then(cache => {
-  for (let url of urls) {
-    cache.match(url).then(res => {
-      if (!res) laterPrecache.push(url);
-    })
-  }
-})
-}, 4000);
 
 })();
