@@ -13,22 +13,53 @@ block content
           i.mdui-icon.material-icons menu
         .mdui-typo-title 搞事学园
         .mdui-toolbar-spacer
-        img(src='/images/favicon-title.png')
+        img(src='/images/favicon-r.png')
     #drawer.mdui-drawer
       a.mdui-list-item(v-for='item in drawer', :href='item.url') {{item.name}}
-    .mdui-card
+    //- .mdui-card
+    //-   .mdui-card-primary
+    //-     .mdui-card-primary-title 古树战争
+    //-   table#fw.mdui-table
+    //-     thead
+    //-       td
+    //-         img#fw-refresh(src='/images/icons/Material/refresh_black.png', @click='updatePets')
+    //-       td 分数线
+    //-       td 争夺分
+    //-     tr.faction(v-for='pet in pets')
+    //-       td.pet {{ pet.name }}
+    //-       td.line {{ pet.top }}
+    //-       td.score {{ pet.round }}
+    .mdui-card#balor
       .mdui-card-primary
-        .mdui-card-primary-title 古树战争
-      table#fw.mdui-table
-        thead
-          td
-            img#fw-refresh(src='/images/icons/Material/refresh_black.png', @click='updatePets')
-          td 分数线
-          td 争夺分
-        tr.faction(v-for='pet in pets')
-          td.pet {{ pet.name }}
-          td.line {{ pet.top }}
-          td.score {{ pet.round }}
+        .mdui-card-primary-title 七星巴罗尔伤害计算器
+        .mdui-card-primary-subtitle Special Thanks to Wyz_C
+      .mdui-card-content.mdui-container-fluid
+        .mdui-textfield.mdui-col-xs-6.mdui-col-md-2
+          label.mdui-textfield-label 总暴击率(%)
+          input.mdui-textfield-input(type="number",
+                v-model.number='balor.crate')
+          .mdui-textfield-helper 含巴罗尔提供的暴击率
+        .mdui-textfield.mdui-col-xs-6.mdui-col-md-2
+          label.mdui-textfield-label 总暴伤增幅(%)
+          input.mdui-textfield-input(type="number",
+                v-model.number='balor.cadds')
+          .mdui-textfield-helper 含被巴罗尔减少的爆伤
+        .mdui-textfield.mdui-col-xs-6.mdui-col-md-2
+          label.mdui-textfield-label 巴罗尔超暴减益(%)
+          input.mdui-textfield-input(type="number",
+                v-model.number='balor.minus')
+        .mdui-textfield.mdui-col-xs-6.mdui-col-md-2
+          label.mdui-textfield-label 巴罗尔减益下限(%)
+          input.mdui-textfield-input(type="number",
+                v-model.number='balor.minmi')
+        .mdui-textfield.mdui-col-xs-6.mdui-col-md-2
+          label.mdui-textfield-label 纹章
+          select.mdui-textfield-input(v-model='balor.wz')
+            option(value='', default) 无
+            option(value='1') 有
+        .mdui-textfield.mdui-col-xs-6.mdui-col-md-2
+          label.mdui-textfield-label 最高暴击倍率
+          input.mdui-textfield-input(v-model='balorRate', readonly)
     .mdui-card(v-for='card in cards')
       .mdui-card-primary
         .mdui-card-primary-title {{ card.title }}
