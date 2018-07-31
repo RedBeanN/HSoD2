@@ -1,7 +1,7 @@
 @font-face {  
   font-family: 'msyh';
   src: url('/m/fonts/msyh.woff');
-  /* font-weight: bold; */
+  font-weight: bold;
 }
 
 html {
