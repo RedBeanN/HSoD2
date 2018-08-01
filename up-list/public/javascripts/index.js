@@ -38,7 +38,7 @@
         toggleFw.innerText = toggleFw.innerText === '-' ? '+' : '-';
       };
 
-      factionRefresh.click();
+      // factionRefresh.click();
       // ($$('#origin')).click();
     }
   });
