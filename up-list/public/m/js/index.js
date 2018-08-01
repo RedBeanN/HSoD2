@@ -4,10 +4,7 @@ const $$ = mdui.JQ;
 const app = new Vue({
   el: '#app',
   data: {
-    cards: [{
-      title: '欢迎来到搞事学园',
-      content: '您正在使用移动端测试版 , 目前功能还不完善 , 有任何意见建议欢迎发送到 me@hongshn.xyz ~'
-    }],
+    cards: [],
     // pets: [
     //   { name: '普洛姆特', top: '', round: '' },
     //   { name: '冰铃',     top: '', round: '' },
@@ -17,11 +14,18 @@ const app = new Vue({
     //   { name: '奥菲莉亚', top: '', round: '' },
     // ],
     balor: {
-      crate: 420,
-      cadds: 0,
-      minus: 40,
+      // user settings
+      crate: 150,
+      cadds: 180,
+      minus: 42,
       minmi: 150,
-      wz: '',
+      wz: '1',
+      // auto computes
+      lowRate: 0,
+      lowProb: 0,
+      highRate: 0,
+      highProb: 0,
+      exp: 0,
     },
     drawer: [
       { url: '/list',         name: 'UP 记录' },
@@ -56,7 +60,17 @@ const app = new Vue({
           i++;
         } else break;
       }
-      return parseFloat(cris.reduce((pre = 1, cur) => pre * cur).toFixed(4)) + ' 倍';
+      let highProb = toFloat(crate - i + 1);
+      let lowProb = toFloat(1 - highProb);
+      this.balor.highProb = toFloat(highProb * 100);
+      this.balor.lowProb = toFloat(lowProb * 100);
+      this.balor.highRate = toFloat(cris.reduce((pre = 1, cur) => pre * cur));
+      this.balor.lowRate = toFloat(this.balor.highRate / cris[cris.length - 1])
+      this.balor.exp = toFloat(
+        (lowProb * this.balor.lowRate +
+        highProb * this.balor.highRate)* 100
+      );
+      return this.balor.highRate + ' 倍';
 
     }
   },
@@ -112,7 +126,7 @@ const app = new Vue({
         byte = Number(byte);
         if (isNaN(byte)) return;
       }
-      return parseFloat((byte / 1024 / 1024).toFixed(2));
+      return toFloat(byte / 1024 / 1024);
     }
   },
   created () {
@@ -132,5 +146,16 @@ function addSize (s, l, url) {
   if (url.indexOf('image') !== -1) return s.image += l;
   if (url.indexOf('js') !== -1) return s.script += l;
   return s.other += l;
+}
+function toFloat (f) {
+  if (typeof f !== 'number') {
+    try {
+      f = Number(f);
+      if (isNaN(f)) return 0;
+    } catch (_) {
+      return 0;
+    }
+  }
+  return parseFloat(f.toFixed(4));
 }
 }

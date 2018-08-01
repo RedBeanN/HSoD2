@@ -60,15 +60,35 @@ block content
         .mdui-textfield.mdui-col-xs-6.mdui-col-md-2
           label.mdui-textfield-label 最高暴击倍率
           input.mdui-textfield-input(v-model='balorRate', readonly)
+        .mdui-panel.mdui-panel-gapless.mdui-panel-popout(mdui-panel)
+          .mdui-panel-item
+            .mdui-panel-item-header 详细数据
+              i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
+            .mdui-panel-item-body
+              table.mdui-table
+                thead
+                  tr
+                    td 触发几率
+                    td 伤害倍率
+                tbody
+                  tr
+                    td {{ balor.lowProb }} %
+                    td {{ balor.lowRate }} 倍
+                  tr
+                    td {{ balor.highProb }} %
+                    td {{ balor.highRate }} 倍
+                  tr
+                    td 加成期望
+                    td {{ balor.exp }} %
     .mdui-card
       .mdui-card-primary
-        .mdui-card-primary-title {{ cards[0].title }}
-      .mdui-card-content {{ cards[0].content }}
-    .mdui-card(v-if='cards[1]')
+        .mdui-card-primary-title 欢迎来到搞事学园
+      .mdui-card-content 您正在使用移动端测试版 , 目前功能还不完善 , 有任何意见建议欢迎发送到 me@hongshn.xyz ~
+    .mdui-card(v-for='card in cards')
       .mdui-card-primary
-        .mdui-card-primary-title {{ cards[1].title }}
+        .mdui-card-primary-title {{ card.title }}
       .mdui-card-content.mdui-container-fluid
-        p {{ cards[1].content }}
+        p {{ card.content }}
         .mdui-panel.mdui-panel-gapless.mdui-panel-popout(mdui-panel, v-show='swSize.total')
           .mdui-panel-item
             .mdui-panel-item-header 已使用的缓存
