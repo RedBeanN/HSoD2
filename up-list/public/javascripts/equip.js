@@ -106,6 +106,13 @@ let app = new Vue({
       if (crystal.toString().length < 10) return crystal;
       else return crystal.toString().substring(0, crystal.toString().length - 6) + '百万';
     },
+    watermark () {
+      let wm = true;
+      this.equip.skills.forEach(function (skill) {
+        if (skill.description.startsWith('$rmwm;')) wm = false;
+      });
+      return wm;
+    },
     formatDesc() {
       /* format description
          return array [desc1, desc2]
@@ -114,9 +121,11 @@ let app = new Vue({
       let descArr = [];
       this.equip.skills.forEach(function (skill, index) {
         descArr[index] = [];
-        let spl = skill.description.split(/#\(.*?\)/g);
+        let skillDesc = skill.description;
+        if (skillDesc.startsWith('$rmwm;')) skillDesc = skillDesc.substr(6);
+        let spl = skillDesc.split(/#\(.*?\)/g);
         let skillData = [];
-        if (spl.length > 1) skillData = (skill.description.match(/#\(.*?\)/g)).map(i => {
+        if (spl.length > 1) skillData = (skillDesc.match(/#\(.*?\)/g)).map(i => {
           return i.substring(2, i.length - 1);
         });
         for (let i in spl) {

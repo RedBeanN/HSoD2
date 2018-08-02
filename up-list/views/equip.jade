@@ -109,7 +109,7 @@ mixin equip-main
         #equip-protect-container
           img(v-show='widgets.protectButton', src='/images/button.png')
       #equip-view-right
-        #watermark
+        #watermark(v-show='watermark')
           | 搞事学园 @ hsod2.hongshn.xyz/equip
         +equip-status
         #equip-skill
