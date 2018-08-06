@@ -32,3 +32,5 @@ last.json
 
 *.crt
 *.key
+
+gacha.json
