@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href="/m/css/mdui.min.css")
+  link(rel="stylesheet", href="/m/css/mdui-layout.css")
+  link(rel="stylesheet", href="/m/css/gacha.css")
+  script(src="/m/js/mdui.min.js")
+  script(src="/javascripts/vue.min.js")
+  script(src="/javascripts/axios.min.js")
+  script(src='/m/js/gacha.js')
+  #app.mdui-color-theme
+    .mdui-appbar.mdui-appbar-fixed.mdui-app-bar-scroll-hide
+      .mdui-toolbar.mdui-color-theme
+        a.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(href='/')
+          i.mdui-icon.material-icons home
+        .mdui-typo-title 扭蛋模拟器
+        .mdui-toolbar-spacer
+        img(src='/images/favicon-r.png')
+      #app-tab.mdui-tab.mdui-color-theme
+        a.mdui-ripple(v-for='pool in pools', @click='setPool(pool)', :class='{"mdui-tab-active": pool==current.pool}')
+          | {{ poolmap[pool] }}
+      #progress.mdui-progress
+        .mdui-progress-indeterminate
+    .emulator
+      #main.mdui-card
+        .mdui-card-actions.mdui-text-center.mdui-text-color-black-secondary
+          button.mdui-btn.mdui-ripple.mdui-shadow-1(@click='single()')
+            | 祈愿1次
+          button.mdui-btn.mdui-ripple.mdui-shadow-1(@click='ten()')
+            | 祈愿10次
+        .mdui-card-content
+          #gachas.mdui-tab.mdui-theme-layout-dark.mdui-center.mdui-container-fluid
+            a(@click='selectType("s")').mdui-ripple.mdui-ripple-white.mdui-col-xs-6.mdui-tab-active 单次祈愿
+            a(@click='selectType("t")').mdui-ripple.mdui-ripple-white.mdui-col-xs-6 十次祈愿
+          table.mdui-theme-layout-dark.mdui-text-color-white.mdui-center
+            tbody
+              tr(v-for='record in reverseRecords')
+                td.date {{ record.date }}
+                td.equip(:class='{god: record.isGod}') {{ record.equip }}

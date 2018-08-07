@@ -34,10 +34,12 @@ function catchOne(pool) {
 function parseHTML (str) {
   return new Promise((resolve, reject) => {
     const $ = cheerio.load(str, {decodeEntities: false});
+    const isMj = str.indexOf('魔女祈愿') !== -1;
     const arr = [];
     let isGod = true;
     $('.equip-prob tbody tr').each(function () {
       const data = [];
+      if (isMj) isGod = $(this).hasClass('god');
       $(this).children().each(function () {
         let text = $(this).text();
         if (text.indexOf('使魔') !== -1) isGod = false;

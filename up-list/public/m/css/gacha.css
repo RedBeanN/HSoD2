@@ -1,0 +1,31 @@
+body {
+  padding: 10px;
+}
+.emulator {
+  font-weight: bold;
+}
+.emulator button {
+  font-weight: bold !important;
+}
+.mdui-center {
+  width: 350px;
+}
+table {
+  height: 240px;
+  overflow-y: scroll;
+}
+td {
+  padding: 1px 5px;
+  line-height: 20px;
+  color: #ffcdd2;
+}
+td.date {
+  text-align: center;
+  width: 150px;
+}
+.god {
+  color: #2196f3;
+}
+.mdui-card-content {
+  padding: 0;
+}
