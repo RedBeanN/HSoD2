@@ -17,7 +17,7 @@ const app = new Vue({
       gacha: 's',
       gachatype: 's',
     },
-    pools: ['high', 'custom', 'special'],
+    pools: ['custom', 'high'],
     poolmap: {
       'high': '公主',
       'custom': '魔女',
@@ -109,6 +109,12 @@ const app = new Vue({
       else if (baodi === 2) while(r <= god) r = getRandom(total);
       for (let e of equips) {
         if (e.rate >= r) {
+          let s = mdui.snackbar({
+            message: e.name,
+            position: 'right-bottom',
+            timeout: 700
+          });
+          if (r <= god) s.$snackbar.addClass('yellow');
           return {
             date: formatDate(new Date()),
             equip: e.name,

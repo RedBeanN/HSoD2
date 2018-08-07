@@ -30,3 +30,18 @@ td.date {
 .mdui-card-content {
   padding: 0;
 }
+
+.mdui-snackbar {
+  width: auto;
+  min-width: 288px;
+  max-width: 568px;
+  border-radius: 2px;
+  bottom: 24px;
+  right: 24px;
+}
+.yellow {
+  color: #daa520;
+  border: 2px solid #ffd700;
+  bottom: 20px;
+  height: 44px;
+}
