@@ -14,4 +14,5 @@ html
   body.mdui-drawer-body-left.mdui-appbar-with-tab-larger.mdui-theme-primary-indigo.mdui-theme-accent-pink
     block content
     script(type='text/javascript').
+      if (!window.Reflect) alert('您的浏览器版本过旧，可能无法正常访问搞事学园！');
       if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
