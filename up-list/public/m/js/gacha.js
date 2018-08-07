@@ -97,7 +97,7 @@ const app = new Vue({
       for (let i = 0; i < 10; i++) {
         let s;
         if (i === 9 && !baodi) s = this.gacha(data, 1);
-        s = this.gacha(data, 0);
+        else s = this.gacha(data, 0);
         if (s.isGod) baodi = true;
         arr.push(s);
       }
