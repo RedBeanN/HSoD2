@@ -2,7 +2,7 @@ const catcher = require('./gacha-catcher');
 const schedule = require('node-schedule');
 
 const rule = new schedule.RecurrenceRule();
-rule.minute = [0, 1, 2, 30, 31, 51];
+rule.minute = [0, 1, 2, 30, 31];
 
 const catchData = () => {
   catcher().then(_ => {
