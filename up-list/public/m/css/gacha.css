@@ -13,6 +13,7 @@ body {
 table {
   height: 240px;
   overflow-y: scroll;
+  margin-bottom: 20px;
 }
 td {
   padding: 1px 5px;
