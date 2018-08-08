@@ -1,6 +1,7 @@
 const cheerio = require('cheerio');
 const http = require('http');
 const fs = require('fs');
+const axios = require('axios');
 
 const baseUrl = 'http://cms.mihoyo.com/mihoyo/hsod2_gacha_rules/index.php/gacha/';
 const pools = ['high', 'custom', 'special'];
@@ -17,17 +18,20 @@ module.exports = () => {
 
 function catchOne(pool) {
   const url = baseUrl + pool + tail;
-  return new Promise((resolve, reject) => {
-    const req = http.get(url, res => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', err => {
-        if (err) reject(err);
-        else parseHTML(data).then(resolve, reject);
-      });
-      res.on('error', reject);
-    });
-    req.on('error', reject);
+  // return new Promise((resolve, reject) => {
+  //   const req = http.get(url, res => {
+  //     let data = '';
+  //     res.on('data', chunk => data += chunk);
+  //     res.on('end', err => {
+  //       if (err) reject(err);
+  //       else parseHTML(data).then(resolve, reject);
+  //     });
+  //     res.on('error', reject);
+  //   });
+  //   req.on('error', reject);
+  // });
+  return axios.get(url).then(res => {
+    return Promise.resolve(parseHTML(res.data));
   });
 }
 
