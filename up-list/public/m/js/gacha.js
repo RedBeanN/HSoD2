@@ -11,6 +11,7 @@ const app = new Vue({
       'high': { 's': [], 't': [] },
       'custom': { 's': [], 't': [] },
       'special': { 's': [], 't': [] },
+      'middle': { 's': [], 't': [] },
     },
     current: {
       pool: 'high',
@@ -22,6 +23,7 @@ const app = new Vue({
       'high': '公主',
       'custom': '魔女',
       'special': '魔法少女',
+      'middle': '大小姐',
     },
     gachas: ['s', 't'],
     probs: {},
@@ -34,9 +36,19 @@ const app = new Vue({
       return this.currentRecords.filter(i => true).reverse();
     },
     upItems () {
-      const up = { 'high': [], 'custom': [], 'special': [] };
+      const up = { high: [], custom: [], special: [], middle: [] };
       for (let pool in this.probs) {
-        for (let equip of this.probs[pool].equips) {
+        if (pool === 'middle') {/* do nothing */}
+        else if (pool === 'custom') {
+          let o = {};
+          for (let equip of this.probs[pool].equips) {
+            if (equip.rate <= this.probs[pool].com) {
+              o[equip.name.split('×')[0]] = 1;
+            }
+          }
+          for (let i in o) up[pool].push(i);
+        }
+        else for (let equip of this.probs[pool].equips) {
           if (equip.rate <= this.probs[pool].com) {
             up[pool].push(equip.name);
           }
@@ -45,6 +57,7 @@ const app = new Vue({
       return up;
     },
     baodi () {
+      if (this.current.pool === 'middle') return 0;
       let circ = 10;
       if (this.current.pool === 'custom') circ = 7;
       let interval = [], bd = false;
@@ -90,7 +103,6 @@ const app = new Vue({
           if (self.probs[p].total) pools.push(p);
           self.pools = pools;
         }
-        self.pools.reverse();
         hideLoading();
       });
     },
@@ -108,7 +120,8 @@ const app = new Vue({
       let baodi = false;
       for (let i = 0; i < 10; i++) {
         let s;
-        if (i === 9 && !baodi) s = this.gacha(data, 1);
+        if (i === 9 && !baodi && this.current.pool !== 'middle')
+          s = this.gacha(data, 1);
         else s = this.gacha(data, 0);
         if (s.isGod) baodi = true;
         arr.push(s);
@@ -123,15 +136,16 @@ const app = new Vue({
       if (baodi === 1) while(r > god) r = getRandom(total);
       else if (baodi === 2) while(r <= god) r = getRandom(total);
       for (let e of equips) if (e.rate >= r) {
+        let name = formatName(e.name);
         let s = mdui.snackbar({
-          message: e.name,
+          message: name,
           position: 'right-bottom',
           timeout: 700
         });
         if (r <= god) s.$snackbar.addClass('yellow');
         return {
-          date: formatDate(new Date()),
-          equip: e.name,
+          date: formatDate(),
+          equip: name,
           isGod: r <= god
         }
       }
@@ -149,18 +163,22 @@ const app = new Vue({
 });
 
 function getRandom (range) {
-  return Math.floor(Math.random() * range + 1);
+  return Math.floor(Math.random() * (range + 1));
 }
 
-function formatDate (d = new Date()) {
-  // const year = d.getFullYear(),
-  //       month = d.getMonth() + 1,
-  //       date = d.getDate(),
-  //       hour = d.getHours(),
-  //       min = d.getMinutes(),
-  //       sec = d.getSeconds();
-  // return `${year}-${month}-${date} ${hour}:${min}:${sec}`
-  return d.toISOString().replace('T', ' ').slice(0,-5);
+function formatDate () {
+  const tzoffset = (new Date()).getTimezoneOffset() * 60000;
+  const date = new Date(Date.now() - tzoffset).toISOString();
+  return date.replace('T', ' ').slice(0,-5);
+}
+
+function formatName (s) {
+  let a = s.split(/\[(\d.*)\]/g).reverse().filter(i => i !== '');
+  if (a.length !== 2) return s;
+  s = `【${a[0]}】${a[1]}`;
+  let isAddOne = getRandom(15) === 7;
+  if (isAddOne) return s + ' +1';
+  return s;
 }
 
 function showLoading () {

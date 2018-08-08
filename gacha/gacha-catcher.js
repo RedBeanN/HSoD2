@@ -4,7 +4,7 @@ const fs = require('fs');
 const axios = require('axios');
 
 const baseUrl = 'http://cms.mihoyo.com/mihoyo/hsod2_gacha_rules/index.php/gacha/';
-const pools = ['high', 'custom', 'special'];
+const pools = ['high', 'custom', 'special', 'middle'];
 const tail = '?region=3_1';
 
 module.exports = () => {

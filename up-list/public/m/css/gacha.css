@@ -8,7 +8,11 @@ body {
   font-weight: bold !important;
 }
 .mdui-center {
-  width: 350px;
+  min-width: 350px;
+  max-width: 400px;
+}
+.mdui-tab a {
+  opacity: .4;
 }
 table {
   height: 240px;
