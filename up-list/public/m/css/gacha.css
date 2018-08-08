@@ -45,3 +45,6 @@ td.date {
   bottom: 20px;
   height: 44px;
 }
+.hide {
+  display: none;
+}

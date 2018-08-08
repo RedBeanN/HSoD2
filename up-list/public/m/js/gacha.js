@@ -108,26 +108,27 @@ const app = new Vue({
       let r = getRandom(total);
       if (baodi === 1) while(r > god) r = getRandom(total);
       else if (baodi === 2) while(r <= god) r = getRandom(total);
-      for (let e of equips) {
-        if (e.rate >= r) {
-          let s = mdui.snackbar({
-            message: e.name,
-            position: 'right-bottom',
-            timeout: 700
-          });
-          if (r <= god) s.$snackbar.addClass('yellow');
-          return {
-            date: formatDate(new Date()),
-            equip: e.name,
-            isGod: r <= god
-          }
+      for (let e of equips) if (e.rate >= r) {
+        let s = mdui.snackbar({
+          message: e.name,
+          position: 'right-bottom',
+          timeout: 700
+        });
+        if (r <= god) s.$snackbar.addClass('yellow');
+        return {
+          date: formatDate(new Date()),
+          equip: e.name,
+          isGod: r <= god
         }
       }
     },
   },
   created () {
     this.loadProb();
-  }
+  },
+  mounted () {
+    $$('.hide').removeClass('hide');
+  },
 });
 
 function getRandom (range) {
