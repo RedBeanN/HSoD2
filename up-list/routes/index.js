@@ -8,9 +8,10 @@ const mobile = require('../private/javascripts/mobile');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  let ua = req.headers['user-agent'];
-  if (mobile.isMobile(ua)) res.render('mobile/index', { title: '主页 - 搞事学园' });
-  else res.render('index', { title: '主页 - 搞事学园' });
+  // let ua = req.headers['user-agent'];
+  // if (mobile.isMobile(ua)) res.render('mobile/index', { title: '主页 - 搞事学园' });
+  // else res.render('index', { title: '主页 - 搞事学园' });
+  res.render('mobile/index', { title: '主页 - 搞事学园' });
 });
 
 router.get('/equip', function (req, res, next) {
