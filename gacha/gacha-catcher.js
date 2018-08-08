@@ -41,15 +41,17 @@ function parseHTML (str) {
     const isMj = str.indexOf('魔女祈愿') !== -1;
     const arr = [];
     let isGod = true;
+    let isCom = false;
     $('.equip-prob tbody tr').each(function () {
       const data = [];
-      if (isMj) isGod = $(this).hasClass('god');
+      isCom = $(this).hasClass('god');
+      if (isMj) isGod = isCom;
       $(this).children().each(function () {
         let text = $(this).text();
         if (text.indexOf('使魔') !== -1) isGod = false;
         data.push(text);
       });
-      data.push(isGod);
+      data.push(isGod, isCom);
       arr.push(data);
     });
     const form = formatData(arr);
@@ -69,15 +71,18 @@ function formatData (arr) {
   const form = [];
   let rate = 0;
   let god = 0;
+  let com = 0;
   for (let e of arr) {
-    let [name, _, prop, isGod] = e;
+    let [name, _, prop, isGod, isCom] = e;
     rate = rate + parseInt(prop.replace('.', ''));
     if (isGod) god = rate;
+    if (isCom) com = rate;
     form.push({name, rate});
   }
   return {
     equips: form,
     total: rate,
-    god
+    god,
+    com
   }
 }
