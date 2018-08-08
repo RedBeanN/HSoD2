@@ -8,7 +8,7 @@ const mobile = require('../private/javascripts/mobile');
 
 // cms
 router.get('/', (req, res) => {
-  res.render('mobile/cms', {title: 'CMS'});
+  res.render('mobile/cms', {title: '公告备份 - 搞事学园'});
 });
 router.get('/data/:server', (req, res) => {
   const server = req.params.server;
