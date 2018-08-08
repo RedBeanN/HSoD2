@@ -83,7 +83,7 @@ block content
     .mdui-card
       .mdui-card-primary
         .mdui-card-primary-title 欢迎来到搞事学园
-      .mdui-card-content 您正在使用移动端测试版 , 目前功能还不完善 , 有任何意见建议欢迎发送到 me@hongshn.xyz ~
+      .mdui-card-content 您正在使用搞事学园测试版 , 目前功能还不完善 , 有任何意见建议欢迎发送到 me@hongshn.xyz ~
     .mdui-card.hide(v-for='card in cards')
       .mdui-card-primary
         .mdui-card-primary-title {{ card.title }}
@@ -99,4 +99,54 @@ block content
               p 字体 : {{ swSize.font | byte2mb }} MB
               p 其他 : {{ swSize.other | byte2mb }} MB
               p 总计 : {{ swSize.total | byte2mb }} MB
+    #dialog.mdui-dialog.footer-dialog
+      #dialog-content.mdui-dialog-content
+        img(src='images/QRCode.jpg')
+      .mdui-dialog-actions
+        button.mdui-btn.mdui-ripple.mdui-shadow-1(mdui-dialog-cancel)
+          i.mdui-icon.material-icons close
+  footer.hide
+    .mdui-container
+      .mdui-row.footer-nav
+        .mdui-col-sm-3.mdui-col-xs-6
+          h4 友情链接
+          ul
+            li
+              a(href='https://www.mihoyo.tech' target='_blank')
+                | 西城飘雪的小窝 
+                i.mdui-icon.mdui-icon-right.material-icons open_in_new
+            li
+              a(href='http://mihoyoimage.oss-cn-hangzhou.aliyuncs.com/Series/Ver5.3.html')
+                | 王叔叔的神系分类表 
+                i.mdui-icon.mdui-icon-right.material-icons open_in_new
+        .mdui-col-sm-3.mdui-col-xs-6
+          h4 官方链接
+          ul
+            li
+              a(href='https://www.mihoyo.com/') 官网 
+                i.mdui-icon.mdui-icon-right.material-icons open_in_new
+            li
+              a(href='https://www.mihoyo.com/charge/hsod2_charge/index.php/pay')
+                | 充值中心 
+                i.mdui-icon.mdui-icon-right.material-icons open_in_new
+            li
+              a(href='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List')
+                | 正式服公告 
+                i.mdui-icon.mdui-icon-right.material-icons open_in_new
+            li
+              a(href='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List?build=18')
+                | 测试服公告 
+                i.mdui-icon.mdui-icon-right.material-icons open_in_new
+        .mdui-col-sm-6.mdui-hidden-xs
+          h4 广告(长期招租)
+          ul
+            li(onclick='(new mdui.Dialog(mdui.JQ("#dialog"))).open()')
+              a
+                img(src='images/QRCode.jpg') 
+                |  崩坏2通讯中心(点击放大)
+      .mdui-divider-light.footer-divider
+      .copyright Copyright © 2018 
+        a(href='http://www.miitbeian.gov.cn', target='_blank')
+          | 搞事学园 
+        | All rights reserved.
   script(src="/m/js/index.js")

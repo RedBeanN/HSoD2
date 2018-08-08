@@ -13,3 +13,50 @@ a.mdui-list-item {
 .hide {
   display: none;
 }
+
+footer {
+  padding: 16px 0px;
+  background-color: #424242;
+  color: #9e9e9e;
+  display: block;
+  margin: -20px;
+  margin-top: 60px;
+}
+.footer-nav h4 {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+.footer-nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.footer-nav ul li {
+  margin: 0 0 10px;
+}
+footer i.mdui-icon {
+  font-size: 12px;
+}
+.copyright {
+  text-align: center;
+  font-size: 12px;
+  font-family: 'Roboto Mono',Roboto,Noto,Helvetica,Arial,sans-serif;
+}
+footer a {
+  color: inherit;
+  text-decoration: none;
+}
+.footer-divider {
+  margin: 16px 0;
+}
+
+.footer-dialog .mdui-dialog-content {
+  text-align: center;
+}
+.footer-dialog img {
+  width: 300px;
+}
