@@ -8,6 +8,13 @@ html
     //- PWA specific
     link(rel="manifest", href="/manifest.json")
     meta(name='theme-color' content='#3f51b5')
+    // Global site tag (gtag.js) - Google Analytics
+    script(async src="https://www.googletagmanager.com/gtag/js?id=UA-123581848-1")
+    script.
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-123581848-1');
   body.mdui-drawer-body-left.mdui-appbar-with-tab-larger.mdui-theme-primary-indigo.mdui-theme-accent-pink
     //- #back-container
     - if (title && title.indexOf('主页') == -1) {
