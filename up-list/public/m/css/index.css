@@ -10,3 +10,6 @@ img {
 a.mdui-list-item {
   color: black !important;
 }
+.hide {
+  display: none;
+}

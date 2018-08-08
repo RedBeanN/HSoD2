@@ -134,6 +134,7 @@ const app = new Vue({
     this.updateSW();
   },
   mounted () {
+    $$('.hide').removeClass('hide');
     mdui.mutation();
   },
   updated () {

@@ -14,7 +14,7 @@ block content
         .mdui-typo-title 搞事学园
         .mdui-toolbar-spacer
         img(src='/images/favicon-r.png')
-    #drawer.mdui-drawer
+    #drawer.mdui-drawer.hide
       a.mdui-list-item(v-for='item in drawer', :href='item.url') {{item.name}}
     //- .mdui-card
     //-   .mdui-card-primary
@@ -29,7 +29,7 @@ block content
     //-       td.pet {{ pet.name }}
     //-       td.line {{ pet.top }}
     //-       td.score {{ pet.round }}
-    .mdui-card#balor
+    .mdui-card#balor.hide
       .mdui-card-primary
         .mdui-card-primary-title 七星巴罗尔伤害计算器
         .mdui-card-primary-subtitle Special Thanks to Wyz_C
@@ -84,7 +84,7 @@ block content
       .mdui-card-primary
         .mdui-card-primary-title 欢迎来到搞事学园
       .mdui-card-content 您正在使用移动端测试版 , 目前功能还不完善 , 有任何意见建议欢迎发送到 me@hongshn.xyz ~
-    .mdui-card(v-for='card in cards')
+    .mdui-card.hide(v-for='card in cards')
       .mdui-card-primary
         .mdui-card-primary-title {{ card.title }}
       .mdui-card-content.mdui-container-fluid
