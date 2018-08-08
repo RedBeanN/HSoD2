@@ -33,6 +33,17 @@ const app = new Vue({
     reverseRecords () {
       return this.currentRecords.filter(i => true).reverse();
     },
+    upItems () {
+      const up = { 'high': [], 'custom': [], 'special': [] };
+      for (let pool in this.probs) {
+        for (let equip of this.probs[pool].equips) {
+          if (equip.rate <= this.probs[pool].com) {
+            up[pool].push(equip.name);
+          }
+        }
+      }
+      return up;
+    },
     baodi () {
       let circ = 10;
       if (this.current.pool === 'custom') circ = 7;
@@ -79,6 +90,7 @@ const app = new Vue({
           if (self.probs[p].total) pools.push(p);
           self.pools = pools;
         }
+        self.pools.reverse();
         hideLoading();
       });
     },
@@ -128,6 +140,9 @@ const app = new Vue({
   },
   mounted () {
     $$('.hide').removeClass('hide');
+  },
+  updated () {
+    mdui.mutation();
   },
 });
 

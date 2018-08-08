@@ -37,3 +37,14 @@ block content
               tr(v-for='record in reverseRecords')
                 td.date {{ record.date }}
                 td.equip(:class='{god: record.isGod}') {{ record.equip }}
+    .mdui-card.hide.mdui-p-x-3.mdui-p-b-3
+      .mdui-card-primary
+        .mdui-card-primary-title 当期up内容
+      .mdui-card-content
+        .mdui-panel.mdui-panel-gapless(mdui-panel)
+          .mdui-panel-item(v-for='(items, pool) in upItems', v-if='items.length')
+            .mdui-panel-item-header {{ poolmap[pool] }}
+              i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
+            .mdui-panel-item-body
+              p(v-for='item in items') {{ item }}
+
