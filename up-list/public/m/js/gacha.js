@@ -118,7 +118,8 @@ const app = new Vue({
     gacha (data, baodi = 0) {
       const { equips, total, god } = data;
       let r = getRandom(total);
-      if (god === 0) god = total;
+      // pets up does not have baodi
+      if (god === 0) baodi = 2;
       if (baodi === 1) while(r > god) r = getRandom(total);
       else if (baodi === 2) while(r <= god) r = getRandom(total);
       for (let e of equips) if (e.rate >= r) {
