@@ -60,7 +60,7 @@ block content
         .mdui-textfield.mdui-col-xs-6.mdui-col-md-2
           label.mdui-textfield-label 最高暴击倍率
           input.mdui-textfield-input(v-model='balorRate', readonly)
-        .mdui-panel.mdui-panel-gapless.mdui-panel-popout(mdui-panel)
+        .mdui-panel.mdui-panel-gapless(mdui-panel)
           .mdui-panel-item
             .mdui-panel-item-header 详细数据
               i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
@@ -89,7 +89,7 @@ block content
         .mdui-card-primary-title {{ card.title }}
       .mdui-card-content.mdui-container-fluid
         p {{ card.content }}
-        .mdui-panel.mdui-panel-gapless.mdui-panel-popout(mdui-panel, v-show='swSize.total')
+        .mdui-panel.mdui-panel-gapless(mdui-panel, v-show='swSize.total')
           .mdui-panel-item
             .mdui-panel-item-header 已使用的缓存
               i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
