@@ -134,11 +134,11 @@ const app = new Vue({
     this.updateSW();
   },
   mounted () {
-    $$('.hide').removeClass('hide');
     mdui.mutation();
   },
   updated () {
     mdui.mutation();
+    $$('.hide').removeClass('hide');
   },
 });
 function addSize (s, l, url) {
