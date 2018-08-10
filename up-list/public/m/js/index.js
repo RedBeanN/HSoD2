@@ -5,14 +5,6 @@ const app = new Vue({
   el: '#app',
   data: {
     cards: [],
-    // pets: [
-    //   { name: '普洛姆特', top: '', round: '' },
-    //   { name: '冰铃',     top: '', round: '' },
-    //   { name: '书包酱',   top: '', round: '' },
-    //   { name: '茵朵兰',   top: '', round: '' },
-    //   { name: '德哈琳',   top: '', round: '' },
-    //   { name: '奥菲莉亚', top: '', round: '' },
-    // ],
     balor: {
       // user settings
       crate: 150,
@@ -71,23 +63,9 @@ const app = new Vue({
         highProb * this.balor.highRate)* 100
       );
       return this.balor.highRate + ' 倍';
-
     }
   },
   methods: {
-    // updatePets () {
-    //   $$('#fw').css('opacity', '0.5');
-    //   const self = this;
-    //   axios.get('/worldbattle/20182/last').then(res => {
-    //     for (let i = 0; i < self.pets.length; i++) {
-    //       self.pets[i].top = res.data.top[i];
-    //       self.pets[i].round = res.data.round[i] ?
-    //         res.data.round[i] : res.data.round.length ?
-    //         '凉凉' : '筹备中';
-    //     }
-    //     $$('#fw').css('opacity', '1');
-    //   }).catch(console.log);
-    // },
     updateSW () {
       const self = this;
       if (caches && caches.keys) {
@@ -102,21 +80,16 @@ const app = new Vue({
         });
       }
     },
-    calcSW (names) {
-      const self = this;
+    async calcSW (names) {
       for (let name of names) {
-        caches.open(name).then(cache => {
-          cache.keys().then(keys => {
-            for (let key of keys) {
-              cache.match(key).then(res => {
-                res.arrayBuffer().then(ab => {
-                  self.swSize.total += ab.byteLength;
-                  addSize(self.swSize, ab.byteLength, key.url);
-                });
-              });
-            }
-          });
-        });
+        const cache = await caches.open(name);
+        const keys = await cache.keys();
+        for (let key of keys) {
+          const res = await cache.match(key);
+          const ab = await res.arrayBuffer();
+          this.swSize.total += ab.byteLength;
+          addSize(this.swSize, ab.byteLength, key.url);
+        }
       }
     },
   },
