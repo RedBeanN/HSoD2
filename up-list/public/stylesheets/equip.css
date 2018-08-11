@@ -493,6 +493,7 @@ input, select {
 
 #equip-view-left #equip-awaken-widget {
   position: absolute;
+  z-index: 1;
   margin-left: 96px;
   margin-top: 29px;
   transform: scale(.9);
@@ -699,6 +700,7 @@ input, select {
 
 #watermark {
   position: absolute;
+  z-index: -1;
   transform: rotate(90deg);
   right: 320px;
   top: 135px;
