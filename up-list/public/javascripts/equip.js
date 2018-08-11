@@ -314,7 +314,28 @@ $$('readme-page').onclick = function (e) {
   if(e.target === $$('readme-page')) $$('readme-page').classList.toggle('hide');
 }
 
+// $$('readme-button').click();
+function checkForCookie () {
+let c = document.cookie;
+const cname = 'lastvisit';
+let cstart, cend;
+if (c.length) {
+  cstart = c.indexOf(cname);
+  if (cstart !== -1) {
+    cstart += cname.length + 1;
+    cend = c.indexOf(';', cstart);
+    if (cend === -1) cend = c.length;
+    let d = c.substring(cstart, cend);
+    if (d.length) {
+      return console.log('Last visit:', new Date(parseInt(d)));
+    }
+  }
+}
 $$('readme-button').click();
+return document.cookie = `${cname}=${Date.now()}; `;
+
+}
+checkForCookie();
 
 function $$(str) {
   return document.getElementById(str);
