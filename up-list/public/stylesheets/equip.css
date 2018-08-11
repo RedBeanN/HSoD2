@@ -329,6 +329,7 @@ input, select {
 #equip-unique-container {
   margin-top: 124px;
   height: 31px !important;
+  position: absolute;
 }
 .unique-container {
   width: 400px;
@@ -354,6 +355,8 @@ input, select {
 }
 #equip-protect-container {
   margin-top: 36px;
+  position: absolute;
+  top: 327px;
 }
 #equip-protect-container img {
   height: 54px;
