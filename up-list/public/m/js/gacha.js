@@ -1,6 +1,7 @@
 window.onload = () => {
 const $$ = mdui.JQ;
 $$('body').removeClass('mdui-drawer-body-left');
+const gtag = window.gtag || function () {};
 
 // const gachaTab = new mdui.Tab('#gachas');
 
@@ -110,22 +111,34 @@ const app = new Vue({
       this.selectType('s');
       const pool = this.current.pool;
       const data = this.probs[pool];
-      this.pushRecord('s', this.gacha(data, this.baodi));
+      let result = this.gacha(data, this.baodi);
+      let baodi = result.isGod ? 1 : 0;
+      gtag('event', 'gacha', {
+        'event_category': pool,
+        'event_label': 'single',
+        'value': baodi
+      });
+      this.pushRecord('s', result);
     },
     ten () {
       this.selectType('t');
       const pool = this.current.pool;
       const data = this.probs[pool];
       const arr = [];
-      let baodi = false;
+      let baodi = 0;
       for (let i = 0; i < 10; i++) {
         let s;
         if (i === 9 && !baodi && this.current.pool !== 'middle')
           s = this.gacha(data, 1);
         else s = this.gacha(data, 0);
-        if (s.isGod) baodi = true;
+        if (s.isGod) baodi += 1;
         arr.push(s);
       }
+      gtag('event', 'gacha', {
+        'event_category': pool,
+        'event_label': 'ten',
+        'value': baodi
+      });
       this.pushRecord('t', ...arr);
     },
     gacha (data, baodi = 0) {
