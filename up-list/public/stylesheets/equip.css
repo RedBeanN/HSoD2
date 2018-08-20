@@ -135,12 +135,9 @@ input, select {
 #equip-top input {
   width: 35px;
 }
-#awaken-checkbox {
-  width: 10px !important;
-  height: 10px;
-  margin-left: 10px;
-}
-#special-checkbox {
+#awaken-checkbox,
+#special-checkbox,
+#idol-checkbox {
   width: 10px !important;
   height: 10px;
   margin-left: 10px;

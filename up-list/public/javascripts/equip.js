@@ -88,6 +88,7 @@ let app = new Vue({
     user, equip, equipType, imageStyle, dmgType, widgets, texts,
     downloading: false,
     selectedType: '徽章',
+    idol: false,
     selectedWeapon: '',
     selectedSeries: icons.series['series00.png'],
     addType: '移速',
@@ -197,8 +198,10 @@ let app = new Vue({
       };
     },
     pinContainerSrc() {
-      if (this.equip.top.stars.value < 7) return '/images/pin-container-6s.png';
-      else return '/images/pin-container-7s.png';
+      let img = 'pin-container';
+      if (this.idol) img = 'idol';
+      if (this.equip.top.stars.value < 7) return `/images/${img}-6s.png`;
+      else return `/images/${img}-7s.png`;
     },
     starSrc() {
       if (!this.useSpecialStar) return '/images/star-full.png';

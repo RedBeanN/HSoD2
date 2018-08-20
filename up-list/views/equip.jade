@@ -24,8 +24,8 @@ mixin equip-top
             :type='item.name == "装备名" ? "text" : "number"')
     input#awaken-checkbox(type="checkbox", name="awaken", v-model='equip.awaken')
     label(for='awaken-checkbox') 觉醒
-    input#special-checkbox(type='checkbox', v-model='useSpecialStar')
-    label(for="special-checkbox") 使用特殊版星星
+    input#idol-checkbox(type="checkbox", name="idol", v-model='idol')
+    label(for='idol-checkbox') 偶像
 
 mixin equip-status
   #equip-status
