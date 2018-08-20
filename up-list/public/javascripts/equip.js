@@ -145,6 +145,13 @@ let app = new Vue({
       arr.forEach((desc, index) => {
         let tmp = "";
         desc.forEach((text, i) => {
+          text = text.replace(/[，；“‘’”]/g, function (c) {
+            return {
+              '，': ' , ', '；': ' ; ',
+              '“': '『', '‘': '「',
+              '”': '』', '’': '」',
+            }[c];
+          });
           text = text.replace(/[<>&"]/g, function (c) {
             return {'<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;'}[c];
           });
