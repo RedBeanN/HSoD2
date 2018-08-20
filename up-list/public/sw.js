@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2018.07.31v2';
+const CACHENAME = 'hsod2-2018.08.20v1';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -40,7 +40,7 @@ const excludes = [
   /**
    * These assets will never be saved.
    */
-  'data', 'last', 'nocache',
+  'data', 'last', 'nocache', 'auto/',
   /**
    * Avoid Mixed Content Error over HTTPS
    */
@@ -149,7 +149,7 @@ self.addEventListener('activate', async e => {
            * If the key is already existed, skip.
            */
           const exist = await C.match(key);
-          if (exist) return Promise.resolve();
+          if (exist || !isRequestCacheable(key)) return Promise.resolve();
           const res = await cache.match(key);
           return C.put(key, res);
         })
@@ -220,6 +220,7 @@ function isRequestCacheable (url) {
    * Cache statics files only.
    */
   if (!url) return false;
+  if (url.url) url = url.url;
   for (let e of excludes) {
     if (url.indexOf(e) !== -1) return false;
   }
