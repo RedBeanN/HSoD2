@@ -2,7 +2,7 @@ const http = require('http'),
       fs = require('fs'),
       path = require('path');
 
-const halfHour = 30 * 60 * 1000;
+const halfHour = 60 * 1000;
 let currentVersions = [];
 
 getAll(getVersions());
