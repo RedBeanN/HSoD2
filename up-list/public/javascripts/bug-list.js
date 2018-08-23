@@ -4,11 +4,7 @@
 ((Vue, axios) => {
   'use strict';
 
-  const versions = [
-    "5.5", "5.4", "5.3", "5.2", "5.1",
-    "5.0", "4.9", "4.8", "4.7", "4.6", "4.5", "4.4", "4.3", "4.2", "4.1",
-    "4.0", "3.9", "3.8", "3.7.5", "3.7", "3.6", "3.5", "3.4", "3.3", "3.2"
-  ];
+  const versions = [];
   let app = new Vue({
     el: '#app',
     data: {
@@ -111,10 +107,21 @@
               setTimeout(() => { e.target.innerHTML = '再干一次?' }, 1000)
             });
         }
-      }
+      },
+      loadVersions() {
+        const self = this;
+        return new Promise((resolve, reject) => {
+          axios.get('/buglist/versions').then(res => {
+            self.versions = res.data;
+            resolve();
+          })
+        })
+      },
     },
     created: function () {
-      this.getBugList(versions[0]);
+      this.loadVersions().then(_ => {
+        this.getBugList(this.versions[0]);
+      });
     }
   });
 
