@@ -5,7 +5,7 @@
   'use strict';
 
   const versions = [
-    "5.4", "5.3", "5.2", "5.1",
+    "5.5", "5.4", "5.3", "5.2", "5.1",
     "5.0", "4.9", "4.8", "4.7", "4.6", "4.5", "4.4", "4.3", "4.2", "4.1",
     "4.0", "3.9", "3.8", "3.7.5", "3.7", "3.6", "3.5", "3.4", "3.3", "3.2"
   ];
@@ -100,7 +100,7 @@
           let index = e.target.getAttribute('index');
           let text = $$('#row-' + index).getElementsByClassName('text')[0].innerHTML;
           e.target.innerHTML = '正在干掉...';
-          axios.get(encodeURI(`convert/tw2sp?text=${text}`))
+          axios.get(encodeURI(`convert/t2s?text=${text}`))
             .then(res => {
               $$('#row-' + index).getElementsByClassName('text')[0].innerHTML = res.data;
               e.target.innerHTML = '干掉了！';
