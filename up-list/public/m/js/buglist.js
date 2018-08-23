@@ -79,9 +79,9 @@ const app = new Vue({
       showLoading();
       $$(e.target).text('正在干掉...');
       axios.get(
-        encodeURI(`/convert/t2s?text=${content}`)
+        encodeURI(`/convert/t2s?text=${content.replace(/\+/g, '^plus^')}`)
       ).then(res => {
-        $$(`#card-${cid}`).text(res.data);
+        $$(`#card-${cid}`).text(res.data.replace(/\^plus\^/g, '+'));
         $$(e.target).text('干掉啦 !').attr('disabled', '');
       }).catch(_ => {
         $$(e.target).text('失败了...');
