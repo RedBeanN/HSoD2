@@ -94,11 +94,14 @@
          */
         if (e.target.tagName.toLowerCase() === 'button') {
           let index = e.target.getAttribute('index');
-          let text = $$('#row-' + index).getElementsByClassName('text')[0].innerHTML;
+          let text = $$('#row-' + index).getElementsByClassName('text')[0].getElementsByTagName('a')[0].innerHTML;
           e.target.innerHTML = '正在干掉...';
+          text = text.replace(/\+/g, '^plus^')
           axios.get(encodeURI(`convert/t2s?text=${text}`))
             .then(res => {
-              $$('#row-' + index).getElementsByClassName('text')[0].innerHTML = res.data;
+              let dt = res.data;
+              if (dt) dt = dt.replace(/\^plus\^/g, '+');
+              $$('#row-' + index).getElementsByClassName('text')[0].getElementsByTagName('a')[0].innerHTML = dt;
               e.target.innerHTML = '干掉了！';
               e.target.setAttribute('disabled', 'disabled');
             })
