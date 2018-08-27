@@ -180,6 +180,7 @@ const app = new Vue({
         'special': { 's': [], 't': [] },
         'middle': { 's': [], 't': [] },
       };
+      Vue.nextTick(() => store.clear())
     },
   },
   watch: {
