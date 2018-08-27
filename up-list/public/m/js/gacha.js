@@ -177,6 +177,11 @@ const app = new Vue({
         'special': { 's': [], 't': [] },
         'middle': { 's': [], 't': [] },
       };
+      mdui.snackbar({
+        message: '清除成功',
+        position: 'right-bottom',
+        timeout: 300,
+      });
       Vue.nextTick(() => store.clear())
     },
   },
