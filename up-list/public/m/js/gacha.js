@@ -2,6 +2,16 @@ window.onload = () => {
 const $$ = mdui.JQ;
 $$('body').removeClass('mdui-drawer-body-left');
 const gtag = window.gtag || function () {};
+const store = window.localStorage;
+if (!window.localStorage) {
+  store = {
+    setItem () {},
+    getItem () {},
+    removeItem () {},
+    clear () {},
+  }
+}
+window.mystore = store;
 
 // const gachaTab = new mdui.Tab('#gachas');
 
@@ -163,8 +173,26 @@ const app = new Vue({
         }
       }
     },
+    clearStorage () {
+      this.records = {
+        'high': { 's': [], 't': [] },
+        'custom': { 's': [], 't': [] },
+        'special': { 's': [], 't': [] },
+        'middle': { 's': [], 't': [] },
+      };
+    },
+  },
+  watch: {
+    records: {
+      handler (val) {
+        store.setItem('records', JSON.stringify(val));
+      },
+      deep: true
+    }
   },
   created () {
+    let rec;
+    if (rec = store.getItem('records')) this.records = JSON.parse(rec);
     this.loadProb();
   },
   mounted () {
