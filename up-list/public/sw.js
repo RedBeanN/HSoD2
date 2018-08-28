@@ -100,6 +100,7 @@ self.addEventListener('fetch', e => {
        * NOTE: The page will not be updated until next visit.
        */
       if (!isRequestStatic(e.request.url)) fetch(e.request).then(_res => {
+        if (!res || res.status !== 200) return res;
         caches.open(CACHENAME).then(cache => {
           cache.put(e.request, _res);
         });
