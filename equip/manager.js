@@ -38,7 +38,8 @@ fs.readFile('./equip.json', (err, data) => {
                + i.rarity + '$'
                + i.display_title;
     // item['star'] = i.rarity;
-    mini[i.type].push(item)
+    // skip stigmata skill
+    if (i.display_image != 2545 && i.display_image != 2546) mini[i.type].push(item)
   }
   fs.writeFile('minify.json', JSON.stringify(mini), nope)
 })
