@@ -17,7 +17,7 @@ async function getData() {
     data.sort((a, b) => {
       return parseInt(a.id) - parseInt(b.id)
     });
-    fs.writeFile('equips.json', JSON.stringify(data, null, 2), err => {
+    fs.writeFile('equip.json', JSON.stringify(data, null, 2), err => {
       if (err) console.error(err);
     });
     console.log('DONE.');
