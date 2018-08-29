@@ -13,6 +13,7 @@ var cms = require('./routes/cms');
 var battle = require('./routes/battle');
 var buglist = require('./routes/bug-list');
 var gacha = require('./routes/gacha');
+var illustrate = require('./routes/illustrate');
 
 var app = express();
 
@@ -40,6 +41,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/illustrate', illustrate);
 app.use('/users', users);
 app.use('/list', list);
 app.use('/cms', cms);
