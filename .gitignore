@@ -34,3 +34,6 @@ last.json
 *.key
 
 gacha.json
+
+equip.json
+sorted.json
