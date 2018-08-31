@@ -12,7 +12,6 @@ html
     meta(name="apple-mobile-web-app-capable" content="yes")
     meta(name="apple-mobile-web-app-status-bar-style" content="white")
     // Global site tag (gtag.js) - Google Analytics
-    script(async src="https://www.googletagmanager.com/gtag/js?id=UA-123581848-1")
     script.
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -24,3 +23,4 @@ html
     script(type='text/javascript').
       if (!window.Reflect) alert('您的浏览器版本过旧，可能无法正常访问搞事学园！');
       if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+    script(async src="https://www.googletagmanager.com/gtag/js?id=UA-123581848-1")

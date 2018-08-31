@@ -1,4 +1,4 @@
-window.onload = () => {
+(() => {
 const $$ = mdui.JQ;
 $$('#back-to-index').remove();
 $$('body').removeClass('mdui-drawer-body-left');
@@ -118,4 +118,4 @@ function hideLoading () {
   $$('#progress').css('opacity', 0);
 }
 
-};
+})();

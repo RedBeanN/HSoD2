@@ -1,4 +1,4 @@
-window.onload = () => {
+(() => {
 const $$ = mdui.JQ;
 
 const app = new Vue({
@@ -133,4 +133,4 @@ function toFloat (f) {
   }
   return parseFloat(f.toFixed(4));
 }
-}
+})();
