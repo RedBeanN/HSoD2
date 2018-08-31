@@ -151,8 +151,10 @@ const app = new Vue({
       this.backToTop();
     },
     loadData () {
+      showLoading();
       axios.get('illustrate/data/minify').then(res => {
         this.equips = res.data;
+        hideLoading();
       }).catch(e => {
         console.error(e);
       })
@@ -179,7 +181,6 @@ const app = new Vue({
   },
   mounted () {
     mdui.mutation();
-    hideLoading();
   }
 });
 
