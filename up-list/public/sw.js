@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2018.08.31v1';
+const CACHENAME = 'hsod2-2018.08.31v2';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -102,19 +102,21 @@ self.addEventListener('fetch', e => {
   if (isRequestRaceable(e.request.url)) {
     e.respondWith(caches.match(e.request).then(res => {
       if (res) {
-        return Promise.race([fetch(e.request).then(r => {
-          if (r && r.status == 200) return r;
-          return new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-            }, 3000);
+        return Promise.race([
+          new Promise(resolve => {
+            fetch(e.request).then(r => {
+              if (r && r.status == 200) return resolve(r);
+              else setTimeout(() => {
+                console.log('Bad Network. Use cached data.');
+                resolve();
+              }, 3000);
+            });
+          }), new Promise(resolve => {
+            setTimeout(_ => {
+              resolve(res);
+            }, 2000);
           })
-        }), new Promise(resolve => {
-          setTimeout(_ => {
-            console.log('Bad Network. Use cached data.');
-            resolve(res);
-          }, 2000);
-        })]);
+        ]);
       } else return fetch(e.request).then(res => {
         let resp = res.clone();
         if (!res || res.status !== 200) return res;
