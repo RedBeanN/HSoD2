@@ -1,7 +1,7 @@
 (() => {
 const $$ = mdui.JQ;
 $$('body').removeClass('mdui-drawer-body-left');
-const gtag = window.gtag || function () {};
+window.gtag = window.gtag || function () {};
 const store = window.localStorage;
 if (!store) store = {
   setItem () {},
