@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2018.08.29v1';
+const CACHENAME = 'hsod2-2018.08.31v1';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -36,15 +36,23 @@ const urls = [
    */
   '/m/fonts/msyh.woff',
 ];
+const races = [
+  /**
+   * These data should usually be latest.
+   * Sometimes the users have bad network and
+   * the cached data can be return for them.
+   */
+  'data', 'last', 'auto/',
+];
 const excludes = [
   /**
    * These assets will never be saved.
    */
-  'data', 'last', 'nocache', 'auto/',
+  'data', 'last', 'nocache', 'auto/', 'details', 'convert', 'gtag',
   /**
    * Avoid Mixed Content Error over HTTPS
    */
-  'mihoyo', 'cms/', 'details', 'convert'
+  'mihoyo', 'cms/',
 ];
 const statics = [
   /**
@@ -72,6 +80,7 @@ const laterPrecache = new (class uniqueArray {
     return this.data.push(item);
   };
   pop () {
+    if (this.length === 0) return;
     this.length--;
     return this.data.pop();
   };
@@ -90,7 +99,26 @@ self.addEventListener('fetch', e => {
    * NOTE: that the origin host must be match to the SSL crt,
    *   or FailedToFetch errors will break the app and the SW.
    */
-  if (!isRequestCacheable(e.request.url)) return fetch(e.request);
+  if (isRequestRaceable(e.request.url)) {
+    e.respondWith(caches.match(e.request).then(res => {
+      if (res) {
+        return Promise.race([fetch(e.request), new Promise(resolve => {
+          setTimeout(_ => {
+            console.log('Bad Network. Use cached data.');
+            resolve(res);
+          }, 2000);
+        })]);
+      } else return fetch(e.request).then(res => {
+        let resp = res.clone();
+        if (!res || res.status !== 200) return res;
+        caches.open(CACHENAME).then(cache => {
+          cache.put(e.request, resp);
+        });
+        return res;
+      });
+    }))
+  }
+  else if (!isRequestCacheable(e.request.url)) return fetch(e.request);
   else e.respondWith(caches.match(e.request).then(res => {
     if (res) {
       /**
@@ -231,6 +259,13 @@ function isRequestStatic (url) {
   if (!url) return false;
   for (let s of statics) {
     if (url.indexOf(s) !== -1) return true;
+  }
+  return false;
+}
+function isRequestRaceable (url) {
+  if (!url) return false;
+  for (let r of races) {
+    if (url.indexOf(r) !== -1) return true;
   }
   return false;
 }
