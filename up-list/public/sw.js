@@ -102,7 +102,14 @@ self.addEventListener('fetch', e => {
   if (isRequestRaceable(e.request.url)) {
     e.respondWith(caches.match(e.request).then(res => {
       if (res) {
-        return Promise.race([fetch(e.request), new Promise(resolve => {
+        return Promise.race([fetch(e.request).then(r => {
+          if (r && r.status == 200) return r;
+          return new Promise(resolve => {
+            setTimeout(() => {
+              resolve();
+            }, 3000);
+          })
+        }), new Promise(resolve => {
           setTimeout(_ => {
             console.log('Bad Network. Use cached data.');
             resolve(res);
