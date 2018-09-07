@@ -48,5 +48,18 @@ fs.readFile('./equip.json', (err, data) => {
     // skip stigmata skill
     if (i.display_image != 2545 && i.display_image != 2546) mini[i.type].push(item)
   }
-  fs.writeFile('minify.json', JSON.stringify(mini), nope)
+  fs.readFile('./pets.json', (err, data) => {
+    if (err) console.error(err);
+    mini.pet = [];
+    let {pets, spec} = JSON.parse(data);
+    for (let i in pets) {
+      let st = spec[i] || [5, 6];
+      for (let si in st) {
+        let s = st[si];
+        let item = `${Number(pets[i]) + Number(si)}$${s}$${i}`;
+        mini['pet'].push(item);
+      }
+    }
+    fs.writeFile('minify.json', JSON.stringify(mini), nope)
+  });
 })
