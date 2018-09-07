@@ -109,6 +109,7 @@ const app = new Vue({
   },
   mounted () {
     mdui.mutation();
+    $$('.hide').removeClass('hide');
   },
   updated () {
     mdui.mutation();
