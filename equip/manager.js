@@ -17,11 +17,15 @@ fs.readFile('./equip.json', (err, data) => {
     for (let k in i) {
       if (k.startsWith('display_prop') && i[k] === '') delete i[k];
     }
-    if (i.display_image === '1486') i.display_image = '1013';
-    if (i.display_image == '1487') i.display_image = '1014';
+    if (i.display_image === '1486') i.display_image = '0';
+    if (i.display_image == '1487') i.display_image = '0';
   }
   for (let i = 0; i < data.length; i++) {
-    if (data[i].display_image == '0' || data[i].display_title == '') {
+    if (
+      data[i].display_image == '0' ||
+      data[i].display_title == '' ||
+      data[i].display_title == '0'
+    ) {
       // console.log(data[i]);
       data.splice(i, 1);
       i--;
