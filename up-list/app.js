@@ -14,6 +14,7 @@ var battle = require('./routes/battle');
 var buglist = require('./routes/bug-list');
 var gacha = require('./routes/gacha');
 var illustrate = require('./routes/illustrate');
+var innerWorld = require('./routes/innerWorld');
 
 var app = express();
 
@@ -48,6 +49,7 @@ app.use('/cms', cms);
 app.use('/worldbattle', battle);
 app.use('/buglist', buglist);
 app.use('/gacha', gacha);
+app.use('/innerWorld', innerWorld);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

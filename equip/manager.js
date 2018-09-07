@@ -17,6 +17,8 @@ fs.readFile('./equip.json', (err, data) => {
     for (let k in i) {
       if (k.startsWith('display_prop') && i[k] === '') delete i[k];
     }
+    if (i.display_image === '1486') i.display_image = '1013';
+    if (i.display_image == '1487') i.display_image = '1014';
   }
   for (let i = 0; i < data.length; i++) {
     if (data[i].display_image == '0' || data[i].display_title == '') {
@@ -27,6 +29,7 @@ fs.readFile('./equip.json', (err, data) => {
   }
   // console.log(data[0].display_image == '0');
   // data.splice(0,1);
+  console.log(data.length);
   fs.writeFile('sorted.json', JSON.stringify(data, null, 2), nope);
   const mini = {
     weapon: [],
