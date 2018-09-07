@@ -10,8 +10,8 @@ router.get('/', (req, res) => {
 router.get('/data/:size', (req, res) => {
   const size = req.params.size;
   fs.readFile(path.join(__dirname, `../../equip/${size}.json`), (err, data) => {
-    if (err) res.statusCode(404).send();
-    else res.send(data);
+    if (err) res.status(404).send();
+    else res.json(JSON.parse(data));
   });
 });
 
