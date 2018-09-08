@@ -7,7 +7,7 @@ block content
   script(src="/m/js/mdui.min.js")
   script(src="/javascripts/vue.min.js")
   script(src="/javascripts/axios.min.js")
-  #app.mdui-color-theme
+  #app
     .mdui-appbar.mdui-appbar-fixed.mdui-app-bar-scroll-hide
       .mdui-toolbar.mdui-color-theme
         a.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(href='/')
@@ -26,8 +26,8 @@ block content
         a#server-18.servers.mdui-ripple(@click='changeServer(18)') 测试服
       #progress.mdui-progress
         .mdui-progress-indeterminate
-    .cards(style='display:none')
-      .mdui-card(v-for='card in filteredCards')
+    .cards.mdui-container.mdui-p-x-1.mdui-p-t-0.mdui-p-b-1(style='display:none')
+      .mdui-card.mdui-shadow-5(v-for='card in filteredCards')
         .mdui-card-content [ {{ card.date }} ] {{ card.title }}
         .mdui-card-actions
           button.mdui-btn.mdui-ripple.mdui-shadow-1.mdui-float-right(@click='read(card.key)') 详情

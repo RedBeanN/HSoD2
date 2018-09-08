@@ -1,3 +1,21 @@
 body {
   padding: 20px;
 }
+.mdui-card {
+  color: #222;
+}
+
+@media (min-width: 720px) {
+  .mdui-card .mdui-card-content {
+    float: left;
+  }
+  .mdui-card .mdui-card-actions {
+    float: right;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mdui-card .mdui-card-content {
+    font-size: 18px;
+  }
+}
