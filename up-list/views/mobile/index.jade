@@ -13,7 +13,7 @@ block content
           i.mdui-icon.material-icons menu
         .mdui-typo-title 搞事学园
         .mdui-toolbar-spacer
-        img(src='/images/favicon-r.png')
+        img(async, src='/images/favicon-r.png')
     #drawer.mdui-drawer.hide
       a.mdui-list-item(v-for='item in drawer', :href='item.url') {{item.name}}
     //- .mdui-card
@@ -143,7 +143,7 @@ block content
           ul
             li(onclick='(new mdui.Dialog(mdui.JQ("#dialog"))).open()')
               a
-                img(src='images/QRCode.jpg') 
+                img(async, src='images/QRCode.jpg') 
                 |  崩坏2通讯中心(点击放大)
       .mdui-divider-light.footer-divider
       .copyright Copyright © 2018 
