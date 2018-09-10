@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2018.08.31v2';
+const CACHENAME = 'hsod2-2018.09.09v0';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -100,23 +100,30 @@ self.addEventListener('fetch', e => {
    *   or FailedToFetch errors will break the app and the SW.
    */
   if (isRequestRaceable(e.request.url)) {
+    /**
+     * Race requests.
+     * Some data should be latest when network is available.
+     */
     e.respondWith(caches.match(e.request).then(res => {
       if (res) {
-        return Promise.race([
-          new Promise(resolve => {
-            fetch(e.request).then(r => {
-              if (r && r.status == 200) return resolve(r);
-              else setTimeout(() => {
-                console.log('Bad Network. Use cached data.');
-                resolve();
-              }, 3000);
+        const fetchRes = new Promise(async resolve => {
+          const r = await fetch(e.request);
+          if (r && r.status == 200) {
+            // Update cached file.
+            const _r = r.clone();
+            caches.open(CACHENAME).then(cache => {
+              cache.put(e.request, _r);
             });
-          }), new Promise(resolve => {
-            setTimeout(_ => {
-              resolve(res);
-            }, 2000);
-          })
-        ]);
+            return resolve(r);
+          } else setTimeout(() => {
+            console.log('Bad Network. Use cached data.');
+            resolve();
+          }, 3000);
+        });
+        const cacheRes = new Promise(resolve => {
+          setTimeout(_ => resolve(res), 2000);
+        });
+        return Promise.race([fetchRes, cacheRes]);
       } else return fetch(e.request).then(res => {
         let resp = res.clone();
         if (!res || res.status !== 200) return res;
