@@ -11,11 +11,6 @@ var https = require('https');
 var fs = require('fs');
 var path = require('path');
 
-const options = {
-  key: fs.readFileSync(path.join(__dirname, '../public/https.key')),
-  cert: fs.readFileSync(path.join(__dirname, '../public/https.crt'))
-};
-
 /**
  * Get port from environment and store in Express.
  */
@@ -37,13 +32,21 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-var httpsServer = https.createServer(options, app);
-httpsServer.addContext(
-  'redbean.tech', {
+const domains = ['hsod2.hongshn.xyz', 'redbean.tech'];
+const options = {
+  'hsod2.hongshn.xyz': {
+    key: fs.readFileSync(path.join(__dirname, '../public/https.key')),
+    cert: fs.readFileSync(path.join(__dirname, '../public/https.crt'))
+  },
+  'redbean.tech': {
     key: fs.readFileSync(path.join(__dirname, '../public/redbean.tech.key')),
     cert: fs.readFileSync(path.join(__dirname, '../public/redbean.tech.crt')),
   }
-);
+};
+var httpsServer = https.createServer({}, app);
+domains.forEach(domain => {
+  httpsServer.addContext(domain, options[domain]);
+});
 httpsServer.listen(443);
 
 /**
