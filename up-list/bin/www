@@ -32,13 +32,17 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-const domains = ['hsod2.hongshn.xyz', 'redbean.tech'];
+const domains = ['hsod2.hongshn.xyz', 'redbean.tech', 'www.redbean.tech'];
 const options = {
   'hsod2.hongshn.xyz': {
     key: fs.readFileSync(path.join(__dirname, '../public/https.key')),
     cert: fs.readFileSync(path.join(__dirname, '../public/https.crt'))
   },
   'redbean.tech': {
+    key: fs.readFileSync(path.join(__dirname, '../public/redbean.tech.key')),
+    cert: fs.readFileSync(path.join(__dirname, '../public/redbean.tech.crt')),
+  },
+  'www.redbean.tech': {
     key: fs.readFileSync(path.join(__dirname, '../public/redbean.tech.key')),
     cert: fs.readFileSync(path.join(__dirname, '../public/redbean.tech.crt')),
   }
