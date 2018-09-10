@@ -37,7 +37,14 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-https.createServer(options, app).listen(443);
+var httpsServer = https.createServer(options, app);
+httpsServer.addContext(
+  'redbean.tech', {
+    key: fs.readFileSync(path.join(__dirname, '../public/redbean.tech.key')),
+    cert: fs.readFileSync(path.join(__dirname, '../public/redbean.tech.crt')),
+  }
+);
+httpsServer.listen(443);
 
 /**
  * Normalize a port into a number, string, or false.
