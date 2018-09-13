@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2018.09.09v0';
+const CACHENAME = 'hsod2-2018.09.13v1';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
