@@ -25,6 +25,7 @@ async function getData() {
 }
 
 async function getItem (id, arr) {
+  console.log('Loading:', id);
   return new Promise(async (resolve, reject) => {
     let ctr = {
       num: 0,
@@ -37,11 +38,12 @@ async function getItem (id, arr) {
       await axios.get(baseURL, { params: { id, type: t } })
       .then(res => {
         if (res.data.retcode == 1) {
+          console.log('Loaded:', id);
           resolve(arr.push(res.data.data));
         }
         else ctr.add();
       }).catch(e => {
-        // console.error(e);
+        console.error(e);
         resolve();
       })
     }
