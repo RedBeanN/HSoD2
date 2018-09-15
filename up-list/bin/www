@@ -32,24 +32,28 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-const domains = ['hongshn.xyz', 'hsod2.hongshn.xyz', 'redbean.tech', 'www.redbean.tech'];
-const options = {
+const keys = {
   'hongshn.xyz': {
-    key: fs.readFileSync(path.join(__dirname, '../public/https.key')),
-    cert: fs.readFileSync(path.join(__dirname, '../public/https.crt'))
+    key: fs.readFileSync(path.join(__dirname, '../cert/hongshn.xyz.key')),
+    cert: fs.readFileSync(path.join(__dirname, '../cert/hongshn.xyz.crt'))
   },
   'hsod2.hongshn.xyz': {
-    key: fs.readFileSync(path.join(__dirname, '../public/https.key')),
-    cert: fs.readFileSync(path.join(__dirname, '../public/https.crt'))
+    key: fs.readFileSync(path.join(__dirname, '../cert/hsod2.hongshn.xyz.key')),
+    cert: fs.readFileSync(path.join(__dirname, '../cert/hsod2.hongshn.xyz.crt'))
   },
   'redbean.tech': {
-    key: fs.readFileSync(path.join(__dirname, '../public/redbean.tech.key')),
-    cert: fs.readFileSync(path.join(__dirname, '../public/redbean.tech.crt')),
+    key: fs.readFileSync(path.join(__dirname, '../cert/redbean.tech.key')),
+    cert: fs.readFileSync(path.join(__dirname, '../cert/redbean.tech.crt')),
   },
-  'www.redbean.tech': {
-    key: fs.readFileSync(path.join(__dirname, '../public/redbean.tech.key')),
-    cert: fs.readFileSync(path.join(__dirname, '../public/redbean.tech.crt')),
-  }
+}
+
+const domains = ['hongshn.xyz', 'hsod2.hongshn.xyz', 'www.hongshn.xyz', 'redbean.tech', 'www.redbean.tech'];
+const options = {
+  'hongshn.xyz': keys['hongshn.xyz'],
+  'hsod2.hongshn.xyz': keys['hsod2.hongshn.xyz'],
+  'www.hongshn.xyz': keys['hongshn.xyz'],
+  'redbean.tech': keys['redbean.tech'],
+  'www.redbean.tech': keys['redbean.tech']
 };
 var httpsServer = https.createServer({}, app);
 domains.forEach(domain => {
