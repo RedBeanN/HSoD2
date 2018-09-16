@@ -216,12 +216,22 @@ let app = new Vue({
     },
     series () {
       let series = [];
+      // series.push(icons.series['series00.png']);
       for (let i = 0; i < 47; i++) {
         let index = +i;
         if (i < 10) index = '0' + index;
-        series.push(icons.series[`series${index}.png`]);
+        // series.push(icons.series[`series${index}.png`]);
+        series.push(`https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Series/Series${index}.png`)
       }
+      series.push(icons.series['sakura.png']);
       return series;
+    },
+    dmgTypeSrc() {
+      const src = [];
+      for (let i in this.dmgType) {
+        src[i] = `https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Type/${i}.png`
+      }
+      return src;
     },
   },
   methods: {
@@ -274,9 +284,6 @@ let app = new Vue({
     //       app.downloading = false;
     //     });
     // },
-    dmgTypeSrc(type) {
-      return icons.types[`${type}.png`];
-    },
     toggleLock() {
       $$('lock').classList.toggle('unlock');
     },
@@ -342,7 +349,10 @@ if (c.length) {
   }
 }
 $$('readme-button').click();
-return document.cookie = `${cname}=${Date.now()}; `;
+const expire = 7;
+const date = new Date();
+date.setTime(date.getTime() + expire * 24 * 3600 * 1000);
+return document.cookie = `${cname}=${Date.now()}; expires=${date.toGMTString()} `;
 
 }
 checkForCookie();

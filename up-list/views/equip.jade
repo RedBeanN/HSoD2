@@ -12,7 +12,7 @@ mixin equip-top
                   v-model='selectedSeries', id='series-0')
             label(for='series-0', @click='hideSelector')
               img(:src='series[0]')
-          li(v-for='index in 46')
+          li(v-for='index in 47')
             input(type='radio', :value='series[index]',
                   v-model='selectedSeries', :id='"series-" + index')
             label(:for='"series-" + index', @click='hideSelector')
@@ -86,7 +86,7 @@ mixin equip-main
         span#equip-banner-img
           img(v-if='selectedSeries', :src='selectedSeries')
         span#equip-banner-name {{ equip.top.name.value | name }} 
-        img#equip-type-view(v-if='equip.dmgType != "none"', :src='dmgTypeSrc(equip.dmgType)')
+        img#equip-type-view(v-if='equip.dmgType != "none"', :src='dmgTypeSrc[equip.dmgType]')
         #equip-stars-container
           img(v-for='s in (Number(equip.top.stars.value) > 10 ? 10 : (Number(equip.top.stars.value) < 1 ? 1 : Number(equip.top.stars.value)))',
               :src='starSrc')
@@ -115,7 +115,7 @@ mixin equip-main
         #equip-skill
           .skill(v-for='(skill, index) in equip.skills', :id='"skill-" + index')
             .title-line
-              img.skill-type-view(v-if='skill.dmgType && skill.dmgType != "none"', :src='dmgTypeSrc(skill.dmgType)')
+              img.skill-type-view(v-if='skill.dmgType && skill.dmgType != "none"', :src='dmgTypeSrc[skill.dmgType]')
               span.skill-name.buff(:id='"skill-name-" + index') {{ skill.name | name }}
               span.skill-break(v-if='Number(skill.break)')
                 div.break-point(v-for='(k,i) in 10', :class=`i < skill.break ? 'full' : 'empty'`)
@@ -140,7 +140,7 @@ mixin equip-type
       p 伤害类型
         select(v-model='equip.dmgType')
           option(v-for='(value, key) in dmgType', :value='key') {{ value }}
-        img.skill-type(v-if='equip.dmgType && equip.dmgType != "none"', :src='dmgTypeSrc(equip.dmgType)')
+        img.skill-type(v-if='equip.dmgType && equip.dmgType != "none"', :src='dmgTypeSrc[equip.dmgType]')
 
 
 block content
@@ -220,7 +220,7 @@ block content
               span 伤害类型:
               select.skill-dmg-type(v-model='skill.dmgType')
                 option(v-for='(value, key) in dmgType', :value='key') {{ value }}
-              img.skill-type(v-if='dmgType[skill.dmgType] && skill.dmgType != "none"', :src='dmgTypeSrc(skill.dmgType)')
+              img.skill-type(v-if='dmgType[skill.dmgType] && skill.dmgType != "none"', :src='dmgTypeSrc[skill.dmgType]')
             p
               span 技能描述:
             textarea.skill-input-description(v-model='skill.description')
