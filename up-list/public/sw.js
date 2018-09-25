@@ -34,8 +34,8 @@ const urls = [
    *   so cache them at the first time.
    */
   '/dist/js/equip.min.js',
-  '/live2d/model/seele/seele.2048/texture_00.png',
-  '/live2d/model/thresa/delisha.2048/texture_00.png',
+  // '/live2d/model/seele/seele.2048/texture_00.png',
+  // '/live2d/model/thresa/delisha.2048/texture_00.png',
   /**
    * MicroSoft YaHei Bold
    * Size: 16.0 MB
