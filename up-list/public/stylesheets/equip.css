@@ -522,6 +522,11 @@ input, select {
 #lock.unlock {
   background-position-x: -39px;
 }
+#equip-lock-widget #store {
+  background-image: url('/images/store.png');
+  width: 38px;
+  height: 50px;
+}
 
 #equip-series {
   display: inline-block;
