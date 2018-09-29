@@ -26,6 +26,7 @@ const app = new Vue({
       { url: '/buglist',    name: '测试服 BUG 记录' },
       { url: '/gacha',      name: '扭蛋模拟器'      },
       { url: '/illustrate', name: '装备图鉴'        },
+      { url: '/innerWorld', name: '里塔助手'        },
     ],
     drawerInst: null,
     swSize: {
@@ -106,14 +107,6 @@ const app = new Vue({
   created () {
     // this.updatePets();
     this.updateSW();
-    // 备案
-    if (document.domain == 'hongshn.xyz' || document.domain == 'redbean.tech')
-      this.drawer = [
-        { url: '/list',       name: 'UP 记录'         },
-        // { url: '/cms',        name: '公告记录'        },
-        // { url: '/buglist',    name: '测试服 BUG 记录' },
-        { url: '/gacha',      name: '扭蛋模拟器'      },
-      ];
   },
   mounted () {
     mdui.mutation();
