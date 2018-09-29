@@ -378,7 +378,7 @@ input, select {
   border-radius: 15px;
   box-shadow: 0 0 5px #bbb;
   font-size: 20.5px;
-  background-color: white;
+  background-color: #fbfbfb;
 }
 #equip-status-top, #equip-status-bot {
   column-count: 2;
@@ -526,6 +526,7 @@ input, select {
   background-image: url('/images/store.png');
   width: 38px;
   height: 50px;
+  margin-top: 8px;
 }
 
 #equip-series {
