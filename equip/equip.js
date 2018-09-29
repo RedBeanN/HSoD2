@@ -1,6 +1,13 @@
 const fs = require('fs');
 const axios = require('axios');
 
+const equips = require('./equip.json');
+
+const equipObj = {};
+equips.forEach(e => {
+  equipObj[e.id] = e;
+});
+
 const baseURL = 'https://www.mihoyo.com/data/getDataByID';
 const type = ['weapon', 'costume', 'passive_skill'];
 
@@ -26,12 +33,19 @@ async function getData() {
 
 async function getItem (id, arr) {
   console.log('Loading:', id);
+  if (id in equipObj) {
+    console.log('Existed:', id);
+    return Promise.resolve(arr.push(equipObj[id]));
+  }
   return new Promise(async (resolve, reject) => {
     let ctr = {
       num: 0,
       add () {
         this.num ++;
-        if (this.num >= 3) resolve();
+        if (this.num >= 3) {
+          console.log('Not Found:', id);
+          resolve();
+        }
       }
     }
     for (let t of type) {
