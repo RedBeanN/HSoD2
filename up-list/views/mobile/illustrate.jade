@@ -31,7 +31,7 @@ block content
         .mdui-progress-indeterminate
     #container.mdui-card.mdui-container.mdui-m-y-4.hide
       .mdui-row
-        a.item.mdui-ripple.mdui-col-xs-12.mdui-col-sm-6.mdui-col-md-3.mdui-p-a-1.mdui-p-x-2.mdui-valign(v-for='item in itemsInPage', @click='showDetail(item.id)')
+        a.item.mdui-ripple.mdui-col-xs-12.mdui-col-sm-6.mdui-col-md-3.mdui-p-a-1.mdui-p-x-2.mdui-valign(v-for='item in itemsInPage', @click='showDetail(item.id, item.name)')
           img.equip-img.mdui-m-r-2(:src='"http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/jpg/"+item.id+".jpg"')
           p {{ item.name }}
             br
@@ -66,7 +66,7 @@ block content
           span.mdui-p-a-1.green {{ equip.display_title }}
           img.star(v-for='s in parseInt(equip.rarity)', src='images/star-full.png')
           img.star(v-for='s in parseInt(equip.empty_star)', src='images/star-empty.png')
-        table.equip-detail.mdui-m-t-1
+        table.equip-detail.mdui-m-t-1(v-if='equip.type !== "?"')
           tr
             td 类型
             td 最大等级

@@ -4,6 +4,23 @@ $$('#back-to-index').remove();
 $$('body').removeClass('mdui-drawer-body-left');
 $$('.hide').removeClass('hide');
 
+const equipTemplate = {
+  "id": "?",
+  "type": "?",
+  "max_lv": "35",
+  "cost": "6",
+  "display_image": "3",
+  "display_title": "?",
+  "rarity": "0",
+  "empty_star": "0",
+  "display_ammo": "?",
+  "display_firerate": "10",
+  "display_damage": "150",
+  "display_base_type": "?",
+  "display_prop1_title": "找不到图鉴",
+  "display_prop1_desc": "无法获得这个装备的详细信息 , 可能是 miHoYo 的数据接口尚未开放 , 或者是单纯的网络问题."
+};
+
 const app = new Vue({
   el: '#app',
   data: {
@@ -11,23 +28,9 @@ const app = new Vue({
       weapon: [],
       costume: [],
       passive_skill: [],
+      pet: [],
     },
-    equip: {
-      "id": "3",
-      "type": "weapon",
-      "max_lv": "35",
-      "cost": "6",
-      "display_image": "3",
-      "display_title": "M617左轮手枪",
-      "rarity": "4",
-      "empty_star": "1",
-      "display_ammo": "124",
-      "display_firerate": "10",
-      "display_damage": "150",
-      "display_base_type": "手枪-速射",
-      "display_prop1_title": "暴击",
-      "display_prop1_desc": "增加15%该武器暴击率"
-    },
+    equip: equipTemplate,
     current: {
       type: 'all',
       page: 1,
@@ -38,6 +41,7 @@ const app = new Vue({
       'weapon': '武器',
       'costume': '衣服',
       'passive_skill': '徽章',
+      'pet': '使魔',
     }
   },
   computed: {
@@ -159,13 +163,18 @@ const app = new Vue({
         console.error(e);
       })
     },
-    showDetail (id) {
+    showDetail (id, name) {
       showLoading();
       axios.get('illustrate/details/' + parseInt(id)).then(res => {
         this.equip = res.data;
         this.equip.id = id;
+      }).catch(() => {
+        this.equip = equipTemplate;
+        this.equip.id = id;
+        this.equip.display_title = name;
+      }).then(() => {
         const dialog = new mdui.Dialog($$('#dialog'));
-        Vue.nextTick(_ => {
+        Vue.nextTick(() => {
           dialog.open();
           hideLoading();
         });
