@@ -69,7 +69,11 @@ const app = new Vue({
       let circ = 10;
       if (this.current.pool === 'custom') circ = 7;
       let interval = [], bd = false;
-      for (let i of this.records[this.current.pool]['s']) {
+      let last = this.records[this.current.pool]['s'].length;
+      let start = Math.floor(last / circ) * circ;
+      // for (let i of this.records[this.current.pool]['s']) {
+      for (; start < last; start ++) {
+        let i = this.records[this.current.pool]['s'][start];
         interval.push(i);
         if (i.isGod) bd = true;
         if (interval.length >= circ) {

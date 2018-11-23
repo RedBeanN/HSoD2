@@ -14,19 +14,26 @@ body {
 .mdui-tab a {
   opacity: .4;
 }
-table {
+.table {
   height: 240px;
   overflow-y: scroll;
   margin-bottom: 20px;
 }
-td {
+.td {
+  display: inline-block;
   padding: 1px 5px;
   line-height: 20px;
   color: #ffcdd2;
 }
-td.date {
+.td.date {
   text-align: center;
   width: 150px;
+}
+.hr {
+  border-top: 1px dashed #2196f3;
+  display: block;
+  height: 0px;
+  margin: 8px;
 }
 .god {
   color: #2196f3;

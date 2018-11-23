@@ -31,11 +31,17 @@ block content
           #gachas.mdui-tab.mdui-theme-layout-dark.mdui-center.mdui-container-fluid
             a(@click='selectType("s")').mdui-ripple.mdui-ripple-white.mdui-col-xs-6.mdui-tab-active 单次祈愿
             a(@click='selectType("t")').mdui-ripple.mdui-ripple-white.mdui-col-xs-6 十次祈愿
-          table.mdui-theme-layout-dark.mdui-text-color-white.mdui-center
-            tbody
-              tr(v-for='record in reverseRecords')
-                td.date {{ record.date }}
-                td.equip(:class='{god: record.isGod}') {{ record.equip }}
+          .table.mdui-theme-layout-dark.mdui-text-color-white.mdui-center
+            .tbody
+              template(v-for='(record, index) in reverseRecords')
+                .tr(v-if='(current.pool === "high" || current.pool === "special") && index > 0 && (reverseRecords.length - index) % 10 === 0')
+                  .td.hr
+                //- TODO: 优化装备/使魔区分
+                .tr(v-if='current.pool === "custom" && probs.custom.god && index > 0 && (reverseRecords.length - index) % 7 === 0')
+                  .td.hr
+                .tr
+                  .td.date {{ record.date }}
+                  .td.equip(:class='{god: record.isGod}') {{ record.equip }}
     .mdui-card.hide.mdui-p-x-3.mdui-p-b-3
       .mdui-card-primary
         .mdui-card-primary-title 当期up内容
