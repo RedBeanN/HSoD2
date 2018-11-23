@@ -39,7 +39,7 @@ block content
                 //- TODO: 优化装备/使魔区分
                 .tr(v-if='current.pool === "custom" && probs.custom.god && index > 0 && (reverseRecords.length - index) % 7 === 0')
                   .td.hr
-                .tr
+                .tr.record
                   .td.date {{ record.date }}
                   .td.equip(:class='{god: record.isGod}') {{ record.equip }}
     .mdui-card.hide.mdui-p-x-3.mdui-p-b-3

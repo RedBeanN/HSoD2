@@ -19,11 +19,18 @@ body {
   overflow-y: scroll;
   margin-bottom: 20px;
 }
+.tr.record {
+  overflow: hidden;
+  height: 24px;
+  width: 100%;
+  text-overflow: ellipsis;
+}
 .td {
-  display: inline-block;
-  padding: 1px 5px;
+  display: inline;
+  padding: 0px 0px 0px 15px;
   line-height: 20px;
   color: #ffcdd2;
+  white-space: nowrap;
 }
 .td.date {
   text-align: center;
