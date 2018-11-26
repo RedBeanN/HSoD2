@@ -33,13 +33,19 @@ block content
             a(@click='selectType("t")').mdui-ripple.mdui-ripple-white.mdui-col-xs-6 十次祈愿
           .table.mdui-theme-layout-dark.mdui-text-color-white.mdui-center
             .tbody
-              template(v-for='(record, index) in reverseRecords')
-                .tr(v-if='(current.pool === "high" || current.pool === "special") && index > 0 && (reverseRecords.length - index) % 10 === 0')
+              //- template(v-for='(record, index) in reverseRecords')
+              //-   .tr(v-if='(current.pool === "high" || current.pool === "special") && index > 0 && (reverseRecords.length - index) % 10 === 0')
+              //-     .td.hr
+              //-   //- TODO: 优化装备/使魔区分
+              //-   .tr(v-if='current.pool === "custom" && probs.custom.god && index > 0 && (reverseRecords.length - index) % 7 === 0')
+              //-     .td.hr
+              //-   .tr.record
+              //-     .td.date {{ record.date }}
+              //-     .td.equip(:class='{god: record.isGod}') {{ record.equip }}
+              template(v-for='record in recordList')
+                .tr(v-if='record.type === "hr"')
                   .td.hr
-                //- TODO: 优化装备/使魔区分
-                .tr(v-if='current.pool === "custom" && probs.custom.god && index > 0 && (reverseRecords.length - index) % 7 === 0')
-                  .td.hr
-                .tr.record
+                .tr.record(v-else)
                   .td.date {{ record.date }}
                   .td.equip(:class='{god: record.isGod}') {{ record.equip }}
     .mdui-card.hide.mdui-p-x-3.mdui-p-b-3

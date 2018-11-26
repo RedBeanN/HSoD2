@@ -40,14 +40,63 @@ const app = new Vue({
     currentRecords () {
       return this.records[this.current.pool][this.current.gachatype];
     },
-    reverseRecords () {
-      return this.currentRecords.filter(i => true).reverse();
+    recordList () {
+      /**
+       * 划分保底线
+       * 十连 / 公主魔法少女单抽不重置, 固定10发一保底,
+       * 单抽除大小姐外, 按7 / 10发一保底
+       */
+      const records = this.currentRecords.filter(() => true);
+      if (this.current.pool === 'middle') return records.reverse();
+      const list = [];
+      /**
+       * 十连的情况, 只需每10发一条线
+       */
+      if (this.current.gachatype === 't') {
+        records.forEach((record, index, arr) => {
+          list.push(Object.assign({}, record, {type: 'equip'}));
+          if (index % 10 === 9 && index < arr.length - 1) {
+            list.push({type: 'hr'});
+          }
+        });
+        return list.reverse();
+      }
+      /**
+       * 魔女每期重置, 这里只判断连续的装备单抽, 而不考虑是不是跨期
+       */
+      const circ = this.current.pool === 'custom' ? 7 : 10;
+      let start = 0;
+      if (this.current.pool === 'custom') {
+        start = records.length - 1;
+        for (let i = records.length - 1; i >= 0; i--) {
+          if (records[i].equip.indexOf('【') === -1) break;
+          else start = i;
+        }
+      }
+      /**
+       * 单抽在一个周期的保底前有保底线
+       */
+      for (let i = 0; i < start; i++) list.push(Object.assign({}, records[i], {type: 'equip'}));
+      for (let ctr = 0; start < records.length; start++, ctr++) {
+        if (ctr >= circ) {
+          list.push({type: 'hr'});
+          ctr = 0;
+        }
+        list.push(Object.assign({}, records[start], {type: 'equip'}));
+      }
+      return list.reverse();
     },
     upItems () {
       const up = { high: [], custom: [], special: [], middle: [] };
       for (let pool in this.probs) {
+        /**
+         * 过滤出当期 up 内容
+         */
         if (pool === 'middle') {/* do nothing */}
         else if (pool === 'custom') {
+          /**
+           * 对魔女使魔 up 特别优化
+           */
           let o = {};
           for (let equip of this.probs[pool].equips) {
             if (equip.rate <= this.probs[pool].com) {
@@ -65,15 +114,36 @@ const app = new Vue({
       return up;
     },
     baodi () {
+      /**
+       * 单抽保底判定
+       * 返回值:
+       *   0: 完全随机
+       *   1: 强制出金
+       *   2: 强制不出金
+       */
       if (this.current.pool === 'middle') return 0;
-      let circ = 10;
-      if (this.current.pool === 'custom') circ = 7;
-      let interval = [], bd = false;
-      let last = this.records[this.current.pool]['s'].length;
+      let circ = 10, interval = [], bd = false;
+      const records = this.records[this.current.pool]['s'];
+      let last = records.length;
       let start = Math.floor(last / circ) * circ;
-      // for (let i of this.records[this.current.pool]['s']) {
+      /**
+       * 对魔女单抽特别判定
+       * 只考虑最后一次连续的装备单抽, 无论是不是同一期
+       */
+      if (this.current.pool === 'custom') {
+        circ = 7;
+        let rec = last - 1;
+        for (let i = last - 1; i > 0; i--) {
+          if (records[i].equip.indexOf('【') === -1) {
+            rec = i;
+            break;
+          }
+        }
+        if (rec !== last - 1) start = rec + 1;
+        else start = Math.floor(last / circ) * circ;
+      }
       for (; start < last; start ++) {
-        let i = this.records[this.current.pool]['s'][start];
+        let i = records[start];
         interval.push(i);
         if (i.isGod) bd = true;
         if (interval.length >= circ) {
