@@ -7,16 +7,21 @@ mixin equip-top
       div#selector-container(@click.stop='toggleSelector')
         img(v-if='selectedSeries', :src='selectedSeries')
         ul#series-selector
-          li
-            input(type='radio', :value='series[0]',
-                  v-model='selectedSeries', id='series-0')
-            label(for='series-0', @click='hideSelector')
-              img(:src='series[0]')
-          li(v-for='index in 47')
-            input(type='radio', :value='series[index]',
+          //- li
+          //-   input(type='radio', :value='series[0]',
+          //-         v-model='selectedSeries', id='series-0')
+          //-   label(for='series-0', @click='hideSelector')
+          //-     img(:src='series[0]')
+          //- li(v-for='index in 48')
+          //-   input(type='radio', :value='series[index]',
+          //-         v-model='selectedSeries', :id='"series-" + index')
+          //-   label(:for='"series-" + index', @click='hideSelector')
+          //-     img(:src='series[index]')
+          li(v-for='(src, index) in series')
+            input(type='radio', :value='src',
                   v-model='selectedSeries', :id='"series-" + index')
             label(:for='"series-" + index', @click='hideSelector')
-              img(:src='series[index]')
+              img(:src='src')
       | &nbsp; ]
     p(v-for='(item, key) in equip.top', :id='"equip-" + key')
       span {{ item.name }} :
@@ -100,7 +105,7 @@ mixin equip-main
           #store
         #equip-image-container
           #equip-basic-image
-            img(v-if='!pinImage.exist', src='/images/base-pin.png', :style='imageStyleObject')
+            img(v-if='!pinImage.exist', :src='widgets.awakenImage ? "/images/huaniao.png" : "/images/base-pin-1.png"', :style='imageStyleObject')
             img(v-else, :src='pinImage.src', :style='imageStyleObject')
             img#pin-container(:src='pinContainerSrc', v-show='widgets.pinContainer')
         #equip-unique-container
@@ -111,7 +116,7 @@ mixin equip-main
           img(v-show='widgets.protectButton', src='/images/button.png')
       #equip-view-right
         #watermark(v-show='watermark')
-          | 搞事学园 @ hsod2.hongshn.xyz/equip
+          | 搞事学园 @ https://redbean.tech/equip
         +equip-status
         #equip-skill
           .skill(v-for='(skill, index) in equip.skills', :id='"skill-" + index')

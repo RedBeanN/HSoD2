@@ -481,7 +481,7 @@ input, select {
   line-height: 22.4px;
   margin-left: 13.6px;
   margin-top: 2px;
-  width: 364px;
+  width: 375px;
   word-wrap: break-word;
 }
 .blue {
@@ -705,7 +705,7 @@ input, select {
   position: absolute;
   z-index: -1;
   transform: rotate(90deg);
-  right: 320px;
-  top: 135px;
-  opacity: .4;
+  right: 310px;
+  top: 145px;
+  opacity: .5;
 }

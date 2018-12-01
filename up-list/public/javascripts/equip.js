@@ -14,25 +14,25 @@ let user = {
 };
 let equip = {
   top: {
-    serial: { name: '编号',     value: 3000        },
-    name:   { name: '装备名',   value: '疾风术·极' },
-    stars:  { name: '星级',     value: 6           },
+    serial: { name: '编号',     value: 2962        },
+    name:   { name: '装备名',   value: '镜花水月' },
+    stars:  { name: '星级',     value: 7           },
     level:  { name: '等级',     value: 99          },
-    love:   { name: '亲密度',   value: 50          },
+    love:   { name: '亲密度',   value: 99          },
     adds:   { name: '追加等级', value: 99          },
-    weight: { name: '负重',     value: 20          },
+    weight: { name: '负重',     value: 50          },
   },
   skills: [
-    { name: '其疾如风', 
-      dmgType: 'power',
-      description: '移速提升#(55%) , 攻速提升#(60%) ; 使用近战武器攻击时 , #(20%)概率追加#(50%)武器攻击力的伤害',
-      break: 0 },
-    { name: '其极如风',
+    { name: '水中月', 
       dmgType: 'none',
-      description: '移动中造成的伤害提升#(100%) , 每装备一件『无』系列装备 , 效果提升#(15%)',
-      break: 5 },
+      description: '每#(2.8)秒充能一层能抵挡一次攻击的屏障 , 最多充能8层',
+      break: 2 },
+    { name: '镜中花',
+      dmgType: 'none',
+      description: '抵挡攻击后 , 增加#(660)点武器攻击力 , 提升#(159%)对攻击者造成的全伤害 , 持续15秒 , \\n并使其陷入时停状态 , 持续3秒',
+      break: 3 },
   ],
-  awaken: false,
+  awaken: true,
   type: '徽章',
   dmgType: 'none',
 };
@@ -69,6 +69,12 @@ let imageStyle = {
   left: 0,
   top: 0,
 };
+let awakenStyle = {
+  width: 640,
+  height: 0,
+  left: 0,
+  top: -170,
+};
 let widgets = {
   awakenImage: false,
   pinContainer: true,
@@ -76,8 +82,8 @@ let widgets = {
   unique: true,
 };
 let texts = {
-  unique: '唯一装备 , 装备多件无效哟~',
-  tutorial: '用#()标记技能描述中的可突破数值 , #()内部的数值可以自动变色',
+  unique: '唯一装备 , 带多件无效哟~',
+  tutorial: '用#()标记技能描述中的可突破数值 , #()内部的数值可以自动变色 ; 用 \\n 可以强制换行',
   sizeCtrl: '移动滑块调整图片大小和位置 , 数值范围不足时可以通过右侧输入框手动输入',
   download: '点击 [保存图片] 自动生成并保存做好的图片 , 生成图片需要几秒钟的时间 , 请耐心等待 . (由于 html2canvas 的限制 , 部分控件可能会有绘制错误)',
 };
@@ -95,6 +101,21 @@ let app = new Vue({
     pinImage: { src: '', exist: false },
     useSpecialStar: false,
     readme,
+  },
+  created () {
+    this.selectedSeries = this.series[2];
+    this.widgets.awakenImage = true;
+  },
+  watch: {
+    'widgets.awakenImage' (val) {
+      if (val) {
+        this.widgets.pinContainer = false;
+        this.imageStyle = awakenStyle;
+      } else {
+        if (!this.pinImage.src) this.widgets.pinContainer = true;
+        this.imageStyle = imageStyle;
+      }
+    },
   },
   computed: {
     coin() {
@@ -145,16 +166,17 @@ let app = new Vue({
       arr.forEach((desc, index) => {
         let tmp = "";
         desc.forEach((text, i) => {
-          text = text.replace(/[，；“‘’”]/g, function (c) {
+          text = text.replace(/[，；]/g, function (c) {
             return {
               '，': ' , ', '；': ' ; ',
-              '“': '『', '‘': '「',
-              '”': '』', '’': '」',
+              // '“': '『', '‘': '「',
+              // '”': '』', '’': '」',
             }[c];
           });
           text = text.replace(/[<>&"]/g, function (c) {
             return {'<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;'}[c];
           });
+          text = text.replace('\\n', '<br />');
           if (i % 2) tmp += `<span class="blue">${text}</span>`;
           else tmp += text;
         });
@@ -217,7 +239,7 @@ let app = new Vue({
     series () {
       let series = [];
       // series.push(icons.series['series00.png']);
-      for (let i = 0; i < 47; i++) {
+      for (let i = 0; i < 48; i++) {
         let index = +i;
         if (i < 10) index = '0' + index;
         // series.push(icons.series[`series${index}.png`]);
