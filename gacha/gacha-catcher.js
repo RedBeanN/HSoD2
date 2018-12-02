@@ -12,6 +12,14 @@ module.exports = () => {
   return Promise.all(pools.map(p => {
     return catchOne(p).then(data => all[p] = data);
   })).then(() => {
+    /**
+     * Fix bug with messy code �
+     */
+    for (let pool in all) {
+      for (let item of all[pool].equips) {
+        if (item.name.indexOf(decodeURI('%EF%BF%BD')) !== -1) return;
+      }
+    }
     saveFile(JSON.stringify(all, null, 2), 'gacha.json');
   });
 };
