@@ -15,7 +15,9 @@ block content
         .mdui-toolbar-spacer
         img(async, src='/images/favicon-r.png')
     #drawer.mdui-drawer.hide
-      a.mdui-list-item(v-for='item in drawer', :href='item.url') {{item.name}}
+      a.mdui-list-item(v-for='item in drawer', :href='item.url')
+        i.mdui-list-item-icon.mdui-icon.material-icons.mdui-text-color-black-icon {{ item.icon }}
+        .mdui-list-item-content {{ item.name }}
     //- .mdui-card
     //-   .mdui-card-primary
     //-     .mdui-card-primary-title 古树战争
