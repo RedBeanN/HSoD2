@@ -77,6 +77,7 @@ function parseUp(pool, cb) {
       // equips pets
       if (err) console.log(err);
       data = data.toString();
+      if (data.indexOf('�') !== -1) return cb(new Error('Messy code founded'));
       let date = parseDate(data);
       data = parseGod(data);
       if (!data || !date) cb(new Error(`No item was found in ${pool}.`));
