@@ -79,9 +79,12 @@ block content
             tr
               td 攻击力
               td 暴击率
+              td 使魔特性
             tr
               td {{ equip.attack }}
               td {{ equip.init_crit_rate }} %
+              td
+                img.pet_char(v-for='src in equip.pet_character', v-if='src.indexOf("000") === -1', :src='src')
           .pet-detail.mdui-m-t-1
             .pet-skill(v-for='skill in equip.skills')
               .title.type [ {{ skill.type_cn | petSkillType }} ]

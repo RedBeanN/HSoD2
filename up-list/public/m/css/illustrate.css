@@ -57,6 +57,10 @@ img.star {
   padding-top: 12px;
 }
 
+.pet img.pet_char {
+  width: 20px;
+  margin-right: 2px;
+}
 .pet-skill {
   margin-bottom: 12px;
   padding: 0 8px;
