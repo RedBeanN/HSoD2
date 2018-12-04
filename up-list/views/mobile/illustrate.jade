@@ -62,40 +62,63 @@ block content
     .mdui-dialog#dialog
       #dialog-content.mdui-dialog-content
         p
-          img.equip-img(:src='"http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/jpg/"+equip.id+".jpg"')
+          img.equip-img(:src='"http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/"+equip.id+".png"')
           span.mdui-p-a-1.green {{ equip.display_title }}
           img.star(v-for='s in parseInt(equip.rarity)', src='images/star-full.png')
           img.star(v-for='s in parseInt(equip.empty_star)', src='images/star-empty.png')
-        table.equip-detail.mdui-m-t-1(v-if='equip.type !== "?"')
-          tr
-            td 类型
-            td 最大等级
-            td 负重
-          tr
-            td {{ equip.type === 'weapon' ? equip.display_base_type : tabs[equip.type] }}
-            td {{ equip.max_lv }}
-            td {{ equip.cost }}
-          tr(v-if='equip.type === "weapon"')
-            td 载弹
-            td 攻击力
-            td 攻速
-          tr(v-if='equip.type === "weapon"')
-            td {{ equip.display_ammo }}
-            td {{ equip.display_damage }}
-            td {{ equip.display_firerate }}
-          tr(v-if='equip.type === "costume"')
-            td 生命值
-          tr(v-if='equip.type === "costume"')
-            td {{ equip.display_hp }}
-        table.equip-detail.mdui-m-t-1
-          tr(v-if='equip.display_prop1_title')
-            td.title.green(colspan='6') {{ equip.display_prop1_title }}
-          tr(v-if='equip.display_prop1_title')
-            td.desc(colspan='6') {{ equip.display_prop1_desc }}
-          tr(v-if='equip.display_prop2_title')
-            td.title.green(colspan='6') {{ equip.display_prop2_title }}
-          tr(v-if='equip.display_prop2_title')
-            td.desc(colspan='6') {{ equip.display_prop2_desc }}
+        template(v-if='equip.type === "pet"')
+          table.pet.equip-detail.mdui-m-t-1
+            tr
+              td 类型
+              td 最大等级
+              td 同调率
+            tr
+              td 使魔
+              td {{ equip.max_lv }}
+              td {{ equip.syn_max }}
+            tr
+              td 攻击力
+              td 暴击率
+            tr
+              td {{ equip.attack }}
+              td {{ equip.init_crit_rate }} %
+          .pet-detail.mdui-m-t-1
+            .pet-skill(v-for='skill in equip.skills')
+              .title.type [ {{ skill.type_cn | petSkillType }} ]
+              .title.green {{ skill.display_title }}
+              .detail.desc {{ skill.display_description }}
+              .detail.cooldown(v-show='skill.cool_down !== "0"') 冷却时间 : {{ skill.cool_down }} 秒
+        template(v-else)
+          table.equip-detail.mdui-m-t-1(v-if='equip.type !== "?"')
+            tr
+              td 类型
+              td 最大等级
+              td 负重
+            tr
+              td {{ equip.type === 'weapon' ? equip.display_base_type : tabs[equip.type] }}
+              td {{ equip.max_lv }}
+              td {{ equip.cost }}
+            tr(v-if='equip.type === "weapon"')
+              td 载弹
+              td 攻击力
+              td 攻速
+            tr(v-if='equip.type === "weapon"')
+              td {{ equip.display_ammo }}
+              td {{ equip.display_damage }}
+              td {{ equip.display_firerate }}
+            tr(v-if='equip.type === "costume"')
+              td 生命值
+            tr(v-if='equip.type === "costume"')
+              td {{ equip.display_hp }}
+          table.equip-detail.mdui-m-t-1
+            tr(v-if='equip.display_prop1_title')
+              td.title.green(colspan='6') {{ equip.display_prop1_title }}
+            tr(v-if='equip.display_prop1_title')
+              td.desc(colspan='6') {{ equip.display_prop1_desc }}
+            tr(v-if='equip.display_prop2_title')
+              td.title.green(colspan='6') {{ equip.display_prop2_title }}
+            tr(v-if='equip.display_prop2_title')
+              td.desc(colspan='6') {{ equip.display_prop2_desc }}
       .mdui-dialog-actions
         button.mdui-btn.mdui-ripple.mdui-shadow-1(mdui-dialog-cancel)
           i.mdui-icon.material-icons close

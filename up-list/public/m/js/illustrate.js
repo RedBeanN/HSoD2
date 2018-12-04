@@ -190,7 +190,12 @@ const app = new Vue({
   },
   mounted () {
     mdui.mutation();
-  }
+  },
+  filters: {
+    petSkillType (s) {
+      return s.replace(/(使魔)|(技能)/g, '').replace('.', '·');
+    }
+  },
 });
 
 function intToString (n, k) {

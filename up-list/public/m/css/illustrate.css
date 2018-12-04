@@ -56,3 +56,12 @@ img.star {
 .equip-detail td.title {
   padding-top: 12px;
 }
+
+.pet-skill {
+  margin-bottom: 12px;
+  padding: 0 8px;
+}
+.pet-detail .pet-skill .title {
+  display: inline-block;
+  margin-right: 10px;
+}
