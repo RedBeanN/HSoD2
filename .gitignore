@@ -35,5 +35,6 @@ last.json
 
 gacha.json
 
-equip.json
-sorted.json
+equip/equip.json
+equip/sorted.json
+equip/pet.json

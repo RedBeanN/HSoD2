@@ -5,10 +5,6 @@ const nope = _ => {};
 fs.readFile('./equip.json', (err, data) => {
   if (err) console.error(err);
   data = JSON.parse(data);
-  // sort by image id
-  data.sort((a, b) => {
-    return parseInt(a.display_image) - parseInt(b.display_image);
-  });
   for (let i of data) {
     delete i.evolve;
     delete i.max_intimacy;
@@ -32,13 +28,24 @@ fs.readFile('./equip.json', (err, data) => {
     }
   }
   // console.log(data[0].display_image == '0');
-  // data.splice(0,1);
+  let pet = fs.readFileSync('./pet.json');
+  pet = JSON.parse(pet);
+  for (let i of pet) {
+    delete i.evolve;
+    delete i.cost;
+    data.push(i);
+  }
+  // sort by image id
+  data.sort((a, b) => {
+    return parseInt(a.display_image) - parseInt(b.display_image);
+  });
   console.log(data.length);
   fs.writeFile('sorted.json', JSON.stringify(data, null, 2), nope);
   const mini = {
     weapon: [],
     costume: [],
-    passive_skill: []
+    passive_skill: [],
+    pet: [],
   };
   for (let i of data) {
     const item = i.display_image + '$'
@@ -48,18 +55,19 @@ fs.readFile('./equip.json', (err, data) => {
     // skip stigmata skill
     if (i.display_image != 2545 && i.display_image != 2546) mini[i.type].push(item)
   }
-  fs.readFile('./pets.json', (err, data) => {
-    if (err) console.error(err);
-    mini.pet = [];
-    let {pets, spec} = JSON.parse(data);
-    for (let i in pets) {
-      let st = spec[i] || [5, 6];
-      for (let si in st) {
-        let s = st[si];
-        let item = `${Number(pets[i]) + Number(si)}$${s}$${i}`;
-        mini['pet'].push(item);
-      }
-    }
-    fs.writeFile('minify.json', JSON.stringify(mini), nope)
-  });
+  // fs.readFile('./pets.json', (err, data) => {
+  //   if (err) console.error(err);
+  //   mini.pet = [];
+  //   let {pets, spec} = JSON.parse(data);
+  //   for (let i in pets) {
+  //     let st = spec[i] || [5, 6];
+  //     for (let si in st) {
+  //       let s = st[si];
+  //       let item = `${Number(pets[i]) + Number(si)}$${s}$${i}`;
+  //       mini['pet'].push(item);
+  //     }
+  //   }
+  //   fs.writeFile('minify.json', JSON.stringify(mini), nope)
+  // });
+  fs.writeFile('minify.json', JSON.stringify(mini), nope);
 })
