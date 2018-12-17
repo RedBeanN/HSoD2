@@ -20,9 +20,12 @@ const urls = [
    */
   '/cms',
   '/buglist',
-  '/list/auto',
-  '/worldbattle/20182',
+  '/list',
+  // '/worldbattle/20182',
   '/equip',
+  '/gacha',
+  '/illustrate',
+  '/innerWorld',
   /**
    * Inner world helper assets
    */
@@ -33,7 +36,10 @@ const urls = [
    * The following files are important and large,
    *   so cache them at the first time.
    */
-  '/dist/js/equip.min.js',
+  '/m/js/equip.vendors.js',
+  '/m/js/equip.js',
+  '/m/css/equip.css',
+  // '/dist/js/equip.min.js',
   // '/live2d/model/seele/seele.2048/texture_00.png',
   // '/live2d/model/thresa/delisha.2048/texture_00.png',
   /**
