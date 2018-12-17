@@ -15,7 +15,15 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/equip', function (req, res, next) {
-  res.render('equip', { title: '装备模拟器 - 搞事学园' });
+  // res.render('equip', { title: '装备模拟器 - 搞事学园' });
+  fs.readFile(
+    path.join(__dirname, '../public/html/equip.html'),
+    {encoding: 'utf-8'},
+    (err, data) => {
+      if (err) res.status(404).send();
+      else res.send(data);
+    }
+  );
 });
 
 router.get('/stigmata', function (req, res, next) {

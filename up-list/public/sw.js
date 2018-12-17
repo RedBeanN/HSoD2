@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2018.09.20v1';
+const CACHENAME = 'hsod2-2018.12.17v1';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -41,6 +41,20 @@ const urls = [
    * Size: 16.0 MB
    */
   '/m/fonts/msyh.woff',
+  /**
+   * images of equip emulator
+   */
+  '/images/equip/user-bar.png',
+  '/images/equip/MainMenu.png',
+  '/images/equip/awaken-ui.png',
+  '/images/equip/back.png',
+  '/images/equip/detail-background.png',
+  '/images/equip/equip-name.png',
+  '/images/equip/RotateBG.png',
+  '/images/equip/ring-left-bot.png',
+  '/images/equip/star-full.png',
+  '/images/equip/lock.png',
+  '/images/equip/idol-7s.png',
 ];
 const races = [
   /**
