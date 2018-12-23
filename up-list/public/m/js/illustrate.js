@@ -173,7 +173,7 @@ const app = new Vue({
         this.equip.id = id;
         this.equip.display_title = name;
       }).then(() => {
-        const dialog = new mdui.Dialog($$('#dialog'));
+        const dialog = new mdui.Dialog($$('#dialog'), {history: false});
         Vue.nextTick(() => {
           dialog.open();
           hideLoading();

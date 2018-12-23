@@ -32,7 +32,7 @@ block content
     #container.mdui-card.mdui-container.mdui-m-y-4.hide
       .mdui-row
         a.item.mdui-ripple.mdui-col-xs-12.mdui-col-sm-6.mdui-col-md-3.mdui-p-a-1.mdui-p-x-2.mdui-valign(v-for='item in itemsInPage', @click='showDetail(item.id, item.name)')
-          img.equip-img.mdui-m-r-2(:src='"http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/"+item.id+".png"')
+          img.equip-img.mdui-m-r-2(:src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/"+item.id+".png"')
           p {{ item.name }}
             br
             img.star(src='images/star-full.png', v-for='i in item.stars')
@@ -62,7 +62,7 @@ block content
     .mdui-dialog#dialog
       #dialog-content.mdui-dialog-content
         p
-          img.equip-img(:src='"http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/"+equip.id+".png"')
+          img.equip-img(:src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/"+equip.id+".png"')
           span.mdui-p-a-1.green {{ equip.display_title }}
           img.star(v-for='s in parseInt(equip.rarity)', src='images/star-full.png')
           img.star(v-for='s in parseInt(equip.empty_star)', src='images/star-empty.png')

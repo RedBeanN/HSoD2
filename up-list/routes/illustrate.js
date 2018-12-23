@@ -21,16 +21,22 @@ router.get('/details/:id', (req, res, next) => {
     if (err) next();
     else {
       data = JSON.parse(data);
-      let exist = false;
-      if (data) {
-        for (let i of data) {
-          if (i.display_image && i.display_image === id) {
-            exist = true;
-            res.send(i);
-          }
-        }
-      }
-      if (!exist) next();
+      // let exist = false;
+      // if (data) {
+      //   for (let i of data) {
+      //     if (i.display_image && i.display_image === id) {
+      //       exist = true;
+      //       res.send(i);
+      //     }
+      //   }
+      // }
+      // if (!exist) next();
+      fs.readFile(path.join(__dirname, '../../equip/sortmap.json'), (err, map) => {
+        map = JSON.parse(map);
+        const result = data[map[id]];
+        if (result) res.send(result);
+        else next();
+      });
     }
   });
 });
