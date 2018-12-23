@@ -153,6 +153,7 @@ const app = new Vue({
       }
       this.current.type = tab;
       this.backToTop();
+      this.paging(1);
     },
     loadData () {
       showLoading();
