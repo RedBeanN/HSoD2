@@ -10,8 +10,9 @@ fs.readFile('./equip.json', (err, data) => {
     delete i.max_intimacy;
     delete i.max_exp;
     delete i.prop_num;
+    delete i.related;
     for (let k in i) {
-      if (k.startsWith('display_prop') && i[k] === '') delete i[k];
+      if (k.startsWith('display_prop') && (i[k] === '' || i[k] === null)) delete i[k];
     }
     if (i.display_image === '1486') i.display_image = '0';
     if (i.display_image == '1487') i.display_image = '0';
@@ -33,6 +34,7 @@ fs.readFile('./equip.json', (err, data) => {
   for (let i of pet) {
     delete i.evolve;
     delete i.cost;
+    delete i.related;
     data.push(i);
   }
   // sort by image id
@@ -41,6 +43,12 @@ fs.readFile('./equip.json', (err, data) => {
   });
   console.log(data.length);
   fs.writeFile('sorted.json', JSON.stringify(data, null, 2), nope);
+  // TODO: sorted map
+  const map = {};
+  for (let i in data) {
+    map[data[i]['display_image']] = i;
+  }
+  fs.writeFile('sortmap.json', JSON.stringify(map), nope);
   const mini = {
     weapon: [],
     costume: [],
