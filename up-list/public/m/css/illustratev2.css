@@ -1,0 +1,90 @@
+.green {
+  color: rgb(255, 151, 0);
+}
+
+.hide {
+  display: none;
+}
+
+p {
+  margin: 0;
+}
+
+a.item {
+  border-bottom: 1px solid gainsboro;
+}
+
+img.equip-img {
+  width: 48px;
+  height: 48px;
+}
+
+img.star {
+  width: 16px;
+  margin-top: 4px;
+}
+
+#item-per-page {
+  width: 36px;
+  text-align: center;
+  display: inline-block;
+}
+
+.paging a {
+  border: 1px solid gainsboro;
+  color: #555;
+  margin-left: 1px;
+  min-width: 24px;
+  line-height: 1.15 !important;
+}
+
+.paging a.disabled,
+.paging a.selected {
+  border: 1px solid white;
+}
+
+.paging a i {
+  font-size: inherit;
+}
+
+#dialog .equip-img {
+  width: 48px;
+  display: block;
+  margin: 8px;
+}
+
+#dialog {
+  font-weight: bold;
+}
+
+.equip-detail td {
+  padding: 2px 8px;
+}
+
+.equip-detail td.title {
+  padding-top: 12px;
+}
+
+.pet img.pet_char {
+  width: 20px;
+  margin-right: 2px;
+}
+
+.pet-skill {
+  margin-bottom: 12px;
+  padding: 0 8px;
+}
+
+.pet-detail .pet-skill .title {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.awaken-img {
+  width: 400px;
+  height: 400px;
+}
+
+.item-title {
+  white-space: nowrap;
+}
