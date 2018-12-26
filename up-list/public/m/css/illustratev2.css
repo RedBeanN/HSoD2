@@ -88,3 +88,15 @@ img.star {
 .item-title {
   white-space: nowrap;
 }
+.main-img {
+  height: 60px;
+  text-align: right;
+}
+.main-img > img {
+  margin: 0 !important;
+}
+.main {
+  height: 24px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}

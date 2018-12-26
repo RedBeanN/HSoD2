@@ -12,7 +12,22 @@ const saveVisit = (target, keys, err) => {
   }
   return target;
 };
+const BSearch = (list, cpfn) => {
+  let low = 0;
+  let high = list.length - 1;
+  while (low <= high) {
+    let mid = parseInt((low + high) / 2);
+    let cp = 0;
+    if (typeof cpfn === 'function') cp = cpfn(list[mid]);
+    else cp = cpfn - list[mid];
+    if (cp === 0) return mid;
+    else if (cp > 0) low = mid + 1;
+    else if (cp < 0) high = mid - 1;
+    else return -1;
+  }
+};
 
 module.exports = {
   saveVisit,
+  BSearch,
 }

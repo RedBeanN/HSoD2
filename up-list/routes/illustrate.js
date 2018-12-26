@@ -3,6 +3,8 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 
+const types = ['weapon', 'costume', 'passiveSkill', 'pet'];
+
 router.get('/v2', (req, res) => {
   res.render('mobile/illustratev2', {
     title: '装备图鉴 - 搞事学园'
@@ -50,20 +52,25 @@ router.get('/details/:id', (req, res, next) => {
 
 router.get('/v2/detail/:type/:prop/:id', (req, res, next) => {
   const [type, prop, id] = [req.params.type, req.params.prop, req.params.id];
-  fs.readFile(path.join(__dirname, `../../equip/v2/${type}.json`), (err, data) => {
+  if (!types.includes(type)) return next();
+  else fs.readFile(path.join(__dirname, `../../equip/v2/${type}.json`), (err, data) => {
     if (err) next();
     else {
       data = JSON.parse(data);
-      let exist = false;
+      let exist = false, items = [];
       for (let item of data) {
         if (prop in item) {
           if (item[prop] == id) {
             exist = true;
-            return res.send(item);
+            items.push(item);
           }
         }
       }
-      if (!exist) next();
+      if (exist) {
+        if (items.length === 1) res.send(items[0]);
+        else res.send(items);
+      }
+      else next();
     }
   });
 });
