@@ -7,9 +7,7 @@ const errEquip = {
   'errorMsg': '可能是网络问题 , 也可能是该装备数据丢失',
 };
 const keyMap = {
-  wid: 'ID',
-  cid: 'ID',
-  pid: 'ID',
+  uid: 'ID',
   rarity: '星级',
   cost: '负重',
   maxlv: '最大等级',
@@ -139,8 +137,8 @@ new Vue({
     showEquipDetail(id, title, type) {
       if (!id || !title || !type) return;
       showLoading();
-      let t = type[0] + 'id';
-      this.loadData(`v2/detail/${type}/${t}/${id}`).then(res => {
+      // let t = type[0] + 'id';
+      this.loadData(`v2/detail/${type}/uid/${id}`).then(res => {
         this.$set(this, 'equip', res.data);
       }).catch(() => {
         this.$set(this, 'equip', errEquip);
