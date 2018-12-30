@@ -45,7 +45,7 @@ router.get('/talent/sprite', (req, res, next) => {
   )
 });
 router.get('/talent', function (req, res, next) {
-  res.render('mobile/talent', { title: '圣痕模拟器 - 搞事学园' });
+  res.render('mobile/talent', { title: '圣痕一览 - 搞事学园' });
 });
 
 router.get('/convert/:conf', (req, res, next) => {

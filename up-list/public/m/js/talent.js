@@ -1,5 +1,5 @@
 (() => {
-// Talent Emulator By RedBeanN, 2019
+// Talent Emulator By RedBeanN, 2018
 const $$ = mdui.JQ;
 $$('body').removeClass('mdui-drawer-body-left');
 const characterMap = {
