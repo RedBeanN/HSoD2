@@ -26,8 +26,26 @@ router.get('/equip', function (req, res, next) {
   );
 });
 
-router.get('/stigmata', function (req, res, next) {
-  res.render('stigmata', { title: '圣痕模拟器 - 搞事学园' });
+router.get('/talent/data', (req, res, next) => {
+  fs.readFile(
+    path.resolve(__dirname, '../public/data/talent.json'),
+    (err, data) => {
+      if (err) next(err);
+      else res.send(data);
+    }
+  )
+});
+router.get('/talent/sprite', (req, res, next) => {
+  fs.readFile(
+    path.resolve(__dirname, '../public/data/talent-sprite.json'),
+    (err, data) => {
+      if (err) next(err);
+      else res.send(data);
+    }
+  )
+});
+router.get('/talent', function (req, res, next) {
+  res.render('mobile/talent', { title: '圣痕模拟器 - 搞事学园' });
 });
 
 router.get('/convert/:conf', (req, res, next) => {

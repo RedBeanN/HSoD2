@@ -1,0 +1,53 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href="/m/css/mdui.min.css")
+  link(rel="stylesheet", href="/m/css/mdui-layout.css")
+  link(rel="stylesheet", href="/m/css/talent.css")
+  script(src="/m/js/mdui.min.js")
+  script(src="/javascripts/vue.min.js")
+  script(src="/javascripts/axios.min.js")
+  #app
+    .mdui-appbar.mdui-appbar-fixed.mdui-app-bar-scroll-hide
+      .mdui-toolbar.mdui-color-theme
+        a.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(href='/')
+          i.mdui-icon.material-icons home
+        .mdui-typo-title 圣痕一览
+        .mdui-toolbar-spacer
+        img(src='/images/favicon-r.png')
+      #app-tab.mdui-tab.mdui-color-theme.hide
+        a.mdui-ripple(v-for='char in characters', @click='setCharacter(char)', :class='{"mdui-tab-active": char===character}')
+          | {{ characterMapShort[char] }}
+      #progress.mdui-progress
+        .mdui-progress-indeterminate
+    .mdui-container
+      .talent-view.mdui-col-xs-12.mdui-col-md-5.mdui-col-offset-md-1
+        .talent-view-container.mdui-center
+          img.bg(:src='"/images/talent/" + character + ".png"')
+          .talent-icon(
+            v-for='talent in talents',
+            :style='position(talent.corX, talent.corY)',
+            @click='showDetail(talent)'
+          )
+            .talent-img(:style='sprite[talent.uid]')
+            .talent-img-container(:class='{"spec": talent.type === "3"}')
+            .talent-select-container(:class='{"selected": title === talent.title}')
+        .talent-view-extra.mdui-center(v-if='hasExtra')
+          .talent-icon(
+            v-for='talent in extraTalents',
+            :style='extraPosition(talent.uid)',
+            @click='showDetail(talent)'
+          )
+            .talent-img(:style='sprite[talent.uid]')
+            .talent-img-container
+            .talent-select-container(:class='{"selected": title === talent.title}')
+      .talent-detail.mdui-col-xs-12.mdui-col-md-4(v-show='detail')
+        .talent-detail-container.mdui-center
+          .talent-detail-title
+            .circle
+            span {{ title }}
+            span.lv LV {{ level + '/' + level }}
+            .circle.circle-right
+          .talent-detail-cutoff
+          .talent-detail-text {{ detail }}
+  script(src="/m/js/talent.js")

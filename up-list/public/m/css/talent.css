@@ -1,0 +1,134 @@
+.hide {
+  display: none;
+}
+body {
+  background-color: #eee;
+}
+.talent-view-container {
+  width: 400px;
+  height: 400px;
+  /* background-color: #eee; */
+  position: relative;
+}
+
+img.bg {
+  width: 400px;
+  height: 400px;
+  margin-bottom: -400px;
+}
+.talent-icon {
+  width: 48px;
+  height: 48px;
+  margin-left: -24px;
+  margin-bottom: -24px;
+  position: absolute;
+  /* background-color: #000; */
+  border-radius: 50%;
+  cursor: pointer;
+}
+.talent-img {
+  width: 32px;
+  height: 32px;
+  left: 8px;
+  top: 8px;
+  position: absolute;
+  /* background-color: #666; */
+  background-image: url('/images/talent/TalentIcons-min.png');
+  background-size: 512px 512px;
+  border-radius: 50%;
+}
+.talent-detail-container {
+  width: 290px;
+  height: 150px;
+  padding: 10px;
+  background-image: url('/images/equip/detail-background.png');
+  background-size: 310px 150px;
+  background-repeat: no-repeat;
+}
+@media (min-width: 1024px) {
+.talent-detail-container {
+  margin-top: 120px;
+}
+}
+.talent-detail-container > div {
+  white-space: pre-wrap;
+}
+.talent-detail-title {
+  position: relative;
+  height: 22px;
+  width: 260px;
+  margin: 3px 5px;
+  padding: 4px 10px 0;
+  background-color: #34a4e4;
+  border-radius: 3px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+span.lv {
+  position: absolute;
+  right: 25px;
+}
+.talent-detail-cutoff {
+  height: 2px;
+  width: 270px;
+  background-image: url('/images/equip/status-cutoff.png');
+  background-size: 270px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  margin: 5px 10px;
+}
+.talent-detail-text {
+  padding-left: 15px;
+  padding-right: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #727272;
+}
+.talent-img-container {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-image: url('/images/talent/UI.png');
+  background-position: 3.5px -112.5px;
+  background-size: 270px;
+}
+.talent-img-container.spec {
+  width: 40px;
+  height: 40px;
+  left: 4px;
+  top: 4px;
+  background-position: -33px -90px;
+  background-size: 210px;
+}
+.talent-select-container {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+}
+.talent-select-container.selected {
+  background-image: url('/images/talent/UI.png');
+  background-position: -111px -86px;
+  background-size: 200px;
+}
+.talent-view-extra {
+  position: relative;
+  width: 400px;
+  height: 160px;
+}
+.circle {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-bottom: 2px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin-right: 5px;
+}
+.circle-right {
+  position: absolute;
+  right: 5px;
+  top: 9px;
+}
