@@ -139,7 +139,9 @@ new Vue({
       showLoading();
       // let t = type[0] + 'id';
       this.loadData(`v2/detail/${type}/uid/${id}`).then(res => {
-        this.$set(this, 'equip', res.data);
+        const eq = res.data;
+        if (eq.desc) eq.desc = eq.desc.replace('#n', '');
+        this.$set(this, 'equip', eq);
       }).catch(() => {
         this.$set(this, 'equip', errEquip);
       }).then(() => {
@@ -152,11 +154,30 @@ new Vue({
         });
       })
     },
-    errorImg (src, $event) {
+    formatDesc (desc) {
+      return desc
+        .replace(/#n/g, '\n')
+        .replace(/#!ALB\(\d*\)/g, '')
+        .replace(/，|；/g, i => {
+          return {
+            '，': ' , ',
+            '；': ' ; ',
+          }[i];
+        });
+    },
+    errorImg ($event) {
       $$($event.target).attr('src', '../error.jpg');
     },
-    errorAwakenImg ($event) {
-      $$($event.target).attr('src', '../error.jpg')
+    errorAwakenImg (val, $event) {
+      val = Number(val);
+      const url = '../images/awaken/' + (1000 + val) + '1.png'
+      this.loadData(url)
+      .then(res => {
+        $$($event.target).attr('src', url);
+      })
+      .catch(() => {
+        $$($event.target).attr('src', '../error.jpg')
+      });
     },
     paging(opt) {
       let num = parseInt(opt);
@@ -194,6 +215,8 @@ new Vue({
     },
   },
   created() {
+    if (window.location.href.endsWith('/'))
+      window.location.href = window.location.href.replace(/\/$/, '')
     this.loadAll();
   },
 });
