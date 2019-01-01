@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2018.12.17v1';
+const CACHENAME = 'hsod2-2019.01.01v1';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -47,6 +47,10 @@ const urls = [
    * Size: 16.0 MB
    */
   '/m/fonts/msyh.woff',
+  /**
+   * font patch 4.0 KB
+   */
+  '/m/fonts/msyh-spec.woff',
   /**
    * images of equip emulator
    */
