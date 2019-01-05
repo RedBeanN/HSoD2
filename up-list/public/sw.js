@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2019.01.01v1';
+const CACHENAME = 'hsod2-2019.01.05v1';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -78,7 +78,7 @@ const excludes = [
   /**
    * These assets will never be saved.
    */
-  'data', 'last', 'nocache', 'auto/', 'details', 'convert', 'gtag',
+  'data', 'last', 'nocache', 'auto/', 'details', 'convert', 'gtag', 'detail',
   /**
    * Avoid Mixed Content Error over HTTPS
    */
