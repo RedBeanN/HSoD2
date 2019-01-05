@@ -120,8 +120,10 @@ new Vue({
       return axios.get(url);
     },
     loadAll() {
+      showLoading();
       this.loadData('v2/minify').then(res => {
         this.parseMinify(res.data);
+        hideLoading();
       });
     },
     parseMinify(data) {
