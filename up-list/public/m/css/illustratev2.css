@@ -48,7 +48,8 @@ img.star {
 }
 
 #dialog .equip-img {
-  width: 48px;
+  width: 56px;
+  height: 56px;
   display: block;
   margin: 8px;
 }

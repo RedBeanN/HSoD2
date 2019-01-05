@@ -158,12 +158,20 @@ new Vue({
       return desc
         .replace(/#n/g, '\n')
         .replace(/#!ALB\(\d*\)/g, '')
-        .replace(/，|；/g, i => {
-          return {
-            '，': ' , ',
-            '；': ' ; ',
-          }[i];
+        // .replace(/，|；/g, i => {
+        //   return {
+        //     '，': ' , ',
+        //     '；': ' ; ',
+        //   }[i];
+        // })
+        .replace(/[\d.]+\(.+?\)%?/g, t => {
+          return `<span style='color: #34a4e4'>${t}</span>`
         });
+    },
+    percentage (_val) {
+      const val = Number(_val);
+      if (isNaN(val)) return _val;
+      return parseFloat((val * 100).toPrecision(4)) + '%';
     },
     errorImg ($event) {
       $$($event.target).attr('src', '../error.jpg');
