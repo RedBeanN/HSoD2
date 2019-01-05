@@ -27,6 +27,8 @@ block content
           v-for='(value, key) in tabs',
           @click='selectTab(key, $event)'
         ) {{ value }}
+      #progress.mdui-progress
+        .mdui-progress-indeterminate
     #container.mdui-card.mdui-container.mdui-m-y-4.hide
       .mdui-row
         a.item.mdui-ripple.mdui-col-xs-6.mdui-col-sm-4.mdui-col-md-3.mdui-col-lg-2.mdui-p-a-1.mdui-p-x-2.mdui-valign(
