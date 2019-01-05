@@ -51,7 +51,9 @@ img.star {
   width: 56px;
   height: 56px;
   display: block;
-  margin: 8px;
+  /* margin: 8px; */
+  position: absolute;
+  right: 0;
 }
 
 #dialog {
@@ -100,4 +102,7 @@ img.star {
   height: 24px;
   margin-top: 3px;
   margin-bottom: 3px;
+}
+#dialog-content > div > p {
+  white-space: nowrap;
 }
