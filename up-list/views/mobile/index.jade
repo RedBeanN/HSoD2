@@ -18,6 +18,7 @@ block content
       a.mdui-list-item(v-for='item in drawer', :href='item.url')
         i.mdui-list-item-icon.mdui-icon.material-icons.mdui-text-color-black-icon {{ item.icon }}
         .mdui-list-item-content {{ item.name }}
+        i.mdui-list-item-icon.mdui-icon.material-icons.mdui-text-color-red(v-if='item.new') fiber_new
     //- .mdui-card
     //-   .mdui-card-primary
     //-     .mdui-card-primary-title 古树战争
