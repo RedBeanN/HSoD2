@@ -25,7 +25,7 @@ const app = new Vue({
       { url: '/cms',        name: '公告记录',        icon: 'format_list_bulleted' },
       { url: '/buglist',    name: '测试服 BUG 记录', icon: 'bug_report' },
       { url: '/gacha',      name: '扭蛋模拟器',      icon: 'casino' },
-      { url: '/illustrate', name: '装备图鉴',        icon: 'art_track' },
+      { url: '/illustrate/v2', name: '装备图鉴',        icon: 'art_track' },
       { url: '/innerWorld', name: '里塔助手',        icon: 'book' },
       { url: '/talent',     name: '圣痕一览',        icon: 'all_out' },
     ],
