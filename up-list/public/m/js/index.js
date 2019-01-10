@@ -84,7 +84,7 @@ const app = new Vue({
       }
     },
     async calcSW(names) {
-      this.swSize = {
+      const swSize = {
         total: 0,
         font: 0,
         image: 0,
@@ -97,10 +97,11 @@ const app = new Vue({
         for (let key of keys) {
           const res = await cache.match(key);
           const ab = await res.arrayBuffer();
-          this.swSize.total += ab.byteLength;
-          addSize(this.swSize, ab.byteLength, key.url);
+          swSize.total += ab.byteLength;
+          addSize(swSize, ab.byteLength, key.url);
         }
       }
+      this.swSize = swSize;
     },
   },
   filters: {
