@@ -67,7 +67,7 @@ new Vue({
     // mainProp: ['title', 'desc', 'errorMsg', 'rarity'],
     keyMap,
     hideItems: [
-      'title', 'desc', 'errorMsg', 'rarity', 'img',
+      'title', 'desc', 'errorMsg', 'rarity', 'img', 'id',
       'uid', 'damageType', 'seriesId', 'seriesText'
     ],
   },
