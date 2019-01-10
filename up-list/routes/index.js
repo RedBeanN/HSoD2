@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
   // let ua = req.headers['user-agent'];
   // if (mobile.isMobile(ua)) res.render('mobile/index', { title: '主页 - 搞事学园' });
   // else res.render('index', { title: '主页 - 搞事学园' });
-  res.render('mobile/index', { title: '主页 - 搞事学园' });
+  res.render('mobile/index', { title: '主页 - 搞事学园 - 《崩坏学园2》非官方数据站' });
 });
 
 router.get('/equip', function (req, res, next) {

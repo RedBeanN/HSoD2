@@ -83,11 +83,17 @@ block content
                   tr
                     td 加成期望
                     td {{ balor.exp }} %
-    .mdui-card
+    .mdui-card.mdui-typo
       .mdui-card-primary
         .mdui-card-primary-title 欢迎来到搞事学园
-      .mdui-card-content 您正在使用搞事学园测试版 , 目前功能还不完善 , 有任何意见建议欢迎发送到 me@hongshn.xyz ~
+      .mdui-card-content
+        p 目前搞事学园功能还不完善 , 有任何意见建议欢迎发送到 
+          a(href='mailto:me@hongshn.xyz') me@hongshn.xyz
+          |  ~
         p 本站不记录任何用户数据 , 清理浏览器缓存可能导致数据丢失 , 请谨慎操作。
+        p.mdui-text-color-red 本站是
+          b 非官方
+          | 资料站 , 所有内容均为玩家收集、整理 , 如有与官方内容不符的 , 请以官方为准!
     .mdui-card.hide(v-for='card in cards')
       .mdui-card-primary
         .mdui-card-primary-title {{ card.title }}

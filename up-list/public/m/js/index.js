@@ -75,15 +75,22 @@ const app = new Vue({
         caches.keys().then(cachenames => {
           let names = cachenames.map(i => i.split('-')[1]);
           if (!names.length) return;
-          self.cards.push({
+          self.cards = [{
             title: '正在使用 PWA 版搞事学园',
             content: `当前使用的数据版本: ${names.join(', ')}`
-          });
+          }];
           self.calcSW(cachenames);
         });
       }
     },
-    async calcSW (names) {
+    async calcSW(names) {
+      this.swSize = {
+        total: 0,
+        font: 0,
+        image: 0,
+        script: 0,
+        other: 0,
+      };
       for (let name of names) {
         const cache = await caches.open(name);
         const keys = await cache.keys();
@@ -108,6 +115,9 @@ const app = new Vue({
   created () {
     // this.updatePets();
     this.updateSW();
+    setInterval(() => {
+      this.updateSW();
+    }, 5000);
   },
   mounted () {
     mdui.mutation();

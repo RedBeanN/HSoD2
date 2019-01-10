@@ -84,6 +84,15 @@ block content
           template(v-else-if='mainProp.includes(key)')
             p.mdui-col-xs-10.main.green
               span {{ val }}
+          template(v-else-if='key.startsWith("hp")')
+            template(v-if='key.includes("MaxLv")')
+              p.mdui-col-xs-6.mdui-col-sm-4(v-if='val !== "" && val !== "0"') {{ keyMap[key] || key }} : 
+                span(v-if='equip.baseType === "放置-诱导" || !equip.baseType') {{ val }}
+                span(v-else) -
+            template(v-else-if='showDetail && val !== "" && val != "0"')
+              p.mdui-col-xs-6.mdui-col-sm-4(v-if='val !== "" && val !== "0"') {{ keyMap[key] || key }} : 
+                span(v-if='equip.baseType === "放置-诱导" || !equip.baseType') {{ val }}
+                span(v-else) -
           template(v-else-if='key.includes("Base") || key.includes("Add")')
             p.mdui-col-xs-6.mdui-col-sm-4(v-if='showDetail && val !== "" && val != "0"') {{ keyMap[key] || key }} ： 
               span {{ val }}
