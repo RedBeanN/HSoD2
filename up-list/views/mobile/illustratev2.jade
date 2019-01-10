@@ -70,20 +70,41 @@ block content
         .mdui-dialog-title-header {{ equip.title ? ("图鉴详情：" + equip.title) : "发生错误"}}
       #dialog-content.mdui-dialog-content
         .mdui-container-fluid
-          template(v-for='(val, key) in equip', v-if='key.includes("prop") || key.includes("kill")')
-            .equip-detail.mdui-col-xs-12.mdui-m-t-1
-              p.title.green {{ val.title }}
-              p.desc(v-if='showDetail', v-html='formatDesc(val.desc)')
-              p.maxlv-desc(v-else, v-html='formatDesc(val.maxLvDesc)')
-          template(v-else-if='key === "img"')
+          .mdui-row.equip-main-title
             .mdui-col-xs-2.main-img
               img.equip-img(
-                :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (val < 1000 ? ("000" + val).slice(-3) : val) + ".png"',
+                :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (equip.img < 1000 ? ("000" + equip.img).slice(-3) : equip.img) + ".png"',
                 @error='errorImg',
               )
-          template(v-else-if='mainProp.includes(key)')
             p.mdui-col-xs-10.main.green
-              span {{ val }}
+              span.equip-id No.{{ equip.id }} &nbsp;
+              span.equip-title {{ equip.title }}
+            p.mdui-col-xs-10.main-sub
+              span.equip-dmgtype(v-if='equip.damageType && equip.damageType !== "none"')
+                img.star(:src='"../images/icons/Type/" + equip.damageType + ".png"')
+                |  &nbsp;
+              span.equip-series(v-if='equip.seriesText') [{{ equip.seriesText }}] &nbsp;
+              span.equip-rarity
+                img.star(v-for='i in parseInt(equip.rarity || 0)', src='../images/star-full.png')
+            p.mdui-col-xs-12.main-desc.green(v-if='equip.desc') {{ equip.desc }}
+          template(v-for='(val, key) in equip', v-if='key.includes("prop") || key.includes("kill")')
+            .equip-detail.mdui-col-xs-12.mdui-m-t-1
+              p.title.green
+                span.title-type(v-if='val.type') [{{ val.type }}] 
+                | {{ val.title }}
+                span.desc-dmgtype(v-if='val.damageType') &nbsp;
+                  img.star(:src='"../images/icons/Type/" + val.damageType + ".png"')
+              p.desc(v-if='showDetail', v-html='formatDesc(val.desc)')
+              p.maxlv-desc(v-else, v-html='formatDesc(val.maxLvDesc)')
+          //- template(v-else-if='key === "img"')
+          //-   .mdui-col-xs-2.main-img
+          //-     img.equip-img(
+          //-       :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (val < 1000 ? ("000" + val).slice(-3) : val) + ".png"',
+          //-       @error='errorImg',
+          //-     )
+          //- template(v-else-if='mainProp.includes(key)')
+          //-   p.mdui-col-xs-10.main.green(v-if='key === "title"')
+          //-     span {{ val }}
           template(v-else-if='key.startsWith("hp")')
             template(v-if='key.includes("MaxLv")')
               p.mdui-col-xs-6.mdui-col-sm-4(v-if='val !== "" && val !== "0"') {{ keyMap[key] || key }} : 
@@ -103,11 +124,12 @@ block content
                 :src='"../images/awaken/" + (1000 + parseInt(val)) + ".png"',
                 @error='errorAwakenImg(val, $event)'
               )
-          template(v-else-if='key !== "uid"')
+          template(v-else-if='!hideItems.includes(key)')
             p.mdui-col-xs-6.mdui-col-sm-4(v-if='val !== "" && val !== "0"') {{ keyMap[key] || key }} : 
               span(v-if='key.includes("crit")') {{ percentage(val) }}
               span(v-else) {{ val }}
       .mdui-dialog-actions
+        .mdui-text-center.mdui-text-color-red 数据仅供参考 , 请以游戏数据为准 
         label.mdui-checkbox(for='toggleDetail')
           input(
             type='checkbox',

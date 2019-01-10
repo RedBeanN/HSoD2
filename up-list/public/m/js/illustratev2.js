@@ -64,8 +64,12 @@ new Vue({
       'passiveSkill': '徽章',
       'pet': '使魔',
     },
-    mainProp: ['title', 'desc', 'errorMsg'],
+    // mainProp: ['title', 'desc', 'errorMsg', 'rarity'],
     keyMap,
+    hideItems: [
+      'title', 'desc', 'errorMsg', 'rarity', 'img',
+      'uid', 'damageType', 'seriesId', 'seriesText'
+    ],
   },
   computed: {
     all() {
@@ -142,7 +146,7 @@ new Vue({
       // let t = type[0] + 'id';
       this.loadData(`v2/detail/${type}/uid/${id}`).then(res => {
         const eq = res.data;
-        if (eq.desc) eq.desc = eq.desc.replace('#n', '');
+        if (eq.desc) eq.desc = eq.desc.replace('#n', '\n');
         this.$set(this, 'equip', eq);
       }).catch(() => {
         this.$set(this, 'equip', errEquip);

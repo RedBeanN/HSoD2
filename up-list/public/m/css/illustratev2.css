@@ -106,3 +106,10 @@ img.star {
 #dialog-content > div > p {
   white-space: nowrap;
 }
+
+.equip-main-title {
+  white-space: pre-wrap;
+}
+.main-img {
+  max-width: 64px;
+}
