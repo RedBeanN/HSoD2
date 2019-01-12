@@ -1,6 +1,9 @@
 .green {
   color: rgb(255, 151, 0);
 }
+.gray {
+  color: #727272;
+}
 
 .hide {
   display: none;
@@ -112,4 +115,10 @@ img.star {
 }
 .main-img {
   max-width: 64px;
+}
+.mr2 {
+  margin-right: 2px;
+}
+.ml4 {
+  margin-left: 4px;
 }

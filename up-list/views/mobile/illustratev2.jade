@@ -76,58 +76,59 @@ block content
                 :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (equip.img < 1000 ? ("000" + equip.img).slice(-3) : equip.img) + ".png"',
                 @error='errorImg',
               )
-            p.mdui-col-xs-10.main.green
-              span.equip-id No.{{ equip.id }} &nbsp;
+            p.main.gray
+              span.equip-id.ml4.mr2 No.{{ equip.id }}
+              img.star.mr2(v-if='equip.seriesId', :src='"../images/icons/SeriesNo/" + equip.seriesId + ".png"')
               span.equip-title {{ equip.title }}
-            p.mdui-col-xs-10.main-sub
-              span.equip-dmgtype(v-if='equip.damageType && equip.damageType !== "none"')
+            p.main-sub
+              span.equip-dmgtype.ml4(v-if='equip.damageType && equip.damageType !== "none"')
                 img.star(:src='"../images/icons/Type/" + equip.damageType + ".png"')
-                |  &nbsp;
-              span.equip-series(v-if='equip.seriesText') [{{ equip.seriesText }}] &nbsp;
-              span.equip-rarity
+              //- span.equip-series(v-if='equip.seriesText') [{{ equip.seriesText }}] &nbsp;
+              span.equip-rarity.ml4
                 img.star(v-for='i in parseInt(equip.rarity || 0)', src='../images/star-full.png')
             p.mdui-col-xs-12.main-desc.green(v-if='equip.desc') {{ equip.desc }}
-          template(v-for='(val, key) in equip', v-if='key.includes("prop") || key.includes("kill")')
-            .equip-detail.mdui-col-xs-12.mdui-m-t-1
-              p.title.green
-                span.title-type(v-if='val.type') [{{ val.type }}] 
-                | {{ val.title }}
-                span.desc-dmgtype(v-if='val.damageType') &nbsp;
-                  img.star(:src='"../images/icons/Type/" + val.damageType + ".png"')
-              p.desc(v-if='showDetail', v-html='formatDesc(val.desc)')
-              p.maxlv-desc(v-else, v-html='formatDesc(val.maxLvDesc)')
-          //- template(v-else-if='key === "img"')
-          //-   .mdui-col-xs-2.main-img
-          //-     img.equip-img(
-          //-       :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (val < 1000 ? ("000" + val).slice(-3) : val) + ".png"',
-          //-       @error='errorImg',
-          //-     )
-          //- template(v-else-if='mainProp.includes(key)')
-          //-   p.mdui-col-xs-10.main.green(v-if='key === "title"')
-          //-     span {{ val }}
-          template(v-else-if='key.startsWith("hp")')
-            template(v-if='key.includes("MaxLv")')
+          .mdui-row
+            template(v-for='(val, key) in equip', v-if='key.includes("prop") || key.includes("kill")')
+              .equip-detail.mdui-col-xs-12.mdui-m-t-1
+                p.title.green
+                  span.title-type(v-if='val.type') [{{ val.type }}] 
+                  | {{ val.title }}
+                  span.desc-dmgtype.ml4(v-if='val.damageType')
+                    img.star(:src='"../images/icons/Type/" + val.damageType + ".png"')
+                p.desc(v-if='showDetail', v-html='formatDesc(val.desc)')
+                p.maxlv-desc(v-else, v-html='formatDesc(val.maxLvDesc)')
+            //- template(v-else-if='key === "img"')
+            //-   .mdui-col-xs-2.main-img
+            //-     img.equip-img(
+            //-       :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (val < 1000 ? ("000" + val).slice(-3) : val) + ".png"',
+            //-       @error='errorImg',
+            //-     )
+            //- template(v-else-if='mainProp.includes(key)')
+            //-   p.mdui-col-xs-10.main.green(v-if='key === "title"')
+            //-     span {{ val }}
+            template(v-else-if='key.startsWith("hp")')
+              template(v-if='key.includes("MaxLv")')
+                p.mdui-col-xs-6.mdui-col-sm-4(v-if='val !== "" && val !== "0"') {{ keyMap[key] || key }} : 
+                  span(v-if='equip.baseType === "放置-诱导" || !equip.baseType') {{ val }}
+                  span(v-else) -
+              template(v-else-if='showDetail && val !== "" && val != "0"')
+                p.mdui-col-xs-6.mdui-col-sm-4(v-if='val !== "" && val !== "0"') {{ keyMap[key] || key }} : 
+                  span(v-if='equip.baseType === "放置-诱导" || !equip.baseType') {{ val }}
+                  span(v-else) -
+            template(v-else-if='key.includes("Base") || key.includes("Add")')
+              p.mdui-col-xs-6.mdui-col-sm-4(v-if='showDetail && val !== "" && val != "0"') {{ keyMap[key] || key }} ： 
+                span {{ val }}
+            template(v-else-if='key === "posterId"')
+              .mdui-col-xs-12.awaken-img-container.mdui-m-t-1(v-if='val !== "" && val != "0"')
+                p.green 觉醒图：
+                img.awaken-img(
+                  :src='"../images/awaken/" + (1000 + parseInt(val)) + ".png"',
+                  @error='errorAwakenImg(val, $event)'
+                )
+            template(v-else-if='!hideItems.includes(key)')
               p.mdui-col-xs-6.mdui-col-sm-4(v-if='val !== "" && val !== "0"') {{ keyMap[key] || key }} : 
-                span(v-if='equip.baseType === "放置-诱导" || !equip.baseType') {{ val }}
-                span(v-else) -
-            template(v-else-if='showDetail && val !== "" && val != "0"')
-              p.mdui-col-xs-6.mdui-col-sm-4(v-if='val !== "" && val !== "0"') {{ keyMap[key] || key }} : 
-                span(v-if='equip.baseType === "放置-诱导" || !equip.baseType') {{ val }}
-                span(v-else) -
-          template(v-else-if='key.includes("Base") || key.includes("Add")')
-            p.mdui-col-xs-6.mdui-col-sm-4(v-if='showDetail && val !== "" && val != "0"') {{ keyMap[key] || key }} ： 
-              span {{ val }}
-          template(v-else-if='key === "posterId"')
-            .mdui-col-xs-12.awaken-img-container.mdui-m-t-1(v-if='val !== "" && val != "0"')
-              p.green 觉醒图：
-              img.awaken-img(
-                :src='"../images/awaken/" + (1000 + parseInt(val)) + ".png"',
-                @error='errorAwakenImg(val, $event)'
-              )
-          template(v-else-if='!hideItems.includes(key)')
-            p.mdui-col-xs-6.mdui-col-sm-4(v-if='val !== "" && val !== "0"') {{ keyMap[key] || key }} : 
-              span(v-if='key.includes("crit")') {{ percentage(val) }}
-              span(v-else) {{ val }}
+                span(v-if='key.includes("crit")') {{ percentage(val) }}
+                span(v-else) {{ val }}
       .mdui-dialog-actions
         .mdui-text-center.mdui-text-color-red 数据仅供参考 , 请以游戏数据为准 
         label.mdui-checkbox(for='toggleDetail')
