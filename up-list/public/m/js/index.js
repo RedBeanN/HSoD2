@@ -4,7 +4,11 @@ const $$ = mdui.JQ;
 const app = new Vue({
   el: '#app',
   data: {
-    cards: [],
+    card: {
+      title: '正在使用 PWA 版搞事学园',
+      hint: '如需使用装备模拟器的在线字体，请在此页面等待【字体】缓存更新为 10MB 以上',
+      content: '',
+    },
     balor: {
       // user settings
       crate: 150,
@@ -75,10 +79,7 @@ const app = new Vue({
         caches.keys().then(cachenames => {
           let names = cachenames.map(i => i.split('-')[1]);
           if (!names.length) return;
-          self.cards = [{
-            title: '正在使用 PWA 版搞事学园',
-            content: `当前使用的数据版本: ${names.join(', ')}`
-          }];
+          self.card.content = `当前使用的数据版本: ${names.join(', ')}`;
           self.calcSW(cachenames);
         });
       }

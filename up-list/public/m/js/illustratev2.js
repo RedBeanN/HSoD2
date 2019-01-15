@@ -67,11 +67,18 @@ new Vue({
     // mainProp: ['title', 'desc', 'errorMsg', 'rarity'],
     keyMap,
     hideItems: [
-      'title', 'desc', 'errorMsg', 'rarity', 'img', 'id',
+      'title', 'desc', 'errorMsg', 'rarity', 'img', 'id', 'decompose',
       'uid', 'damageType', 'seriesId', 'seriesText'
     ],
   },
   computed: {
+    isEquip () {
+      if (this.equip) {
+        if ('ultraSkill' in this.equip || 'normalSkill1' in this.equip) return false;
+        if (this.equip.id !== '0') return true;
+      }
+      return false;
+    },
     all() {
       const all = [];
       for (let key in this.equips) {
