@@ -13,6 +13,9 @@ router.get('/', function(req, res, next) {
   // else res.render('index', { title: '主页 - 搞事学园' });
   res.render('mobile/index', { title: '主页 - 搞事学园 - 《崩坏学园2》非官方数据站' });
 });
+router.get('/calendar', function(req, res, next) {
+  res.render('mobile/calendar', { title: '崩坏课程表 - 搞事学园' });
+});
 
 router.get('/equip', function (req, res, next) {
   // res.render('equip', { title: '装备模拟器 - 搞事学园' });

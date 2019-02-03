@@ -1,0 +1,78 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href="/m/css/mdui.min.css")
+  //- link(rel="stylesheet", href="/m/css/mdui-layout.css")
+  script(src="/m/js/mdui.min.js")
+  style.
+    .mdui-panel a, .mdui-panel a:visited {
+      color: #3f51b5 !important;
+    }
+  #app
+    .mdui-appbar.mdui-appbar-fixed.mdui-app-bar-scroll-hide
+      .mdui-toolbar.mdui-color-theme
+        a.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(href='/')
+          i.mdui-icon.material-icons home
+        .mdui-typo-title 崩坏课程表
+    .mdui-container.mdui-typo.mdui-card.mdui-m-t-4
+      .mdui-card-primary
+        .mdui-card-primary-title 崩坏学园2活动日历订阅
+      .mdui-card-content
+        .mdui-typo-title 说明
+        p.mdui-m-l-1 做这个日历只是出于个人兴趣，看到公告的时候会随手加上，不保证即时更新，如果有发现错误或者遗漏可以联系 
+          a(href='mailto:me@hongshn.xyz')
+            i.mdui-icon.material-icons mail_outline
+            | me@hongshn.xyz
+          |  ，看到以后会尽快更正。
+          br
+          | 关于无法订阅的问题恕不回复，请自行百度解决。
+        .mdui-typo-title 预览
+        .mdui-panel.mdui-m-y-2.mdui-m-l-1(mdui-panel)
+          .mdui-panel-item
+            .mdui-panel-item-header iOS
+              i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
+            .mdui-panel-item-body
+              img(src='/images/calendar/example1.jpg')
+          .mdui-panel-item
+            .mdui-panel-item-header Outlook for Windows
+              i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
+            .mdui-panel-item-body
+              img(src='/images/calendar/example2.jpg')
+        .mdui-typo-title 订阅方式
+        .mdui-panel.mdui-m-y-2.mdui-m-l-2(mdui-panel)
+          .mdui-panel-item
+            .mdui-panel-item-header iOS / MacOS / Windows 10
+              i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
+            .mdui-panel-item-body
+              p 点击 
+                a(href='webcal://p20-calendars.icloud.com/published/2/MTUzNTU5Njc0ODE1MzU1Oa0WzAlqfmd3fhTHvtkJsuOTMRFjTdFoed9biMt6nIER1cl2bjlOJxO97I3qGGt89e2bTDrkFT8BRFFA4tLJNWA')
+                  | 这个链接 
+                  i.mdui-icon.mdui-icon-right.material-icons open_in_new
+                |  即可添加，如果链接无效，复制下面的
+                b 订阅地址(包括前缀的 webcal://)
+                | 到原生浏览器打开即可。
+          .mdui-panel-item
+            .mdui-panel-item-header Android / 其他
+              i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
+            .mdui-panel-item-body
+              p 使用 
+                a(href='https://outlook.live.com/') Outlook 
+                  i.mdui-icon.mdui-icon-right.material-icons open_in_new
+                |  或 
+                a(href='https://calendar.google.com/') Google 日历 
+                  i.mdui-icon.mdui-icon-right.material-icons open_in_new
+                |  等日历 App 添加日历订阅，链接为下面的订阅地址
+                b (一定要复制上 webcal:// 前缀)
+                | ，其他支持 iCal/webcal 的日历 App 也可以使用。
+          .mdui-panel-item
+            .mdui-panel-item-header 订阅地址
+              i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
+            .mdui-panel-item-body
+              pre webcal://p20-calendars.icloud.com/published/2/MTUzNTU5Njc0ODE1MzU1Oa0WzAlqfmd3fhTHvtkJsuOTMRFjTdFoed9biMt6nIER1cl2bjlOJxO97I3qGGt89e2bTDrkFT8BRFFA4tLJNWA
+  script.
+    const $$ = mdui.JQ;
+    $$('#back-to-index').remove();
+    $$('body').removeClass('mdui-drawer-body-left');
+    $$('body').removeClass('mdui-appbar-with-tab-larger');
+    $$('body').addClass('mdui-appbar-with-toolbar');
+    $$('.hide').removeClass('hide');
