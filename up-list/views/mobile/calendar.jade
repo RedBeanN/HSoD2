@@ -8,6 +8,9 @@ block content
     .mdui-panel a, .mdui-panel a:visited {
       color: #3f51b5 !important;
     }
+    img.mdui-col-xs-6 {
+      padding: 0 !important;
+    }
   #app
     .mdui-appbar.mdui-appbar-fixed.mdui-app-bar-scroll-hide
       .mdui-toolbar.mdui-color-theme
@@ -32,12 +35,19 @@ block content
             .mdui-panel-item-header iOS
               i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
             .mdui-panel-item-body
-              img(src='/images/calendar/example1.jpg')
+              img.mdui-col-xs-6(src='/images/calendar/example1.jpg')
+              img.mdui-col-xs-6(src='/images/calendar/example1-2.jpg')
           .mdui-panel-item
             .mdui-panel-item-header Outlook for Windows
               i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
             .mdui-panel-item-body
               img(src='/images/calendar/example2.jpg')
+          .mdui-panel-item
+            .mdui-panel-item-header Google 日历 for Android
+              i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
+            .mdui-panel-item-body
+              img.mdui-col-xs-6(src='/images/calendar/example3.jpg')
+              img.mdui-col-xs-6(src='/images/calendar/example3-2.jpg')
         .mdui-typo-title 订阅方式
         .mdui-panel.mdui-m-y-2.mdui-m-l-2(mdui-panel)
           .mdui-panel-item
@@ -61,7 +71,7 @@ block content
                 |  或 
                 a(href='https://calendar.google.com/') Google 日历 
                   i.mdui-icon.mdui-icon-right.material-icons open_in_new
-                |  等日历 App 添加日历订阅，链接为下面的订阅地址
+                |  等日历 App 添加日历订阅(可能需要使用电脑添加)，链接为下面的订阅地址
                 b (一定要复制上 webcal:// 前缀)
                 | ，其他支持 iCal/webcal 的日历 App 也可以使用。
           .mdui-panel-item
