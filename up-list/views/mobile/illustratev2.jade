@@ -125,6 +125,15 @@ block content
                   @error='errorImg',
                 )
                 span.mdui-m-l-1 {{ equip[key].title }}
+            template(v-else-if='key === "characters"', v-show='equip[key].length > 0')
+              .mdui-col-xs-12.mdui-m-t-1
+                p.green 特性：
+                .characters
+                  .character(v-for='chara in equip[key]')
+                    span.green.mdui-m-r-1 {{ chara.name }}
+                    span {{ chara.skill.desc }} ( 
+                      span.blue(v-for='val in chara.skill.props') {{ percentage(val) }} 
+                      | )
             template(v-else-if='!hideItems.includes(key)')
               p.mdui-col-xs-6.mdui-col-sm-4(v-if='val !== "" && val !== "0"') {{ keyMap[key] || key }} : 
                 span(v-if='key.includes("crit")') {{ percentage(val) }}
