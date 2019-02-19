@@ -96,9 +96,9 @@ block content
         p.mdui-text-color-red 本站是
           b 非官方
           | 资料站 , 所有内容均为玩家收集、整理 , 如有与官方内容不符的 , 请以官方为准!
-        p.mdui-text-color-red
-          b [ 2019.01.14 ] 
-          span 由于里塔助手的旧版本存在存档消失的严重 bug , 请使用过里塔助手的用户在里塔助手界面多刷新几次 , 看到【里塔助手】的更新履历里有1月7日及以后的更新后再使用.
+        //- p.mdui-text-color-red
+        //-   b [ 2019.01.14 ] 
+        //-   span 由于里塔助手的旧版本存在存档消失的严重 bug , 请使用过里塔助手的用户在里塔助手界面多刷新几次 , 看到【里塔助手】的更新履历里有1月7日及以后的更新后再使用.
     .mdui-card.hide(v-if='card.content')
       .mdui-card-primary
         .mdui-card-primary-title {{ card.title }}
@@ -118,6 +118,14 @@ block content
     #dialog.mdui-dialog.footer-dialog
       #dialog-content.mdui-dialog-content
         img(src='images/QRCode.jpg')
+      .mdui-dialog-actions
+        button.mdui-btn.mdui-ripple.mdui-shadow-1(mdui-dialog-cancel)
+          i.mdui-icon.material-icons close
+    #pay.mdui-dialog.footer-dialog
+      #pay-content.mdui-dialog-content
+        img(src='images/zanshang.jpg')
+        p 微信扫一扫支持搞事学园
+        p 1Mbps带宽的费用约为300RMB/年
       .mdui-dialog-actions
         button.mdui-btn.mdui-ripple.mdui-shadow-1(mdui-dialog-cancel)
           i.mdui-icon.material-icons close
@@ -157,13 +165,20 @@ block content
               a(href='http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List?build=18' target='_blank')
                 | 测试服公告 
                 i.mdui-icon.mdui-icon-right.material-icons open_in_new
-        .mdui-col-sm-6.mdui-hidden-xs
+        .mdui-col-sm-3.mdui-col-xs-6
           h4 广告
           ul
             li(onclick='(new mdui.Dialog(mdui.JQ("#dialog"))).open()')
               a
                 img(async, src='images/QRCode.jpg') 
                 |  崩坏2通讯中心(点击放大)
+        .mdui-col-sm-3.mdui-col-xs-6
+          h4 支持搞事学园
+          ul
+            li(onclick='(new mdui.Dialog(mdui.JQ("#pay"))).open()')
+              a
+                img(async, src='images/zanshang.jpg') 
+                |  (点击放大)
       .mdui-divider-light.footer-divider
       .copyright Copyright © 2018 
         a(href='http://www.miitbeian.gov.cn', target='_blank')
