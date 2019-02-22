@@ -1,4 +1,6 @@
 (() => {
+// This version is abandoned. Redirect to new version.
+if(confirm('由于官方数据源内容不完整，此页面已停止更新，是否转至采用新数据源的页面？')) window.location.href = '/illustrate/v2';
 const $$ = mdui.JQ;
 $$('#back-to-index').remove();
 $$('body').removeClass('mdui-drawer-body-left');
