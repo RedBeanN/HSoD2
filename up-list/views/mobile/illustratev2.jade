@@ -114,7 +114,7 @@ block content
               .mdui-col-xs-12.awaken-img-container.mdui-m-t-1(v-if='val !== "" && val != "0"')
                 p.green 觉醒图：
                 img.awaken-img(
-                  :src='"../images/awaken/" + (1000 + parseInt(val)) + ".png"',
+                  :src='"https://api-1256168079.cos.ap-chengdu.myqcloud.com/images/awaken/" + (1000 + parseInt(val)) + ".png"',
                   @error='errorAwakenImg(val, $event)'
                 )
             template(v-else-if='key === "decomposeEquip"')

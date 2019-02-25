@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2019.01.09v1';
+const CACHENAME = 'hsod2-2019.02.23v1';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -46,7 +46,8 @@ const urls = [
    * MicroSoft YaHei Bold
    * Size: 16.0 MB
    */
-  '/m/fonts/msyh.woff',
+  'https://api-1256168079.cos.ap-chengdu.myqcloud.com/fonts/msyh.woff',
+  // '/m/fonts/msyh.woff',
   /**
    * font patch 4.0 KB
    */
