@@ -46,7 +46,8 @@ const urls = [
    * MicroSoft YaHei Bold
    * Size: 16.0 MB
    */
-  'https://api-1256168079.cos.ap-chengdu.myqcloud.com/fonts/msyh.woff',
+  // We don't need to cache this font any more.
+  // 'https://api-1256168079.cos.ap-chengdu.myqcloud.com/fonts/msyh.woff',
   // '/m/fonts/msyh.woff',
   /**
    * font patch 4.0 KB
