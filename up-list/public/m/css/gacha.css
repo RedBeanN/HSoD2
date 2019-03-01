@@ -73,10 +73,12 @@ body {
 }
 .result {
   text-align: center;
-  width: 165px;
+  width: 110px;
+  height: 110px;
   display: inline-block;
   font-size: 12px;
   font-weight: bold;
+  vertical-align: top;
 }
 .result p {
   margin: 0;
