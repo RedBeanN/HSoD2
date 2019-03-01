@@ -35,6 +35,9 @@ const app = new Vue({
     },
     gachas: ['s', 't'],
     probs: {},
+    currentResults: [],
+    showDialog: false,
+    disableGacha: false,
   },
   computed: {
     currentRecords () {
@@ -201,7 +204,7 @@ const app = new Vue({
       });
       this.pushRecord('s', result);
     },
-    ten () {
+    async ten () {
       this.selectType('t');
       const pool = this.current.pool;
       const data = this.probs[pool];
@@ -220,7 +223,48 @@ const app = new Vue({
         'event_label': 'ten',
         'value': baodi
       });
+      if (this.showDialog) await this.showResultDialog(arr);
       this.pushRecord('t', ...arr);
+    },
+    async showResultDialog (arr) {
+      this.disableGacha = true;
+      showLoading();
+      const currentResults = [];
+      for (let i of arr) {
+        let reg = /(【.*】)?([^×]*)(×\d)?/g;
+        let result = reg.exec(i.equip);
+        // console.log(result[2]);
+        if (!result[2]) break;
+        if (result[1] !== undefined) {
+          const title = result[2].replace(' +1', '');
+          try {
+            const response = await axios.get('/illustrate/v2/detail/all/title/' + title);
+            if (response.data && response.data[0] && response.data[0].img) {
+              currentResults.push({
+                img: this.getImgSrc(response.data[0].img),
+                title: result[2] + (result[3] ? result[3] : ''),
+                isGod: i.isGod,
+              });
+            } else throw new Error('404 Not Found');
+          } catch (e) {
+            currentResults.push({
+              title: result[2] + (result[3] ? result[3] : ''),
+            });
+          }
+        } else currentResults.push({
+          title: result[2] + (result[3] ? result[3] : ''),
+        });
+      }
+      // console.log(currentResults);
+      this.currentResults = currentResults;
+      this.$nextTick(() => {
+        hideLoading();
+        (new mdui.Dialog('#gacha-dialog', {
+          history: false,
+        })).open();
+        this.disableGacha = false;
+      });
+      return;
     },
     gacha (data, baodi = 0) {
       const { equips, total, god } = data;
@@ -231,12 +275,14 @@ const app = new Vue({
       else if (baodi === 2) while(r <= god) r = getRandom(total);
       for (let e of equips) if (e.rate >= r) {
         let name = formatName(e.name);
-        let s = mdui.snackbar({
-          message: name,
-          position: 'right-bottom',
-          timeout: 700
-        });
-        if (r <= god) s.$snackbar.addClass('yellow');
+        if (!this.showDialog) {
+          let s = mdui.snackbar({
+            message: name,
+            position: 'right-bottom',
+            timeout: 700
+          });
+          if (r <= god) s.$snackbar.addClass('yellow');
+        }
         return {
           date: formatDate(),
           equip: name,
@@ -257,6 +303,12 @@ const app = new Vue({
         timeout: 300,
       });
       Vue.nextTick(() => store.clear())
+    },
+    getImgSrc (img) {
+      img = img.toString();
+      const prefix = 'https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/';
+      if (img.length < 3) img = ('000' + img).slice(-3);
+      return prefix + img + '.png';
     },
   },
   watch: {

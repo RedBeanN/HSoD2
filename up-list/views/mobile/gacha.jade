@@ -23,9 +23,9 @@ block content
     .emulator.hide
       #main.mdui-card.hide
         .mdui-card-actions.mdui-text-center.mdui-text-color-black-secondary
-          button.mdui-btn.mdui-ripple.mdui-shadow-1(@click='single()')
+          button.mdui-btn.mdui-ripple.mdui-shadow-1(@click='single()', :disabled='disableGacha')
             | 祈愿1次
-          button.mdui-btn.mdui-ripple.mdui-shadow-1(@click='ten()')
+          button.mdui-btn.mdui-ripple.mdui-shadow-1(@click='ten()', :disabled='disableGacha')
             | 祈愿10次
         .mdui-card-content
           #gachas.mdui-tab.mdui-theme-layout-dark.mdui-center.mdui-container-fluid
@@ -48,6 +48,11 @@ block content
                 .tr.record(v-else)
                   .td.date {{ record.date }}
                   .td.equip(:class='{god: record.isGod}') {{ record.equip }}
+          .show-dialog.mdui-m-x-2
+            label.mdui-checkbox
+              input(type='checkbox', v-model='showDialog')
+              i.mdui-checkbox-icon
+              | 十连结果弹窗显示(需联网,可能较卡)
     .mdui-card.hide.mdui-p-x-3.mdui-p-b-3
       .mdui-card-primary
         .mdui-card-primary-title 当期up内容
@@ -60,4 +65,19 @@ block content
               p(v-for='item in items') {{ item }}
         button.mdui-btn.mdui-float-left.mdui-ripple.mdui-shadow-1.mdui-m-t-3(@click='clearStorage')
           | 清空祈愿记录
+    #gacha-dialog.mdui-dialog.mdui-color-grey-900
+      .mdui-dialog-title
+        .mdui-dialog-title-header {{ poolmap[current.pool] }}祈愿结果
+      .mdui-dialog-content.mdui-p-t-2
+        .results
+          .result(v-for='result in currentResults', :class='{god: result.isGod}')
+            .has-img(v-if='result.img')
+              img(:src='result.img')
+              p {{ result.title }}
+            .no-img(v-else)
+              img(src='/error.jpg')
+              p {{ result.title }}
+      .mdui-dialog-actions
+        button.mdui-btn.mdui-ripple.mdui-color-grey-700(mdui-dialog-close)
+          i.mdui-icon.material-icons close
   script(src='/m/js/gacha.js')

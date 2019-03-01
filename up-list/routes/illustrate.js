@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 
-const types = ['weapon', 'costume', 'passiveSkill', 'pet'];
+const types = ['weapon', 'costume', 'passiveSkill', 'pet', 'all'];
 
 router.get('/v2', (req, res) => {
   res.render('mobile/illustratev2', {

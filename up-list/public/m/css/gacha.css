@@ -17,7 +17,7 @@ body {
 .table {
   height: 240px;
   overflow-y: scroll;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 .tr.record {
   overflow: hidden;
@@ -65,4 +65,32 @@ body {
 }
 .hide {
   display: none;
+}
+
+.results {
+  min-height: 450px;
+  color: #ffcdd2;
+}
+.result {
+  text-align: center;
+  width: 165px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+}
+.result p {
+  margin: 0;
+}
+.result img {
+  width: 64px;
+}
+.result.god img {
+  box-shadow: 0 0 20px yellow;
+}
+
+.show-dialog {
+  color: gray;
+}
+.show-dialog label {
+  padding-left: 24px;
 }
