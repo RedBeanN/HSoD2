@@ -6,7 +6,8 @@ const app = new Vue({
   data: {
     card: {
       title: '正在使用 PWA 版搞事学园',
-      hint: '如需使用装备模拟器的在线字体，请在此页面等待【字体】缓存更新为 10MB 以上',
+      // hint: '如需使用装备模拟器的在线字体，请在此页面等待【字体】缓存更新为 10MB 以上',
+      hint: '',
       content: '',
     },
     balor: {
