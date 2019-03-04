@@ -5,6 +5,7 @@ let settings = {
   const docEl = doc.documentElement;
   const resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
   const recalc = () => {
+    settings.scale = 1;
     let clientWidth = docEl.clientWidth;
     if (!clientWidth) return;
     // if (clientWidth>=640){

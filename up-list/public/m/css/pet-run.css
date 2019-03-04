@@ -15,7 +15,7 @@ body {
 .round-title-ui {
   display: inline-block;
   width: 0.4rem;
-  height: 0.088rem;
+  height: 0.087rem;
   background-position: -0.6rem -0.075rem;
 }
 .round-end-time {
@@ -44,7 +44,7 @@ body {
   width: 0.189rem;
   height: 0.48rem;
   left: -0.05rem;
-  background-position: 0rem -0.5rem;
+  background-position: 0rem -0.5025rem;
 }
 .pet-img {
   position: absolute;
@@ -59,26 +59,19 @@ body {
   width: 0.187rem;
   height: 0.48rem;
   left: -0.048rem;
-  background-position: -0.191rem -0.5rem;
-}
-.pet-props {
-  position: absolute;
-  top: 0.38rem;
-  left: -0.02rem;
-  color: #eee;
-  font-size: 0.02rem;
+  background-position: -0.191rem -0.5025rem;
 }
 .props-ui {
   position: absolute;
   width: 0.11rem;
-  height: 0.11rem;
+  height: 0.105rem;
   left: 0.01rem;
   top: 0.01rem;
   background-position: -0.99rem -0.095rem;
 }
 .props-svg {
   position: absolute;
-  top: 0.35rem;
+  top: 0.345rem;
   left: -0.04rem;
   width: 0.12rem;
   height: 0.12rem;
