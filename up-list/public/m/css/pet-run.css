@@ -1,0 +1,94 @@
+body {
+  background-color: #ddd !important;
+}
+.ui {
+  background-image: url('https://api-1256168079.cos.ap-chengdu.myqcloud.com/images/UI/PetRun.png');
+  background-repeat: no-repeat;
+  background-size: 1.1rem;
+}
+.round-title {
+  width: 0.9rem;
+  height: 0.1rem;
+  margin: auto;
+  position: relative;
+}
+.round-title-ui {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.088rem;
+  background-position: -0.6rem -0.075rem;
+}
+.round-end-time {
+  position: absolute;
+  color: #666;
+  right: 0;
+  font-size: 0.02rem;
+  bottom: 0.02rem;
+  font-weight: bold;
+}
+.pets {
+  width: 0.9rem;
+  height: 0.48rem;
+  padding-left: 0.05rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pet {
+  position: relative;
+  width: 0.15rem;
+  height: 0.48rem;
+  display: inline-block;
+}
+.pet-background {
+  position: absolute;
+  width: 0.189rem;
+  height: 0.48rem;
+  left: -0.05rem;
+  background-position: 0rem -0.5rem;
+}
+.pet-img {
+  position: absolute;
+  top: -0.1rem;
+  width: 0.2rem;
+  left: -0.05rem;
+  /* background-position: 0rem -0.5rem; */
+}
+.pet-cover {
+  position: absolute;
+  top: 0;
+  width: 0.187rem;
+  height: 0.48rem;
+  left: -0.048rem;
+  background-position: -0.191rem -0.5rem;
+}
+.pet-props {
+  position: absolute;
+  top: 0.38rem;
+  left: -0.02rem;
+  color: #eee;
+  font-size: 0.02rem;
+}
+.props-ui {
+  position: absolute;
+  width: 0.11rem;
+  height: 0.11rem;
+  left: 0.01rem;
+  top: 0.01rem;
+  background-position: -0.99rem -0.095rem;
+}
+.props-svg {
+  position: absolute;
+  top: 0.35rem;
+  left: -0.04rem;
+  width: 0.12rem;
+  height: 0.12rem;
+}
+.props-svg svg {
+  position: absolute;
+  width: 0.11rem;
+  height: 0.11rem;
+  /* left: 0.015rem;
+  top: 0.015rem; */
+  transform: scale(1.3);
+  transform-origin: top left;
+}

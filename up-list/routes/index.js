@@ -70,4 +70,8 @@ router.get('/live2d', (req, res, next) => {
   res.render('live2d');
 });
 
+router.get('/pet-run', (req, res) => {
+  res.render('mobile/pet-run', { title: '使魔Formula - 搞事学园' });
+});
+
 module.exports = router;

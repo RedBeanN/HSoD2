@@ -1,0 +1,67 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href="/m/css/mdui.min.css")
+  link(rel="stylesheet", href="/m/css/mdui-layout.css")
+  link(rel="stylesheet", href="/m/css/pet-run.css")
+  script(src="/m/js/mdui.min.js")
+  script(src="/javascripts/vue.min.js")
+  script(src="/javascripts/axios.min.js")
+  #app.mdui-m-t-2
+    .mdui-appbar.mdui-appbar-fixed.mdui-app-bar-scroll-hide
+      .mdui-toolbar.mdui-color-theme
+        a.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(href='/')
+          i.mdui-icon.material-icons home
+        .mdui-typo-title 使魔Formula
+        .mdui-toolbar-spacer
+        img(src='/images/favicon-r.png')
+      #progress.mdui-progress
+        .mdui-progress-indeterminate
+    .round(v-if='round.PetNum')
+      .round-title
+        .round-title-ui.ui
+        .round-end-time 结束时间： {{ getTime(round.RoundEndTime) }}
+      .pets
+        .pet(v-for='pet in round.PetGambleItemList')
+          .pet-background.ui
+          img.pet-img(:src='getPetImg(pet.Id)')
+          .pet-cover.ui
+          //- .pet-props
+          //-   .speed 速： {{ pet.Speed }}
+          //-   .technique 技： {{ pet.Technique }}
+          //-   .satiety 心： {{ pet.Satiety }}
+          //-   .energy 精： {{ pet.Energy }}
+          .props-svg
+            .props-ui.ui
+            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", view-box='0 0 40 40')
+              polygon(
+                x='10',
+                y='10',
+                :points='getPolygon(pet)',
+                fill='gray',
+                stroke='white',
+                fill-opacity='0.6',
+                stroke-opacity='0.8',
+                :style='"transform: scale(" + settings.scale + ")"'
+              )
+              text(
+                x='0', y='32',
+                font-size='8', fill='white',
+                :style='"transform: scale(" + settings.scale + ")"'
+              ) 速
+              text(
+                x='26', y='8',
+                font-size='8', fill='white',
+                :style='"transform: scale(" + settings.scale + ")"'
+              ) 心
+              text(
+                x='52', y='32',
+                font-size='8', fill='white',
+                :style='"transform: scale(" + settings.scale + ")"'
+              ) 技
+              text(
+                x='26', y='60',
+                font-size='8', fill='white',
+                :style='"transform: scale(" + settings.scale + ")"'
+              ) 精
+  script(src="/m/js/pet-run.js")
