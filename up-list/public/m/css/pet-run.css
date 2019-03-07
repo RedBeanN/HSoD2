@@ -111,19 +111,25 @@ body {
 .history {
   background-color: #fff;
   border-radius: 5px;
-  padding: 0.01rem 0.02rem 0.005rem;
-  line-height: normal;
+  font-weight: bold;
+  /* padding: 0.01rem 0.02rem 0.005rem; */
+  /* line-height: normal;
   font-size: 0.015rem;
   vertical-align: top;
   height: 0.09rem;
-  line-height: 0.08rem;
+  line-height: 0.08rem; */
 }
-.history-pets, .history-pet, .history-details {
-  display: inline-block;
-  position: relative;
+
+.history-pets, .history-pet {
+  /* display: inline-block;
+  position: relative; */
+  padding: 0;
 }
 .history-pet img {
-  width: 0.08rem;
+  padding: 4px;
+}
+/*.history-pet img {
+  width: 0.13rem;
   margin-right: 0.01rem;
 }
 .history-details {
@@ -136,7 +142,7 @@ body {
 .history-details div {
   height: 0.04rem;
   line-height: 0.04rem;
-}
+} */
 .history-round {
   color: #777;
 }
@@ -146,12 +152,17 @@ body {
 .pet-0::before, .pet-1::before, .pet-2::before {
   content: ' ';
   position: absolute;
-  top: 0.06rem;
-  left: 0.06rem;
+  /* top: 0.06rem;
+  left: 0.06rem; */
+  bottom: 0;
+  right: 0;
+  z-index: 1;
   width: 0.03rem;
   height: 0.03rem;
   background-image: url('https://api-1256168079.cos.ap-chengdu.myqcloud.com/images/UI/PetRun.png');
   background-size: 1.055rem;
+  transform: scale(1.4);
+  transform-origin: right;
 }
 .pet-0:before {
   background-position: -0.86rem -0.295rem;

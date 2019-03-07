@@ -72,13 +72,13 @@ mixin history
     .histories-title
       .histories-title-ui.ui
       .histories-title-text 历史战绩
-    .history.mdui-row.mdui-m-b-1.mdui-shadow-1(v-for='item in history.HistoryItemList')
-      .history-pets
-        .history-pet(
+    .history.mdui-row.mdui-m-b-1.mdui-p-y-1.mdui-shadow-1(v-for='item in history.HistoryItemList')
+      .history-pets.mdui-col-xs-12.mdui-col-sm-8
+        .history-pet.mdui-col-xs-2(
           v-for='(pet, index) in item.PetGambleItemList',
           :class='item.Status ? "pet-normal" : "pet-" + index'
         )
-          img(:src='getPetIconImg(pet.Id)')
-      .history-details
+          img.mdui-col-xs-12(:src='getPetIconImg(pet.Id)')
+      .history-details.mdui-col-xs-12.mdui-col-sm-4.mdui-m-t-1
         .history-round 第 {{ item.RoundId }} 轮
         .history-time {{ getShortTime(item.StartTime) }} ~ {{ getShortTime(item.EndTime) }}
