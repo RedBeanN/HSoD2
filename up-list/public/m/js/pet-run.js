@@ -1,5 +1,6 @@
 ((doc, win) => {
   const docEl = doc.documentElement;
+  const maxWidth = 768;
   const resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
   const recalc = () => {
     settings.scale = 1;
@@ -10,8 +11,8 @@
     // } else {
     //   docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
     // }
-    if (clientWidth > 1024) clientWidth = 1024;
-    if (clientWidth <= 1024) settings.scale = clientWidth / 640;
+    if (clientWidth > maxWidth) clientWidth = maxWidth;
+    if (clientWidth <= maxWidth) settings.scale = clientWidth / 640;
     docEl.style.fontSize = clientWidth * 0.95 + 'px';
   };
   if (!doc.addEventListener) return;
