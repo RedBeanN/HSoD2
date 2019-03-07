@@ -17,51 +17,68 @@ block content
         img(src='/images/favicon-r.png')
       #progress.mdui-progress
         .mdui-progress-indeterminate
-    .round(v-if='round.PetNum')
-      .round-title
-        .round-title-ui.ui
-        .round-end-time 结束时间： {{ getTime(round.RoundEndTime) }}
-      .pets
-        .pet(v-for='pet in round.PetGambleItemList')
-          .pet-background.ui
-          img.pet-img(:src='getPetImg(pet.Id)')
-          .pet-cover.ui
-          //- .pet-props
-          //-   .speed 速： {{ pet.Speed }}
-          //-   .technique 技： {{ pet.Technique }}
-          //-   .satiety 心： {{ pet.Satiety }}
-          //-   .energy 精： {{ pet.Energy }}
-          .props-svg
-            .props-ui.ui
-            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", view-box='0 0 40 40')
-              polygon(
-                x='10',
-                y='10',
-                :points='getPolygon(pet)',
-                fill='gray',
-                stroke='white',
-                fill-opacity='0.6',
-                stroke-opacity='0.8',
-                :style='"transform: scale(" + settings.scale + ")"'
-              )
-              text(
-                x='0', y='32',
-                font-size='8', fill='white',
-                :style='"transform: scale(" + settings.scale + ")"'
-              ) 速
-              text(
-                x='26', y='8',
-                font-size='8', fill='white',
-                :style='"transform: scale(" + settings.scale + ")"'
-              ) 心
-              text(
-                x='52', y='32',
-                font-size='8', fill='white',
-                :style='"transform: scale(" + settings.scale + ")"'
-              ) 技
-              text(
-                x='26', y='60',
-                font-size='8', fill='white',
-                :style='"transform: scale(" + settings.scale + ")"'
-              ) 精
+    +round
+    +history
   script(src="/m/js/pet-run.js")
+
+mixin round
+  .round(v-if='round.PetNum')
+    .round-title
+      .round-title-ui.ui
+      .round-end-time 结束时间： {{ getTime(round.RoundEndTime) }}
+    .pets
+      .pet(v-for='pet in round.PetGambleItemList')
+        .pet-background.ui
+        img.pet-img(:src='getPetImg(pet.Id)')
+        .pet-cover.ui
+        +props-svg
+mixin props-svg
+  .props-svg
+    .props-ui.ui
+    svg(xmlns="http://www.w3.org/2000/svg", version="1.1", view-box='0 0 40 40')
+      polygon(
+        x='10',
+        y='10',
+        :points='getPolygon(pet)',
+        fill='gray',
+        stroke='white',
+        fill-opacity='0.6',
+        stroke-opacity='0.8',
+        :style='"transform: scale(" + settings.scale + ")"'
+      )
+      text(
+        x='0', y='32',
+        font-size='8', fill='white',
+        :style='"transform: scale(" + settings.scale + ")"'
+      ) 速
+      text(
+        x='26', y='8',
+        font-size='8', fill='white',
+        :style='"transform: scale(" + settings.scale + ")"'
+      ) 心
+      text(
+        x='52', y='32',
+        font-size='8', fill='white',
+        :style='"transform: scale(" + settings.scale + ")"'
+      ) 技
+      text(
+        x='26', y='60',
+        font-size='8', fill='white',
+        :style='"transform: scale(" + settings.scale + ")"'
+      ) 精
+
+mixin history
+  .histories.mdui-m-t-2(v-if='history.HistoryNum')
+    .histories-title
+      .histories-title-ui.ui
+      .histories-title-text 历史战绩
+    .history.mdui-row.mdui-m-b-1.mdui-shadow-1(v-for='item in history.HistoryItemList')
+      .history-pets
+        .history-pet(
+          v-for='(pet, index) in item.PetGambleItemList',
+          :class='item.Status ? "pet-normal" : "pet-" + index'
+        )
+          img(:src='getPetIconImg(pet.Id)')
+      .history-details
+        .history-round 第 {{ item.RoundId }} 轮
+        .history-time {{ getShortTime(item.StartTime) }} ~ {{ getShortTime(item.EndTime) }}
