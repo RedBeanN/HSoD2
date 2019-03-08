@@ -159,7 +159,10 @@ block content
           .character-description.mdui-typo
             p 选中特性可以筛选包含该特性的使魔，选择多个时只会出现同时包含多个特性的使魔。
           .options
-            label.mdui-checkbox.mdui-m-r-2(v-for='(i, index) in characterOptions')
+            label.mdui-checkbox.mdui-m-r-2(
+              v-for='(i, index) in characterOptions',
+              :mdui-tooltip='"{content: \'"+characterAdds[i]+"\'}"'
+            )
               input(type='checkbox', :value='i', v-model='characters')
               i.mdui-checkbox-icon
               img.character-icon(:src='"http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Type/" + (index + 1) + ".png"')
