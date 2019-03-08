@@ -139,7 +139,7 @@ block content
                 span(v-if='key.includes("crit")') {{ percentage(val) }}
                 span(v-else) {{ val }}
       .mdui-dialog-actions
-        .mdui-text-center.mdui-text-color-red 数据仅供参考 , 请以游戏数据为准 
+        .mdui-text-center.mdui-text-color-red 数据仅供参考 , 请以游戏数据为准
         label.mdui-checkbox(for='toggleDetail')
           input(
             type='checkbox',
@@ -151,4 +151,36 @@ block content
           | 显示细节
         button.mdui-btn.mdui-ripple(mdui-dialog-close)
           i.mdui-icon.material-icons close
+    .mdui-dialog#pet-characters
+      .mdui-dialog-title
+        .mdui-dialog-title-header 使魔特性速查
+      .mdui-dialog-content
+        .mdui-container-fluid
+          .character-description.mdui-typo
+            p 选中特性可以筛选包含该特性的使魔，选择多个时只会出现同时包含多个特性的使魔。
+          .options
+            label.mdui-checkbox.mdui-m-r-2(v-for='(i, index) in characterOptions')
+              input(type='checkbox', :value='i', v-model='characters')
+              i.mdui-checkbox-icon
+              img.character-icon(:src='"http://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/Type/" + (index + 1) + ".png"')
+              | {{ i }}
+          .pets.mdui-m-t-2
+            .pet-img(v-for='i in filteredPets')
+              img(:src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (i < 1000 ? ("000" + i).slice(-3) : i) + ".png"')
+      .mdui-dialog-actions
+        .mdui-text-center.mdui-text-color-red
+          b 数据仅供参考 , 请以游戏数据为准
+        button.mdui-btn.mdui-ripple(mdui-dialog-close)
+          i.mdui-icon.material-icons close
+    .mdui-fab-wrapper(mdui-fab='{ trigger: "hover" }')
+      button.mdui-fab.mdui-ripple.mdui-color-theme-accent
+        i.mdui-icon.material-icons settings
+      .mdui-fab-dial
+        button.mdui-fab.mdui-fab-mini.mdui-ripple.mdui-color-theme-accent(
+          mdui-tooltip='{ content: "使魔特性", position: "left" }',
+          @click='showCharacterDialog'
+        )
+          i.mdui-icon.material-icons filter_none
+        button.mdui-fab.mdui-fab-mini.mdui-ripple.mdui-color-theme-accent(@click='backToTop')
+          i.mdui-icon.material-icons publish
   script(src="/m/js/illustratev2.js")

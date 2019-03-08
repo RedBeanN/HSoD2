@@ -129,3 +129,31 @@ img.star {
 .ml4 {
   margin-left: 4px;
 }
+.character-icon {
+  position: absolute;
+  top: 9px;
+  left: 18px;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  background-color: transparent;
+  border: none;
+  border-radius: 18px;
+  -webkit-transition: -webkit-box-shadow .14s cubic-bezier(.4,0,.2,1);
+  transition: -webkit-box-shadow .14s cubic-bezier(.4,0,.2,1);
+  transition: box-shadow .14s cubic-bezier(.4,0,.2,1);
+  transition: box-shadow .14s cubic-bezier(.4,0,.2,1),-webkit-box-shadow .14s cubic-bezier(.4,0,.2,1);
+}
+/* .pets {
+  min-height: 400px;
+} */
+.pet-img {
+  display: inline-block;
+  width: 48px;
+  height: 54px;
+  margin-right: 6px;
+}
+.pet-img img {
+  width: 48px;
+}

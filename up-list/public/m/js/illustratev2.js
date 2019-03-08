@@ -70,6 +70,14 @@ new Vue({
       'title', 'desc', 'errorMsg', 'rarity', 'img', 'id', 'decompose',
       'uid', 'damageType', 'seriesId', 'seriesText'
     ],
+    pets: [],
+    characters: [],
+    characterOptions: [
+      '傲娇', '元气', '偶像', '隐秘',
+      '重击', '咒文', '爆裂', '装甲',
+      '概念', '妖血', '幻影', '狂气',
+      '裁决',
+    ]
   },
   computed: {
     isEquip () {
@@ -92,6 +100,22 @@ new Vue({
       else return this.equips[this.current.type]
         .sort((a, b) => a.id - b.id)
         .filter(val => val.title && val.title.includes(this.searchInput));
+    },
+    petCharacters () {
+      return this.pets.map(i => {
+        if (!i.characters) return [i.img];
+        return [i.img, ...i.characters.map(c => c.desc)];
+      });
+    },
+    filteredPets () {
+      // if (this.characters.length === 0) return this.petCharacters;
+      return this.petCharacters.filter(i => {
+        let isMapped = true;
+        for (let char of this.characters) {
+          if (!i.includes(char)) isMapped = false;
+        }
+        return isMapped;
+      }).map(i => i[0]);
     },
     totalPages() {
       let ipp = this.current.itemPerPage;
@@ -137,6 +161,13 @@ new Vue({
         hideLoading();
       });
     },
+    async loadPets () {
+      showLoading();
+      return this.loadData('v2/pet').then(res => {
+        this.pets = res.data;
+        hideLoading()
+      });
+    },
     parseMinify(data) {
       for (let key in data) {
         let arr = [];
@@ -166,6 +197,12 @@ new Vue({
           hideLoading();
         });
       })
+    },
+    async showCharacterDialog () {
+      await this.loadPets();
+      (new mdui.Dialog('#pet-characters', {
+        history: false,
+      })).open();
     },
     formatDesc (desc) {
       return desc
