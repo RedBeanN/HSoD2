@@ -11350,7 +11350,7 @@
       "alb": "41",
       "maxLvDesc": "每次使用回复376(776)生命"
     },
-    "posterId": "0",
+    "posterId": "175",
     "decompose": true,
     "decomposeEquip": {
       "uid": "272",
@@ -11403,7 +11403,7 @@
       "alb": "41",
       "maxLvDesc": "每次使用回复692(1092)生命"
     },
-    "posterId": "0",
+    "posterId": "175",
     "decompose": true,
     "decomposeEquip": {
       "uid": "272",
@@ -40511,7 +40511,7 @@
       "alb": "41",
       "maxLvDesc": "取消激活时，每维持5(3.5)秒获得一层能抵挡一次攻击的屏障，最多获得9层，屏障持续8(10.5)秒"
     },
-    "posterId": "0",
+    "posterId": "176",
     "decompose": true,
     "decomposeEquip": {
       "uid": "896",
@@ -40564,7 +40564,7 @@
       "alb": "41",
       "maxLvDesc": "取消激活时，每维持5(3.5)秒获得一层能抵挡一次攻击的屏障，最多获得9层，屏障持续10(12.5)秒"
     },
-    "posterId": "0",
+    "posterId": "176",
     "decompose": true,
     "decomposeEquip": {
       "uid": "896",
@@ -87860,7 +87860,7 @@
       "alb": "41",
       "maxLvDesc": "每次使用回复10(12.5)%最大生命值，提升20(25)%全伤害，最多叠加5层，持续10(15)秒"
     },
-    "posterId": "0",
+    "posterId": "175",
     "decompose": true,
     "decomposeEquip": {
       "uid": "272",
