@@ -33,7 +33,8 @@ const app = new Vue({
       { url: '/illustrate/v2', name: '装备图鉴',        icon: 'art_track' },
       { url: '/innerWorld',    name: '里塔助手',        icon: 'book' },
       { url: '/talent',        name: '圣痕一览',        icon: 'all_out' },
-      { url: '/calendar',      name: '崩坏课程表',      icon: 'event_note', new: true },
+      { url: '/calendar',      name: '崩坏课程表',      icon: 'event_note'},
+      { url: '/pet-run',       name: '使魔Formula',     icon: 'pets', new: true },
     ],
     drawerInst: null,
     swSize: {

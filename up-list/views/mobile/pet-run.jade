@@ -51,7 +51,8 @@ mixin round
     .pets
       .pet(v-for='pet in round.PetGambleItemList')
         .pet-background.ui
-        img.pet-img(:src='getPetImg(pet.Id)')
+        .pet-img-container
+          img.pet-img(:src='getPetImg(pet.Id)')
         .pet-cover.ui
         +props-svg
         .touch-area.mdui-ripple(@click='showPetDetail(pet)')

@@ -46,11 +46,19 @@ body {
   left: -0.05rem;
   background-position: 0rem -0.5025rem;
 }
+.pet-img-container {
+  position: absolute;
+  top: 0;
+  width: 0.187rem;
+  height: 0.48rem;
+  left: -0.048rem;
+  overflow: hidden;
+}
 .pet-img {
   position: absolute;
   top: -0.1rem;
   width: 0.2rem;
-  left: -0.05rem;
+  left: -0.002rem;
   /* background-position: 0rem -0.5rem; */
 }
 .pet-cover {
