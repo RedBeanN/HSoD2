@@ -112,6 +112,12 @@ new Vue({
     });
     const history = axios.get('https://api.redbean.tech/pet-run/history.json').then(res => {
       this.history = res.data;
+      this.history.HistoryItemList = this.history.HistoryItemList.map(item => {
+        if (item.PetGambleItemList && item.PetGambleItemList.length) {
+          item.PetGambleItemList.sort((a, b) => a.Rank - b.Rank);
+        }
+        return item;
+      })
     });
     Promise.all([round, history])
     .then(this.hideLoading);
