@@ -49,9 +49,7 @@ new Vue({
       '当前': 'round',
       '历史战绩': 'history',
     },
-    current: {
-      tab: 'round',
-    },
+    pet: {},
     round: {},
     history: {},
     pets: [],
@@ -89,6 +87,15 @@ new Vue({
       if (detail !== null && detail.img) {
         return `${iconHost}/${detail.img}.png`;
       } else return '/error.png';
+    },
+    showPetDetail (pet) {
+      // console.log(pet.Id);
+      this.pet = pet;
+      this.$nextTick(() => {
+        (new mdui.Dialog('#pet-detail', {
+          history: false,
+        })).open();
+      })
     },
     showLoading () {
       $('#progress').css('opacity', '1');
