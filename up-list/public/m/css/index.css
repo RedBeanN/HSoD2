@@ -60,3 +60,7 @@ footer a {
 .footer-dialog img {
   width: 300px;
 }
+
+.opacity-5 {
+  opacity: .5;
+}
