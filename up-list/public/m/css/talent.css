@@ -14,7 +14,7 @@ body {
 img.bg {
   width: 400px;
   height: 400px;
-  margin-bottom: -400px;
+  /* margin-bottom: -400px; */
 }
 .talent-icon {
   width: 48px;

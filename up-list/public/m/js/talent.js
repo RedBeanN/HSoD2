@@ -76,7 +76,7 @@ new Vue({
     position (x, y) {
       return {
         left: 500 * x - 50 + 'px',
-        top: 600 * (1 - y) - 80 + 'px',
+        top: 630 * (1 - y) - 110 + 'px',
       }
     },
     extraPosition (id) {
