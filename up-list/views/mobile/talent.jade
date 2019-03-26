@@ -23,7 +23,7 @@ block content
     .mdui-container
       .talent-view.mdui-col-xs-12.mdui-col-md-5.mdui-col-offset-md-1
         .talent-view-container.mdui-center
-          img.bg(:src='"/images/talent/" + character + ".png"')
+          img.bg(:src='"https://api-1256168079.cos.ap-chengdu.myqcloud.com/images/talent/" + (character ? character : "4001") + ".png"')
           .talent-icon(
             v-for='talent in talents',
             :style='position(talent.corX, talent.corY)',

@@ -33,7 +33,7 @@ img.bg {
   top: 8px;
   position: absolute;
   /* background-color: #666; */
-  background-image: url('/images/talent/TalentIcons-min.png');
+  background-image: url('https://api-1256168079.cos.ap-chengdu.myqcloud.com/images/talent/TalentIcons.png');
   background-size: 512px 512px;
   border-radius: 50%;
 }
