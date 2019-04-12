@@ -70,6 +70,7 @@ function sendEmail(ctr, data) {
 }
 
 function sendStatus(stats) {
+  return;
   var mail = {
     subject: 'Daily Update Log',
     text: 'Time: ' + stats
