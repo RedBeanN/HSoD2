@@ -150,7 +150,7 @@ block content
                       @error='errorImg',
                     )
                   .to
-                    i.mdui-icon.material-icons keyboard_arrow_right
+                    i.mdui-icon.material-icons arrow_forward
                     img(
                       :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (put.outputEquip < 1000 ? ("000" + put.outputEquip).slice(-3) : put.outputEquip) + ".png"',
                       @error='errorImg',
@@ -169,9 +169,19 @@ block content
                       @error='errorImg',
                     )
                   .to
-                    i.mdui-icon.material-icons keyboard_arrow_right
+                    i.mdui-icon.material-icons arrow_forward
                     img(
                       :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (put.outputEquip < 1000 ? ("000" + put.outputEquip).slice(-3) : put.outputEquip) + ".png"',
+                      @error='errorImg',
+                    )
+            template(v-else-if='key === "awakenFormula"')
+              .mdui-col-xs-12.mdui-m-t-1
+                p.green 觉醒公式：
+                .evolves-input.mdui-m-l-1
+                  .material(v-for='(img, index) in equip[key]')
+                    i.mdui-icon.material-icons(v-if='index > 0') add
+                    img(
+                      :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (img < 1000 ? ("000" + img).slice(-3) : img) + ".png"',
                       @error='errorImg',
                     )
             template(v-else-if='!hideItems.includes(key)')
