@@ -68,7 +68,8 @@ new Vue({
     keyMap,
     hideItems: [
       'title', 'desc', 'errorMsg', 'rarity', 'img', 'id', 'decompose',
-      'uid', 'damageType', 'seriesId', 'seriesText'
+      'uid', 'damageType', 'seriesId', 'seriesText',
+      'evolveFormula', 'awakenFormula',
     ],
     pets: [],
     characters: [],

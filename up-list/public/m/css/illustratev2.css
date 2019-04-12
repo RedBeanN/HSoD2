@@ -157,3 +157,10 @@ img.star {
 .pet-img img {
   width: 48px;
 }
+
+.evolves-input div, .evolves-output div {
+  display: inline;
+}
+.evolves-input i, .evolves-output i {
+  vertical-align: top;
+}

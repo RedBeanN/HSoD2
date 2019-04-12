@@ -134,6 +134,46 @@ block content
                     span {{ chara.skill.desc }} ( 
                       span.blue(v-for='val in chara.skill.props') {{ percentage(val) }} 
                       | )
+            template(v-else-if='key === "evolveFormula"')
+              .mdui-col-xs-12.mdui-m-t-1
+                p.green(v-if='equip[key].output.length') 进化至此装备：
+                .evolves-output.mdui-m-l-1(v-for='put in equip[key].output')
+                  .from
+                    img(
+                      :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (put.inputEquip < 1000 ? ("000" + put.inputEquip).slice(-3) : put.inputEquip) + ".png"',
+                      @error='errorImg',
+                    )
+                    i.mdui-icon.material-icons add
+                  .material(v-for='img in put.materials')
+                    img(
+                      :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (img < 1000 ? ("000" + img).slice(-3) : img) + ".png"',
+                      @error='errorImg',
+                    )
+                  .to
+                    i.mdui-icon.material-icons keyboard_arrow_right
+                    img(
+                      :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (put.outputEquip < 1000 ? ("000" + put.outputEquip).slice(-3) : put.outputEquip) + ".png"',
+                      @error='errorImg',
+                    )
+                p.green(v-if='equip[key].input.length') 此装备可进化：
+                .evolves-input.mdui-m-l-1(v-for='put in equip[key].input')
+                  .from
+                    img(
+                      :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (put.inputEquip < 1000 ? ("000" + put.inputEquip).slice(-3) : put.inputEquip) + ".png"',
+                      @error='errorImg',
+                    )
+                    i.mdui-icon.material-icons add
+                  .material(v-for='img in put.materials')
+                    img(
+                      :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (img < 1000 ? ("000" + img).slice(-3) : img) + ".png"',
+                      @error='errorImg',
+                    )
+                  .to
+                    i.mdui-icon.material-icons keyboard_arrow_right
+                    img(
+                      :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (put.outputEquip < 1000 ? ("000" + put.outputEquip).slice(-3) : put.outputEquip) + ".png"',
+                      @error='errorImg',
+                    )
             template(v-else-if='!hideItems.includes(key)')
               p.mdui-col-xs-6.mdui-col-sm-4(v-if='val !== "" && val !== "0"') {{ keyMap[key] || key }} : 
                 span(v-if='key.includes("crit")') {{ percentage(val) }}
