@@ -34,7 +34,7 @@ const app = new Vue({
       { url: '/innerWorld',    name: '里塔助手',        icon: 'book' },
       { url: '/talent',        name: '圣痕一览',        icon: 'all_out' },
       { url: '/calendar',      name: '崩坏课程表',      icon: 'event_note'},
-      { url: '/pet-run',       name: '使魔Formula',     icon: 'pets' },
+      // { url: '/pet-run',       name: '使魔Formula',     icon: 'pets' },
     ],
     drawerInst: null,
     swSize: {
