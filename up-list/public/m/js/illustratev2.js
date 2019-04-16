@@ -41,6 +41,8 @@ const keyMap = {
   posterId: '觉醒图',
 };
 
+const seriesMap = [[0,"无"],[1,"Start"],[2,"北欧"],[3,"电磁"],[4,"冥火"],[5,"星辰射手"],[6,"嗜切少女"],[7,"希腊"],[8,"普朗克"],[9,"V制式"],[10,"尼伯龙根"],[11,"角色"],[12,"绯狱"],[13,"里世界"],[14,"赫萝克"],[15,"凯尔特"],[16,"侦探少女"],[17,"天魔"],[18,"监察者"],[19,"萤火"],[20,"深海"],[21,"歌姬"],[22,"使魔"],[23,"血族"],[24,"bilibili"],[25,"Neta"],[26,"克苏鲁"],[27,"传说"],[28,"印度"],[29,"科学"],[30,"茜瓦利尔"],[31,"迷雾"],[32,"海盗少女"],[33,"华夏"],[34,"圣光"],[35,"梦魇"],[36,"弹丸论破"],[37,"童话"],[38,"雷电"],[39,"圣音"],[40,"永劫"],[41,"同构"],[42,"终末"],[43,"埃及"],[44,"艺术家"],[45,"逐火之蛾"],[46,"少女前线"],[47,"活化金属"],[48,"失落文明"],[49,"塔罗"]];
+
 new Vue({
   el: '#app',
   data: {
@@ -73,6 +75,9 @@ new Vue({
     ],
     pets: [],
     characters: [],
+    seriesFilters: [],
+    seriesMap,
+    filterDialog: null,
     characterOptions: [
       '傲娇', '元气', '偶像', '隐秘',
       '重击', '咒文', '爆裂', '装甲',
@@ -94,6 +99,7 @@ new Vue({
       "偶像": "增加火属性伤害 (1% 3% 6% 10% 15%)",
       "裁决": "提升全伤害 (2% 5% 9% 14% 20%)",
     },
+    seriesFilteredEquips: [],
   },
   computed: {
     isEquip () {
@@ -165,6 +171,9 @@ new Vue({
       this.backToTop();
       return items;
     },
+    filteredEquips () {
+      return this.seriesFilteredEquips;
+    },
   },
   methods: {
     async loadData(url) {
@@ -214,11 +223,41 @@ new Vue({
         });
       })
     },
+    showFilteredEquipDetail ({ uid, title }) {
+      if (!uid || !title) return;
+      showFilterLoading();
+      this.loadData(`v2/detail/all/uid/${uid}`).then(({data}) => {
+        if (data.desc) data.desc = data.desc.replace(/#n/g, '\n');
+        this.$set(this, 'equip', data);
+      }).catch(() => {
+        this.$set(this, 'equip', errEquip);
+      }).then(() => {
+        hideFilterLoading();
+        if (this.filterDialog !== null) {
+          this.filterDialog.close();
+          const dialog = new mdui.Dialog($$('#dialog'), {
+            history: false,
+          });
+          $$('#dialog').one('closed.mdui.dialog', () => {
+            this.filterDialog.open();
+          });
+          Vue.nextTick(() => {
+            dialog.open();
+          });
+        }
+      });
+    },
     async showCharacterDialog () {
       await this.loadPets();
       (new mdui.Dialog('#pet-characters', {
         history: false,
       })).open();
+    },
+    showFilterDialog () {
+      this.filterDialog = new mdui.Dialog('#filter', {
+        history: false,
+      });
+      this.filterDialog.open();
     },
     formatDesc (desc) {
       return desc
@@ -293,6 +332,37 @@ new Vue({
       window.location.href = window.location.href.replace(/\/$/, '')
     this.loadAll();
   },
+  mounted() {
+    mdui.mutation();
+  },
+  watch: {
+    async seriesFilters (filters) {
+      this.seriesFilteredEquips = [];
+      if (filters.length === 0) return;
+      showFilterLoading();
+      await filters.forEach(async (filter, index) => {
+        const {data} = await axios.get(`v2/detail/all/seriesId/${filter}`);
+        // console.log(data);
+        this.seriesFilteredEquips.push(...(data.map(i => {
+          return {
+            uid: i.uid,
+            img: i.img,
+            title: i.title,
+          }
+        })));
+        this.seriesFilteredEquips = [...new Set(this.seriesFilteredEquips)].sort((a, b) => {
+          return a.uid - b.uid;
+        });
+        if (index === filters.length - 1) hideFilterLoading();
+      });
+    },
+    showDetail () {
+      Vue.nextTick((new mdui.Dialog('#dialog', {history: false})).handleUpdate);
+    },
+    totalPages (val) {
+      if (this.current.page > val) Vue.set(this.current, 'page', this.totalPages);
+    },
+  },
 });
 
 function showLoading() {
@@ -303,4 +373,10 @@ function hideLoading() {
   $$('#progress').css('opacity', 0);
 }
 
+function showFilterLoading() {
+  $$('#filter-spinner').css('opacity', 1);
+}
+function hideFilterLoading() {
+  $$('#filter-spinner').css('opacity', 0);
+}
 })();

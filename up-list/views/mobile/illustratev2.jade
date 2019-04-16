@@ -225,6 +225,40 @@ block content
           b 数据仅供参考 , 请以游戏数据为准
         button.mdui-btn.mdui-ripple(mdui-dialog-close)
           i.mdui-icon.material-icons close
+    .mdui-dialog#filter
+      .mdui-dialog-title
+        .mdui-dialog-title-header 神系筛选
+      .mdui-dialog-content
+        .mdui-container-fluid.filter-content
+          //- TODO: add type-filter
+          .options.series-options
+            label.mdui-checkbox.mdui-m-r-1.mdui-p-l-3(
+              v-for='i in seriesMap',
+              v-if='i[0] !== 22',
+              :mdui-tooltip='"{content: \'"+i[1]+"\'}"'
+            )
+              input(type='checkbox', :value='i[0]', v-model='seriesFilters')
+              i.mdui-checkbox-icon
+              img.series-icon(:src='"/images/icons/SeriesNo/" + i[0] + ".png"')
+          #filter-spinner.mdui-text-center(style='opacity: 0')
+            .mdui-spinner.mdui-spinner-colorful
+          .filtered-equips
+            .filtered-equip.mdui-ripple(
+              v-for='equip in filteredEquips',
+              @click='showFilteredEquipDetail(equip)',
+            )
+              img.filtered-equip-icon(
+                :src='"https://static.image.mihoyo.com/hsod2_webview/images/broadcast_top/equip_icon/png/" + (equip.img < 1000 ? ("000" + equip.img).slice(-3) : equip.img) + ".png"',
+                @error='errorImg'
+              )
+              p.filtered-equip-title {{ equip.title }}
+      .mdui-dialog-actions
+        .mdui-text-center
+          b.mdui-text-color-red 数据仅供参考 , 请以游戏数据为准
+          p.mdui-text-color-grey
+            b 点击装备图标可以查看装备详情
+        button.mdui-btn.mdui-ripple(mdui-dialog-close)
+          i.mdui-icon.material-icons close
     .mdui-fab-wrapper(mdui-fab='{ trigger: "hover" }')
       button.mdui-fab.mdui-ripple.mdui-color-theme-accent
         i.mdui-icon.material-icons settings
@@ -234,6 +268,11 @@ block content
           @click='showCharacterDialog'
         )
           i.mdui-icon.material-icons filter_none
+        button.mdui-fab.mdui-fab-mini.mdui-ripple.mdui-color-theme-accent(
+          mdui-tooltip='{ content: "神系筛选", position: "left" }',
+          @click='showFilterDialog'
+        )
+          i.mdui-icon.material-icons filter_list
         button.mdui-fab.mdui-fab-mini.mdui-ripple.mdui-color-theme-accent(@click='backToTop')
           i.mdui-icon.material-icons publish
   script(src="/m/js/illustratev2.js")

@@ -1,3 +1,6 @@
+body {
+  padding-bottom: 48px;
+}
 .green {
   color: rgb(255, 151, 0);
 }
@@ -163,4 +166,21 @@ img.star {
 }
 .evolves-input i, .evolves-output i {
   vertical-align: top;
+}
+
+/* filter */
+.filter-content {
+  min-height: 600px;
+}
+.filtered-equip {
+  width: 120px;
+  display: inline-block;
+  margin-right: 4px;
+  font-size: 12px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+.filtered-equip-icon {
+  width: 48px;
 }
