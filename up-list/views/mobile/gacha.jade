@@ -50,6 +50,11 @@ block content
                   .td.equip(:class='{god: record.isGod}') {{ record.equip }}
           .show-dialog.mdui-m-x-2
             label.mdui-checkbox
+              input(type='checkbox', v-model='showSnackbar')
+              i.mdui-checkbox-icon
+              | 显示右下角弹框(弹框过多可能有性能问题)
+            br
+            label.mdui-checkbox
               input(type='checkbox', v-model='showDialog')
               i.mdui-checkbox-icon
               | 十连结果弹窗显示(需联网,可能较卡)

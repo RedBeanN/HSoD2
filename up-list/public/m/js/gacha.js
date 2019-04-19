@@ -36,6 +36,7 @@ const app = new Vue({
     gachas: ['s', 't'],
     probs: {},
     currentResults: [],
+    showSnackbar: true,
     showDialog: false,
     disableGacha: false,
   },
@@ -275,7 +276,7 @@ const app = new Vue({
       else if (baodi === 2) while(r <= god) r = getRandom(total);
       for (let e of equips) if (e.rate >= r) {
         let name = formatName(e.name);
-        if (!this.showDialog) {
+        if (!this.showDialog && this.showSnackbar) {
           let s = mdui.snackbar({
             message: name,
             position: 'right-bottom',
