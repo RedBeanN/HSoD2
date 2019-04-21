@@ -28,7 +28,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(row, index) in filterRows" :class="index % 2 ? &quot;even&quot; : &quot;odd&quot;" class="row">
+            <tr v-for="(row, index) in numRows" :class="index % 2 ? &quot;even&quot; : &quot;odd&quot;" class="row">
               <td class="time">{{ row.startTime + ' - ' + row.endTime }}</td>
               <td v-for="index in maxCols" :title="row.data[index - 1] ? &quot;最近up时间: &quot; + nameList[row.data[index - 1]] : &quot;&quot;" :class="nameList[row.data[index - 1]] == row.startTime.split(&quot; &quot;)[0] ? &quot;new&quot; : &quot;old&quot;" class="item">{{ row.data[index - 1] || '' }}</td>
             </tr>

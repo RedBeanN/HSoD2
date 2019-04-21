@@ -13,6 +13,7 @@ let app = new Vue({
     hintText: '加载中...',
     selectedPool: 'high',
     sortedFlag: true,
+    numFilter: -1,
     searchInput: {
       isFocus: false,
       text: ''
@@ -48,6 +49,14 @@ let app = new Vue({
         }
       });
       return fr;
+    },
+    numRows () {
+      if (this.numFilter <= 0) return this.filterRows;
+      const nr = [];
+      this.filterRows.forEach(row => {
+        if (row.data.length === this.numFilter) nr.push(row);
+      });
+      return nr;
     },
     nameList() {
       let list = {};

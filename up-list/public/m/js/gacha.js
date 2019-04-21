@@ -2,8 +2,7 @@
 const $$ = mdui.JQ;
 $$('body').removeClass('mdui-drawer-body-left');
 window.gtag = window.gtag || function () {};
-const store = window.localStorage;
-if (!store) store = {
+const store = window.localStorage || {
   setItem () {},
   getItem () {},
   removeItem () {},
@@ -228,19 +227,25 @@ const app = new Vue({
       this.pushRecord('t', ...arr);
     },
     async loadResult (result, isGod) {
-      const title = result[2].replace(' +1', '');
-      const url = '/illustrate/v2/detail/all/title/' + title;
+      const equipname = result[2].replace(' +1', '');
+      const url = '/illustrate/v2/detail/all/title/' + equipname;
+      const title = result[2] + (result[3] ? result[3] : '');
       try {
         const res = await axios.get(url);
         if (res.data && res.data[0] && res.data[0].img) return {
           img: this.getImgSrc(res.data[0].img),
-          title: result[2] + (result[3] ? result[3] : ''),
+          title,
           isGod,
-        }
+        };
+        else if (res.data && res.data.img) return {
+          img: this.getImgSrc(res.data.img),
+          title,
+          isGod,
+        };
         else throw 'Not Found';
       } catch (e) {
         return {
-          title: result[2] + (result[3] ? result[3] : ''),
+          title,
         }
       }
     },
@@ -250,32 +255,11 @@ const app = new Vue({
       const resultsPromises = [];
       const currentResults = [];
       for (let i of arr) {
-        let reg = /(【.*】)?([^×]*)(×\d)?/g;
-        let result = reg.exec(i.equip);
+        const reg = /(【.*】)?([^×]*)(×\d)?/g;
+        const result = reg.exec(i.equip);
         // console.log(result[2]);
         if (!result[2]) resultsPromises.push({ title: i.equip });
         else resultsPromises.push(this.loadResult(result, i.isGod));
-        // Old codes
-        // if (!result[2]) break;
-        // if (result[1] !== undefined) {
-        //   const title = result[2].replace(' +1', '');
-        //   try {
-        //     const response = await axios.get('/illustrate/v2/detail/all/title/' + title);
-        //     if (response.data && response.data[0] && response.data[0].img) {
-        //       currentResults.push({
-        //         img: this.getImgSrc(response.data[0].img),
-        //         title: result[2] + (result[3] ? result[3] : ''),
-        //         isGod: i.isGod,
-        //       });
-        //     } else throw new Error('404 Not Found');
-        //   } catch (e) {
-        //     currentResults.push({
-        //       title: result[2] + (result[3] ? result[3] : ''),
-        //     });
-        //   }
-        // } else currentResults.push({
-        //   title: result[2] + (result[3] ? result[3] : ''),
-        // });
       }
       // console.log(currentResults);
       currentResults.push(...await Promise.all(resultsPromises));
