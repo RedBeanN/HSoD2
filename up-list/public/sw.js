@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2019.03.14v1';
+const CACHENAME = 'hsod2-2019.04.21v1';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -87,6 +87,7 @@ const excludes = [
    * Avoid Mixed Content Error over HTTPS
    */
   'mihoyo', 'cms/',
+  'mahjoing',
 ];
 const statics = [
   /**
