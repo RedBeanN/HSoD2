@@ -87,7 +87,10 @@ const excludes = [
    * Avoid Mixed Content Error over HTTPS
    */
   'mihoyo', 'cms/',
-  'mahjoing',
+  /**
+   * mahjong
+   */
+  'mahjong',
 ];
 const statics = [
   /**
