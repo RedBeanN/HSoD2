@@ -76,7 +76,7 @@ body {
   width: 110px;
   height: 110px;
   display: inline-block;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
   vertical-align: top;
 }
@@ -93,7 +93,21 @@ body {
 
 .show-dialog {
   color: gray;
+  width: 400px;
+  margin: auto;
 }
 .show-dialog label {
   padding-left: 24px;
+}
+.show-dialog p.costs {
+  margin: 8px;
+  text-align: center;
+  color: #444;
+}
+
+.god.awaken {
+  color: #ee5da0;
+}
+.god.awaken .has-img > img {
+  box-shadow: 0 0 20px #ee5da0;
 }

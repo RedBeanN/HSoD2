@@ -38,6 +38,8 @@ const app = new Vue({
     showSnackbar: true,
     showDialog: false,
     disableGacha: false,
+    totalCosts: 0,
+    totalGachas: 0,
   },
   computed: {
     currentRecords () {
@@ -158,9 +160,15 @@ const app = new Vue({
       if (bd && this.current.pool === 'custom') return 2;
       else return 0;
     },
+    totalOrders () {
+      return (this.totalCosts / 8088).toFixed(2);
+    },
   },
   methods: {
     pushRecord (t, ...r) {
+      const cost = this.current.pool === 'middle' ? 98 : 280;
+      this.totalCosts += r.length * cost;
+      this.totalGachas += r.length;
       this.records[this.current.pool][t].push(...r);
     },
     setPool (t) {
@@ -232,16 +240,30 @@ const app = new Vue({
       const title = result[2] + (result[3] ? result[3] : '');
       try {
         const res = await axios.get(url);
-        if (res.data && res.data[0] && res.data[0].img) return {
-          img: this.getImgSrc(res.data[0].img),
-          title,
-          isGod,
-        };
-        else if (res.data && res.data.img) return {
-          img: this.getImgSrc(res.data.img),
-          title,
-          isGod,
-        };
+        let equip = null;
+        if (res.data) {
+          if (res.data[0] && res.data[0].img) equip = res.data[0];
+          else if (res.data.img) equip = res.data;
+          else throw 'Not Found';
+          let isAwaken = false;
+          if (equip.posterId && equip.posterId !== '0') isAwaken = Math.random() < 0.1;
+          return {
+            img: this.getImgSrc(equip.img),
+            title,
+            isGod,
+            isAwaken,
+          }
+        }
+        // if (res.data && res.data[0] && res.data[0].img) return {
+        //   img: this.getImgSrc(res.data[0].img),
+        //   title,
+        //   isGod,
+        // };
+        // else if (res.data && res.data.img) return {
+        //   img: this.getImgSrc(res.data.img),
+        //   title,
+        //   isGod,
+        // };
         else throw 'Not Found';
       } catch (e) {
         return {

@@ -48,7 +48,7 @@ block content
                 .tr.record(v-else)
                   .td.date {{ record.date }}
                   .td.equip(:class='{god: record.isGod}') {{ record.equip }}
-          .show-dialog.mdui-m-x-2
+          .show-dialog
             label.mdui-checkbox
               input(type='checkbox', v-model='showSnackbar')
               i.mdui-checkbox-icon
@@ -58,6 +58,10 @@ block content
               input(type='checkbox', v-model='showDialog')
               i.mdui-checkbox-icon
               | 十连结果弹窗显示(需联网,可能较卡)
+            br
+            p.costs 已祈愿 {{ totalGachas }} 次，累计消耗 {{ totalCosts }} 水晶，相当于 {{ totalOrders }} 单648
+              br
+              | ( 仅统计本次访问时数据 )
     .mdui-card.hide.mdui-p-x-3.mdui-p-b-3
       .mdui-card-primary
         .mdui-card-primary-title 当期up内容
@@ -75,10 +79,11 @@ block content
         .mdui-dialog-title-header {{ poolmap[current.pool] }}祈愿结果
       .mdui-dialog-content.mdui-p-t-2
         .results
-          .result(v-for='result in currentResults', :class='{god: result.isGod}')
+          .result(v-for='result in currentResults', :class='{god: result.isGod, awaken: result.isAwaken}')
             .has-img(v-if='result.img')
               img(:src='result.img')
               p {{ result.title }}
+                p(v-if='result.isGod && result.isAwaken') [装备神格觉醒]
             .no-img(v-else)
               img(src='/error.jpg')
               p {{ result.title }}
