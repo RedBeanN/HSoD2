@@ -101,7 +101,7 @@ body {
 }
 .show-dialog p.costs {
   margin: 8px;
-  text-align: center;
+  margin-left: 16px;
   color: #444;
 }
 
