@@ -56086,6 +56086,13 @@
     "damageType": "fire",
     "seriesId": "11",
     "seriesText": "角色",
+    "prop1": {
+      "title": "狼火",
+      "damageType": "fire",
+      "desc": "爆炸后，在220直径内产生一片地火，每秒造成408(+8每级/+50每破)点伤害，持续5秒",
+      "alb": "41",
+      "maxLvDesc": "爆炸后，在220直径内产生一片地火，每秒造成800(1300)点伤害，持续5秒"
+    },
     "prop2": {
       "title": "灼炎",
       "damageType": "none",
@@ -56145,6 +56152,13 @@
     "damageType": "fire",
     "seriesId": "11",
     "seriesText": "角色",
+    "prop1": {
+      "title": "狼火",
+      "damageType": "fire",
+      "desc": "爆炸后，在220直径内产生一片地火，每秒造成608(+4每级/+50每破)点伤害，持续5秒",
+      "alb": "41",
+      "maxLvDesc": "爆炸后，在220直径内产生一片地火，每秒造成1000(1500)点伤害，持续5秒"
+    },
     "prop2": {
       "title": "灼炎",
       "damageType": "none",
@@ -75086,6 +75100,13 @@
       "alb": "37",
       "maxLvDesc": "每击败一个敌人，回复5(6.5)%最大生命值和3(4)%全弹药，使用琪亚娜角色时额外增加1%回复量"
     },
+    "prop2": {
+      "title": "越战越勇",
+      "damageType": "none",
+      "desc": "每击败一个敌人，提升6(+0.2每破)%全伤害，提升3(+0.1每破)%移速，最多叠加5层，持续9秒",
+      "alb": "41",
+      "maxLvDesc": "每击败一个敌人，提升6(8)%全伤害，提升3(4)%移速，最多叠加5层，持续9秒"
+    },
     "posterId": "36",
     "decompose": true,
     "decomposeEquip": {
@@ -75149,6 +75170,13 @@
     "hpMaxLv": "3867",
     "seriesId": "11",
     "seriesText": "角色",
+    "prop1": {
+      "title": "欢迎投食",
+      "damageType": "none",
+      "desc": "每隔12秒，回复2.5(+0.1每破)%全弹药",
+      "alb": "41",
+      "maxLvDesc": "每隔12秒，回复2.5(3.5)%全弹药"
+    },
     "prop2": {
       "title": "灵猴守护",
       "damageType": "none",
@@ -89864,6 +89892,13 @@
     "id": "269",
     "seriesId": "2",
     "seriesText": "北欧",
+    "prop1": {
+      "title": "越战越勇",
+      "damageType": "none",
+      "desc": "每击败一个敌人，提升5.1(+0.228每级/+0.8每破)%全伤害，提升2.5(+0.2每破)%移速，最多叠加5层，持续9秒",
+      "alb": "41",
+      "maxLvDesc": "每击败一个敌人，提升16.272(24.272)%全伤害，提升2.5(4.5)%移速，最多叠加5层，持续9秒"
+    },
     "posterId": "23",
     "decompose": true,
     "decomposeEquip": {
@@ -89909,6 +89944,13 @@
     "id": "270",
     "seriesId": "2",
     "seriesText": "北欧",
+    "prop1": {
+      "title": "越战越勇",
+      "damageType": "none",
+      "desc": "每击败一个敌人，提升14.04(+0.071每级/+0.8每破)%全伤害，提升4(+0.2每破)%移速，最多叠加5层，持续9秒",
+      "alb": "41",
+      "maxLvDesc": "每击败一个敌人，提升20.998(28.998)%全伤害，提升4(6)%移速，最多叠加5层，持续9秒"
+    },
     "posterId": "23",
     "decompose": true,
     "decomposeEquip": {
