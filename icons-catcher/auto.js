@@ -14,7 +14,7 @@ var halfHour = oneHour / 2;
 var oneDay = 24 * oneHour;
 var oneWeek = 7 * oneDay;
 
-var range = 3000;
+var range = 4000;
 
 var logfile = logfileCreater.logfile(path.join(__dirname, './statics/'), 'nohup.out', 'error.log');
 // logfile.init()
