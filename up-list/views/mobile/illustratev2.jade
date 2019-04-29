@@ -78,7 +78,7 @@ block content
               )
             p.main.gray
               span.equip-id.ml4.mr2 No.{{ equip.id }}
-              img.star.mr2(v-if='equip.seriesId', :src='"../images/icons/SeriesNo/" + equip.seriesId + ".png"')
+              img.star.mr2(v-if='equip.seriesId', :src='"../images/icons/SeriesNo/" + equip.seriesId + ".png"', @error='errorImg')
               span.equip-title {{ equip.title }}
             p.main-sub
               span.equip-dmgtype.ml4(v-if='equip.damageType && equip.damageType !== "none"')
@@ -95,7 +95,7 @@ block content
                   span.title-type(v-if='val.type') [{{ val.type }}] 
                   | {{ val.title }}
                   span.desc-dmgtype.ml4(v-if='val.damageType')
-                    img.star(:src='"../images/icons/Type/" + val.damageType + ".png"')
+                    img.star(:src='"../images/icons/Type/" + val.damageType + ".png"', @error='errorImg')
                 p.desc(v-if='showDetail', v-html='formatDesc(val.desc)')
                 p.maxlv-desc(v-else, v-html='formatDesc(val.maxLvDesc)')
             template(v-else-if='key.startsWith("hp")')
@@ -239,7 +239,7 @@ block content
             )
               input(type='checkbox', :value='i[0]', v-model='seriesFilters')
               i.mdui-checkbox-icon
-              img.series-icon(:src='"/images/icons/SeriesNo/" + i[0] + ".png"')
+              img.series-icon(:src='"/images/icons/SeriesNo/" + i[0] + ".png"', @error='errorImg')
           #filter-spinner.mdui-text-center(style='opacity: 0')
             .mdui-spinner.mdui-spinner-colorful
           .filtered-equips
