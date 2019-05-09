@@ -10,6 +10,8 @@ for (let key in v2) {
       if (!rarity || !img || !title) return t;
       // 22娘和人体描边没有图片
       if (img === '1487' || img === '2902') return '';
+      // 咕咕咕
+      if (title === '咕咕咕') return '';
       return `${img}$${rarity}$${title}`;
     }
   )).filter(i => i.length)
