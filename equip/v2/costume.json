@@ -20958,7 +20958,7 @@
       "alb": "37",
       "maxLvDesc": "护盾值上限增加1500(2500)；存在护盾且受到攻击时，有60(80)%概率使敌人陷入冰冻状态，持续3秒"
     },
-    "posterId": "0",
+    "posterId": "184",
     "decompose": true,
     "decomposeEquip": {
       "uid": "1411",
@@ -21020,7 +21020,7 @@
       "alb": "37",
       "maxLvDesc": "护盾值上限增加2000(3000)；存在护盾且受到攻击时，有80(100)%概率使敌人陷入冰冻状态，持续3秒"
     },
-    "posterId": "0",
+    "posterId": "184",
     "decompose": true,
     "decomposeEquip": {
       "uid": "1411",
