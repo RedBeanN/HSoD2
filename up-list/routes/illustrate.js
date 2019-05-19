@@ -5,6 +5,16 @@ const fs = require('fs');
 
 const types = ['weapon', 'costume', 'passiveSkill', 'pet', 'all'];
 
+router.get('/v3', (req, res) => {
+  fs.readFile(
+    path.join(__dirname, '../public/html/illustratev3.html'),
+    {encoding: 'utf-8'},
+    (err, data) => {
+      if (err) res.status(404).send();
+      else res.send(data);
+    }
+  );
+});
 router.get('/v2', (req, res) => {
   res.render('mobile/illustratev2', {
     title: '装备图鉴 - 搞事学园'
