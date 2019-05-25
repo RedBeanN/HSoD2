@@ -28,6 +28,17 @@ router.get('/equip', function (req, res, next) {
     }
   );
 });
+router.get('/DLC', function (req, res, next) {
+  // res.render('DLC', { title: '装备模拟器 - 搞事学园' });
+  fs.readFile(
+    path.join(__dirname, '../public/html/DLC.html'),
+    {encoding: 'utf-8'},
+    (err, data) => {
+      if (err) res.status(404).send();
+      else res.send(data);
+    }
+  );
+});
 
 router.get('/talent/data', (req, res, next) => {
   fs.readFile(

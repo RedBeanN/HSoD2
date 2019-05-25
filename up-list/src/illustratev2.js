@@ -1,5 +1,18 @@
 (() => {
 const $$ = mdui.JQ;
+mdui.confirm(
+  '新版本已支持正式服/测试服切换，并添加了日服、东南亚服的数据，近期内此版本将停止维护。点击确定前往新版↓',
+  '装备图鉴3.0已发布',
+  () => {
+    location.href = location.href.replace('v2', 'v3');
+  },
+  () => {},
+  {
+    history: false,
+    confirmText: '确定',
+    cancelText: '取消',
+  }
+);
 $$('#back-to-index').remove();
 $$('body').removeClass('mdui-drawer-body-left');
 $$('.hide').removeClass('hide');
