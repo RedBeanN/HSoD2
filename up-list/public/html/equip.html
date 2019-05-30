@@ -2,37 +2,73 @@
 <html lang=en>
 
 <head>
-      <meta charset=utf-8>
-      <meta http-equiv=X-UA-Compatible content="IE=edge">
-      <meta name=viewport content="width=device-width,initial-scale=1">
-      <link rel=stylesheet href=./m/css/mdui.min.css> <title>装备模拟器 - 搞事学园</title>
-      <link rel="shortcut icon" href=/favicon.png type=image/png> <link rel=manifest href=/manifest.json> <meta name=theme-color
-            content=#3f51b5>
-      <link rel=apple-touch-icon href=/favicon.jpg> <meta name=apple-mobile-web-app-capable content=yes>
-      <meta name=apple-mobile-web-app-status-bar-style content=white>
-      <script src=/m/js/mdui.min.js> </script> <script>
-            window.dataLayer = window.dataLayer || [];
+  <meta charset=utf-8>
+  <meta http-equiv=X-UA-Compatible content="IE=edge">
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link rel=stylesheet href=./m/css/mdui.min.css> <title>装备模拟器 - 搞事学园</title>
+  <link rel="shortcut icon" href=/favicon.png type=image/png> <link rel=manifest href=/manifest.json> <meta
+    name=theme-color content=#3f51b5>
+  <link rel=apple-touch-icon href=/favicon.jpg> <meta name=apple-mobile-web-app-capable content=yes>
+  <meta name=apple-mobile-web-app-status-bar-style content=white>
+  <style>
+    #loading-hover, #loading-container, #loading-icon {transition-duration: .2s;transition-timing-function: linear;}
+    #loading-container {transition-timing-function: ease;}
+    #loading-hover {position: fixed;width: 100%;height: 100%;left: 0;top: 0;z-index: 9999;background-color: #3f51b5;}
+    #loading-container {width: 100%;height: 56px;position: absolute;top: 50%;margin-top: -64px;text-align: center;overflow: visible;}
+    #loading-icon {width: 96px;height: 96px;display: inline-block;background-image: url('/favicon.png');background-size: 96px 96px;}
+    #loading-hover.entered #loading-icon {background-image: url('/images/favicon-r.png');}
+    #loading-content {color: white;font-size: 20px;text-align: center;transition-duration: .15s;margin-top: 16px;}
+    #loading-hover.entering #loading-content {opacity: 0;}
+    #loading-hover.loaded {height: 56px;line-height: 56px;text-align: right;}
+    #loading-hover.loaded #loading-container {top: 0;right: 0;margin: 0;width: 62px;}
+    #loading-hover.loaded #loading-icon {width: 30px;height: 30px;margin: 0 16px;vertical-align: middle;background-size: 30px 30px;}
+    #loading-hover.fadeout {opacity: 0;}
+    #loading-spinner {position: relative;display: inline-block;width: 28px;height: 28px;animation: spinner 1568ms linear infinite;text-align: left;}
+    @keyframes spinner {to {  transform: rotate(360deg);}}
+    #spinner-layer {position: absolute;width: 100%;height: 100%;border-color: white;animation: spinner-layer-fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;}
+    @keyframes spinner-layer-fill-unfill-rotate {12.5% { transform: rotate(135deg);  }25%   { transform: rotate(270deg);  }37.5% { transform: rotate(405deg);  }50%   { transform: rotate(540deg);  }62.5% { transform: rotate(675deg);  }75%   { transform: rotate(810deg);  }87.5% { transform: rotate(945deg);  }to    { transform: rotate(1080deg); }}
+    .spinner-circle-clipper {position: relative;display: inline-block;width: 50%;height: 100%;overflow: hidden;border-color: inherit;}
+    .spinner-circle {width: 200%;height: 100%;border-width: 3px;border-style: solid;border-color: inherit;border-bottom-color: transparent !important;border-radius: 50%;position: absolute;top: 0;right: 0;bottom: 0;box-sizing: border-box;}
+    #spinner-left {float:left;}
+    #spinner-right {float: right;}
+    #spinner-left .spinner-circle {left: 0;border-right-color: transparent !important;transform: rotate(129deg);animation: spinner-left-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;}
+    #spinner-right .spinner-circle {left: -100%;border-left-color: transparent !important;transform: rotate(-129deg);animation: spinner-right-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;}
+    @keyframes spinner-left-spin {from { transform: rotate(130deg); }50%  { transform: rotate(-5deg);  }to   { transform: rotate(130deg); }}
+    @keyframes spinner-right-spin {from { transform: rotate(-130deg); }50%  { transform: rotate(5deg);    }to   { transform: rotate(-130deg); }}
+    @media (min-width: 600px) {#loading-hover.loaded {  height: 64px;  line-height: 64px;}}
+  </style>
+  <script src=/m/js/mdui.min.js> </script> <script>
+    window.dataLayer = window.dataLayer || [];
 
-            function gtag() {
-                  dataLayer.push(arguments);
-            }
-            gtag('js', new Date());
-            gtag('config', 'UA-123581848-1');
-      </script>
-      <link href=/m/css/equip.css rel=preload as=style>
-      <link href=/m/js/equip.js rel=preload as=script>
-      <link href=/m/js/equip.vendors.js rel=preload as=script>
-      <link href=/m/css/equip.css rel=stylesheet>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-123581848-1');
+    window.addEventListener('load', () => {
+      const loading = document.querySelector('#loading-hover');
+      setTimeout(() => { loading.classList += 'entering' }, 0);
+      setTimeout(() => { loading.classList += ' entered' }, 200);
+      setTimeout(() => { loading.classList += ' loaded' }, 400);
+      setTimeout(() => { loading.classList += ' fadeout' }, 600);
+      setTimeout(() => { document.body.removeChild(loading) }, 800);
+    });
+  </script>
+  <link href=/m/css/equip.css rel=preload as=style>
+  <link href=/m/js/equip.js rel=preload as=script>
+  <link href=/m/js/equip.vendors.js rel=preload as=script>
+  <link href=/m/css/equip.css rel=stylesheet>
 </head>
 
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink"><noscript><strong>本页面无法在禁用
-                  JavaScript 的环境下使用.</strong></noscript>
-      <div id=app></div>
-      <script src=/m/js/equip.vendors.js> </script> <script src=/m/js/equip.js> </script> <script type="text/javascript">
-            if (!window.Reflect) alert('您的浏览器版本过旧，可能无法正常访问搞事学园！');
-            if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
-      </script>
-      <script async src="/gtag.min.js"></script>
+      JavaScript 的环境下使用.</strong></noscript>
+  <div id="loading-hover"><div id="loading-container"><div id="loading-icon"></div><div id="loading-content"><div id="loading-spinner"><div id="spinner-layer"><div class="spinner-circle-clipper" id="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-circle-clipper" id="spinner-right"><div class="spinner-circle"></div></div></div></div></div></div></div>
+  <div id=app></div>
+  <script src=/m/js/equip.vendors.js> </script> <script src=/m/js/equip.js> </script> <script type="text/javascript">
+    if (!window.Reflect) alert('您的浏览器版本过旧，可能无法正常访问搞事学园！');
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+  </script>
+  <script async src="/gtag.min.js"></script>
 </body>
 
 </html>
