@@ -21182,7 +21182,22 @@
     },
     "posterId": "0",
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1381",
+          "input": "1415",
+          "output": "1416",
+          "materials": [
+            "242",
+            "242",
+            "230",
+            "601",
+            "601"
+          ],
+          "inputEquip": "3096",
+          "outputEquip": "3097"
+        }
+      ],
       "output": []
     }
   },
@@ -21217,7 +21232,22 @@
     "posterId": "0",
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1381",
+          "input": "1415",
+          "output": "1416",
+          "materials": [
+            "242",
+            "242",
+            "230",
+            "601",
+            "601"
+          ],
+          "inputEquip": "3096",
+          "outputEquip": "3097"
+        }
+      ]
     }
   },
   {
@@ -21256,7 +21286,22 @@
       "img": "3098"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1382",
+          "input": "1417",
+          "output": "1418",
+          "materials": [
+            "242",
+            "230",
+            "230",
+            "243",
+            "243"
+          ],
+          "inputEquip": "3098",
+          "outputEquip": "3099"
+        }
+      ],
       "output": []
     }
   },
@@ -21297,7 +21342,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1382",
+          "input": "1417",
+          "output": "1418",
+          "materials": [
+            "242",
+            "230",
+            "230",
+            "243",
+            "243"
+          ],
+          "inputEquip": "3098",
+          "outputEquip": "3099"
+        }
+      ]
     }
   },
   {
@@ -21370,7 +21430,22 @@
       "img": "3101"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1383",
+          "input": "1420",
+          "output": "1421",
+          "materials": [
+            "242",
+            "242",
+            "230",
+            "243",
+            "601"
+          ],
+          "inputEquip": "3101",
+          "outputEquip": "3102"
+        }
+      ],
       "output": []
     }
   },
@@ -21411,7 +21486,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1383",
+          "input": "1420",
+          "output": "1421",
+          "materials": [
+            "242",
+            "242",
+            "230",
+            "243",
+            "601"
+          ],
+          "inputEquip": "3101",
+          "outputEquip": "3102"
+        }
+      ]
     }
   }
 ]

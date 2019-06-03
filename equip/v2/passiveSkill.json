@@ -34520,7 +34520,22 @@
       "img": "3103"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1384",
+          "input": "2711",
+          "output": "2712",
+          "materials": [
+            "240",
+            "240",
+            "230",
+            "601",
+            "601"
+          ],
+          "inputEquip": "3103",
+          "outputEquip": "3104"
+        }
+      ],
       "output": []
     }
   },
@@ -34558,7 +34573,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1384",
+          "input": "2711",
+          "output": "2712",
+          "materials": [
+            "240",
+            "240",
+            "230",
+            "601",
+            "601"
+          ],
+          "inputEquip": "3103",
+          "outputEquip": "3104"
+        }
+      ]
     }
   },
   {
@@ -34594,7 +34624,22 @@
       "img": "3105"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1385",
+          "input": "2713",
+          "output": "2714",
+          "materials": [
+            "240",
+            "230",
+            "230",
+            "243",
+            "243"
+          ],
+          "inputEquip": "3105",
+          "outputEquip": "3106"
+        }
+      ],
       "output": []
     }
   },
@@ -34632,7 +34677,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1385",
+          "input": "2713",
+          "output": "2714",
+          "materials": [
+            "240",
+            "230",
+            "230",
+            "243",
+            "243"
+          ],
+          "inputEquip": "3105",
+          "outputEquip": "3106"
+        }
+      ]
     }
   },
   {
@@ -34668,7 +34728,22 @@
       "img": "3107"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1386",
+          "input": "2715",
+          "output": "2716",
+          "materials": [
+            "240",
+            "240",
+            "230",
+            "243",
+            "601"
+          ],
+          "inputEquip": "3107",
+          "outputEquip": "3108"
+        }
+      ],
       "output": []
     }
   },
@@ -34706,7 +34781,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1386",
+          "input": "2715",
+          "output": "2716",
+          "materials": [
+            "240",
+            "240",
+            "230",
+            "243",
+            "601"
+          ],
+          "inputEquip": "3107",
+          "outputEquip": "3108"
+        }
+      ]
     }
   },
   {
@@ -34742,7 +34832,22 @@
       "img": "3109"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1387",
+          "input": "2717",
+          "output": "2718",
+          "materials": [
+            "240",
+            "240",
+            "230",
+            "601",
+            "601"
+          ],
+          "inputEquip": "3109",
+          "outputEquip": "3110"
+        }
+      ],
       "output": []
     }
   },
@@ -34780,7 +34885,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1387",
+          "input": "2717",
+          "output": "2718",
+          "materials": [
+            "240",
+            "240",
+            "230",
+            "601",
+            "601"
+          ],
+          "inputEquip": "3109",
+          "outputEquip": "3110"
+        }
+      ]
     }
   },
   {
@@ -34810,7 +34930,22 @@
     },
     "posterId": "0",
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1388",
+          "input": "2719",
+          "output": "2720",
+          "materials": [
+            "240",
+            "230",
+            "230",
+            "243",
+            "243"
+          ],
+          "inputEquip": "3111",
+          "outputEquip": "3112"
+        }
+      ],
       "output": []
     }
   },
@@ -34842,7 +34977,22 @@
     "posterId": "0",
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1388",
+          "input": "2719",
+          "output": "2720",
+          "materials": [
+            "240",
+            "230",
+            "230",
+            "243",
+            "243"
+          ],
+          "inputEquip": "3111",
+          "outputEquip": "3112"
+        }
+      ]
     }
   },
   {
@@ -34878,7 +35028,22 @@
       "img": "3113"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1389",
+          "input": "2721",
+          "output": "2722",
+          "materials": [
+            "240",
+            "240",
+            "230",
+            "601",
+            "601"
+          ],
+          "inputEquip": "3113",
+          "outputEquip": "3114"
+        }
+      ],
       "output": []
     }
   },
@@ -34916,7 +35081,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1389",
+          "input": "2721",
+          "output": "2722",
+          "materials": [
+            "240",
+            "240",
+            "230",
+            "601",
+            "601"
+          ],
+          "inputEquip": "3113",
+          "outputEquip": "3114"
+        }
+      ]
     }
   },
   {
@@ -34952,7 +35132,22 @@
       "img": "3115"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1390",
+          "input": "2723",
+          "output": "2724",
+          "materials": [
+            "240",
+            "230",
+            "230",
+            "243",
+            "243"
+          ],
+          "inputEquip": "3115",
+          "outputEquip": "3116"
+        }
+      ],
       "output": []
     }
   },
@@ -34990,7 +35185,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1390",
+          "input": "2723",
+          "output": "2724",
+          "materials": [
+            "240",
+            "230",
+            "230",
+            "243",
+            "243"
+          ],
+          "inputEquip": "3115",
+          "outputEquip": "3116"
+        }
+      ]
     }
   },
   {
@@ -35020,7 +35230,22 @@
     },
     "posterId": "0",
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1391",
+          "input": "2725",
+          "output": "2726",
+          "materials": [
+            "240",
+            "240",
+            "230",
+            "243",
+            "601"
+          ],
+          "inputEquip": "3117",
+          "outputEquip": "3118"
+        }
+      ],
       "output": []
     }
   },
@@ -35052,7 +35277,22 @@
     "posterId": "0",
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1391",
+          "input": "2725",
+          "output": "2726",
+          "materials": [
+            "240",
+            "240",
+            "230",
+            "243",
+            "601"
+          ],
+          "inputEquip": "3117",
+          "outputEquip": "3118"
+        }
+      ]
     }
   }
 ]

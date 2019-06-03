@@ -88942,7 +88942,22 @@
       "img": "3073"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1369",
+          "input": "20325",
+          "output": "20326",
+          "materials": [
+            "239",
+            "239",
+            "218",
+            "225",
+            "225"
+          ],
+          "inputEquip": "3073",
+          "outputEquip": "3074"
+        }
+      ],
       "output": []
     }
   },
@@ -89000,7 +89015,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1369",
+          "input": "20325",
+          "output": "20326",
+          "materials": [
+            "239",
+            "239",
+            "218",
+            "225",
+            "225"
+          ],
+          "inputEquip": "3073",
+          "outputEquip": "3074"
+        }
+      ]
     }
   },
   {
@@ -89056,7 +89086,22 @@
       "img": "3075"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1370",
+          "input": "20327",
+          "output": "20328",
+          "materials": [
+            "239",
+            "218",
+            "218",
+            "243",
+            "225"
+          ],
+          "inputEquip": "3075",
+          "outputEquip": "3076"
+        }
+      ],
       "output": []
     }
   },
@@ -89114,7 +89159,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1370",
+          "input": "20327",
+          "output": "20328",
+          "materials": [
+            "239",
+            "218",
+            "218",
+            "243",
+            "225"
+          ],
+          "inputEquip": "3075",
+          "outputEquip": "3076"
+        }
+      ]
     }
   },
   {
@@ -89170,7 +89230,22 @@
       "img": "3077"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1371",
+          "input": "20329",
+          "output": "20330",
+          "materials": [
+            "239",
+            "239",
+            "218",
+            "601",
+            "225"
+          ],
+          "inputEquip": "3077",
+          "outputEquip": "3078"
+        }
+      ],
       "output": []
     }
   },
@@ -89228,7 +89303,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1371",
+          "input": "20329",
+          "output": "20330",
+          "materials": [
+            "239",
+            "239",
+            "218",
+            "601",
+            "225"
+          ],
+          "inputEquip": "3077",
+          "outputEquip": "3078"
+        }
+      ]
     }
   },
   {
@@ -89284,7 +89374,22 @@
       "img": "3079"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1372",
+          "input": "20331",
+          "output": "20332",
+          "materials": [
+            "239",
+            "239",
+            "218",
+            "225",
+            "225"
+          ],
+          "inputEquip": "3079",
+          "outputEquip": "3080"
+        }
+      ],
       "output": []
     }
   },
@@ -89342,7 +89447,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1372",
+          "input": "20331",
+          "output": "20332",
+          "materials": [
+            "239",
+            "239",
+            "218",
+            "225",
+            "225"
+          ],
+          "inputEquip": "3079",
+          "outputEquip": "3080"
+        }
+      ]
     }
   },
   {
@@ -89398,7 +89518,22 @@
       "img": "3081"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1373",
+          "input": "20333",
+          "output": "20334",
+          "materials": [
+            "239",
+            "218",
+            "218",
+            "243",
+            "225"
+          ],
+          "inputEquip": "3081",
+          "outputEquip": "3082"
+        }
+      ],
       "output": []
     }
   },
@@ -89456,7 +89591,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1373",
+          "input": "20333",
+          "output": "20334",
+          "materials": [
+            "239",
+            "218",
+            "218",
+            "243",
+            "225"
+          ],
+          "inputEquip": "3081",
+          "outputEquip": "3082"
+        }
+      ]
     }
   },
   {
@@ -89506,7 +89656,22 @@
     },
     "posterId": "0",
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1374",
+          "input": "20335",
+          "output": "20336",
+          "materials": [
+            "239",
+            "239",
+            "218",
+            "601",
+            "225"
+          ],
+          "inputEquip": "3083",
+          "outputEquip": "3084"
+        }
+      ],
       "output": []
     }
   },
@@ -89558,7 +89723,22 @@
     "posterId": "0",
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1374",
+          "input": "20335",
+          "output": "20336",
+          "materials": [
+            "239",
+            "239",
+            "218",
+            "601",
+            "225"
+          ],
+          "inputEquip": "3083",
+          "outputEquip": "3084"
+        }
+      ]
     }
   },
   {
@@ -89609,7 +89789,18 @@
     "posterId": "0",
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1375",
+          "input": "957",
+          "output": "20337",
+          "materials": [
+            null
+          ],
+          "inputEquip": "2112",
+          "outputEquip": "3085"
+        }
+      ]
     }
   },
   {
@@ -89659,7 +89850,22 @@
     },
     "posterId": "0",
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1376",
+          "input": "20338",
+          "output": "20339",
+          "materials": [
+            "239",
+            "239",
+            "218",
+            "225",
+            "225"
+          ],
+          "inputEquip": "3086",
+          "outputEquip": "3087"
+        }
+      ],
       "output": []
     }
   },
@@ -89711,7 +89917,22 @@
     "posterId": "0",
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1376",
+          "input": "20338",
+          "output": "20339",
+          "materials": [
+            "239",
+            "239",
+            "218",
+            "225",
+            "225"
+          ],
+          "inputEquip": "3086",
+          "outputEquip": "3087"
+        }
+      ]
     }
   },
   {
@@ -89761,7 +89982,22 @@
     },
     "posterId": "0",
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1377",
+          "input": "20340",
+          "output": "20341",
+          "materials": [
+            "239",
+            "218",
+            "218",
+            "243",
+            "225"
+          ],
+          "inputEquip": "3088",
+          "outputEquip": "3089"
+        }
+      ],
       "output": []
     }
   },
@@ -89813,7 +90049,22 @@
     "posterId": "0",
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1377",
+          "input": "20340",
+          "output": "20341",
+          "materials": [
+            "239",
+            "218",
+            "218",
+            "243",
+            "225"
+          ],
+          "inputEquip": "3088",
+          "outputEquip": "3089"
+        }
+      ]
     }
   },
   {
@@ -89869,7 +90120,22 @@
       "img": "3090"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1378",
+          "input": "20342",
+          "output": "20343",
+          "materials": [
+            "239",
+            "239",
+            "218",
+            "225",
+            "225"
+          ],
+          "inputEquip": "3090",
+          "outputEquip": "3091"
+        }
+      ],
       "output": []
     }
   },
@@ -89927,7 +90193,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1378",
+          "input": "20342",
+          "output": "20343",
+          "materials": [
+            "239",
+            "239",
+            "218",
+            "225",
+            "225"
+          ],
+          "inputEquip": "3090",
+          "outputEquip": "3091"
+        }
+      ]
     }
   },
   {
@@ -89983,7 +90264,22 @@
       "img": "3092"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1379",
+          "input": "20344",
+          "output": "20345",
+          "materials": [
+            "239",
+            "218",
+            "218",
+            "243",
+            "225"
+          ],
+          "inputEquip": "3092",
+          "outputEquip": "3093"
+        }
+      ],
       "output": []
     }
   },
@@ -90041,7 +90337,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1379",
+          "input": "20344",
+          "output": "20345",
+          "materials": [
+            "239",
+            "218",
+            "218",
+            "243",
+            "225"
+          ],
+          "inputEquip": "3092",
+          "outputEquip": "3093"
+        }
+      ]
     }
   },
   {
@@ -90097,7 +90408,22 @@
       "img": "3094"
     },
     "evolveFormula": {
-      "input": [],
+      "input": [
+        {
+          "id": "1380",
+          "input": "20346",
+          "output": "20347",
+          "materials": [
+            "239",
+            "239",
+            "218",
+            "601",
+            "225"
+          ],
+          "inputEquip": "3094",
+          "outputEquip": "3095"
+        }
+      ],
       "output": []
     }
   },
@@ -90155,7 +90481,22 @@
     },
     "evolveFormula": {
       "input": [],
-      "output": []
+      "output": [
+        {
+          "id": "1380",
+          "input": "20346",
+          "output": "20347",
+          "materials": [
+            "239",
+            "239",
+            "218",
+            "601",
+            "225"
+          ],
+          "inputEquip": "3094",
+          "outputEquip": "3095"
+        }
+      ]
     }
   }
 ]
