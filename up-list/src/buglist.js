@@ -63,7 +63,7 @@ const app = new Vue({
       showLoading();
       $$('.mdui-tab-active.version-select').removeClass('mdui-tab-active');
       $$(e.target).addClass('mdui-tab-active');
-      axios.get('/buglist/data/' + v).then(res => {
+      axios.get('https://api.redbean.tech/buglist/' + v).then(res => {
         self.parseData(res.data, v);
         self.backToTop();
         hideLoading();
@@ -83,11 +83,12 @@ const app = new Vue({
       } else arr = data;
       this.cards = arr.map(item => {
         return {
-          status: item.status,
-          title: item.type,
+          status: this.statusMap[item.status],
+          title: this.tagMap[item.tag],
           subtitle: `[${item.version}] ${item.startdate}`,
           content: item.title,
-          id: item.id
+          id: item.id,
+          detail: item.content,
         }
       });
     },
