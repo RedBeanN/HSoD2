@@ -17,6 +17,20 @@ const app = new Vue({
       '进行中': { color: '#B212CE' },
       '不处理': { color: 'red'     },
     },
+    statusMap: {
+      '1': '未处理',
+      '2': '不处理',
+      '3': '已处理',
+      '4': '进行中',
+    },
+    tagMap: {
+      '1': "装备",
+      '2': "活动",
+      '3': "意见",
+      '4': "常规",
+      '5': "报错",
+      '6': "兼容",
+    },
   },
   computed: {
     filteredCards () {
@@ -34,9 +48,11 @@ const app = new Vue({
     loadVersions () {
       const self = this;
       return new Promise((resolve, reject) => {
-        axios.get('/buglist/versions').then(res => {
-          self.versions = [...res.data, '全部'];
-          resolve(res.data);
+        axios.get('https://api.redbean.tech/buglist/list').then(res => {
+          let vers = [];
+          if (res && res.data) vers = res.data.map(i => i.name);
+          self.versions = [...vers];
+          resolve(vers);
         });
       });
     },
