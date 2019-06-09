@@ -31,6 +31,14 @@ const app = new Vue({
       '5': "报错",
       '6': "兼容",
     },
+    current: {
+      status: 'status',
+      title: 'title',
+      subtitle: 'subtitle',
+      content: 'content',
+      id: 'id',
+      detail: '<pre></pre>',
+    },
   },
   computed: {
     filteredCards () {
@@ -107,6 +115,14 @@ const app = new Vue({
         }, 1000);
       }).then(_ => {
         hideLoading();
+      });
+    },
+    showDetail (c) {
+      this.$set(this, 'current', c);
+      this.$nextTick(() => {
+        (new mdui.Dialog('#detail-dialog', {
+          history: false,
+        })).open();
       });
     },
     backToTop () {

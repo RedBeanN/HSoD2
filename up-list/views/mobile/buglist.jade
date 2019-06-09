@@ -37,12 +37,17 @@ block content
           br
           .content(:id='"card-" + card.id') {{ card.content }}
         .mdui-card-actions
-          a.mdui-btn.mdui-float-right.mdui-ripple.mdui-shadow-1(
-            :href='"http://event.mihoyo.com/notice/news.php?id=" + card.id',
-            target='_blank') 详情
-            i.mdui-icon.mdui-icon-right.material-icons open_in_new
+          button.mdui-btn.mdui-float-right.mdui-ripple.mdui-shadow-1(
+            @click='showDetail(card)'
+          ) 详情
+            i.mdui-icon.mdui-icon-right.material-icons details
           button.mdui-btn.mdui-float-right.mdui-ripple.mdui-shadow-1(@click='t2s(card.id, card.content, $event)')
             | 干掉繁体字！
+    .mdui-dialog#detail-dialog
+      .mdui-dialog-title
+        .mdui-dialog-title-header {{ current.content }}
+      .mdui-dialog-content
+        .mdui-typo(v-html='current.detail')
     button.mdui-fab.mdui-fab-fixed.mdui-ripple.mdui-color-theme-accent(@click='backToTop')
       i.mdui-icon.material-icons publish
   script(src="/m/js/buglist.js")
