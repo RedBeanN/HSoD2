@@ -39,6 +39,8 @@ const app = new Vue({
       id: 'id',
       detail: '<pre></pre>',
     },
+    currentBtn: '干掉繁体字!',
+    disableT2s: false,
   },
   computed: {
     filteredCards () {
@@ -100,6 +102,11 @@ const app = new Vue({
         }
       });
     },
+    getT2S (text) {
+      return axios.get(
+        encodeURI(`/convert/t2s?text=${text.replace(/\+/g, '^plus^')}`)
+      );
+    },
     t2s (cid, content, e) {
       showLoading();
       $$(e.target).text('正在干掉...');
@@ -117,8 +124,33 @@ const app = new Vue({
         hideLoading();
       });
     },
+    t2sCurrent () {
+      this.currentBtn = '正在干掉...';
+      this.getT2S(this.current.content).then(async content => {
+        this.current.content = content.data.replace(/\^plus\^/g, '+');
+        if (!this.current.detail || this.current.detail.length === 0) return;
+        const results = this.current.detail.match(/<p>[\s\S]*?<\/p>/g);
+        if (results === null) return;
+        for (let r of results) {
+          if (r.includes('img')) continue;
+          const res = await this.getT2S(r);
+          this.current.detail = this.current.detail.replace(r, res.data).replace(/\^plus\^/g, '+');
+        }
+      }).then(() => {
+        this.currentBtn = '干掉啦!';
+        this.disableT2s = true;
+      }).catch(() => {
+        this.currentBtn = '失败了...';
+        const self = this;
+        setTimeout(() => {
+          self.currentBtn = '再来一次?'
+        }, 1000);
+      });
+    },
     showDetail (c) {
-      this.$set(this, 'current', c);
+      this.currentBtn = '干掉繁体字!';
+      this.disableT2s = false;
+      this.$set(this, 'current', { ...c });
       this.$nextTick(() => {
         (new mdui.Dialog('#detail-dialog', {
           history: false,
