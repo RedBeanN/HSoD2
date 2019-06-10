@@ -15,7 +15,6 @@ block content
           tr#title
             th
               select(v-model='selectedVersion', @change='getBugList(selectedVersion)')
-                option(value='') 全部
                 option(v-for='version in versions', :value='version') {{ version }}
             th 编号
             th 类型
@@ -29,8 +28,8 @@ block content
           tr.row(v-for='(row, index) in filterRows', v-show='!loading', :id='"row-" + index')
             td {{ row.version }}
             td {{ row.id }}
-            td {{ row.type }}
-            td(:style='statusStyle[row.status]') {{ row.status }}
+            td {{ tagMap[row.type] }}
+            td(:style='statusStyle[row.status]') {{ statusMap[row.status] }}
             td.text
               a(:href='"http://event.mihoyo.com/notice/news.php?id=" + row.id', target='_blank')
                 | {{ row.title }}
@@ -38,7 +37,7 @@ block content
               button(:index='index') 干！
             td {{ row.startdate }}
 
-  //- script(src='/javascripts/vue.min.js')
-  //- script(src='/javascripts/axios.min.js')
-  //- script(src='/javascripts/bug-list.js')
-  script(src='/dist/js/bug-list.min.js')
+  script(src='/javascripts/vue.min.js')
+  script(src='/javascripts/axios.min.js')
+  script(src='/javascripts/bug-list.js')
+  //- script(src='/dist/js/bug-list.min.js')

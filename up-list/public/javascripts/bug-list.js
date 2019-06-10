@@ -12,10 +12,24 @@
       hintText: '加载中...',
       searchInput: { isFocus: false, text: '' },
       statusStyle: {
-        '未处理': { color: '#1E40FE' },
-        '已处理': { color: '#46CB47' },
-        '进行中': { color: '#B212CE' },
-        '不处理': { color: 'red'     },
+        '1': { color: '#1E40FE' },
+        '2': { color: 'red'     },
+        '3': { color: '#46CB47' },
+        '4': { color: '#B212CE' },
+      },
+      statusMap: {
+        '1': '未处理',
+        '2': '不处理',
+        '3': '已处理',
+        '4': '进行中',
+      },
+      tagMap: {
+        '1': "装备",
+        '2': "活动",
+        '3': "意见",
+        '4': "常规",
+        '5': "报错",
+        '6': "兼容",
       },
       versionFilter: '',
       selectedVersion: '',
@@ -72,7 +86,7 @@
       getBugList(v = '') {
         this.hintText = '加载中...';
         this.loading = true;
-        axios.get('/buglist/data/' + v)
+        axios.get('https://api.redbean.tech/buglist/' + v)
           .then(res => {
             if (v) app.buglist = JSON.parse(JSON.stringify(res.data));
             else app.buglist = res.data;
@@ -114,8 +128,8 @@
       loadVersions() {
         const self = this;
         return new Promise((resolve, reject) => {
-          axios.get('/buglist/versions').then(res => {
-            self.versions = res.data;
+          axios.get('https://api.redbean.tech/buglist/list').then(res => {
+            self.versions = res.data.map(i => i.name);
             resolve();
           })
         })
