@@ -51,8 +51,9 @@
         let text = this.searchInput.text;
         if (text === '') return this.rows;
         return this.rows.filter(row => {
+          return row.title.includes(text);
           for (let i in row) {
-            if (row[i].indexOf(text) !== -1) {
+            if (row[i].includes && row[i].includes(text)) {
               return true;
             }
           }
@@ -101,30 +102,60 @@
             app.hintText = err;
           });
       },
-      t2s(e) {
+      getT2S (text) {
+        return axios.get(
+          encodeURI(`/convert/t2s?text=${text.replace(/&nbsp;/, ' ').replace(/\+/g, '^plus^')}`)
+        );
+      },
+      t2s(r, e) {
         /**
          *  convert Tradition Chinese to Simplified Chinise
          *  using OpenCC
          *  API: /convert/tw2sp?text=
          */
-        if (e.target.tagName.toLowerCase() === 'button') {
-          let index = e.target.getAttribute('index');
-          let text = $$('#row-' + index).getElementsByClassName('text')[0].getElementsByTagName('a')[0].innerHTML;
-          e.target.innerHTML = '正在干掉...';
-          text = text.replace(/\+/g, '^plus^')
-          axios.get(encodeURI(`convert/t2s?text=${text}`))
-            .then(res => {
-              let dt = res.data;
-              if (dt) dt = dt.replace(/\^plus\^/g, '+');
-              $$('#row-' + index).getElementsByClassName('text')[0].getElementsByTagName('a')[0].innerHTML = dt;
-              e.target.innerHTML = '干掉了！';
-              e.target.setAttribute('disabled', 'disabled');
-            })
-            .catch(() => {
-              e.target.innerHTML = '失败了……';
-              setTimeout(() => { e.target.innerHTML = '再干一次?' }, 1000)
+        if (!e || !e.target) return;
+        for (let row in this.rows) {
+          if (this.rows[row].id === r.id) {
+            e.target.innerText = '正在干掉...';
+            this.getT2S(this.rows[row].title).then(async title => {
+              this.rows[row].title = title.data.replace(/\^plus\^/g, '+');
+              const results = this.rows[row].content.match(/<p>[\s\S]*?<\/p>/g);
+              if (results === null) return;
+              for (let r of results) {
+                if (r.includes('img')) continue;
+                const { data } = await this.getT2S(r);
+                this.rows[row].content = this.rows[row].content.replace(r, data).replace(/\^plus\^/g, '+');
+              }
+              return;
+            }).then(() => {
+              e.target.innerText = '干掉啦!';
+              e.target.disabled = 'disabled';
+            }).catch(() => {
+              e.target.innerText = '失败了...';
+              setTimeout(() => {
+                e.target.innerText = '再试一次?';
+              }, 1000);
             });
+          }
         }
+        // if (e.target.tagName.toLowerCase() === 'button') {
+        //   let index = e.target.getAttribute('index');
+        //   let text = $$('#row-' + index).getElementsByClassName('text')[0].getElementsByTagName('a')[0].innerHTML;
+        //   e.target.innerHTML = '正在干掉...';
+        //   text = text.replace(/\+/g, '^plus^')
+        //   axios.get(encodeURI(`convert/t2s?text=${text}`))
+        //     .then(res => {
+        //       let dt = res.data;
+        //       if (dt) dt = dt.replace(/\^plus\^/g, '+');
+        //       $$('#row-' + index).getElementsByClassName('text')[0].getElementsByTagName('a')[0].innerHTML = dt;
+        //       e.target.innerHTML = '干掉了！';
+        //       e.target.setAttribute('disabled', 'disabled');
+        //     })
+        //     .catch(() => {
+        //       e.target.innerHTML = '失败了……';
+        //       setTimeout(() => { e.target.innerHTML = '再干一次?' }, 1000)
+        //     });
+        // }
       },
       showRow (index) {
         this.$set(this.showContent, index, !this.showContent[index]);
