@@ -22,7 +22,7 @@ block content
             th.text 内容
             th.t2s 干掉繁体字
             th 时间
-        tbody(@click='t2s')
+        tbody
           tr#hint-container(v-show='loading || error')
             td(colspan=7) {{ hintText }}
           tr.row(v-for='(row, index) in filterRows', v-show='!loading', :id='"row-" + index')
@@ -31,8 +31,9 @@ block content
             td {{ tagMap[row.type] }}
             td(:style='statusStyle[row.status]') {{ statusMap[row.status] }}
             td.text
-              a(:href='"http://event.mihoyo.com/notice/news.php?id=" + row.id', target='_blank')
-                | {{ row.title }}
+              .text-title {{ row.title }} 
+                button(@click='showRow(index)', v-show='row.content.length')  展开/收起
+              .detail(v-html='row.content', v-show='showContent[index]')
             td.t2s
               button(:index='index') 干！
             td {{ row.startdate }}

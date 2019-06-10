@@ -31,6 +31,7 @@
         '5': "报错",
         '6': "兼容",
       },
+      showContent: {},
       versionFilter: '',
       selectedVersion: '',
       buglist: {}
@@ -124,6 +125,9 @@
               setTimeout(() => { e.target.innerHTML = '再干一次?' }, 1000)
             });
         }
+      },
+      showRow (index) {
+        this.$set(this.showContent, index, !this.showContent[index]);
       },
       loadVersions() {
         const self = this;
