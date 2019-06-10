@@ -2,6 +2,7 @@ extends layout
 block content
   link(rel='stylesheet', href='/dist/css/animation.min.css')
   link(rel='stylesheet', href='/dist/css/auto-list.min.css')
+  link(rel="stylesheet", href="/stylesheets/bug-list.css")
   #loading-page
     #loading-ring.loading-rotate
   #app(style='display: none')
@@ -33,7 +34,7 @@ block content
             td.text
               .text-title {{ row.title }} 
                 button(@click='showRow(index)', v-show='row.content.length && row.content !== "<pre></pre>"')  展开/收起
-              .detail(v-html='row.content', v-show='showContent[index]')
+              .bug-detail(v-html='row.content', v-show='showContent[index]')
             td.t2s
               button(@click='t2s(row, $event)') 干！
             td {{ row.startdate }}
