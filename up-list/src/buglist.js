@@ -104,7 +104,7 @@ const app = new Vue({
     },
     getT2S (text) {
       return axios.get(
-        encodeURI(`/convert/t2s?text=${text.replace(/\+/g, '^plus^')}`)
+        encodeURI(`/convert/t2s?text=${text.replace(/&nbsp;/, ' ').replace(/\+/g, '^plus^')}`)
       );
     },
     t2s (cid, content, e) {
