@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2019.05.19v1';
+const CACHENAME = 'hsod2-2019.06.23v1';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -74,7 +74,7 @@ const races = [
    * Sometimes the users have bad network and
    * the cached data can be return for them.
    */
-  'data', 'last', 'auto/',
+  'data', 'last', 'auto/', 'manifest',
   'illustrate/v2/',
   'illustrate/all',
   'pet-run/',

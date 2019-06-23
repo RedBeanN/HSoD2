@@ -1,14 +1,15 @@
 {
-  "short_name": "搞事学园",
   "name": "搞事学园",
-  "icon": [
+  "short_name": "搞事学园",
+  "icons": [
       {
           "src": "/favicon.png",
           "type": "image/png",
-          "sizes": "48x48"
+          "sizes": "48x48 192x192 512x512"
       }
   ],
   "start_url": "/",
   "theme_color": "#3f51b5",
+  "background_color": "#3f51b5",
   "display": "standalone"
 }
