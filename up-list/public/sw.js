@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2019.06.23v1';
+const CACHENAME = 'hsod2-2019.06.27v1';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -78,6 +78,7 @@ const races = [
   'illustrate/v2/',
   'illustrate/all',
   'pet-run/',
+  'api.redbean.tech/faction',
 ];
 const excludes = [
   /**

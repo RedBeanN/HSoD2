@@ -26,6 +26,15 @@ block content
         :settings='chartSettings',
         :data-zoom='zoom'
       )
+      ve-line#users(
+        :data='charts.users',
+        :title='charts.users.title',
+        :loading='settings.loading',
+        :legend-position='settings.legendPosition',
+        :colors='settings.colors',
+        :settings='chartSettings',
+        :data-zoom='zoom'
+      )
   script(src='/javascripts/vue.min.js')
   script(src='/javascripts/axios.min.js')
   script(src='/javascripts/echarts.min.js')
