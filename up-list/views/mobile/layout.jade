@@ -21,12 +21,14 @@ html
     // Global site tag (gtag.js) - Google Analytics
     style.
       .mdui-appbar, .mdui-drawer {
-        background: #3f51b5;
-        padding-bottom: -4px;
         position: fixed;
         padding-top: constant(safe-area-inset-top) !important;
         padding-top: env(safe-area-inset-top) !important;
       }
+      .mdui-appbar, .mdui-app-bar {
+        background: #3f51b5;
+      }
+      #progress {position: absolute;}
       html {
         padding-top: constant(safe-area-inset-top) !important;
         padding-top: env(safe-area-inset-top) !important;
