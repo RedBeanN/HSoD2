@@ -29,6 +29,8 @@ html
         background: #3f51b5;
       }
       body {padding-top: calc(env(safe-area-inset-top) + 56px) !important;}
+      body.mdui-appbar-with-tab {padding-top: calc(env(safe-area-inset-top) + 80px) !important;}
+      @media (min-width: 1024px) { body.mdui-appbar-with-tab .mdui-drawer {top: calc(env(safe-area-inset-top) + 80px) !important;} }
       body.mdui-appbar-with-tab-larger {padding-top: calc(env(safe-area-inset-top) + 110px) !important;}
       #progress {position: absolute;}
       html {
