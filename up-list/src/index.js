@@ -1,5 +1,6 @@
 (() => {
 const $$ = mdui.JQ;
+$$('body').removeClass('mdui-appbar-with-tab-larger');
 
 const app = new Vue({
   el: '#app',
