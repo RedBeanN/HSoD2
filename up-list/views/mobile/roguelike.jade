@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href="/m/css/mdui.min.css")
+  script(src="/m/js/mdui.min.js")
+  script(src="/javascripts/vue.min.js")
+  script(src="/javascripts/axios.min.js")
+  #app
+    .mdui-appbar.mdui-appbar-fixed.mdui-appbar-with-tab
+      .mdui-toolbar.mdui-color-theme
+        a.mdui-btn.mdui-btn-icon.mdui-ripple.mdui-ripple-white(href='/')
+          i.mdui-icon.material-icons home
+        .mdui-typo-title 伽蓝之末
+      .mdui-tab.mdui-color-theme
+        a.server-select.mdui-ripple(v-for='server in servers', @click.prevent='selectServer(server)', :class='{"mdui-tab-active": server === currentServer}') {{ server }}
+    .mdui-container.mdui-m-t-4
+        .mdui-panel.mdui-panel-gapless(mdui-panel)
+          .mdui-panel-item(v-for='(d, role) in rankData[currentServer]')
+            .mdui-panel-item-header {{ role }}
+              i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
+            .mdui-panel-item-body
+              table.mdui-table
+                tr
+                  th 百分比
+                  th 人数
+                  th 层数
+                  th 时间(秒)
+                tr
+                  td 0%-20 %
+                  td {{ d['前20%人数'] }}
+                  td {{ d['前20%层数'] }}
+                  td {{ d['前20%时间'] }}
+                tr
+                  td 21%-50%
+                  td {{ d['前50%人数'] }}
+                  td {{ d['前50%层数'] }}
+                  td {{ d['前50%时间'] }}
+  script(src="/m/js/roguelike.js")

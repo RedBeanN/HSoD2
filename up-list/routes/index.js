@@ -61,6 +61,9 @@ router.get('/talent/sprite', (req, res, next) => {
 router.get('/talent', function (req, res, next) {
   res.render('mobile/talent', { title: '圣痕一览 - 搞事学园' });
 });
+router.get('/roguelike', function (req, res, next) {
+  res.render('mobile/roguelike', { title: '伽蓝之末排名 - 搞事学园' });
+});
 
 router.get('/convert/:conf', (req, res, next) => {
   let conf = req.params.conf;
