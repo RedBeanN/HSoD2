@@ -16,6 +16,8 @@
     .mdui-drawer {position: fixed;padding-top: constant(safe-area-inset-top) !important;padding-top: env(safe-area-inset-top) !important;}
     html {padding-top: constant(safe-area-inset-top) !important;padding-top: env(safe-area-inset-top) !important;}
     body {padding-top: calc(env(safe-area-inset-top) + 56px) !important;}
+    #app {margin-top: calc(env(safe-area-inset-top) + 16px) !important;}
+    @media (min-width: 1024px) { #app {margin-top: calc(env(safe-area-inset-top) + 16px) !important;} }
     #progress {position: absolute;};
     #loading-hover, #loading-container, #loading-icon {transition-duration: .2s;transition-timing-function: linear;}
     #loading-container {transition-timing-function: ease;}
