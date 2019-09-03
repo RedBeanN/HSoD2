@@ -14,6 +14,7 @@ const characterMap = {
   '4009': '伊瑟琳·利维休斯',
   '4010': '符华',
   '4011': '无色辉火',
+  '4012': '西琳',
 };
 const characterMapShort = {
   '4001': '琪亚娜',
@@ -27,6 +28,7 @@ const characterMapShort = {
   '4009': '伊瑟琳',
   '4010': '符华',
   '4011': '辉火',
+  '4012': '西琳',
 };
 new Vue({
   el: '#app',
