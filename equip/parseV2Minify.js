@@ -3,6 +3,7 @@ const v2 = require('./v2/minify');
 
 const min = {};
 for (let key in v2) {
+  console.log(key);
   min[key] = v2[key].map(i => i.replace(
     /\d+\$(\d+)\$(\d+)\$(\d+)\$(.*)/g,
     (t, id, rarity, img, title) => {
