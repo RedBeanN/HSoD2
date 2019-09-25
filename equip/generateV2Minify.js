@@ -1,5 +1,5 @@
 const fs = require('fs');
-const all = require('./V2/all');
+const all = require('./v2/all');
 
 const data = {
   weapon: [],
@@ -20,4 +20,4 @@ for (let equip of all) {
   else if ('hpBase' in equip) type = 'costume';
   data[type] && data[type].push(getMinify(equip));
 }
-fs.writeFileSync('./V2/minify.json', JSON.stringify(data, null, 2));
+fs.writeFileSync('./v2/minify.json', JSON.stringify(data, null, 2));
