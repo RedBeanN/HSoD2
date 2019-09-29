@@ -6,7 +6,7 @@ function join(filepath) {
   return _path.join(__dirname, filepath);
 }
 
-var url = 'http://cms.mihoyo.com/mihoyo/hsod2_webview/index.php/broadcastTop/List/';
+var url = 'http://cms.benghuai.com/mihoyo/hsod2_webview/index.php/broadcastTop/List/';
 var basePath = '/statics/';
 
 module.exports = function getList (server = 3) {
