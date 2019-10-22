@@ -9,6 +9,26 @@ const store = window.localStorage || {
   clear () {},
 };
 
+const isGotten = name => {
+  const got = localStorage.getItem('gacha-spec');
+  if (!got) return false;
+  const items = got.split('$');
+  if (items.includes(name)) return true;
+  return false;
+};
+const gotSpec = name => {
+  let got = localStorage.getItem('gacha-spec');
+  got += `$${name}`;
+  localStorage.setItem('gacha-spec', got);
+  return true;
+};
+const isOutOfDate = (start, end) => {
+  const s = new Date(start), e = new Date(end);
+  const now = Date.now();
+  if (now - s > 0 && e - now > 0) return false;
+  return true;
+};
+
 // const gachaTab = new mdui.Tab('#gachas');
 
 const app = new Vue({
@@ -163,6 +183,9 @@ const app = new Vue({
     totalOrders () {
       return (this.totalCosts / 8088).toFixed(2);
     },
+    totalMoney () {
+      return (this.totalOrders * 648).toFixed(2);
+    },
   },
   methods: {
     pushRecord (t, ...r) {
@@ -197,6 +220,13 @@ const app = new Vue({
           self.pools = pools;
         }
         hideLoading();
+      });
+    },
+    loadSpecial () {
+      showLoading();
+      const self = this;
+      axios.get('/data/specialGacha.json').then(res => {
+        self.specialGacha = res.data;
       });
     },
     single () {
@@ -277,13 +307,23 @@ const app = new Vue({
       const resultsPromises = [];
       const currentResults = [];
       for (let i of arr) {
-        const reg = /(【.*】)?([^×]*)(×\d)?/g;
-        const result = reg.exec(i.equip);
-        // console.log(result[2]);
-        if (!result[2]) resultsPromises.push({ title: i.equip });
-        else resultsPromises.push(this.loadResult(result, i.isGod));
+        if (i.isSpec) {
+          resultsPromises.push(new Promise(resolve => {
+            resolve({
+              img: this.getSpecImg(i.img),
+              title: i.equip,
+              isGod: false,
+              isSpec: true,
+            })
+          }))
+        } else {
+          const reg = /(【.*】)?([^×]*)(×\d)?/g;
+          const result = reg.exec(i.equip);
+          // console.log(result[2]);
+          if (!result[2]) resultsPromises.push({ title: i.equip });
+          else resultsPromises.push(this.loadResult(result, i.isGod));
+        }
       }
-      // console.log(currentResults);
       currentResults.push(...await Promise.all(resultsPromises));
       this.currentResults = currentResults;
       this.$nextTick(() => {
@@ -297,6 +337,32 @@ const app = new Vue({
     },
     gacha (data, baodi = 0) {
       const { equips, total, god } = data;
+      if (!baodi) {
+        for (let spec of this.specialGacha) {
+          if (spec.pool !== this.current.pool) continue;
+          if (isGotten(spec.name)) continue;
+          if (isOutOfDate(spec.startTime, spec.endTime)) continue;
+          const r = getRandom(100);
+          if (r < spec.rate) {
+            if (!this.showDialog && this.showSnackbar) {
+              const s = mdui.snackbar({
+                message: spec.name,
+                position: 'right-bottom',
+                timeout: 700,
+              });
+              s.$snackbar.addClass('yellow');
+            }
+            gotSpec(spec.name);
+            return {
+              date: formatDate(),
+              equip: spec.name,
+              isGod: false,
+              isSpec: true,
+              img: spec.img,
+            }
+          }
+        }
+      }
       let r = getRandom(total);
       // pets up does not have baodi
       if (god === 0) baodi = 2;
@@ -326,6 +392,7 @@ const app = new Vue({
         'special': { 's': [], 't': [] },
         'middle': { 's': [], 't': [] },
       };
+      localStorage.removeItem('gacha-spec');
       mdui.snackbar({
         message: '清除成功',
         position: 'right-bottom',
@@ -339,6 +406,9 @@ const app = new Vue({
       if (img.length < 3) img = ('000' + img).slice(-3);
       return prefix + img + '.png';
     },
+    getSpecImg (img) {
+      return `https://api-1256168079.cos.ap-chengdu.myqcloud.com/${img}`;
+    },
   },
   watch: {
     records: {
@@ -350,6 +420,7 @@ const app = new Vue({
     let rec;
     if (rec = store.getItem('records')) this.records = JSON.parse(rec);
     this.loadProb();
+    this.loadSpecial();
   },
   mounted () {
     $$('.hide').removeClass('hide');

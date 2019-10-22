@@ -61,7 +61,7 @@ block content
             br
             p.costs 已祈愿 {{ totalGachas }} 次，累计消耗 {{ totalCosts }} 水晶
               br
-              | 相当于 {{ totalOrders }} 单648
+              | 相当于 {{ totalOrders }} 单648，合计 {{ totalMoney }} RMB
               br
               | ( 仅统计本次访问时数据 )
     .mdui-card.hide.mdui-p-x-3.mdui-p-b-3
@@ -81,7 +81,7 @@ block content
         .mdui-dialog-title-header {{ poolmap[current.pool] }}祈愿结果
       .mdui-dialog-content.mdui-p-t-2
         .results
-          .result(v-for='result in currentResults', :class='{god: result.isGod, awaken: result.isAwaken}')
+          .result(v-for='result in currentResults', :class='{god: result.isGod || result.isSpec, awaken: result.isAwaken}')
             .has-img(v-if='result.img')
               img(:src='result.img')
               p {{ result.title }}
