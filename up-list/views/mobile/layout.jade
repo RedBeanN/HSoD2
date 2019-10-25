@@ -191,30 +191,42 @@ html
           line-height: 64px;
         }
       }
+      #loading-hover { display: none; }
+      #loading-hover.show { display: block; }
     script.
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'UA-123581848-1');
       window.addEventListener('load', () => {
-        const loading = document.querySelector('#loading-hover');
-        setTimeout(() => {
-          loading.classList += 'entering';
-        }, 000);
-        //- loading.classList += 'enter';
-        setTimeout(() => {
-          loading.classList += ' entered';
-        }, 200);
-        setTimeout(() => {
-          loading.classList += ' loaded';
-        }, 400);
-        setTimeout(() => {
-          loading.classList += ' fadeout';
-        }, 600);
-        setTimeout(() => {
-          document.body.removeChild(loading);
-        }, 800);
+        document.querySelector('#loading-hover').classList+= 'show ';
       });
+      if (sessionStorage.getItem('onvisiting')) {
+        window.addEventListener('load', () => {
+          document.body.removeChild(document.querySelector('#loading-hover'));
+        });
+      } else {
+        window.addEventListener('load', () => {
+          const loading = document.querySelector('#loading-hover');
+          setTimeout(() => {
+            loading.classList += 'entering';
+          }, 000);
+          //- loading.classList += 'enter';
+          setTimeout(() => {
+            loading.classList += ' entered';
+          }, 200);
+          setTimeout(() => {
+            loading.classList += ' loaded';
+          }, 400);
+          setTimeout(() => {
+            loading.classList += ' fadeout';
+          }, 600);
+          setTimeout(() => {
+            document.body.removeChild(loading);
+          }, 800);
+        });
+      }
+      sessionStorage.setItem('onvisiting', true);
 
   body.mdui-drawer-body-left.mdui-appbar-with-tab-larger.mdui-theme-primary-indigo.mdui-theme-accent-pink
     #loading-hover

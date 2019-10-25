@@ -44,6 +44,8 @@
     @keyframes spinner-left-spin {from { transform: rotate(130deg); }50%  { transform: rotate(-5deg);  }to   { transform: rotate(130deg); }}
     @keyframes spinner-right-spin {from { transform: rotate(-130deg); }50%  { transform: rotate(5deg);    }to   { transform: rotate(-130deg); }}
     @media (min-width: 600px) {#loading-hover.loaded {  height: 64px;  line-height: 64px;}}
+    #loading-hover { display: none; }
+    #loading-hover.show { display: block; }
   </style>
   <script src=/m/js/mdui.min.js> </script> <script>
     window.dataLayer = window.dataLayer || [];
@@ -54,6 +56,13 @@
     gtag('js', new Date());
     gtag('config', 'UA-123581848-1');
     window.addEventListener('load', () => {
+      document.querySelector('#loading-hover').classList+= 'show ';
+    });
+    if (sessionStorage.getItem('onvisiting')) {
+      window.addEventListener('load', () => {
+        document.body.removeChild(document.querySelector('#loading-hover'));
+      });
+    } else window.addEventListener('load', () => {
       const loading = document.querySelector('#loading-hover');
       setTimeout(() => { loading.classList += 'entering' }, 0);
       setTimeout(() => { loading.classList += ' entered' }, 200);
@@ -61,6 +70,7 @@
       setTimeout(() => { loading.classList += ' fadeout' }, 600);
       setTimeout(() => { document.body.removeChild(loading) }, 800);
     });
+    sessionStorage.setItem('onvisiting', true);
   </script>
   <link href=/m/css/illustratev3.css rel=preload as=style>
   <link href=/m/js/illustratev3.js rel=preload as=script>
