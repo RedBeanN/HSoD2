@@ -74,6 +74,12 @@ block content
               i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
             .mdui-panel-item-body
               p(v-for='item in items') {{ item }}
+          .mdui-panel-item
+            .mdui-panel-item-header 当前角色/皮肤 up
+              i.mdui-panel-item-arrow.mdui-icon.material-icons keyboard_arrow_down
+            .mdui-panel-item-body
+              p(v-for='item in currentSpecialGacha') [ {{ poolmap[item.pool] }} ] {{ item.name }} ( {{ item.rate }}% )
+              small 注：角色和皮肤不会重复抽到，如需重置请点击[清空祈愿记录]
         button.mdui-btn.mdui-float-left.mdui-ripple.mdui-shadow-1.mdui-m-t-3(@click='clearStorage')
           | 清空祈愿记录
     #gacha-dialog.mdui-dialog.mdui-color-grey-900

@@ -60,10 +60,14 @@ const app = new Vue({
     disableGacha: false,
     totalCosts: 0,
     totalGachas: 0,
+    specialGacha: [],
   },
   computed: {
     currentRecords () {
       return this.records[this.current.pool][this.current.gachatype];
+    },
+    currentSpecialGacha () {
+      return this.specialGacha.filter(i => !isOutOfDate(i.startTime, i.endTime));
     },
     recordList () {
       /**
@@ -338,10 +342,10 @@ const app = new Vue({
     gacha (data, baodi = 0) {
       const { equips, total, god } = data;
       if (!baodi) {
-        for (let spec of this.specialGacha) {
+        for (let spec of this.currentSpecialGacha) {
           if (spec.pool !== this.current.pool) continue;
           if (isGotten(spec.name)) continue;
-          if (isOutOfDate(spec.startTime, spec.endTime)) continue;
+          // if (isOutOfDate(spec.startTime, spec.endTime)) continue;
           const r = getRandom(100);
           if (r < spec.rate) {
             if (!this.showDialog && this.showSnackbar) {
