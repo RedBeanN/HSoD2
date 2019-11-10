@@ -280,7 +280,7 @@ const app = new Vue({
           else if (res.data.img) equip = res.data;
           else throw 'Not Found';
           let isAwaken = false;
-          if (equip.posterId && equip.posterId !== '0') isAwaken = Math.random() < 0.1;
+          if (equip.posterId && equip.posterId !== '0') isAwaken = Math.random() < 0.3;
           return {
             img: this.getImgSrc(equip.img),
             title,
