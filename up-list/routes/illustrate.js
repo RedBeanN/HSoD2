@@ -22,13 +22,19 @@ router.get('/v3', (req, res) => {
   });
 });
 router.get('/v2', (req, res) => {
-  res.render('mobile/illustratev2', {
-    title: '装备图鉴 - 搞事学园'
+  res.render('mobile/template', {
+    title: '装备图鉴 - 搞事学园',
+    css: 'illustratev3',
+    js: 'illustratev3',
+    jsVendor: 'illustratev3.chunk',
   });
 });
 router.get('/', (req, res) => {
-  res.render('mobile/illustrate', {
-    title: '装备图鉴 - 搞事学园'
+  res.render('mobile/template', {
+    title: '装备图鉴 - 搞事学园',
+    css: 'illustratev3',
+    js: 'illustratev3',
+    jsVendor: 'illustratev3.chunk',
   });
 });
 
