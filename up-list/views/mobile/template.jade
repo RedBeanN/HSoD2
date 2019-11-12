@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href="/m/css/mdui.min.css")
+  link(rel="stylesheet", href="/m/css/#{css}.css")
+  - if (cssVendor)
+    link(rel="stylesheet", href="/m/css/#{cssVendor}.css")
+  script(src="/m/js/mdui.min.js")
+  script(src="/javascripts/vue.min.js")
+  script(src="/javascripts/axios.min.js")
+  #app
+  - if (!keepDrawer)
+    script.
+      mdui.JQ('body').removeClass('mdui-drawer-body-left');
+  script(src="/m/js/#{js}.js")
+  - if (jsVendor)
+    script(src="/m/js/#{jsVendor}.js")

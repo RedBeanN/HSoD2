@@ -6,14 +6,20 @@ const fs = require('fs');
 const types = ['weapon', 'costume', 'passiveSkill', 'pet', 'all'];
 
 router.get('/v3', (req, res) => {
-  fs.readFile(
-    path.join(__dirname, '../public/html/illustratev3.html'),
-    {encoding: 'utf-8'},
-    (err, data) => {
-      if (err) res.status(404).send();
-      else res.send(data);
-    }
-  );
+  // fs.readFile(
+  //   path.join(__dirname, '../public/html/illustratev3.html'),
+  //   {encoding: 'utf-8'},
+  //   (err, data) => {
+  //     if (err) res.status(404).send();
+  //     else res.send(data);
+  //   }
+  // );
+  res.render('mobile/template', {
+    title: '装备图鉴 - 搞事学园',
+    css: 'illustratev3',
+    js: 'illustratev3',
+    jsVendor: 'illustratev3.chunk',
+  });
 });
 router.get('/v2', (req, res) => {
   res.render('mobile/illustratev2', {

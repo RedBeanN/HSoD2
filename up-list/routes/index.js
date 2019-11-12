@@ -19,14 +19,20 @@ router.get('/calendar', function(req, res, next) {
 
 router.get('/equip', function (req, res, next) {
   // res.render('equip', { title: '装备模拟器 - 搞事学园' });
-  fs.readFile(
-    path.join(__dirname, '../public/html/equip.html'),
-    {encoding: 'utf-8'},
-    (err, data) => {
-      if (err) res.status(404).send();
-      else res.send(data);
-    }
-  );
+  // fs.readFile(
+  //   path.join(__dirname, '../public/html/equip.html'),
+  //   {encoding: 'utf-8'},
+  //   (err, data) => {
+  //     if (err) res.status(404).send();
+  //     else res.send(data);
+  //   }
+  // );
+  res.render('mobile/template', {
+    title: '装备图鉴 - 搞事学园',
+    css: 'equip',
+    js: 'equip',
+    jsVendor: 'equip.vendors',
+  });
 });
 router.get('/DLC', function (req, res, next) {
   // res.render('DLC', { title: '装备模拟器 - 搞事学园' });

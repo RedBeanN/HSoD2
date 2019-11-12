@@ -4,14 +4,21 @@ const path = require('path');
 const fs = require('fs');
 
 router.get('/', (req, res) => {
-  fs.readFile(
-    path.join(__dirname, '../public/html/innerWorld.html'),
-    {encoding: 'utf-8'},
-    (err, data) => {
-      if (err) res.status(404).send();
-      else res.send(data);
-    }
-  );
+  // fs.readFile(
+  //   path.join(__dirname, '../public/html/innerWorld.html'),
+  //   {encoding: 'utf-8'},
+  //   (err, data) => {
+  //     if (err) res.status(404).send();
+  //     else res.send(data);
+  //   }
+  // );
+  res.render('mobile/template', {
+    title: '里塔助手 - 搞事学园',
+    keepDrawer: true,
+    css: 'innerWorld',
+    js: 'innerWorld',
+    jsVendor: 'innerWorld.vendors',
+  });
 });
 
 router.get('/data/:file', (req, res) => {
