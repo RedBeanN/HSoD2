@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const baseUrl = 'http://cms.mihoyo.com/mihoyo/hsod2_gacha_rules/index.php/gacha/';
+const baseUrl = 'http://cms.benghuai.com/mihoyo/hsod2_gacha_rules/index.php/gacha/';
 const server = '?region=3_1';
 
 // never use moe!
