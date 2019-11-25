@@ -32,7 +32,7 @@ function save(pool, cb) {
       let isPet = false, pets = [];
       if (data.data.constructor === Array) {
         data.data.forEach(i => {
-          if (i.indexOf('×9') != -1) {
+          if (i.indexOf('×30') != -1) {
             isPet = true;
             pets.push(i.substring(0, i.indexOf('×9')));
           }
