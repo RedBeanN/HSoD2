@@ -23,7 +23,7 @@ const gotSpec = name => {
   return true;
 };
 const isOutOfDate = (start, end) => {
-  const s = new Date(start), e = new Date(end);
+  const s = new Date(start + ' 00:00:00'), e = new Date(end + ' 00:00:00');
   const now = Date.now();
   if (now - s > 0 && e - now > 0) return false;
   return true;
