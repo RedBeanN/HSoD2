@@ -1,17 +1,35 @@
-[{
-  "startTime": "2019-01-01",
-  "endTime": "2099-12-31",
-  "uid": 4002,
-  "img": "images/icons/playericons/002.png",
-  "name": "雷电芽衣",
-  "rate": 5,
-  "pool": "high"
-}, {
-  "startTime": "2019-11-04",
-  "endTime": "2019-11-07",
-  "uid": 4011,
-  "img": "images/icons/playericons/137.png",
-  "name": "无色辉火",
-  "rate": 5,
-  "pool": "high"
-}]
+[
+  {
+    "startTime": "2019-01-01",
+    "endTime": "2099-12-31",
+    "uid": 4002,
+    "img": "images/icons/playericons/002.png",
+    "name": "雷电芽衣",
+    "rate": 5,
+    "pool": "high"
+  }, {
+    "startTime": "2019-11-04",
+    "endTime": "2019-11-07",
+    "uid": 4011,
+    "img": "images/icons/playericons/137.png",
+    "name": "无色辉火",
+    "rate": 5,
+    "pool": "high"
+  }, {
+    "startTime": "2019-11-27",
+    "endTime": "2019-12-12",
+    "uid": 208,
+    "img": "images/icons/playericons/208.png",
+    "name": "卡莲·第六夜想曲",
+    "rate": 5,
+    "pool": "special"
+  }, {
+    "startTime": "2019-12-05",
+    "endTime": "2019-12-11",
+    "uid": 101,
+    "img": "images/icons/playericons/101.png",
+    "name": "布洛妮娅·黑核侵蚀",
+    "rate": 5,
+    "pool": "special"
+  }
+]
