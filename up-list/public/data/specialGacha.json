@@ -21,7 +21,7 @@
     "uid": 17118,
     "img": "images/icons/playericons/208.png",
     "name": "卡莲·第六夜想曲",
-    "rate": 5,
+    "rate": 3,
     "pool": "special"
   }, {
     "startTime": "2019-12-05",
@@ -29,7 +29,7 @@
     "uid": 17104,
     "img": "images/icons/playericons/101.png",
     "name": "布洛妮娅·黑核侵蚀",
-    "rate": 5,
+    "rate": 3,
     "pool": "special"
   }
 ]
