@@ -270,7 +270,7 @@ const app = new Vue({
     },
     async loadResult (result, isGod) {
       const equipname = result[2].replace(' +1', '');
-      const url = '/illustrate/v2/detail/all/title/' + equipname;
+      const url = 'https://api.redbean.tech/illustrate/title/' + equipname;
       const title = result[2] + (result[3] ? result[3] : '');
       try {
         const res = await axios.get(url);
