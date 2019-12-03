@@ -16,6 +16,14 @@
     "rate": 5,
     "pool": "high"
   }, {
+    "startTime": "2019-12-04",
+    "endTime": "2019-12-07",
+    "uid": 4013,
+    "img": "images/icons/playericons/207.png",
+    "name": "丽塔·洛丝薇瑟",
+    "rate": 5,
+    "pool": "high"
+  }, {
     "startTime": "2019-11-27",
     "endTime": "2019-12-12",
     "uid": 17118,
