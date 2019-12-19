@@ -15,7 +15,6 @@ block content
   - if (jsVendor)
     script(src="/m/js/#{jsVendor}.js")
   - if (injectedLibs)
-  - for (let lib of injectedLibs) {
+    - for (let lib of injectedLibs)
       script(src="m/js/#{lib}.js")
-  - }
   script(src="/m/js/#{js}.js")

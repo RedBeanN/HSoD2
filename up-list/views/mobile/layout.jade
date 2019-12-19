@@ -194,13 +194,19 @@ html
       #loading-hover { display: none; }
       #loading-hover.show { display: block; }
     script.
+      const showLoadingHover = () => {
+        if (document && document.querySelector) {
+          document.querySelector('#loading-hover').classList += 'show ';
+        } else requestAnimationFrame(showLoadingHover);
+      };
+      requestAnimationFrame(showLoadingHover);
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'UA-123581848-1');
-      window.addEventListener('load', () => {
-        document.querySelector('#loading-hover').classList+= 'show ';
-      });
+      //- window.addEventListener('load', () => {
+      //-   document.querySelector('#loading-hover').classList+= 'show ';
+      //- });
       if (sessionStorage.getItem('onvisiting')) {
         window.addEventListener('load', () => {
           document.body.removeChild(document.querySelector('#loading-hover'));
