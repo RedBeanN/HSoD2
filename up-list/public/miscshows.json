@@ -1,0 +1,1102 @@
+[
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1002",
+    "id": "1002",
+    "CRC": "11C155BAE14E69F277C6AF30DC69AB33D1398EB4",
+    "pngs": [
+      "youda.png"
+    ],
+    "atlas": "youda.atlas.txt",
+    "skel": "youda.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1044",
+    "id": "1044",
+    "CRC": "5CA8D2792251290FAF89D727CBA129E3F9F0C4B1",
+    "pngs": [
+      "kanbanniang.png",
+      "ani0018_4x4.png",
+      "Austerity.png",
+      "Default-Particle.png"
+    ],
+    "atlas": "kanbanniang.atlas.txt",
+    "skel": "kanbanniang.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1046",
+    "id": "1046",
+    "CRC": "C5D4645AA67B8439596AB159126D2306CD33FD92",
+    "pngs": [
+      "xilu.png"
+    ],
+    "atlas": "xilu.atlas.txt",
+    "skel": "xilu.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1047",
+    "id": "1047",
+    "CRC": "C6ED7179FAC4B430D53E73ED691F97B707542C77",
+    "pngs": [
+      "seele Wedding.png"
+    ],
+    "atlas": "seele Wedding.atlas.txt",
+    "skel": "seele Wedding.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1048",
+    "id": "1048",
+    "CRC": "4040305A307128895E2672CF3EB702481C44D445",
+    "pngs": [
+      "seele_WedBlack.png"
+    ],
+    "atlas": "seele_WedBlack.atlas.txt",
+    "skel": "seele_WedBlack.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1065",
+    "id": "1065",
+    "CRC": "DFBFA01C9B6D06324362A3626484A603F847C100",
+    "pngs": [
+      "lulutiya.png"
+    ],
+    "atlas": "lulutiya.atlas.txt",
+    "skel": "lulutiya.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1068",
+    "id": "1068",
+    "CRC": "EF2108FF0D4B6EF6177A36C16405A1931A31BEFF",
+    "pngs": [
+      "idol_xilu.png"
+    ],
+    "atlas": "idol_xilu.atlas.txt",
+    "skel": "idol_xilu.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1069",
+    "id": "1069",
+    "CRC": "B1DCC9127411B40422B51BCB465DA9FB679F10F8",
+    "pngs": [
+      "idol_youda.png"
+    ],
+    "atlas": "idol_youda.atlas.txt",
+    "skel": "idol_youda.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1070",
+    "id": "1070",
+    "CRC": "27A67CB6D11A3306175D4B10F2E3B1309D7E9403",
+    "pngs": [
+      "idol_beipan.png"
+    ],
+    "atlas": "idol_beipan.atlas.txt",
+    "skel": "idol_beipan.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1071",
+    "id": "1071",
+    "CRC": "54C028567AF8B888A6D72818F92281E7D1D407CC",
+    "pngs": [
+      "idol_lifu.png"
+    ],
+    "atlas": "idol_lifu.atlas.txt",
+    "skel": "idol_lifu.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1072",
+    "id": "1072",
+    "CRC": "C0DCE4CFA74D6E2C71933B61030C6F351E002746",
+    "pngs": [
+      "idol_zouming.png"
+    ],
+    "atlas": "idol_zouming.atlas.txt",
+    "skel": "idol_zouming.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1073",
+    "id": "1073",
+    "CRC": "014BE126574FA7DB5087EED7337ED67383923F59",
+    "pngs": [
+      "idol_panlong.png"
+    ],
+    "atlas": "idol_panlong.atlas.txt",
+    "skel": "idol_panlong.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1074",
+    "id": "1074",
+    "CRC": "194F49A3EA609EC815A22EAC4262FD9B76BDBFE8",
+    "pngs": [
+      "idol_wenzhang.png"
+    ],
+    "atlas": "idol_wenzhang.atlas.txt",
+    "skel": "idol_wenzhang.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1075",
+    "id": "1075",
+    "CRC": "7B8284A6528C25C0F9CA1E70DC98082C6D820D05",
+    "pngs": [
+      "idol_kuangzhan.png"
+    ],
+    "atlas": "idol_kuangzhan.atlas.txt",
+    "skel": "idol_kuangzhan.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1076",
+    "id": "1076",
+    "CRC": "AD7AE3EEDB515D8D26F77A6621B5C2F92E8C9ECA",
+    "pngs": [
+      "idol_xixue.png"
+    ],
+    "atlas": "idol_xixue.atlas.txt",
+    "skel": "idol_xixue.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1077",
+    "id": "1077",
+    "CRC": "F96D1D95C951CAC10F8BABE2B7B66B159BEF46D2",
+    "pngs": [
+      "idol_liequan.png"
+    ],
+    "atlas": "idol_liequan.atlas.txt",
+    "skel": "idol_liequan.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1078",
+    "id": "1078",
+    "CRC": "151EE369C4AC197B282F91EF3EC7C427EE2BFBFB",
+    "pngs": [
+      "idol_weida.png"
+    ],
+    "atlas": "idol_weida.atlas.txt",
+    "skel": "idol_weida.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1079",
+    "id": "1079",
+    "CRC": "2BBD74D93F36E0C515A7D4535DC8FC242877C953",
+    "pngs": [
+      "idol_zhenxia.png"
+    ],
+    "atlas": "idol_zhenxia.atlas.txt",
+    "skel": "idol_zhenxia.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1084",
+    "id": "1084",
+    "CRC": "CDEE9928379D077B2CC072B12F18AB9F2555B568",
+    "pngs": [
+      "saixiliya2.png",
+      "saixiliya.png"
+    ],
+    "atlas": "saixiliya.atlas.txt",
+    "skel": "saixiliya.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1085",
+    "id": "1085",
+    "CRC": "6623826E8481B1C8A93FBED5DDB49AE314CB652E",
+    "pngs": [
+      "tianqi_kanban.png"
+    ],
+    "atlas": "tianqi_kanban.atlas.txt",
+    "skel": "tianqi_kanban.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1086",
+    "id": "1086",
+    "CRC": "5750195595F569F0F83463446DBCCF2DB2B7FB8A",
+    "pngs": [
+      "Sailor_Jizi.png"
+    ],
+    "atlas": "Sailor_Jizi.atlas.txt",
+    "skel": "Sailor_Jizi.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1087",
+    "id": "1087",
+    "CRC": "17F1AB9CC0EF96687A63711678B08CF9D333DA59",
+    "pngs": [
+      "kiana_6ren2.png",
+      "kiana_6ren.png"
+    ],
+    "atlas": "kiana_6ren.atlas.txt",
+    "skel": "kiana_6ren.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1088",
+    "id": "1088",
+    "CRC": "83963CCCB572C57E92FBD06CCACA906F60F46BD8",
+    "pngs": [
+      "theresa_school.png"
+    ],
+    "atlas": "theresa_school.atlas.txt",
+    "skel": "theresa_school.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1089",
+    "id": "1089",
+    "CRC": "5C532FFC8F73A9BBE8B0193273F92A03EBA7B111",
+    "pngs": [
+      "zhoutai.png"
+    ],
+    "atlas": "zhoutai.atlas.txt",
+    "skel": "zhoutai.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1092",
+    "id": "1092",
+    "CRC": "6EA5614E50C3E837DD4613EC6441AE93B4B25D1A",
+    "pngs": [
+      "heti.png"
+    ],
+    "atlas": "heti.atlas.txt",
+    "skel": "heti.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1094",
+    "id": "1094",
+    "CRC": "BC836215132721B4F7CE1D098C90A09C33982555",
+    "pngs": [
+      "hongzhi.png"
+    ],
+    "atlas": "hongzhi.atlas.txt",
+    "skel": "hongzhi.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1096",
+    "id": "1096",
+    "CRC": "4B4CDFA3CBA8789BA3C0D38CA7E6FF3EF5E554B1",
+    "pngs": [
+      "heti.png"
+    ],
+    "atlas": "heti.atlas.txt",
+    "skel": "heti.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1097",
+    "id": "1097",
+    "CRC": "D82BF5FE2133F0F949D32A27E9E7BF00927C60E9",
+    "pngs": [
+      "Lingyi_Wed.png"
+    ],
+    "atlas": "Lingyi_Wed.atlas.txt",
+    "skel": "Lingyi_Wed.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1098",
+    "id": "1098",
+    "CRC": "6B46660CD21775ED7BF9E6C7E8E54EEBFA29E93C",
+    "pngs": [
+      "heti.png"
+    ],
+    "atlas": "heti.atlas.txt",
+    "skel": "heti.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1100",
+    "id": "1100",
+    "CRC": "E9FD670D6600FFCA6DA0425013E8B839E41FE119",
+    "pngs": [
+      "huajia_delisha.png"
+    ],
+    "atlas": "huajia_delisha.atlas.txt",
+    "skel": "huajia_delisha.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1102",
+    "id": "1102",
+    "CRC": "80ED6E1A078B0879446CCF76B3D23DA25EF45A8C",
+    "pngs": [
+      "huajia_saixiliya.png"
+    ],
+    "atlas": "huajia_saixiliya.atlas.txt",
+    "skel": "huajia_saixiliya.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1104",
+    "id": "1104",
+    "CRC": "72FE3E305C2BF65C335A4D6194E6BBB944871E07",
+    "pngs": [
+      "puritian.png"
+    ],
+    "atlas": "puritian.atlas.txt",
+    "skel": "puritian.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1105",
+    "id": "1105",
+    "CRC": "E11B3447834DCB95752A86885C720ADC47B8FA5D",
+    "pngs": [
+      "bingling.png"
+    ],
+    "atlas": "bingling.atlas.txt",
+    "skel": "bingling.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1106",
+    "id": "1106",
+    "CRC": "C777DA05CED709712362FAAAFD2E15BDF3371701",
+    "pngs": [
+      "shubaojiang.png"
+    ],
+    "atlas": "shubaojiang.atlas.txt",
+    "skel": "shubaojiang.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1107",
+    "id": "1107",
+    "CRC": "E884D784B5ECCC71DA065277696365158452EBC4",
+    "pngs": [
+      "junduolan.png"
+    ],
+    "atlas": "junduolan.atlas.txt",
+    "skel": "junduolan.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1108",
+    "id": "1108",
+    "CRC": "A480883CB580E3CB3DE91BB33F6ADEFD20178C55",
+    "pngs": [
+      "dehalin.png"
+    ],
+    "atlas": "dehalin.atlas.txt",
+    "skel": "dehalin.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1109",
+    "id": "1109",
+    "CRC": "2FF7170BEC513F03C125A1EEA7574313F74C1622",
+    "pngs": [
+      "aodie.png"
+    ],
+    "atlas": "aodie.atlas.txt",
+    "skel": "aodie.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1110",
+    "id": "1110",
+    "CRC": "DEC0A1ECB9A54B90A7C4540399A18A5114D1A446",
+    "pngs": [
+      "JIUXIAOdui2.png",
+      "JIUXIAOdui.png"
+    ],
+    "atlas": "JIUXIAOdui.atlas.txt",
+    "skel": "JIUXIAOdui.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1127",
+    "id": "1127",
+    "CRC": "6C20189B59A3F0BE9817C5A10436BC04327B8CA6",
+    "pngs": [
+      "blny_xsz.png"
+    ],
+    "atlas": "blny_xsz.atlas.txt",
+    "skel": "blny_xsz.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1129",
+    "id": "1129",
+    "CRC": "F430EDBE5C1402B00D95B8F51D80600A93419582",
+    "pngs": [
+      "xier_xsz.png"
+    ],
+    "atlas": "xier_xsz.atlas.txt",
+    "skel": "xier_xsz.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1130",
+    "id": "1130",
+    "CRC": "9EA8EAD2DD6ADE79984FFE07AF005D3BF2665BFF",
+    "pngs": [
+      "xing_xsz.png"
+    ],
+    "atlas": "xing_xsz.atlas.txt",
+    "skel": "xing_xsz.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1132",
+    "id": "1132",
+    "CRC": "59BB51F81D6B7DF0067FF9C05D0180D801B74548",
+    "pngs": [
+      "wanshengyayi.png"
+    ],
+    "atlas": "wanshengyayi.atlas.txt",
+    "skel": "wanshengyayi.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1133",
+    "id": "1133",
+    "CRC": "83075152F2098190A804A9AF5C98B1C4121F195C",
+    "pngs": [
+      "kiana_wansheng.png"
+    ],
+    "atlas": "kiana_wansheng.atlas.txt",
+    "skel": "kiana_wansheng.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1137",
+    "id": "1137",
+    "CRC": "A9195DE7101822DFE70E4B063C7DAA3F86F46724",
+    "pngs": [
+      "hyj_sr2.png",
+      "hyj_sr.png"
+    ],
+    "atlas": "hyj_sr.atlas.txt",
+    "skel": "hyj_sr.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1138",
+    "id": "1138",
+    "CRC": "CE619423E07100BE7CBE27139CDDA68227F6B207",
+    "pngs": [
+      "qyn_ny.png"
+    ],
+    "atlas": "qyn_ny.atlas.txt",
+    "skel": "qyn_ny.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1139",
+    "id": "1139",
+    "CRC": "EF64B1E45DF9F911D37435A6098C4905A4037798",
+    "pngs": [
+      "younianboshi.png"
+    ],
+    "atlas": "younianboshi.atlas.txt",
+    "skel": "younianboshi.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1140",
+    "id": "1140",
+    "CRC": "56139B49CC66E1341EDAC1C3436C421AE2DAF301",
+    "pngs": [
+      "xing_td.png"
+    ],
+    "atlas": "xing_td.atlas.txt",
+    "skel": "xing_td.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1142",
+    "id": "1142",
+    "CRC": "1D1D26D243E9CCCCC2E15FDE4BF70F215738903E",
+    "pngs": [
+      "fuhua.png"
+    ],
+    "atlas": "fuhua.atlas.txt",
+    "skel": "fuhua.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1147",
+    "id": "1147",
+    "CRC": "D21B500F05D8310FA7D5D719C6085E9C29FF137D",
+    "pngs": [
+      "kimonokiana.png"
+    ],
+    "atlas": "kimonokiana.atlas.txt",
+    "skel": "kimonokiana.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1148",
+    "id": "1148",
+    "CRC": "8A624F4272FD45E5920F61C4E928C93F526C01D2",
+    "pngs": [
+      "kimonohouraiji.png"
+    ],
+    "atlas": "kimonohouraiji.atlas.txt",
+    "skel": "kimonohouraiji.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1150",
+    "id": "1150",
+    "CRC": "9B7C6B4DF49750237E0F3F54734AF211DE80B565",
+    "pngs": [
+      "shoulie.png"
+    ],
+    "atlas": "shoulie.atlas.txt",
+    "skel": "shoulie.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1151",
+    "id": "1151",
+    "CRC": "B01CBDA00641D109E9AC902A43B590B82A35FD3C",
+    "pngs": [
+      "yintuoluo.png"
+    ],
+    "atlas": "yintuoluo.atlas.txt",
+    "skel": "yintuoluo.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1152",
+    "id": "1152",
+    "CRC": "150DC6C6AF616AE109A75B855BBC3C952A17846A",
+    "pngs": [
+      "haipao.png"
+    ],
+    "atlas": "haipao.atlas.txt",
+    "skel": "haipao.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1153",
+    "id": "1153",
+    "CRC": "8B3BD1957E26A1613F40AFEE041FA40D9F51EF58",
+    "pngs": [
+      "jinglai.png"
+    ],
+    "atlas": "jinglai.atlas.txt",
+    "skel": "jinglai.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1154",
+    "id": "1154",
+    "CRC": "39C34FED84F42239F63DA09AA0E22ED5BC1917C3",
+    "pngs": [
+      "yabadun.png"
+    ],
+    "atlas": "yabadun.atlas.txt",
+    "skel": "yabadun.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1156",
+    "id": "1156",
+    "CRC": "FF3FBF7E0095AE71A95628C35206812009AA2565",
+    "pngs": [
+      "touzhiwang.png"
+    ],
+    "atlas": "touzhiwang.atlas.txt",
+    "skel": "touzhiwang.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1157",
+    "id": "1157",
+    "CRC": "4A42A3A6F0989730985F2F4C5E1099E1F1C2BBB6",
+    "pngs": [
+      "shoulie_q.png"
+    ],
+    "atlas": "shoulie_q.atlas.txt",
+    "skel": "shoulie_q.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1158",
+    "id": "1158",
+    "CRC": "ECC12F4839DA55AD930FC4643835362A7E537ABF",
+    "pngs": [
+      "yintuoluo_q.png"
+    ],
+    "atlas": "yintuoluo_q.atlas.txt",
+    "skel": "yintuoluo_q.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1159",
+    "id": "1159",
+    "CRC": "D1A77EF7ABBE4F5E064D8F8ACDE6B0D6EBCA99FB",
+    "pngs": [
+      "haipao_q.png"
+    ],
+    "atlas": "haipao_q.atlas.txt",
+    "skel": "haipao_q.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1160",
+    "id": "1160",
+    "CRC": "C27771B3AEC5F4035D873F520EF92AB5C3857BF9",
+    "pngs": [
+      "jinglai_q.png"
+    ],
+    "atlas": "jinglai_q.atlas.txt",
+    "skel": "jinglai_q.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1161",
+    "id": "1161",
+    "CRC": "9E58C40C9162B3AAA1AFA89023C014BB92C1B352",
+    "pngs": [
+      "yabadun_q.png"
+    ],
+    "atlas": "yabadun_q.atlas.txt",
+    "skel": "yabadun_q.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1162",
+    "id": "1162",
+    "CRC": "7396131647CD98C4ADE2C1F2B8A4DF0A1E99F11E",
+    "pngs": [
+      "xialulu_q.png"
+    ],
+    "atlas": "xialulu_q.atlas.txt",
+    "skel": "xialulu_q.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1164",
+    "id": "1164",
+    "CRC": "C9B3B1AD29979907792E05BD1BFCAB798B5921A3",
+    "pngs": [
+      "benghuai_chy.png",
+      "benghuai_chy2.png"
+    ],
+    "atlas": "benghuai_chy.atlas.txt",
+    "skel": "benghuai_chy.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1165",
+    "id": "1165",
+    "CRC": "1C05AF27F3BCAD21BFB1CF02D38314C0C4C68AD5",
+    "pngs": [
+      "dym.png"
+    ],
+    "atlas": "dym.atlas.txt",
+    "skel": "dym.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1166",
+    "id": "1166",
+    "CRC": "CED887DB86A3E192F06E44B262D527DC4FF1D85D",
+    "pngs": [
+      "tiandianyayi.png"
+    ],
+    "atlas": "tiandianyayi.atlas.txt",
+    "skel": "tiandianyayi.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1167",
+    "id": "1167",
+    "CRC": "732F7BE6C724316AF1D7CF2136D1E7D7B7AD2447",
+    "pngs": [
+      "jiuxiao.png"
+    ],
+    "atlas": "jiuxiao.atlas.txt",
+    "skel": "jiuxiao.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1168",
+    "id": "1168",
+    "CRC": "8F4E54606A9C480D499D273F8E21A93CEB6071AF",
+    "pngs": [
+      "fuhua_tiandian.png"
+    ],
+    "atlas": "fuhua_tiandian.atlas.txt",
+    "skel": "fuhua_tiandian.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1170",
+    "id": "1170",
+    "CRC": "8EEA2D88D26EDF04A4E77DB031C477D79D90AEAB",
+    "pngs": [
+      "kiana_kaixue.png"
+    ],
+    "atlas": "kiana_kaixue.atlas.txt",
+    "skel": "kiana_kaixue.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1171",
+    "id": "1171",
+    "CRC": "AB5ED4994C48A468CF5F6B0ABD3E8FA777DF0D46",
+    "pngs": [
+      "yayi_kaixue.png"
+    ],
+    "atlas": "yayi_kaixue.atlas.txt",
+    "skel": "yayi_kaixue.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1173",
+    "id": "1173",
+    "CRC": "EAF95D557513F56FADFFEFB73E9E35136BF7EE1A",
+    "pngs": [
+      "190227.png"
+    ],
+    "atlas": "190227.atlas.txt",
+    "skel": "190227.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1174",
+    "id": "1174",
+    "CRC": "B7954024A8A1C9AE9A32A0C6FCFAC4E0D9F0B71F",
+    "pngs": [
+      "tonghua_sanrenzu2.png",
+      "tonghua_sanrenzu.png"
+    ],
+    "atlas": "tonghua_sanrenzu.atlas.txt",
+    "skel": "tonghua_sanrenzu.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1180",
+    "id": "1180",
+    "CRC": "A1D09323C5B04ABD9D22E250D4EA25AEA2D0384D",
+    "pngs": [
+      "mei_cooker.png"
+    ],
+    "atlas": "mei_cooker.atlas.txt",
+    "skel": "mei_cooker.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1184",
+    "id": "1184",
+    "CRC": "2EE62B87D11CA0619AAD6FF17DD14BE85B33F332",
+    "pngs": [
+      "bread_meiludi.png"
+    ],
+    "atlas": "bread_meiludi.atlas.txt",
+    "skel": "bread_meiludi.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1185",
+    "id": "1185",
+    "CRC": "565C67B21325847F7B98E7A1D2BF843988DD78F3",
+    "pngs": [
+      "bread_sakuya.png",
+      "Sequence_102.png"
+    ],
+    "atlas": "bread_sakuya.atlas.txt",
+    "skel": "bread_sakuya.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1186",
+    "id": "1186",
+    "CRC": "306470AE5ABF4599B65EBBF66A07721FE84EA682",
+    "pngs": [
+      "ani0018_4x4.png",
+      "bread_altina.png",
+      "Particle_011.png"
+    ],
+    "atlas": "bread_altina.atlas.txt",
+    "skel": "bread_altina.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1187",
+    "id": "1187",
+    "CRC": "24548019E7EAA9D88A84B50C7870C81EDB481679",
+    "pngs": [
+      "Sequence_103.png",
+      "bread_wuyudonghua.png"
+    ],
+    "atlas": "bread_wuyudonghua.atlas.txt",
+    "skel": "bread_wuyudonghua.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1188",
+    "id": "1188",
+    "CRC": "8ED1AC0A5D2F4A148D5620A24FAB30C0A3187E61",
+    "pngs": [
+      "Kuangsan_Partner.png"
+    ],
+    "atlas": "Kuangsan_Partner.atlas.txt",
+    "skel": "Kuangsan_Partner.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1189",
+    "id": "1189",
+    "CRC": "11C907DD545E81A97272C840376DD646D88570AC",
+    "pngs": [
+      "Qinli.png"
+    ],
+    "atlas": "Qinli.atlas.txt",
+    "skel": "Qinli.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1197",
+    "id": "1197",
+    "CRC": "8551817A55D8CE3F5E88F45E2AC252F74B025B9A",
+    "pngs": [
+      "zhenying_aladiya.png"
+    ],
+    "atlas": "zhenying_aladiya.atlas.txt",
+    "skel": "zhenying_aladiya.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1198",
+    "id": "1198",
+    "CRC": "FA57836D0B4C703BC0BA98B45047FF28B8A6ED6A",
+    "pngs": [
+      "zhenying_kesi.png"
+    ],
+    "atlas": "zhenying_kesi.atlas.txt",
+    "skel": "zhenying_kesi.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1199",
+    "id": "1199",
+    "CRC": "545B787550DD5D3CD96F453FC67E1A5CF04761B6",
+    "pngs": [
+      "zhenying_xiliya.png"
+    ],
+    "atlas": "zhenying_xiliya.atlas.txt",
+    "skel": "zhenying_xiliya.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1200",
+    "id": "1200",
+    "CRC": "02F0CFFDA0A8EE86E3B45951A291733AA3F3EA3C",
+    "pngs": [
+      "zhenying_jielun.png"
+    ],
+    "atlas": "zhenying_jielun.atlas.txt",
+    "skel": "zhenying_jielun.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1201",
+    "id": "1201",
+    "CRC": "3371FC400596646D1E4F7EC3668D995B6B4AB65E",
+    "pngs": [
+      "zhenying_lizi.png"
+    ],
+    "atlas": "zhenying_lizi.atlas.txt",
+    "skel": "zhenying_lizi.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1202",
+    "id": "1202",
+    "CRC": "402114F261D6BA659277BB954ACAA78EB09318C8",
+    "pngs": [
+      "zhenying_sikulite.png"
+    ],
+    "atlas": "zhenying_sikulite.atlas.txt",
+    "skel": "zhenying_sikulite.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1205",
+    "id": "1205",
+    "CRC": "1BEAD91D9E285F4318A3A06DB0FF94C4CC02ED2B",
+    "pngs": [
+      "Sixinai_Partner.png"
+    ],
+    "atlas": "Sixinai_Partner.atlas.txt",
+    "skel": "Sixinai_Partner.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1206",
+    "id": "1206",
+    "CRC": "08A8CB5DA608805C54ADA0F76ECA0E1AEBA77C50",
+    "pngs": [
+      "KuangsanUniforms_Partner.png"
+    ],
+    "atlas": "KuangsanUniforms_Partner.atlas.txt",
+    "skel": "KuangsanUniforms_Partner.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1207",
+    "id": "1207",
+    "CRC": "EE7363F977B8EA94813BD35EEA277CA35EFBE41F",
+    "pngs": [
+      "Shixiang_Partner.png"
+    ],
+    "atlas": "Shixiang_Partner.atlas.txt",
+    "skel": "Shixiang_Partner.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1208",
+    "id": "1208",
+    "CRC": "0571F58076541AB0067908324719BAC99D4B90B9",
+    "pngs": [
+      "zhezhi2.png",
+      "zhezhi.png"
+    ],
+    "atlas": "zhezhi.atlas.txt",
+    "skel": "zhezhi.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1209",
+    "id": "1209",
+    "CRC": "F09336E8A26CB0A60DF668F5EB4B9B01A2F80858",
+    "pngs": [
+      "bachongling.png"
+    ],
+    "atlas": "bachongling.atlas.txt",
+    "skel": "bachongling.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1210",
+    "id": "1210",
+    "CRC": "DAA4DDC316BA80FD038C0AB387095B2C57CE7413",
+    "pngs": [
+      "bronya_shuimu2.png",
+      "bronya_shuimu.png"
+    ],
+    "atlas": "bronya_shuimu.atlas.txt",
+    "skel": "bronya_shuimu.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1214",
+    "id": "1214",
+    "CRC": "0981982FB2BAB2C7589A6B454729ACA5F32F8656",
+    "pngs": [
+      "niepudun.png"
+    ],
+    "atlas": "niepudun.atlas.txt",
+    "skel": "niepudun.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1215",
+    "id": "1215",
+    "CRC": "340369665959604EB493C25C1E7BE249CD455AF3",
+    "pngs": [
+      "gzzx.png",
+      "gzzx2.png"
+    ],
+    "atlas": "gzzx.atlas.txt",
+    "skel": "gzzx.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1216",
+    "id": "1216",
+    "CRC": "A9A726CA23D6F7044126643B74882FCAE0ACCAB7",
+    "pngs": [
+      "ciyuanlvren.png",
+      "ciyuanlvren2.png"
+    ],
+    "atlas": "ciyuanlvren.atlas.txt",
+    "skel": "ciyuanlvren.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1217",
+    "id": "1217",
+    "CRC": "9E69CAAABFFE308B631681D7CB492C33D85EE216",
+    "pngs": [
+      "nongwalu.png"
+    ],
+    "atlas": "nongwalu.atlas.txt",
+    "skel": "nongwalu.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1218",
+    "id": "1218",
+    "CRC": "E0B5A10B6DFE6E0D880188BB231351140BC12510",
+    "pngs": [
+      "BlackHeart2.png",
+      "BlackHeart.png"
+    ],
+    "atlas": "BlackHeart.atlas.txt",
+    "skel": "BlackHeart.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1219",
+    "id": "1219",
+    "CRC": "43537FB673A79BFD6C55C3E390E95A1E18C2D594",
+    "pngs": [
+      "bse.png"
+    ],
+    "atlas": "bse.atlas.txt",
+    "skel": "bse.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1221",
+    "id": "1221",
+    "CRC": "0B5F8E871F90617E82C5277F74169E144A73A57D",
+    "pngs": [
+      "partner_huihuowansheng.png",
+      "partner_huihuowansheng2.png"
+    ],
+    "atlas": "partner_huihuowansheng.atlas.txt",
+    "skel": "partner_huihuowansheng.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1223",
+    "id": "1223",
+    "CRC": "1082F4FF17C080D06637F8800FBD0E2ACEB382FF",
+    "pngs": [
+      "A1.png"
+    ],
+    "atlas": "A1.atlas.txt",
+    "skel": "A1.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1224",
+    "id": "1224",
+    "CRC": "4530F38AAB201D47D29E2BC42761B7CCD8BA32FF",
+    "pngs": [
+      "A2.png"
+    ],
+    "atlas": "A2.atlas.txt",
+    "skel": "A2.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1225",
+    "id": "1225",
+    "CRC": "E81C27929618FC95F49F63D45B5E227C336F43DE",
+    "pngs": [
+      "A3.png"
+    ],
+    "atlas": "A3.atlas.txt",
+    "skel": "A3.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1229",
+    "id": "1229",
+    "CRC": "21AF3D84C8B75E3CEA96B621354E1C6828B9A9FE",
+    "pngs": [
+      "WenquanXier.png"
+    ],
+    "atlas": "WenquanXier.atlas.txt",
+    "skel": "WenquanXier.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1236",
+    "id": "1236",
+    "CRC": "8585C34F75ED63BEE7DA75A8AE1C2299BF61797B",
+    "pngs": [
+      "aisha_wsj.png"
+    ],
+    "atlas": "aisha_wsj.atlas.txt",
+    "skel": "aisha_wsj.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1237",
+    "id": "1237",
+    "CRC": "0DC99B78BC99866109903AB9B1A6CB9B719A56C9",
+    "pngs": [
+      "Hakase_S.png"
+    ],
+    "atlas": "Hakase_S.atlas.txt",
+    "skel": "Hakase_S.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1239",
+    "id": "1239",
+    "CRC": "C2FD17C7C2193C2F1081C2FD6DA422132B194FF1",
+    "pngs": [
+      "A4.png"
+    ],
+    "atlas": "A4.atlas.txt",
+    "skel": "A4.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1240",
+    "id": "1240",
+    "CRC": "4E60151888B85725AC74D63B5A3642B2102FF142",
+    "pngs": [
+      "A5.png"
+    ],
+    "atlas": "A5.atlas.txt",
+    "skel": "A5.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1241",
+    "id": "1241",
+    "CRC": "2BA039170D03EB27C6346D9D5E2988FAC39BFF3E",
+    "pngs": [
+      "A6.png"
+    ],
+    "atlas": "A6.atlas.txt",
+    "skel": "A6.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1998",
+    "id": "1998",
+    "CRC": "C3133CBC6549A4F578AF24DAEABCA4842BB0E23E",
+    "pngs": [
+      "xinnianchuxue.png"
+    ],
+    "atlas": "xinnianchuxue.atlas.txt",
+    "skel": "xinnianchuxue.json"
+  },
+  {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1999",
+    "id": "1999",
+    "CRC": "7F976076A4F06A3B61924AE92C84793B63E33D91",
+    "pngs": [
+      "CG_MEIHUAJIA.png",
+      "CG_MEIHUAJIA2.png"
+    ],
+    "atlas": "CG_MEIHUAJIA.atlas.txt",
+    "skel": "CG_MEIHUAJIA.json"
+  }
+]
