@@ -1079,6 +1079,16 @@
     "skel": "A6.json"
   },
   {
+    "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1248",
+    "id": "1248",
+    "CRC": "A6B2D3A72386636E05355DA26850533EB59952B6",
+    "pngs": [
+      "hefuyayi.png"
+    ],
+    "atlas": "hefuyayi.atlas.txt",
+    "skel": "hefuyayi.json"
+  },
+  {
     "bundleName": "MenusV2/Partner/AllPartnerMiscShows/Show1998",
     "id": "1998",
     "CRC": "C3133CBC6549A4F578AF24DAEABCA4842BB0E23E",
