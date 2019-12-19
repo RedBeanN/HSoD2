@@ -5,7 +5,7 @@
  * When user visit the site at least twice,
  *   SW caches files for the future visit(s).
  */
-const CACHENAME = 'hsod2-2019.06.27v1';
+const CACHENAME = 'hsod2-2019.12.19v1';
 const urls = [
   /**
    * These files are important and useful for almost all pages.
@@ -104,7 +104,7 @@ const statics = [
   // resources
   'images', 'icons', 'fonts', 'animation',
   // others
-  'manifest', 'live2d', 'spine'
+  'manifest', 'live2d', 'spine-widget'
 ];
 let caching = false;
 const laterPrecache = new (class uniqueArray {
