@@ -12,6 +12,10 @@ block content
   - if (!keepDrawer)
     script.
       mdui.JQ('body').removeClass('mdui-drawer-body-left');
-  script(src="/m/js/#{js}.js")
   - if (jsVendor)
     script(src="/m/js/#{jsVendor}.js")
+  - if (injectedLibs)
+  - for (let lib of injectedLibs) {
+      script(src="m/js/#{lib}.js")
+  - }
+  script(src="/m/js/#{js}.js")
