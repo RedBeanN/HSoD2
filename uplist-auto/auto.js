@@ -34,7 +34,7 @@ function save(pool, cb) {
         data.data.forEach(i => {
           if (i.indexOf('×30') != -1) {
             isPet = true;
-            pets.push(i.substring(0, i.indexOf('×9')));
+            pets.push(i.substring(0, i.indexOf('×30')));
           }
         });
       }
