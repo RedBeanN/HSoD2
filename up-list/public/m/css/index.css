@@ -59,6 +59,7 @@ footer a {
 }
 .footer-dialog img {
   min-width: 256px;
+  margin-top: 12px;
 }
 
 .opacity-5 {
