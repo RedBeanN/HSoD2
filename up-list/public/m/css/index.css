@@ -58,7 +58,7 @@ footer a {
   text-align: center;
 }
 .footer-dialog img {
-  width: 300px;
+  min-width: 256px;
 }
 
 .opacity-5 {
