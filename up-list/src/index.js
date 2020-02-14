@@ -48,6 +48,7 @@ const app = new Vue({
       script: 0,
       other: 0,
     },
+    contributeStatus: 0,
   },
   computed: {
     balorRate () {
@@ -111,6 +112,10 @@ const app = new Vue({
       }
       this.swSize = swSize;
     },
+    dontShowContribute () {
+      window.localStorage.setItem('contribute-status', 2);
+      this.contributeStatus = 2;
+    },
   },
   filters: {
     byte2mb (byte) {
@@ -127,6 +132,15 @@ const app = new Vue({
     setInterval(() => {
       this.updateSW();
     }, 5000);
+    let contribute = window.localStorage.getItem('contribute-status');
+    if (contribute !== null) {
+      this.contributeStatus = contribute;
+      if (contribute == 0) window.localStorage.setItem('contribute-status', 1);
+    }
+    else {
+      this.contributeStatus = 0;
+      window.localStorage.setItem('contribute-status', 0);
+    }
   },
   mounted () {
     mdui.mutation();

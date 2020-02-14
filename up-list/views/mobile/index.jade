@@ -96,6 +96,16 @@ block content
         //- p.mdui-text-color-red
         //-   b [ 2019.01.14 ] 
         //-   span 由于里塔助手的旧版本存在存档消失的严重 bug , 请使用过里塔助手的用户在里塔助手界面多刷新几次 , 看到【里塔助手】的更新履历里有1月7日及以后的更新后再使用.
+    .mdui-card#contribute(v-if='contributeStatus == 1')
+      .mdui-card-primary
+        .mdui-card-primary-title 搞事学园需要您的帮助！
+      .mdui-card-content
+        .mdui-typo 搞事学园目前由开发者自费维护，资金压力山大，您的帮助是开发者前进的动力！如果您愿意资助搞事学园，请
+          a(onclick='(new mdui.Dialog(mdui.JQ("#pay"))).open()') 支持搞事学园
+          | ，有您的支持搞事学园会变得越来越好！
+          p
+            b 在此特别鸣谢崩坏学园2贴吧吧友的热心帮助！
+          button.mdui-btn.mdui-ripple.mdui-shadow-1(@click='dontShowContribute') 不再提醒
     .mdui-card.hide(v-if='card.content')
       .mdui-card-primary
         .mdui-card-primary-title {{ card.title }}
@@ -121,7 +131,7 @@ block content
     #pay.mdui-dialog.footer-dialog
       #pay-content.mdui-dialog-content.mdui-container
         .mdui-col-xs-12
-          p.mdui-m-t-2 搞事学园需要您的支持来变得更好！
+          //- p.mdui-m-t-2 搞事学园需要您的支持来变得更好！
           p.small.opacity-5 搞事学园目前维护费用(服务器+带宽)大约为2500RMB/年
           p.small.opacity-5
             del 开发者的饭钱为30RMB/天
