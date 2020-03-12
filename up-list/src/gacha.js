@@ -39,6 +39,7 @@ const app = new Vue({
       'custom': { 's': [], 't': [] },
       'special': { 's': [], 't': [] },
       'middle': { 's': [], 't': [] },
+      'festival': { 's': [], 't': [] },
     },
     current: {
       pool: 'high',
@@ -51,6 +52,7 @@ const app = new Vue({
       'custom': '魔女',
       'special': '魔法少女',
       'middle': '大小姐',
+      'festival': '梦想',
     },
     gachas: ['s', 't'],
     probs: {},
@@ -116,7 +118,7 @@ const app = new Vue({
       return list.reverse();
     },
     upItems () {
-      const up = { high: [], custom: [], special: [], middle: [] };
+      const up = { high: [], custom: [], special: [], middle: [], festival: [] };
       for (let pool in this.probs) {
         /**
          * 过滤出当期 up 内容
@@ -422,7 +424,7 @@ const app = new Vue({
   },
   created () {
     let rec;
-    if (rec = store.getItem('records')) this.records = JSON.parse(rec);
+    if (rec = store.getItem('records')) this.records = Object.assign(this.records, JSON.parse(rec));
     this.loadProb();
     this.loadSpecial();
   },
