@@ -4,7 +4,7 @@ const fs = require('fs');
 const axios = require('axios');
 
 const baseUrl = 'http://cms.benghuai.com/mihoyo/hsod2_gacha_rules/index.php/gacha/';
-const pools = ['high', 'custom', 'special', 'middle'];
+const pools = ['high', 'custom', 'special', 'middle', 'festival'];
 const tail = '?region=3_1';
 
 module.exports = () => {
@@ -25,7 +25,9 @@ module.exports = () => {
 };
 
 function catchOne(pool) {
-  const url = baseUrl + pool + tail;
+  let url = baseUrl + pool;
+  if (pool === 'festival') url += '?region=18_1';
+  else url += tail;
   // return new Promise((resolve, reject) => {
   //   const req = http.get(url, res => {
   //     let data = '';
@@ -93,4 +95,8 @@ function formatData (arr) {
     god,
     com
   }
+}
+
+if (!module.parent) {
+  module.exports();
 }
