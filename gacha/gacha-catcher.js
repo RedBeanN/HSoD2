@@ -25,9 +25,7 @@ module.exports = () => {
 };
 
 function catchOne(pool) {
-  let url = baseUrl + pool;
-  if (pool === 'festival') url += '?region=18_1';
-  else url += tail;
+  const url = baseUrl + pool + tail;
   // return new Promise((resolve, reject) => {
   //   const req = http.get(url, res => {
   //     let data = '';
