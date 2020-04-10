@@ -43,6 +43,16 @@ router.get('/spine-viewer', (req, res, next) => {
     injectedLibs: ['spine-widget'],
   });
 });
+router.get('/community', (req, res, next) => {
+  res.render('mobile/template', {
+    title: '动态看板查看器 - 搞事学园',
+    css: 'community',
+    cssVendor: 'community.chunk',
+    js: 'community',
+    jsVendor: 'community.chunk',
+    injectedLibs: ['spine-widget'],
+  });
+});
 router.get('/DLC', function (req, res, next) {
   // res.render('DLC', { title: '装备模拟器 - 搞事学园' });
   fs.readFile(
