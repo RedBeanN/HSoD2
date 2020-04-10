@@ -45,7 +45,7 @@ router.get('/spine-viewer', (req, res, next) => {
 });
 router.get('/community', (req, res, next) => {
   res.render('mobile/template', {
-    title: '动态看板查看器 - 搞事学园',
+    title: '社团助手 - 搞事学园',
     css: 'community',
     cssVendor: 'community.chunk',
     js: 'community',
