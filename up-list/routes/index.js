@@ -50,7 +50,6 @@ router.get('/community', (req, res, next) => {
     cssVendor: 'community.chunk',
     js: 'community',
     jsVendor: 'community.chunk',
-    injectedLibs: ['spine-widget'],
   });
 });
 router.get('/DLC', function (req, res, next) {
