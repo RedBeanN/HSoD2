@@ -31,6 +31,14 @@
     "name": "丽塔·洛丝薇瑟",
     "rate": 5,
     "pool": "high"
+  },  {
+    "startTime": "2020-04-29",
+    "endTime": "2020-05-02",
+    "uid": 4014,
+    "img": "images/icons/playericons/258.png",
+    "name": "宁蒂",
+    "rate": 5,
+    "pool": "high"
   }, {
     "startTime": "2019-11-27",
     "endTime": "2019-12-12",
