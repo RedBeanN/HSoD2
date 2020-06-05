@@ -63,5 +63,21 @@
     "name": "䌷·樱色花火",
     "rate": 3,
     "pool": "high"
+  }, {
+    "startTime": "2020-06-05",
+    "endTime": "2020-06-13",
+    "uid": 17104,
+    "img": "images/icons/playericons/331.png",
+    "name": "贝露·重度玩家",
+    "rate": 2,
+    "pool": "special"
+  }, {
+    "startTime": "2020-06-13",
+    "endTime": "2020-06-20",
+    "uid": 17104,
+    "img": "images/icons/playericons/186.png",
+    "name": "诺瓦露·傲娇女神",
+    "rate": 2,
+    "pool": "special"
   }
 ]
