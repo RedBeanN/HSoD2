@@ -8,6 +8,22 @@
     "rate": 5,
     "pool": "high"
   }, {
+    "startTime": "2020-06-06",
+    "endTime": "2020-06-13",
+    "uid": 4004,
+    "img": "images/icons/playericons/004.png",
+    "name": "无量塔姬子",
+    "rate": 5,
+    "pool": "high"
+  }, {
+    "startTime": "2020-06-06",
+    "endTime": "2020-06-13",
+    "uid": 4009,
+    "img": "images/icons/playericons/076.png",
+    "name": "伊瑟琳",
+    "rate": 5,
+    "pool": "high"
+  }, {
     "startTime": "2020-02-09",
     "endTime": "2020-02-12",
     "uid": 4010,
