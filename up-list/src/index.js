@@ -33,7 +33,7 @@ const app = new Vue({
       { url: '/buglist',       name: '测试服 BUG 记录', icon: 'bug_report' },
       { url: '/gacha',         name: '扭蛋模拟器',      icon: 'casino' },
       { url: '/illustrate/v3', name: '装备图鉴',        icon: 'art_track' },
-      { url: '/innerWorld',    name: '里塔助手',        icon: 'book' },
+      // { url: '/innerWorld',    name: '里塔助手',        icon: 'book' },
       { url: '/talent',        name: '圣痕一览',        icon: 'all_out' },
       { url: '/calendar',      name: '崩坏课程表',      icon: 'event_note'},
       // { url: '/roguelike',     name: '伽蓝之末排名',    icon: 'multiline_chart'},
