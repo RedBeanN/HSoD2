@@ -40,6 +40,14 @@
     "rate": 5,
     "pool": "high"
   }, {
+    "startTime": "2020-06-21",
+    "endTime": "2020-06-24",
+    "uid": 4012,
+    "img": "images/icons/playericons/193.png",
+    "name": "西琳",
+    "rate": 5,
+    "pool": "high"
+  }, {
     "startTime": "2020-03-01",
     "endTime": "2020-03-04",
     "uid": 4013,
