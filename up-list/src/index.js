@@ -39,6 +39,7 @@ const app = new Vue({
       // { url: '/roguelike',     name: '伽蓝之末排名',    icon: 'multiline_chart'},
       // { url: '/worldbattle/20201',name: '阵营战记录',   icon: 'multiline_chart'},
       // { url: '/pet-run',       name: '使魔Formula',     icon: 'pets' },
+      { url: '/bot.html',      name: '搞事Bot食用指南', icon: 'android' },
     ],
     drawerInst: null,
     swSize: {
