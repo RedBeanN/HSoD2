@@ -84,7 +84,7 @@ const excludes = [
   /**
    * These assets will never be saved.
    */
-  'data', 'last', 'nocache', 'auto/', 'details', 'convert', 'gtag', 'detail',
+  'data', 'last', 'nocache', 'auto/', 'details', 'convert', 'gtag', 'detail', 'bot',
   /**
    * Avoid Mixed Content Error over HTTPS
    */
