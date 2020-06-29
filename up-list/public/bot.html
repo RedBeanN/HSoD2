@@ -18,6 +18,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="搞事学园">
   <link rel="stylesheet" href="/m/css/mdui.min.css">
+  <style>
+    .screenshot {
+      max-width: 400px !important;
+      width: 80%;
+    }
+  </style>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -85,6 +91,7 @@
       <p>
         发送<b>公主/魔女/魔法少女/大小姐十连</b>进行一次十连<br>
         发送<b>公主/魔女/魔法少女/大小姐百连</b>进行一次百连，百连结果只显示神器（因此使魔祈愿期间使用<b>魔女百连</b>会显示没有抽到神器）
+        <br><img src="/images/bot/1.png" alt="1.png" class="screenshot">
       </p>
       <!-- 玩家查询 -->
       <h3>玩家查询</h3>
@@ -94,7 +101,8 @@
       </blockquote>
       <p>
         发送<b>查询国服/测服/混服/腾讯服/uc1/2/360s1/2/b1/b2玩家</b>+ID可查询指定玩家的资料<br>
-        例：<b>查询国服玩家1001</b><br>
+        例：<b>查询国服玩家1001</b>
+        <br><img src="/images/bot/2.png" alt="2.png" class="screenshot"><br>
         发送<b>绑定国服/测服/混服/腾讯服/uc1/2/360s1/2/b1/b2玩家</b>+ID可将自己的qq与指定账号绑定<br>
         例：<b>绑定国服玩家1001</b><br>
         发送<b>查询@目标</b>可查询已绑定账号的群员
@@ -105,8 +113,10 @@
       <p>
         发送<b>装备卡</b>+装备全名可以查询指定装备的图鉴<br>
         例：<b>装备卡 七海千秋</b><br>
+        <img src="/images/bot/3.png" alt="3.png" class="screenshot"><br>
         发送<b>查询装备</b>+查询内容可以查询相关装备<br>
         例：<b>查询装备 水晶</b>可以查询到希露的瞬身水晶、远古种族的水晶、信仰水晶等装备<br>
+        <img src="/images/bot/4.png" alt="4.png" class="screenshot"><br>
         发送<b>查询up</b>+装备全名可以查询指定神器的近期up时间，暂不支持使魔查询<br>
         例：<b>查询up 希露的瞬身水晶</b>
       </p>
@@ -129,11 +139,15 @@
         效果：群员发送的消息内容是A的时候机器人回复B<br>
         A和B都可以包含@、图片等<br>
         例：<b>有人发@群主大人 你回[图片]</b><br>
+        <img src="/images/bot/5.png" alt="5.png" class="screenshot"><br>
+        <img src="/images/bot/6.png" alt="6.png" class="screenshot"><br>
         取消普通训练：<b>不再回复A</b><br><br>
         关键词训练：<b>有人发关键词A你回B</b><br>
         效果：群员发送的消息内容包含A的时候机器人回复B<br>
         A只能是文字，B可以包含@、图片等<br>
         例：<b>有人发关键词抽吗你回问就不抽</b><br>
+        <img src="/images/bot/7.png" alt="7.png" class="screenshot"><br>
+        <img src="/images/bot/8.png" alt="8.png" class="screenshot"><br>
         取消关键词训练：<b>不再回复关键词A</b><br>
         <blockquote>注：启用对话的时候，发送<b>cg</b>或<b>CG</b>可获得最新登录CG</blockquote>
       </p>
@@ -176,6 +190,7 @@
       <p>
         发送<b>数字1d数字2</b>投掷数字1个最大为数字2的骰子<br>
         例：<b>3d6</b><br> 掷3个最大为6的骰子<br>
+        <img src="/images/bot/9.png" alt="9.png" class="screenshot"><br>
         · 机器人最多可以同时掷10个骰子，每个骰子最大数字不超过9999<br>
         · 每人每分钟只能掷一次骰子
       </p>
@@ -189,6 +204,7 @@
         管理员可发送<b>分组备注 分组名 备注内容</b>来设置指定分组的备注<br>
         例：<b>分组备注 A组 开局打左中，之后听指挥</b><br>
         群员可发送<b>我的分组</b>查看自己的分组和备注<br>
+        <img src="/images/bot/10.png" alt="10.png" class="screenshot"><br>
         发送<b>加入分组 分组名</b>加入指定的分组<br>
         发送<b>退出分组</b>退出指定的分组<br>
         发送<b>分组列表</b>可查看当前群聊中的所有分组<br>
@@ -204,21 +220,28 @@
       <h5>分组高级功能</h5>
       <p>
         发送<b>分组广播 分组名 广播内容</b>可以让机器人向指定分组中的群员私聊发送广播内容<br>
-        例：<b>分组广播 A组 打团啦，快进语音！</b>
+        例：<b>分组广播 A组 打团啦，快进语音！</b><br>
+        <img src="/images/bot/11.png" alt="11.png" class="screenshot"><br>
       </p>
       <!-- 娱乐 -->
       <h3>趣图</h3>
       <blockquote>开关：<b>启用趣图 禁用趣图</b></blockquote>
       <p>
         发送<b>爬/牵/提/丢/下锅@目标</b>合成一张表情包<br>
-        例：<b>爬@狗群员</b>
+        例：<b>爬@狗群员</b><br>
+        <img src="/images/bot/12.png" alt="12.png" class="screenshot"><br>
       </p>
       <h3>点歌</h3>
       <blockquote>开关：<b>启用点歌 禁用点歌</b></blockquote>
       <p>
         发送<b>点歌 歌名</b>从网易云音乐点一首歌，每群每3分钟限点一首<br>
-        例：<b>点歌 红豆</b>
+        例：<b>点歌 红豆</b><br>
+        <img src="/images/bot/13.png" alt="13.png" class="screenshot"><br>
       </p>
+      <!-- Others -->
+      <h3>其他</h3>
+      <p>· 发送<b>@搞事bot 说明</b>获得本页面的链接</p>
+      <p>· 发送<b>@搞事bot 几点了</b>获得报时表情包</p>
       <!-- FGO -->
       <h3>FGO相关</h3>
       <blockquote>
@@ -228,7 +251,8 @@
       <p>
         发送<b>#查询卡池</b>查询bot保存的fgo卡池信息<br>
         发送<b>#设置卡池 编号</b>设置扭蛋卡池<br>
-        发送<b>#十连召唤</b>或<b>#十一连召唤</b>进行一次模拟抽卡，每人每分钟限一次
+        发送<b>#十连召唤</b>或<b>#十一连召唤</b>进行一次模拟抽卡，每人每分钟限一次<br>
+        <img src="/images/bot/14.png" alt="14.png" class="screenshot"><br>
       </p>
     </div>
   </div>
