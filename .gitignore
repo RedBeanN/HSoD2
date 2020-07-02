@@ -24,6 +24,7 @@ title.txt
 cms-catcher/statics
 uplist-auto/rule-data/*
 !pet-map.json
+uplist-auto/rule-data.bak/*
 
 data.json
 raw.json
