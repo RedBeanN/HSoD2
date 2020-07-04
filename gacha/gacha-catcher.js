@@ -53,14 +53,17 @@ function parseHTML (str) {
     $('.equip-prob tbody tr').each(function () {
       const data = [];
       isCom = $(this).hasClass('god');
+      let isSpec = false;
       if (isMj) isGod = isCom;
       $(this).children().each(function () {
         let text = $(this).text();
         if (text.indexOf('使魔') !== -1) isGod = false;
+        if (text.includes(`角色`)) isSpec = true;
         data.push(text);
       });
       data.push(isGod, isCom);
-      arr.push(data);
+      if (isSpec) console.log(data);
+      else arr.push(data);
     });
     const form = formatData(arr);
     // saveFile(JSON.stringify(form, null, 2), 'gacha.json', err => {
