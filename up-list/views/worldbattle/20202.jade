@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  link(rel='stylesheet', href='/dist/css/v-charts.min.css')
+  link(rel='stylesheet', href='/dist/css/worldbattle.min.css')
+  #title
+    h1 派送危机
+  #app
+    button#refresh(@click='loadData') 刷新
+    #charts
+      ve-line#top1k(
+        :data='charts.top1k',
+        :title='charts.top1k.title',
+        :loading='settings.loading',
+        :legend-position='settings.legendPosition',
+        :colors='settings.colors',
+        :settings='chartSettings',
+        :data-zoom='zoom'
+      )
+  script(src='/javascripts/vue.min.js')
+  script(src='/javascripts/axios.min.js')
+  script(src='/javascripts/echarts.min.js')
+  script(src='/javascripts/line.min.js')
+  script(src='/m/js/20202.js')
