@@ -1,5 +1,9 @@
 ((Vue, axios) => {
   const columns = ['时间', "暗时计", "幽", "卡奈", "红", "量子小猫", "萨拉"];
+  const parseTime = timeStr => {
+    const [month, day, hour, minute] = timeStr.split(/\s|-|:/g);
+    return `2020/${month}/${day} ${hour}:${minute}:00`;
+  };
   new Vue({
     el: '#app',
     data: {
@@ -40,7 +44,7 @@
         const rowsArr = [];
         for (let time in rows) {
           const obj = {
-            "时间": time,
+            "时间": parseTime(time),
           };
           for (let point in rows[time]) {
             obj[point] = rows[time][point];
