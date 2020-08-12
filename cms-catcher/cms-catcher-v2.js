@@ -14,7 +14,7 @@ const deal = (data, server = 3) => {
       const { title, ann_id, start_time, content } = ann;
       const startTime = start_time.substr(5, 5).replace('-', '').trim();
       // console.log(startTime, ann_id, title);
-      const filename = `${startTime}-${ann_id + 5000}`;
+      const filename = `${startTime}-${ann_id + 6000}`;
       fs.writeFileSync(path.resolve(__dirname, 'statics/html', `${server}/${filename}.html`), content);
       annList.push({
         filename, title,
