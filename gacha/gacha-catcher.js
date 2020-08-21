@@ -58,7 +58,7 @@ function parseHTML (str) {
       $(this).children().each(function () {
         let text = $(this).text();
         if (text.indexOf('使魔') !== -1) isGod = false;
-        if (text.includes(`角色`)) isSpec = true;
+        if (text.includes(`角色`) || text.includes(`皮肤`)) isSpec = true;
         data.push(text);
       });
       data.push(isGod, isCom);
