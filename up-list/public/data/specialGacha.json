@@ -103,5 +103,13 @@
     "name": "诺瓦露·傲娇女神",
     "rate": 2,
     "pool": "special"
+  }, {
+    "startTime": "2020-08-22",
+    "endTime": "2020-08-25",
+    "uid": 17128,
+    "img": "images/icons/playericons/375.png",
+    "name": "伊瑟琳·青花鱼号",
+    "rate": 3,
+    "pool": "high"
   }
 ]
