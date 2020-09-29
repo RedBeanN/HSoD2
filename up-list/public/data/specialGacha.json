@@ -127,5 +127,13 @@
     "name": "伊瑟琳·青花鱼号",
     "rate": 3,
     "pool": "high"
+  }, {
+    "startTime": "2020-09-30",
+    "endTime": "2020-10-15",
+    "uid": 17129,
+    "img": "images/icons/playericons/424.png",
+    "name": "爱城华恋",
+    "rate": 3,
+    "pool": "special"
   }
 ]
