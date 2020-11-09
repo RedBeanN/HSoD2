@@ -46,6 +46,7 @@ const app = new Vue({
   computed: {
     filteredCards () {
       // if (this.searchInput === '') return this.cards;
+      this.cards.sort((a, b) => b.id - a.id);
       return this.cards.filter(item => {
         if (item.title && item.title.indexOf(this.typeInput) === -1) return false;
         for (let i in item) {
