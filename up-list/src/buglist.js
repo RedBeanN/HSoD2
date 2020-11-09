@@ -30,6 +30,7 @@ const app = new Vue({
       '4': "常规",
       '5': "报错",
       '6': "兼容",
+      '33': '活动',
     },
     current: {
       status: 'status',
@@ -94,7 +95,7 @@ const app = new Vue({
       this.cards = arr.map(item => {
         return {
           status: this.statusMap[item.status],
-          title: this.tagMap[item.tag],
+          title: this.tagMap[item.type] || '常规',
           subtitle: `[${item.version}] ${item.startdate}`,
           content: item.title,
           id: item.id,
