@@ -18,7 +18,7 @@
       settings: {
         legendPosition: 'top',
         loading: false,
-        colors: ['#afeff1', '#454761', '#d1ab4f', '#da5151', '#5755cf', '#e8bc96'],
+        colors: ['#f482d9', '#e6deaa', '#da9230', '#543da9', '#574b5b', '#e5453f'],
       },
       chartSettings: { scale: [true, true] },
       zoom: {
