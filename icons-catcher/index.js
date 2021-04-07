@@ -36,34 +36,34 @@ const download = (src, dest) => new Promise((resolve, reject) => {
     req.destroy();
   }, 2000);
 });
-const downloadImg = index => {
+const downloadImg = async index => {
   const img = index < 1000 ? ('000' + index).substr(-3) : index.toString();
   const filename = img + mimeType;
   const url = baseUrl + filename;
   const dest = `${dir}/${filename}`;
-  if (files.includes(filename)) return Promise.resolve({
+  if (files.includes(filename)) return {
     type: EXISTED,
-  });
-  return download(url, dest).then(() => {
+  };
+  try {
+    await download(url, dest);
     return {
       type: SAVED,
     };
-  }).catch(() => {
+  } catch (e) {
     return {
       type: NOTFOUND,
     };
-  });
+  }
 };
 
 const updateImg = (range = 5000) => {
   const ctr = [0, 0, 0]; // saved, existed, not-found
   const ids = (new Array(range)).fill(0).map((_, i) => i);
-  const getImg = id => new Promise(res => {
+  const getImg = id => new Promise(async res => {
     process.stdout.write(`[Process] ${id + 1} of ${range} \x1b[K\r`);
-    return downloadImg(id).then(({ type }) => {
-      ctr[type] += 1;
-      res();
-    });
+    const { type } = await downloadImg(id);
+    ctr[type] += 1;
+    res();
   });
   parallel(ids.map((_, i) => i), getImg).then(() => {
     console.log(`\n[ Saved: ${ctr[SAVED]} ]  [ Existed: ${ctr[EXISTED]} ]  [ Not-Found: ${ctr[NOTFOUND]} ]`);
