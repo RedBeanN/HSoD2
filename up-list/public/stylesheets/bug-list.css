@@ -7,3 +7,6 @@ td {
 img.bug-detail-images {
   max-width: 90%;
 }
+#main {
+  padding-bottom: 32px;
+}
