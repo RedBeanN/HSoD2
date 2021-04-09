@@ -29,12 +29,18 @@ block content
           tr.row(v-for='(row, index) in filterRows', v-show='!loading', :id='"row-" + index')
             td {{ row.version }}
             td {{ row.id }}
-            td {{ tagMap[row.type] }}
+            td {{ tagMap[row.type] || '其他' }}
             td(:style='statusStyle[row.status]') {{ statusMap[row.status] }}
             td.text
               .text-title {{ row.title }} 
                 button(@click='showRow(index)', v-show='row.content.length && row.content !== "<pre></pre>"')  展开/收起
-              .bug-detail(v-html='row.content', v-show='showContent[index]')
+              .bug-detail(v-if='showContent[index]')
+                .bug-detail-content(v-html='row.content')
+                img.bug-detail-images(
+                  v-if='row.images',
+                  v-for='image in row.images',
+                  :src='image'
+                )
             td.t2s
               button(@click='t2s(row, $event)') 干！
             td {{ row.startdate }}

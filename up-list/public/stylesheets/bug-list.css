@@ -4,3 +4,6 @@ td {
 .bug-detail {
   background-color: #eee;
 }
+img.bug-detail-images {
+  max-width: 90%;
+}

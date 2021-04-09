@@ -46,7 +46,16 @@ block content
     #detail-dialog.mdui-dialog
       .mdui-dialog-content
         h3.detail-title {{ current.content }}
-        .detail-container(v-html='current.detail')
+        .detail-container
+          .detail-content(v-html='current.detail')
+          .img-container(
+            v-if='current.images.length',
+            :style='"height:" + current.images.length * 180 + "px"'
+          )
+            img.detail-image(
+              v-for='image in current.images',
+              :src='image',
+            )
       .mdui-dialog-actions
         button.mdui-btn.mdui-ripple.mdui-shadow-1(@click='t2sCurrent', :disabled='disableT2s')
           | {{ currentBtn }}

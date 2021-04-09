@@ -39,6 +39,7 @@ const app = new Vue({
       content: 'content',
       id: 'id',
       detail: '<pre></pre>',
+      images: [],
     },
     currentBtn: '干掉繁体字!',
     disableT2s: false,
@@ -101,6 +102,7 @@ const app = new Vue({
           content: item.title,
           id: item.id,
           detail: item.content,
+          images: item.images,
         }
       });
     },
