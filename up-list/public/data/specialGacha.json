@@ -40,12 +40,12 @@
     "rate": 2.5,
     "pool": "high"
   }, {
-    "startTime": "2020-09-09",
-    "endTime": "2020-09-12",
+    "startTime": "2021-05-01",
+    "endTime": "2021-05-05",
     "uid": 4007,
     "img": "images/icons/playericons/007.png",
     "name": "杏·玛尔",
-    "rate": 5,
+    "rate": 2.5,
     "pool": "high"
   }, {
     "startTime": "2020-06-06",
@@ -64,12 +64,12 @@
     "rate": 5,
     "pool": "high"
   }, {
-    "startTime": "2019-11-04",
-    "endTime": "2019-11-07",
+    "startTime": "2021-05-01",
+    "endTime": "2021-05-05",
     "uid": 4011,
     "img": "images/icons/playericons/137.png",
     "name": "无色辉火",
-    "rate": 5,
+    "rate": 2.5,
     "pool": "high"
   }, {
     "startTime": "2020-06-21",
@@ -159,5 +159,13 @@
     "name": "爱城华恋",
     "rate": 3,
     "pool": "special"
+  }, {
+    "startTime": "2021-05-01",
+    "endTime": "2021-05-05",
+    "uid": 17140,
+    "img": "images/icons/playericons/521.png",
+    "name": "八重樱·奈落鬼斩",
+    "rate": 3,
+    "pool": "high"
   }
 ]
