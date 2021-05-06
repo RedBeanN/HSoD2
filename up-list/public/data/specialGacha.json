@@ -10,7 +10,7 @@
   }, {
     "startTime": "2019-01-01",
     "endTime": "2099-12-31",
-    "uid": 4002,
+    "uid": 4003,
     "img": "images/icons/playericons/003.png",
     "name": "布洛妮娅·扎伊切克",
     "rate": 2.5,
@@ -45,6 +45,14 @@
     "uid": 4007,
     "img": "images/icons/playericons/007.png",
     "name": "杏·玛尔",
+    "rate": 2.5,
+    "pool": "high"
+  }, {
+    "startTime": "2021-05-07",
+    "endTime": "2021-05-14",
+    "uid": 4008,
+    "img": "images/icons/playericons/048.png",
+    "name": "蓬莱寺九霄",
     "rate": 2.5,
     "pool": "high"
   }, {
@@ -98,7 +106,7 @@
   }, {
     "startTime": "2021-04-09",
     "endTime": "2021-04-22",
-    "uid": 4015,
+    "uid": 4016,
     "img": "images/icons/playericons/516.png",
     "name": "芙兰",
     "rate": 2.5,
