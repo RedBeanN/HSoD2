@@ -11,7 +11,7 @@
   "dependencies": {
     "fs": "0.0.1-security",
     "http": "0.0.0",
-    "nodemailer": "^4.6.4",
+    "nodemailer": "^6.4.16",
     "path": "^0.12.7",
     "process": "^0.11.10"
   }
