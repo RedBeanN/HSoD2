@@ -56,8 +56,8 @@
     "rate": 2.5,
     "pool": "high"
   }, {
-    "startTime": "2020-06-06",
-    "endTime": "2020-06-13",
+    "startTime": "2021-05-22",
+    "endTime": "2021-05-29",
     "uid": 4009,
     "img": "images/icons/playericons/076.png",
     "name": "伊瑟琳",
@@ -128,8 +128,8 @@
     "rate": 3,
     "pool": "special"
   }, {
-    "startTime": "2020-05-22",
-    "endTime": "2020-05-30",
+    "startTime": "2021-05-22",
+    "endTime": "2021-05-29",
     "uid": 17104,
     "img": "images/icons/playericons/318.png",
     "name": "䌷·樱色花火",
