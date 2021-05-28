@@ -56,8 +56,8 @@
     "rate": 2.5,
     "pool": "high"
   }, {
-    "startTime": "2021-05-22",
-    "endTime": "2021-05-29",
+    "startTime": "2021-05-29",
+    "endTime": "2021-06-05",
     "uid": 4009,
     "img": "images/icons/playericons/076.png",
     "name": "伊瑟琳",
@@ -80,8 +80,8 @@
     "rate": 2.5,
     "pool": "high"
   }, {
-    "startTime": "2020-06-21",
-    "endTime": "2020-06-24",
+    "startTime": "2021-05-29",
+    "endTime": "2021-06-05",
     "uid": 4012,
     "img": "images/icons/playericons/193.png",
     "name": "西琳",
@@ -136,16 +136,16 @@
     "rate": 3,
     "pool": "high"
   }, {
-    "startTime": "2020-06-05",
-    "endTime": "2020-06-13",
+    "startTime": "2021-06-04",
+    "endTime": "2021-06-12",
     "uid": 17104,
     "img": "images/icons/playericons/331.png",
     "name": "贝露·重度玩家",
     "rate": 2,
     "pool": "special"
   }, {
-    "startTime": "2020-06-13",
-    "endTime": "2020-06-20",
+    "startTime": "2021-06-04",
+    "endTime": "2021-06-12",
     "uid": 17104,
     "img": "images/icons/playericons/186.png",
     "name": "诺瓦露·傲娇女神",
@@ -175,5 +175,13 @@
     "name": "八重樱·奈落鬼斩",
     "rate": 3,
     "pool": "high"
+  }, {
+    "startTime": "2021-05-28",
+    "endTime": "2021-06-04",
+    "uid": 17141,
+    "img": "images/icons/playericons/551.png",
+    "name": "绀紫之心",
+    "rate": 3,
+    "pool": "special"
   }
 ]
