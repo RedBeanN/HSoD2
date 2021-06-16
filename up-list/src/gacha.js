@@ -239,6 +239,7 @@ const app = new Vue({
       this.selectType('s');
       const pool = this.current.pool;
       const data = this.probs[pool];
+      if (data.total <= 0) return mdui.alert('数据异常，请稍后再试');
       let result = this.gacha(data, this.baodi);
       let baodi = result.isGod ? 1 : 0;
       gtag('event', 'gacha', {
@@ -252,6 +253,7 @@ const app = new Vue({
       this.selectType('t');
       const pool = this.current.pool;
       const data = this.probs[pool];
+      if (data.total <= 0) return mdui.alert('数据异常，请稍后再试');
       const arr = [];
       let baodi = 0;
       for (let i = 0; i < 10; i++) {
