@@ -1,9 +1,8 @@
 ((Vue, axios) => {
-  // const columns = ['时间', "希露", "纹章", "妥芮朵", "亚巴顿", "YUI", "槲寄生"];
-  const columns = ['时间', "米梅", "伊登", "布伦希尔德", "樱华", "路西法", "拉克西米"];
+  const columns = ['时间', "希露", "纹章", "妥芮朵", "亚巴顿", "YUI", "槲寄生"];
   const parseTime = timeStr => {
     const [month, day, hour, minute] = timeStr.split(/\s|-|:/g);
-    return `2021/${month}/${day} ${hour}:${minute}:00`;
+    return `2021/${month}/${day} ${hour}:${minute}`;
   };
   new Vue({
     el: '#app',
@@ -34,13 +33,12 @@
     },
     methods: {
       async loadTop1kData () {
-        const { data } = await axios.get(`https://api-1256168079.cos.ap-chengdu.myqcloud.com/faction/20211/data.json`);
+        const { data } = await axios.get(`https://api-1256168079.cos.ap-chengdu.myqcloud.com/faction/20212/data.json`);
         const rows = {};
-        for (let key in data) {
-          if (!key.startsWith('faction')) continue;
-          for (let d of data[key].data) {
+        for (let key in data.factions) {
+          for (let d of data.factions[key].data) {
             if (!rows[d.time]) rows[d.time] = {};
-            rows[d.time][data[key].factionName] = d.point;
+            rows[d.time][data.factions[key].factionName] = d.point;
           }
         }
         const rowsArr = [];
