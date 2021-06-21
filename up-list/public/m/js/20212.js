@@ -2,7 +2,7 @@
   const columns = ['时间', "希露", "纹章", "妥芮朵", "亚巴顿", "YUI", "槲寄生"];
   const parseTime = timeStr => {
     const [month, day, hour, minute] = timeStr.split(/\s|-|:/g);
-    return `2021/${month}/${day} ${hour}:${minute}`;
+    return `2021/${month}/${day} ${hour < 10 ? '0' + hour : hour}:${minute === '0' ? '00' : minute}`;
   };
   new Vue({
     el: '#app',
