@@ -25,7 +25,6 @@
         start: 0,
         end: 100,
       },
-      global: {},
     },
     components: { VeLine },
     created () {
