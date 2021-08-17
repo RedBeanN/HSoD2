@@ -132,3 +132,7 @@ span.lv {
   right: 5px;
   top: 9px;
 }
+.link {
+  color: #6cf;
+  text-decoration: underline;
+}

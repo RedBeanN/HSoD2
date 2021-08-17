@@ -49,5 +49,15 @@ block content
             span.lv LV {{ level + '/' + level }}
             .circle.circle-right
           .talent-detail-cutoff
-          .talent-detail-text {{ detail }}
+          talent-detail(:detail='detail', :talentmap='talentMap', @click='showTalent')
+    .mdui-dialog#detail-dialog
+      .talent-detail.mdui-col-xs-12.mdui-col-md-4(v-if='linkDetail')
+        .talent-detail-container.mdui-center
+          .talent-detail-title
+            .circle
+            span {{ linkDetail.title }}
+            span.lv LV {{ linkDetail.maxLevel + '/' + linkDetail.maxLevel }}
+            .circle.circle-right
+          .talent-detail-cutoff
+          talent-detail(:detail='linkDetail.desc', :talentmap='talentMap', @click='showTalent')
   script(src="/m/js/talent.js")

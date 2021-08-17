@@ -2,6 +2,61 @@
 // Talent Emulator By RedBeanN, 2018
 const $$ = mdui.JQ;
 $$('body').removeClass('mdui-drawer-body-left');
+
+Vue.component('talent-detail', {
+  render (h) {
+    if (!this.detail) return;
+    if (this.detail.includes('#TD')) {
+      const splited = this.detail.split(/#TD\d+/);
+      const matched = this.detail.match(/#TD(\d+)/g);
+      if (!matched) return h(p, this.detail);
+      const child = [];
+      for (let i = 0; i < splited.length; i++) {
+        child.push(h(
+          'span',
+          splited[i],
+        ));
+        if (matched[i]) {
+          const id = matched[i].replace('#TD', '');
+          child.push(h(
+            'span',
+            {
+              on: {
+                click: () => {
+                  this.$emit('click', id);
+                },
+              },
+              'class': {
+                link: true,
+              },
+            },
+            [this.talentmap ? this.talentmap[id] || id : id],
+          ));
+        }
+      }
+      return h(
+        'p',
+        {
+          'class': 'talent-detail-text',
+        },
+        child,
+      );
+    } else {
+      return h(
+        'p',
+        {
+          'class': 'talent-detail-text',
+        },
+        this.detail,
+      );
+    }
+  },
+  props: {
+    detail: String,
+    talentmap: Object,
+  },
+});
+
 const characterMap = {
   '4001': '琪亚娜·卡斯兰娜',
   '4002': '雷电芽衣',
@@ -19,6 +74,7 @@ const characterMap = {
   '4014': '宁蒂',
   '4015': '迦娜',
   '4016': '芙兰',
+  '4017': '菲米莉丝',
 };
 const characterMapShort = {
   '4001': '琪亚娜',
@@ -37,6 +93,7 @@ const characterMapShort = {
   '4014': '宁蒂',
   '4015': '迦娜',
   '4016': '芙兰',
+  '4017': '菲米莉丝',
 };
 new Vue({
   el: '#app',
@@ -52,6 +109,8 @@ new Vue({
     level: '',
     sprites: {},
     showExtra: false,
+    linkDetail: null,
+    detailDialog: null,
   },
   computed: {
     currentTalent () {
@@ -75,6 +134,13 @@ new Vue({
         }
       }
       return s;
+    },
+    talentMap () {
+      const obj = {};
+      this.currentTalent.forEach(i => {
+        obj[i.uid] = i.title;
+      });
+      return obj;
     },
   },
   methods: {
@@ -110,6 +176,30 @@ new Vue({
       this.level = maxLevel;
       let reg = new RegExp(`[\d{2}.]{${parseInt(alb / 2)}}`, 'g');
       this.detail = maxLvDesc.replace(reg, '$&\n');
+    },
+    showTalent (id) {
+      for (const item of this.currentTalent) {
+        if (item.uid === id) {
+          this.linkDetail = item;
+          break;
+        }
+      }
+      if (this.linkDetail) {
+        this.$nextTick(() => {
+          if (!this.detailDialog) {
+            this.detailDialog = new mdui.Dialog('#detail-dialog', {
+              history: false,
+              closeOnEsc () {},
+            });
+            this.detailDialog.open();
+          } else {
+            this.$nextTick(() => {
+              this.detailDialog.handleUpdate();
+              this.detailDialog.open();
+            })
+          }
+        });
+      }
     },
     loadAllData () {
       this.showLoading();
