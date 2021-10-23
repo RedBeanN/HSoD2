@@ -82,7 +82,7 @@ const app = new Vue({
     },
     loadPet (table) {
       const self = this;
-      axios.get('/list/auto/pet-map').then(res => {
+      axios.get('https://api.redbean.tech/illustrate/pet-map').then(res => {
         const map = res.data;
         self.rows = table.map(r => {
           let data = [];
