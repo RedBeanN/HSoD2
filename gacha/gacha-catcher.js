@@ -8,9 +8,11 @@ const pools = ['high', 'custom', 'special', 'middle', 'festival'];
 const tail = '?region=3_1';
 
 module.exports = () => {
-  const all = {};
+  const all = JSON.parse(fs.readFileSync('gacha.json'));
   return Promise.all(pools.map(p => {
-    return catchOne(p).then(data => all[p] = data);
+    return catchOne(p).then(data => {
+      if (data.equips && data.equips.length) all[p] = data
+    });
   })).then(() => {
     /**
      * Fix bug with messy code �
@@ -39,11 +41,11 @@ function catchOne(pool) {
   //   req.on('error', reject);
   // });
   return axios.get(url).then(res => {
-    return Promise.resolve(parseHTML(res.data));
+    return Promise.resolve(parseHTML(res.data, pool));
   });
 }
 
-function parseHTML (str) {
+function parseHTML (str, pool) {
   return new Promise((resolve, reject) => {
     const $ = cheerio.load(str, {decodeEntities: false});
     const isMj = str.indexOf('魔女祈愿') !== -1;
