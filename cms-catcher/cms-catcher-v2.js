@@ -23,7 +23,7 @@ const deal = (data, server = 3) => {
   }
   const list = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'statics/titles.json')));
   for (let ann of annList) {
-    if (!list[server][ann.filename]) list[server][ann.filename] = ann.title;
+    list[server][ann.filename] = ann.title;
   }
   fs.writeFileSync(path.resolve(__dirname, `statics/titles.json`), JSON.stringify(list, null, 2));
 };
