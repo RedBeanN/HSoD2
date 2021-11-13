@@ -2,7 +2,7 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const getUrl = server => {
-  if (server === 'beta') return `https://api-takumi.mihoyo.com/common/announcement/api/getAnnList?game_biz=bh2_cn&region=ptr01&platform=ios&bundle_id=com.miHoYo.HSoDv2IosBeta&game=bh2`;
+  if (server === 'beta') return `https://api-takumi.mihoyo.com/common/announcement/api/getAnnList?game_biz=bh2_cn&region=beta01&platform=ios&bundle_id=com.miHoYo.HSoDv2IosBeta&game=bh2`;
   return `https://api-takumi.mihoyo.com/common/announcement/api/getAnnList?game_biz=bh2_cn&region=gf01&platform=ios&bundle_id=com.miHoYo.HSoDv2CN&game=bh2`
 };
 
