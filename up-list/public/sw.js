@@ -97,6 +97,7 @@ const excludes = [
    * mahjong
    */
   'mahjong',
+  '59.png',
 ];
 const statics = [
   /**
