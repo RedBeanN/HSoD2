@@ -75,6 +75,7 @@ const characterMap = {
   '4015': '迦娜',
   '4016': '芙兰',
   '4017': '菲米莉丝',
+  '4018': '诗音',
 };
 const characterMapShort = {
   '4001': '琪亚娜',
@@ -94,6 +95,7 @@ const characterMapShort = {
   '4015': '迦娜',
   '4016': '芙兰',
   '4017': '菲米莉丝',
+  '4018': '诗音',
 };
 new Vue({
   el: '#app',
