@@ -88,7 +88,7 @@
       getBugList(v = '') {
         this.hintText = '加载中...';
         this.loading = true;
-        axios.get('https://api.redbean.tech/buglist/' + v)
+        axios.get('http://47.100.20.145:443/buglist/' + v)
           .then(res => {
             if (v) app.buglist = JSON.parse(JSON.stringify(res.data));
             else app.buglist = res.data;
@@ -163,7 +163,7 @@
       loadVersions() {
         const self = this;
         return new Promise((resolve, reject) => {
-          axios.get('https://api.redbean.tech/buglist/list').then(res => {
+          axios.get('http://47.100.20.145:443/buglist/list').then(res => {
             self.versions = res.data.map(i => i.name);
             resolve();
           })

@@ -47,7 +47,7 @@ new Vue({
   },
   methods: {
     async loadGlobalData () {
-      const { data } = await axios.get('https://api.redbean.tech/faction/global');
+      const { data } = await axios.get('http://47.100.20.145:443/faction/global');
       this.global = data;
       const globalRows = [], userRows = [];
       for (let d of this.global) {
@@ -71,7 +71,7 @@ new Vue({
       const rows = {};
       const datas = [];
       for (let key in factionMap) {
-        const { data } = await axios.get(`https://api.redbean.tech/faction/${Number(key) + 1}`);
+        const { data } = await axios.get(`http://47.100.20.145:443/faction/${Number(key) + 1}`);
         datas.push(data);
       }
       datas.forEach(data => {

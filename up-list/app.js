@@ -22,12 +22,12 @@ var app = express();
 app.use(compression());
 
 // force https
-app.all('*', (req, res, next) => {
-  if(req.protocol !== 'https') {
-    let resp = 'https://' + req.hostname + req.url;
-    res.redirect(resp);
-  } else next();
-});
+// app.all('*', (req, res, next) => {
+//   if(req.protocol !== 'https') {
+//     let resp = 'https://' + req.hostname + req.url;
+//     res.redirect(resp);
+//   } else next();
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
