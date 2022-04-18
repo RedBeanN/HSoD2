@@ -31,17 +31,17 @@
     gtag('config', 'UA-123581848-1');
   </script>
 </head>
-<body class='mdui-thblockquotee-primary-indigo mdui-thblockquotee-accent-pink'>
+<body class='mdui-theme-primary-indigo mdui-theme-accent-pink'>
   <div id="app">
     <div class="mdui-container mdui-typo mdui-m-t-4">
       <h1>
         <a href="/" class="mdui-btn mdui-btn-icon mdui-ripple">
           <i class="mdui-icon material-icons">home</i>
         </a>
-        搞事bot食用指南 <br><small> 更新于 2021.05.11</small>
+        搞事bot食用指南 <br><small> 更新于 2022.03.31</small>
       </h1>
       <blockquote>
-        <b>关于搞事bot：</b> 搞事bot是以《崩坏学园2》内容为主的qq群机器人，可以查询图鉴、玩家数据等，也附带一些娱乐功能，同时带有少量公主连接、FGO的相关功能
+        <b>关于搞事bot：</b> 搞事bot是以《崩坏学园2》内容为主的qq群机器人，可以查询图鉴、玩家数据等，也附带一些娱乐功能，同时带有少量FGO的相关功能
       </blockquote>
       <p>
         · 本页面是搞事bot的使用方法，如需试用可以加入qq群 
@@ -58,13 +58,13 @@
       <p>· 搞事bot大多数功能<b>不需要</b>给机器人管理员权限即可使用</p>
       <p>· 没有特殊说明的情况下，指令<b>不需要</b>@机器人</p>
       <p>· 群管理员可以发送<b>启用/禁用</b>+功能名来开关搞事bot的功能，具体开关见下文</p>
-      <p>
+      <!-- <p>
         · 公主连接功能额外5R/月，相关功能请参考
         <a href="http://bot.redbean.tech:9222/help" target="_blank">
           <i class="mdui-icon material-icons">open_in_new</i>
           这个页面
         </a>
-      </p>
+      </p> -->
       <!-- 入群欢迎 -->
       <h3>入群欢迎</h3>
       <p>
@@ -114,6 +114,18 @@
         发送<b>绑定国服/测服/混服/腾讯服/uc1/2/360s1/2/b1/b2玩家</b>+ID可将自己的qq与指定账号绑定<br>
         例：<b>绑定国服玩家1001</b><br>
         发送<b>查询@目标</b>可查询已绑定账号的群员
+      </p>
+      <!-- 社团查询 -->
+      <h3>社团查询</h3>
+      <blockquote>
+        开关：<b>启用查询 禁用查询</b><br>
+        (与玩家查询共享开关)<br>
+        · 该功能每个群限绑定一个社团, 请联系红豆(504577431)绑定
+      </blockquote>
+      <p>
+        发送<b>查询社团</b>获取当前群绑定社团的信息, 含团员的团本团战同调信息<br>
+        可以用<b>#团本/团战/定级</b>获取排序后的同调信息, 如<b>查询社团#团战</b><br>
+        · 社团信息每 10 分钟只刷新一次
       </p>
       <!-- 装备图鉴 -->
       <h3>装备图鉴</h3>
@@ -183,6 +195,16 @@
         发送<b>@机器人 猜数字</b>发起一局猜数字小游戏<br>
         猜数字规则：机器人会发送一个数字，群员可发送<b>大</b>或<b>小</b>来猜下一个数字比现在的数字大还是小，猜错游戏结束，机器人公布连续猜中的次数<br>
         连续猜对1/4/10/20/50次后，结束游戏时的台词会不一样哦~
+      </p>
+      <h5>Wordle</h5>
+      <p>
+        发送<b>@机器人 wordle</b>玩 wordle 小游戏<br>
+        Wordle 规则：机器人会随机生成一个 5 个字母的英文单词, 玩家有 6 次机会来猜中这个单词, 每次猜测后机器人会发送当前进度和提示.<br>
+        每一行代表一次猜测, 每个字母的背景颜色带有提示, 灰色代表答案中没有这个字母, 黄色代表有这个字母但不在对应的位置上, 绿色代表有这个字母并且位置也是正确的.<br>
+        图示:<br>
+        <img src="/images/bot/wordle.PNG" alt="wordle.PNG" style="max-width: 600px;width: 100%"><br>
+        · Wordle 小游戏为单人游戏, 每个群员可以进行自己的 wordle<br>
+        · 发送<b>@机器人 重置wordle</b>重置自己的游戏进度
       </p>
       <!-- 随机 -->
       <h3>抽签和掷骰子</h3>
@@ -274,6 +296,12 @@
         发送<b>#设置卡池 编号</b>设置扭蛋卡池<br>
         发送<b>#十连召唤</b>或<b>#十一连召唤</b>或<b>#百连召唤</b>进行一次模拟抽卡，每人每分钟限一次<br>
         <img src="/images/bot/14.PNG" alt="14.PNG" class="screenshot"><br>
+      </p>
+      <h3>功能定制</h3>
+      <p>
+        可接受功能定制, 按实现难度收费. 比如:<br>
+        <img src="/images/bot/spec.PNG" alt="spec.PNG" class="screenshot"><br>
+        如有需要, 请联系红豆(504577431)详谈.
       </p>
     </div>
   </div>
