@@ -47,7 +47,7 @@
     },
     methods: {
       async loadGlobalData () {
-        const { data } = await axios.get('http://47.100.20.145:443/faction/20201/global');
+        const { data } = await axios.get('https://api.redbean.tech/faction/20201/global');
         this.global = data;
         const globalRows = [], userRows = [], top1kRows = [];
         for (let d of this.global) {
@@ -78,7 +78,7 @@
         // const rows = {};
         // const datas = [];
         // for (let key in factionMap) {
-        //   const { data } = await axios.get(`http://47.100.20.145:443/faction/${Number(key) + 1}`);
+        //   const { data } = await axios.get(`https://api.redbean.tech/faction/${Number(key) + 1}`);
         //   datas.push(data);
         // }
         // datas.forEach(data => {
@@ -99,7 +99,7 @@
         // }
         // this.charts.top1k.rows = rowsArr;
         const rows = {};
-        const { data } = await axios.get(`http://47.100.20.145:443/faction/20201/faction`);
+        const { data } = await axios.get(`https://api.redbean.tech/faction/20201/faction`);
         for (let key in data) {
           for (let d of data[key]) {
             const timestamp = d.time;
