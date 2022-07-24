@@ -37,7 +37,7 @@ const app = new Vue({
       { url: '/talent',        name: '圣痕一览',        icon: 'all_out' },
       // { url: '/calendar',      name: '崩坏课程表',      icon: 'event_note'},
       // { url: '/roguelike',     name: '伽蓝之末排名',    icon: 'multiline_chart'},
-      { url: '/worldbattle/20221',name: '阵营战记录',   icon: 'multiline_chart'},
+      { url: '/worldbattle/20222',name: '阵营战记录',   icon: 'multiline_chart'},
       // { url: '/pet-run',       name: '使魔Formula',     icon: 'pets' },
       // { url: '/bot.html',      name: '搞事Bot食用指南', icon: 'android' },
     ],
