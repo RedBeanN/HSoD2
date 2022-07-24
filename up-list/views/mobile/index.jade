@@ -16,19 +16,6 @@ block content
         i.mdui-list-item-icon.mdui-icon.material-icons.mdui-text-color-black-icon {{ item.icon }}
         .mdui-list-item-content {{ item.name }}
         i.mdui-list-item-icon.mdui-icon.material-icons.mdui-text-color-red(v-if='item.new') fiber_new
-    //- .mdui-card
-    //-   .mdui-card-primary
-    //-     .mdui-card-primary-title 古树战争
-    //-   table#fw.mdui-table
-    //-     thead
-    //-       td
-    //-         img#fw-refresh(src='/images/icons/Material/refresh_black.png', @click='updatePets')
-    //-       td 分数线
-    //-       td 争夺分
-    //-     tr.faction(v-for='pet in pets')
-    //-       td.pet {{ pet.name }}
-    //-       td.line {{ pet.top }}
-    //-       td.score {{ pet.round }}
     .mdui-card#contribute(v-if='contributeStatus == 1')
       .mdui-card-primary
         .mdui-card-primary-title 搞事学园需要您的帮助！
@@ -135,10 +122,10 @@ block content
           p.small.opacity-5 搞事学园目前维护费用(服务器+带宽)大约为2500RMB/年
           p.small.opacity-5
             del 开发者的饭钱为30RMB/天
-        img.mdui-col-xs-6(src='images/zanshang.jpg')
-        img.mdui-col-xs-6(src='images/alipay.png')
-        img.mdui-col-xs-6(src='images/wechat.png')
-        img.mdui-col-xs-6(src='images/qq.png')
+        img.mdui-col-xs-6(async, loading='lazy', src='images/zanshang.jpg')
+        img.mdui-col-xs-6(async, loading='lazy', src='images/alipay.png')
+        img.mdui-col-xs-6(async, loading='lazy', src='images/wechat.png')
+        img.mdui-col-xs-6(async, loading='lazy', src='images/qq.png')
       .mdui-dialog-actions
         button.mdui-btn.mdui-ripple.mdui-shadow-1(mdui-dialog-cancel)
           i.mdui-icon.material-icons close
@@ -179,14 +166,14 @@ block content
           ul
             li(onclick='(new mdui.Dialog(mdui.JQ("#dialog"))).open()')
               a
-                img(async, src='images/QRCode.jpg') 
+                img(async, loading='lazy', src='images/QRCode.jpg') 
                 |  崩坏2通讯中心(点击放大)
         .mdui-col-sm-3.mdui-col-xs-6
           h4 支持搞事学园
           ul
             li(onclick='(new mdui.Dialog(mdui.JQ("#pay"))).open()')
               a
-                img(async, src='images/zanshang.jpg') 
+                img(async, loading='lazy', src='images/zanshang.jpg') 
                 |  (点击放大)
       .mdui-divider-light.footer-divider
       .copyright Copyright © 2018 

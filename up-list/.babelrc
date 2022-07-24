@@ -1,5 +1,13 @@
 {
-  "presets": ["es2015", "stage-1"],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry",
+        "corejs": "3.22"
+      }
+    ]
+  ],
   "plugins": [],
   "minified": true,
   "comments": false
