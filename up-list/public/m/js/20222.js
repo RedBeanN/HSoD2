@@ -1,6 +1,6 @@
 ((Vue, axios) => {
-  const columns = ['时间', '希露', '纹章', '妥芮朵', '亚巴顿', 'YUI', '槲寄生'];
-  // const columns = ['时间', '神奈', '幻梦境', '盘龙', '缪娜', '阿尔忒弥斯', '夜夜'];
+  // const columns = ['时间', '希露', '纹章', '妥芮朵', '亚巴顿', 'YUI', '槲寄生'];
+  const columns = ['时间', '神奈', '幻梦境', '盘龙', '缪娜', '阿尔忒弥斯', '夜夜'];
   const parseTime = timeStr => {
     const [month, day, hour, minute] = timeStr.split(/\s|-|:/g);
     return `${month}/${day} ${hour < 10 ? '0' + hour : hour}:${minute === '0' ? '00' : minute}`;
