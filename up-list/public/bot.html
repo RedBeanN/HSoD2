@@ -38,7 +38,7 @@
         <a href="/" class="mdui-btn mdui-btn-icon mdui-ripple">
           <i class="mdui-icon material-icons">home</i>
         </a>
-        搞事bot食用指南 <br><small> 更新于 2022.03.31</small>
+        搞事bot食用指南 <br><small> 更新于 2022.10.21</small>
       </h1>
       <blockquote>
         <b>关于搞事bot：</b> 搞事bot是以《崩坏学园2》内容为主的qq群机器人，可以查询图鉴、玩家数据等，也附带一些娱乐功能，同时带有少量FGO的相关功能
@@ -78,8 +78,16 @@
       <p>
         管理员发送<b>设置退群信息 信息内容</b>即可设置<br>
         可用$name和$qq分别代表退群成员的昵称和q号<br>
-        <span>例：</span> <b>设置退群信息 $at($qq)退群了，丢人！</b><br>
+        <span>例：</span> <b>设置退群信息 $name($qq)退群了，丢人！</b><br>
         · 发送<b>设置退群信息</b>不带信息内容即可关闭退群信息<br>
+      </p>
+      <!-- 退群信息 -->
+      <h3>踢人信息</h3>
+      <p>
+        管理员发送<b>设置踢人信息 信息内容</b>即可设置<br>
+        可用$name和$qq分别代表被踢成员的昵称和q号，$admin和$at代表操作者的昵称和at<br>
+        <span>例：</span> <b>设置踢人信息 $name($qq)被$admin移出群聊</b><br>
+        · 发送<b>设置踢人信息</b>不带信息内容即可关闭踢人信息<br>
       </p>
       <!-- 群管理 -->
       <h3>群管理相关</h3>
@@ -284,7 +292,11 @@
       <p>· 发送<b>@搞事bot 几点了</b>获得报时表情包</p>
       <p>· 发送<b>@搞事bot 百度一下XX</b>从百度百科获得XX词条的信息</p>
       <p>· 发送<b>@搞事bot 萌百一下XX</b>从萌娘百科获得XX词条的信息</p>
-      <p>· 发送<b>@搞事bot MC一下XX</b>从Mooncell(FGOWiki)获得XX词条的信息</p>
+      <p>· 发送<b>@搞事bot MC一下XX</b>从 Mooncell(FGOWiki) 获得XX词条的信息</p>
+      <p>(萌百和MC支持使用 wiki 语法，[[XX]] 在萌百查找 XX，MC一下 [[XX]] 在 Mooncell 查找 XX)</p>
+      <!-- 查重 -->
+      <h3>小作文查重</h3>
+      <p>回复群友发的小作文并<b>@搞事bot</b>进行小作文查重，仅限 Asoul 评论区</p>
       <!-- FGO -->
       <h3>FGO相关</h3>
       <blockquote>
