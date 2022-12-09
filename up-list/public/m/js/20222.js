@@ -33,7 +33,7 @@
     },
     methods: {
       async loadTop1kData () {
-        const { data } = await axios.get(`https://api-1256168079.cos.ap-chengdu.myqcloud.com/faction/20212/data.json`);
+        const { data } = await axios.get(`https://api-1256168079.cos.ap-chengdu.myqcloud.com/faction/20222/data.json`);
         const rows = {};
         for (let key in data.factions) {
           for (let d of data.factions[key].data) {
