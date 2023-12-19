@@ -38,7 +38,7 @@
         <a href="/" class="mdui-btn mdui-btn-icon mdui-ripple">
           <i class="mdui-icon material-icons">home</i>
         </a>
-        搞事bot食用指南 <br><small> 更新于 2022.12.09</small>
+        搞事bot食用指南 <br><small> 更新于 2023.12.20</small>
       </h1>
       <blockquote>
         <b>关于搞事bot：</b> 搞事bot是以《崩坏学园2》内容为主的qq群机器人，可以查询图鉴、玩家数据等，也附带一些娱乐功能，同时带有少量FGO/明日方舟的相关功能
@@ -58,6 +58,11 @@
       <p>· 搞事bot大多数功能<b>不需要</b>给机器人管理员权限即可使用</p>
       <p>· 没有特殊说明的情况下，指令<b>不需要</b>@机器人</p>
       <p>· 群管理员可以发送<b>启用/禁用</b>+功能名来开关搞事bot的功能，具体开关见下文</p>
+      <h3>快捷跳转</h3>
+      <a href="#minigames">&gt; 小游戏</a><br>
+      <a href="#fgo">&gt; FGO 相关</a><br>
+      <a href="#arknights">&gt; 明日方舟相关</a><br>
+      <a href="#bluearchive">&gt; 蔚蓝档案(BA)相关</a><br>
       <!-- <p>
         · 公主连接功能额外5R/月，相关功能请参考
         <a href="http://bot.redbean.tech:9222/help" target="_blank">
@@ -149,6 +154,9 @@
         例: <b>查询装备 角色系 喷雾 希露</b><br><br>
         发送<b>查询up</b>+装备全名可以查询指定神器的近期up时间<br>
         例：<b>查询up 希露的瞬身水晶</b>
+        <h4>星灵配装</h4>
+        发送<b>星灵名称+配装</b>可以查询对应配装<br>
+        例：<b>巨蟹配装</b>
       </p>
       <!-- 对话相关 -->
       <h3>对话相关</h3>
@@ -189,8 +197,47 @@
       <h5>二次元</h5>
       <blockquote>开关：<b>启用二次元 禁用二次元</b></blockquote>
       <p>发送<b>来点二次元</b>获得一张二次元图片，每人每2分钟限一次</p>
+      <h3>趣图</h3>
+      <blockquote>开关：<b>启用趣图 禁用趣图</b></blockquote>
+      <p>
+        发送<b>爬/牵/提/丢/下锅/嗑@目标</b>合成一张表情包<br>
+        例：<b>爬@狗群员</b><br>
+        <img src="/images/bot/12.PNG" alt="12.PNG" class="screenshot"><br>
+      </p>
+      <h3>其他表情包合成</h3>
+      <h4>BA Logo</h4>
+      <p>
+        发送<b>@机器人 ba 内容</b>获得蔚蓝航线 logo 风格的标题.<br>
+        例: <b>@搞事bot ba 原神启动</b><br>
+        <img src="/images/bot/ba-logo.png" class="screenshot"><br>
+        · 可以使用空格分隔两段文字来改变默认的划分字段规则
+      </p>
+      <h4>PxxxHub Logo</h4>
+      <p>
+        发送<b>@机器人 ph 内容</b>获得 PH 站风格的标题.<br>
+        例: <b>@搞事bot ph GenshinImpact</b><br>
+        <img src="/images/bot/ph-logo.png" class="screenshot"><br>
+        · 可以使用空格分隔两段文字来改变默认的划分字段规则
+      </p>
+      <h4>PJSK</h4>
+      <p>
+        发送<b>@机器人 pjsk 内容</b>合成 PJSK (<a href="https://zh.moegirl.org.cn/zh-hans/%E4%B8%96%E7%95%8C%E8%AE%A1%E5%88%92_%E5%BD%A9%E8%89%B2%E8%88%9E%E5%8F%B0_feat._%E5%88%9D%E9%9F%B3%E6%9C%AA%E6%9D%A5">Project Sekai</a>) 表情包.<br>
+        例: <b>@机器人 pjsk 我超，元！</b><br>
+        <img src="/images/bot/pjsk-sticker.png"><br>
+        默认情况下会随机选择一张表情包作为背景, 可以使用<kbd>-i 编号</kbd>选择对应的表情, 通过以下步骤可以查找表情编号:<br>
+        · 发送<b>@机器人 pjsk -q</b>查看可用的贴纸角色<br>
+        <kbd style="margin-left: 16px;">pjsk -q</kbd><br>
+        <img src="/images/bot/pjsk-q-all.png" style="max-width: 480px;" /><br>
+        · 发送<b>@机器人 pjsk -q 角色</b>查看该角色的表情编号<br>
+        <kbd style="margin-left: 16px;">pjsk -q miku</kbd><br>
+        <img src="/images/bot/pjsk-q-miku.png" style="max-width: 480px;" /><br>
+        · 发送<b>@机器人 pjsk -i 编号 内容</b>指定要使用的表情<br>
+        <kbd style="margin-left: 16px;">pjsk -i 223 我超，元！</kbd><br>
+        <img src="/images/bot/pjsk-sticker.png"/><br>
+      </p>
+
       <!-- 小游戏 -->
-      <h3>小游戏相关</h3>
+      <h3 id="minigames">小游戏相关</h3>
       <h5>猜装备</h5>
       <blockquote>开关：<b>启用猜装备 禁用猜装备</b></blockquote>
       <p>
@@ -215,6 +262,16 @@
         <img src="/images/bot/wordle.PNG" alt="wordle.PNG" style="max-width: 600px;width: 100%"><br>
         · Wordle 小游戏为单人游戏, 每个群员可以进行自己的 wordle<br>
         · 发送<b>@机器人 重置wordle</b>重置自己的游戏进度
+      </p>
+      <h5>猜成语</h5>
+      <p>
+        发送<b>@机器人 猜成语</b>玩成语版 wordle 小游戏<br>
+        猜成语规则：机器人会随机挑选一个成语, 玩家有 10 次机会来猜中这个成语, 每次猜测后机器人会发送当前进度和提示.<br>
+        每一行代表一次猜测, 每个字/声母/韵母/音调都会单独标注颜色, 绿色代表该部分正确, 紫色代表包含该部分, 但位置不正确, 灰色代表不包含该部分.<br>
+        图示:<br>
+        <img src="/images/bot/handle.jpg" alt="handle.jpg" style="max-width: 480px;"><br>
+        · 猜成语为群游戏, 所有群友都可参加<br>
+        · 发送<b>@机器人 重置猜成语</b>可结束游戏并查看答案.<br>
       </p>
       <!-- 随机 -->
       <h3>抽签和掷骰子</h3>
@@ -264,13 +321,6 @@
         <img src="/images/bot/11.PNG" alt="11.PNG" class="screenshot"><br>
       </p> -->
       <!-- 娱乐 -->
-      <h3>趣图</h3>
-      <blockquote>开关：<b>启用趣图 禁用趣图</b></blockquote>
-      <p>
-        发送<b>爬/牵/提/丢/下锅@目标</b>合成一张表情包<br>
-        例：<b>爬@狗群员</b><br>
-        <img src="/images/bot/12.PNG" alt="12.PNG" class="screenshot"><br>
-      </p>
       <h3>点歌</h3>
       <blockquote>开关：<b>启用点歌 禁用点歌</b></blockquote>
       <p>
@@ -298,9 +348,9 @@
       <p>(萌百和MC支持使用 wiki 语法，[[XX]] 在萌百查找 XX，MC一下 [[XX]] 在 Mooncell 查找 XX)</p>
       <!-- 查重 -->
       <h3>小作文查重</h3>
-      <p>回复群友发的小作文并<b>@搞事bot</b>进行小作文查重，仅限 Asoul 评论区</p>
+      <p>回复群友发的发病小作文并<b>@搞事bot</b>进行小作文查重，小作文数据库来自B站20w关注以上的vup评论区，每3小时更新一次</p>
       <!-- FGO -->
-      <h3>FGO相关</h3>
+      <h3 id="fgo">FGO相关</h3>
       <blockquote>
         开关：<b>启用fgo 禁用fgo</b><br>
         fgo指令需要加 <kbd>#</kbd> 前缀使用
@@ -312,15 +362,27 @@
         <img src="/images/bot/14.PNG" alt="14.PNG" class="screenshot"><br>
       </p>
       <!-- 方舟 -->
-      <h3>明日方舟相关</h3>
+      <h3 id="arknights">明日方舟相关</h3>
       <blockquote>
-        开关: <b>启用方舟 禁用方舟</b>
+        开关: <b>启用方舟 禁用方舟</b><br>
         方舟指令前缀为 <kbd>方舟</kbd>
       </blockquote>
       <p>
         发送 <b>方舟十连寻访</b> 进行一次明日方舟模拟寻访<br>
         发送 <b>方舟查询</b>+干员名 查询明日方舟干员, 如 <b>方舟查询陈</b>
       </p>
+      <!-- BA -->
+      <h3 id="bluearchive">BA 相关</h3>
+      <blockquote>
+        开关: <b>启用ba 禁用ba</b><br>
+        指令前缀为<kbd>ba攻略</kbd>
+      </blockquote>
+      <p>
+        发送 <b>ba攻略 内容</b>查询 BA 攻略, 支持学生/关卡/活动等.<br>
+        例:<br>
+        <b>ba攻略 h15-1</b><br><b>ba攻略 邮箱</b>
+      </p>
+
       <h3>功能定制</h3>
       <p>
         可接受功能定制, 按实现难度收费. 比如:<br>
