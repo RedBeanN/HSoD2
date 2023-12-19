@@ -2,9 +2,12 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const getUrl = server => {
-  if (server === 'beta') return `https://api-takumi.mihoyo.com/common/announcement/api/getAnnList?game_biz=bh2_cn&region=beta01&platform=ios&bundle_id=com.miHoYo.HSoDv2IosBeta&game=bh2`;
-  return `https://api-takumi.mihoyo.com/common/announcement/api/getAnnList?game_biz=bh2_cn&region=gf01&platform=ios&bundle_id=com.miHoYo.HSoDv2CN&game=bh2`
+  // if (server === 'beta') return `https://api-takumi.mihoyo.com/common/announcement/api/getAnnList?game_biz=bh2_cn&region=beta01&platform=ios&bundle_id=com.miHoYo.HSoDv2IosBeta&game=bh2`;
+  if (server === 'beta') return `https://api-takumi-static.mihoyo.com/common/bh2_cn/announcement/api/getAnnContent?game=bh2&game_biz=bh2_cn&lang=zh-cn&bundle_id=com.miHoYo.HSoDv2IosBeta&platform=ios&region=beta01`
+  // return `https://api-takumi.mihoyo.com/common/announcement/api/getAnnList?game_biz=bh2_cn&region=gf01&platform=ios&bundle_id=com.miHoYo.HSoDv2CN&game=bh2`
+  return `https://api-takumi-static.mihoyo.com/common/bh2_cn/announcement/api/getAnnContent?game=bh2&game_biz=bh2_cn&lang=zh-cn&bundle_id=com.miHoYo.HSoDv2CN&platform=ios&region=gf01`
 };
+//https://api-takumi-static.mihoyo.com/common/bh2_cn/announcement/api/getAnnContent?game=bh2&game_biz=bh2_cn&lang=zh-cn&bundle_id=com.miHoYo.HSoDv2IosBeta&platform=ios&region=beta01
 
 const deal = (data, server = 3) => {
   const result = JSON.parse(data).data;
