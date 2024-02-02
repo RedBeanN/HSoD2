@@ -53,7 +53,7 @@ const getUpData = async pool => {
     endTime,
     // data: list.filter(i => i.isGod).map(i => i.name.replace(/\[\d★\]/, '')),
     data: finalData,
-    rows,
+    // rows,
   };
   return upData;
 };
