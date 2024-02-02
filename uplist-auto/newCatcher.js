@@ -16,7 +16,13 @@ const getUpData = async pool => {
   const time = times[times.length - 1];
   const [startTime, endTime] = time.split('至');
   const list = [];
-  $(`.equip-prob tbody tr`).each((index, ele) => {
+  const rows = []
+  $(`table tbody tr`).each((index, ele) => {
+    const tbs = []
+    $(ele).children().each((index, child) => {
+      tbs.push($(child).text())
+    })
+    rows.push(tbs)
     const isGod = $(ele).hasClass('god');
     const obj = { isGod };
     $(ele).children().each((index, ele) => {
@@ -27,10 +33,27 @@ const getUpData = async pool => {
     });
     list.push(obj);
   });
+  const isCustomSelect = rows.some(row => {
+    return row.includes('自选装备')
+  })
+  let index = rows.length
+  const finalData = isCustomSelect
+    ? rows.filter((r, i) => {
+      if (r[1] === '武器' || r[1] === '服装' || r[1] === '徽章') {
+        if (i < index) return true
+      }
+      if (r[1] === '自选装备' && index > i) {
+        index = i
+      }
+      return false
+    }).map(i => i[0].replace(/\[\d★\]/, ''))
+    : list.filter(i => i.isGod).map(i => i.name.replace(/\[\d★\]/, ''))
   const upData = {
     startTime,
     endTime,
-    data: list.filter(i => i.isGod).map(i => i.name.replace(/\[\d★\]/, '')),
+    // data: list.filter(i => i.isGod).map(i => i.name.replace(/\[\d★\]/, '')),
+    data: finalData,
+    rows,
   };
   return upData;
 };
@@ -74,4 +97,7 @@ const saveAll = async () => {
 };
 
 saveAll();
+// getUpData('high').then(r => {
+//   fs.writeFileSync('tmp.json', JSON.stringify(r, null, 2))
+// })
 setInterval(saveAll, 4 * 60 * 60 * 1000);
