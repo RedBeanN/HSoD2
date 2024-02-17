@@ -10,7 +10,7 @@ const [princess, pri98, mj, special, moe] = ['high', 'middle', 'custom', 'specia
 
 const fourHour = 4 * 60 * 60 * 1000;
 setInterval(saveAll, fourHour);
-// saveAll();
+saveAll();
 
 function saveAll() {
   save(princess, err => {
@@ -66,18 +66,90 @@ function save(pool, cb) {
   });
 }
 
-function parseUp(pool, cb) {
+function getDataFromUrl (url) {
+  return new Promise((resolve, reject) => {
+    http.get(url, res => {
+      let data = Buffer.from('')
+      let equips = []
+      res.on('data', chunk => {
+        // console.log(typeof chunk, chunk instanceof Buffer)
+        // data += chunk;
+        data = Buffer.concat([data, chunk])
+      });
+      res.on('end', err => {
+        // equips pets
+        if (err) console.log(err);
+        data = data.toString();
+        if (data.indexOf('�') !== -1) {
+          // console.log(data.indexOf('�'))
+          return reject(new Error('Messy code founded'));
+        }
+        let date = parseDate(data);
+        data = parseGod(data);
+        if (!data || !date) {
+          // return reject(new Error(`No item was found in ${url}.`));
+          return resolve()
+        } else {
+          data.forEach(i => {
+            let tmp = parseEquip(i);
+            equips.push(tmp.replace(/\[\d★\]/, ''));
+          });
+          let [startTime, endTime] = [...date.split('至')];
+          let up = {startTime, endTime, data: equips};
+          // console.log(up);
+          resolve(up);
+        }
+      });
+    })
+  })
+}
+
+async function parseUp(pool, cb) {
+  const all = []
+  let startTime, endTime
+  for (let i = 0; i < 12; i++) {
+    try {
+      const rawUrl = getUrl(pool)
+      const chooseUrl = rawUrl.includes('?')
+          ? rawUrl + `&choose_pool=${i}`
+          : rawUrl + `?choose_pool=${i}`
+      const data = await getDataFromUrl(chooseUrl)
+      if ((data && data.startTime) && (!startTime || (new Date(startTime) > new Date(data.startTime)))) {
+        startTime = data.startTime
+      }
+      if ((data && data.endTime) && (!endTime || (new Date(endTime) < new Date(data.endTime)))) {
+        endTime = data.endTime
+      }
+      if (!data || !data.data || !data.data.length) {
+        console.log(`Skip after choosePool=${i}`)
+        break
+      }
+      all.push(...data.data)
+    } catch (e) {
+      console.warn(`Cannot choose ${i} from pool ${pool}`, e)
+      break
+    }
+  }
+  return cb(null, {
+    startTime, endTime,
+    data: [...new Set(all)]
+  })
   http.get(getUrl(pool), res => {
-    let data = '';
+    let data = Buffer.from('');
     let equips = [];
     res.on('data', chunk => {
-      data += chunk;
+      // console.log(typeof chunk, chunk instanceof Buffer)
+      // data += chunk;
+      data = Buffer.concat([data, chunk])
     });
     res.on('end', err => {
       // equips pets
       if (err) console.log(err);
       data = data.toString();
-      if (data.indexOf('�') !== -1) return cb(new Error('Messy code founded'));
+      if (data.indexOf('�') !== -1) {
+        // console.log(data.indexOf('�'))
+        return cb(new Error('Messy code founded'));
+      }
       let date = parseDate(data);
       data = parseGod(data);
       if (!data || !date) cb(new Error(`No item was found in ${pool}.`));

@@ -111,6 +111,7 @@ function parseHTML (str, pool) {
     let isCom = false;
     const rows = []
     $('table tbody tr').each(function (index, ele) {
+      // if (arr.length > 10) return
       const tbs = []
       $(ele).children().each((index, child) => {
         tbs.push($(child).text())
@@ -120,14 +121,18 @@ function parseHTML (str, pool) {
       isCom = $(this).hasClass('god');
       let isSpec = false;
       if (isMj) isGod = isCom;
-      $(this).children().each(function () {
+      $(this).children().each(function (index) {
         let text = $(this).text();
-        if (text.indexOf('使魔') !== -1) isGod = false;
+        if (text.indexOf('使魔') !== -1 && index !== 0) {
+          isGod = false;
+          // console.log(index, text)
+        }
         if (text.includes(`角色`) || text.includes(`皮肤`)) isSpec = true;
         data.push(text);
       });
       if (data.length < 3) return
       data.push(isGod, isCom);
+      // console.log(data, isGod, isCom, isMj)
       if (isSpec) {
         // console.log(data);
       } else {
@@ -147,8 +152,10 @@ function parseHTML (str, pool) {
     //   else resolve();
     // });
     if (isCustomSelect) {
+      // console.log('custom')
       resolve(formatSpecial(rows))
     } else {
+      // console.log('common')
       const form = formatData(arr);
       resolve(form);
     }
@@ -166,6 +173,7 @@ function formatData (arr) {
   let com = 0;
   for (let e of arr) {
     let [name, _, prop, isGod, isCom] = e;
+    // console.log(e)
     rate = rate + parseInt(prop.replace('.', ''));
     if (isGod) god = rate;
     if (isCom) com = rate;
