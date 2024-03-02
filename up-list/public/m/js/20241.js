@@ -52,7 +52,7 @@
           rowsArr.push(obj);
         }
         rowsArr.sort((a, b) => {
-          return new Date(a['时间']) - new Date(b['时间']) > 0 ? 1 : -1;
+          return new Date('2024-' + a['时间']) - new Date('2024-' + b['时间']) > 0 ? 1 : -1;
         });
         this.charts.top1k.rows = rowsArr;
       },
