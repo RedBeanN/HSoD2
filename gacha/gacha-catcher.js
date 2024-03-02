@@ -45,7 +45,7 @@ function catchOne(pool) {
   });
 }
 
-const formatSpecial = rows => {
+const formatSpecial = (rows, specs = []) => {
   const upEquips = []
   const godEquips = []
   const commonEquips = []
@@ -94,8 +94,16 @@ const formatSpecial = rows => {
       rate,
     })
   }
+  const specials = specs.map(([title, type, rateP]) => {
+    const rateNum = parseInt(parseFloat(rateP) * 1000)
+    return {
+      name: `[${type}] ${title}`,
+      rate: rateNum
+    }
+  })
   return {
     equips,
+    specials,
     total: rate,
     god: total,
     com: total,
@@ -110,6 +118,7 @@ function parseHTML (str, pool) {
     let isGod = true;
     let isCom = false;
     const rows = []
+    const specs = []
     $('table tbody tr').each(function (index, ele) {
       const tbs = []
       $(ele).children().each((index, child) => {
@@ -130,6 +139,7 @@ function parseHTML (str, pool) {
       data.push(isGod, isCom);
       if (isSpec) {
         // console.log(data);
+        specs.push(data)
       } else {
         arr.push(data);
       }
@@ -147,9 +157,9 @@ function parseHTML (str, pool) {
     //   else resolve();
     // });
     if (isCustomSelect) {
-      resolve(formatSpecial(rows))
+      resolve(formatSpecial(rows, specs))
     } else {
-      const form = formatData(arr);
+      const form = formatData(arr, specs);
       resolve(form);
     }
   });
@@ -159,7 +169,7 @@ function saveFile (f, p) {
   fs.writeFile(p, f, {encoding: 'utf-8'}, () => {});
 }
 
-function formatData (arr) {
+function formatData (arr, specs = []) {
   const form = [];
   let rate = 0;
   let god = 0;
@@ -171,8 +181,16 @@ function formatData (arr) {
     if (isCom) com = rate;
     form.push({name, rate});
   }
+  const specials = specs.map(([title, type, rateP]) => {
+    const rateNum = parseInt(parseFloat(rateP) * 1000)
+    return {
+      name: `[${type}] ${title}`,
+      rate: rateNum
+    }
+  })
   return {
     equips: form,
+    specials,
     total: rate,
     god,
     com
