@@ -26,6 +26,8 @@ app.all('*', (req, res, next) => {
   if(req.protocol !== 'https') {
     let resp = 'https://' + req.hostname + req.url;
     res.redirect(resp);
+  } else if (req.url === '/index.html') {
+    res.redirect('https://' + req.hostname + '/');
   } else next();
 });
 

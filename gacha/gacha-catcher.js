@@ -45,6 +45,71 @@ function catchOne(pool) {
   });
 }
 
+const formatSpecial = (rows, specs = []) => {
+  const upEquips = []
+  const godEquips = []
+  const commonEquips = []
+  for (const row of rows) {
+    const [name, type, prop] = row
+    if (type === '徽章' || type === '武器' || type === '服装' || type === '使魔碎片' || type === '材料') {
+      const match = name.match(/\[(\d).\]$/)
+      const star = match && match[1] ? parseInt(match[1]) : 1
+      if (star < 5) {
+        const propNum = parseInt(prop.replace(/\.|%/g, ''))
+        commonEquips.push({ name, prop: propNum })
+      } else {
+        if (!prop) {
+          upEquips.push(name)
+        } else {
+          const propNum = parseInt(prop.replace(/\.|%/g, ''))
+          godEquips.push({ name, prop: propNum })
+        }
+      }
+    }
+  }
+  const baseProp = (1204 + 1023) * 6
+  const everyProp = Math.ceil(baseProp / upEquips.length)
+  // console.log(everyProp, upEquips.length, commonEquips.length)
+  let rate = 0
+  const equips = []
+  for (const item of upEquips) {
+    rate += everyProp
+    equips.push({
+      name: item,
+      rate,
+    })
+  }
+  for (const item of godEquips) {
+    rate += item.prop
+    equips.push({
+      name: item.name,
+      rate,
+    })
+  }
+  const total = rate
+  for (const item of commonEquips) {
+    rate += item.prop
+    equips.push({
+      name: item.name,
+      rate,
+    })
+  }
+  const specials = specs.map(([title, type, rateP]) => {
+    const rateNum = parseInt(parseFloat(rateP) * 1000)
+    return {
+      name: `[${type}] ${title}`,
+      rate: rateNum
+    }
+  })
+  return {
+    equips,
+    specials,
+    total: rate,
+    god: total,
+    com: total,
+  }
+}
+
 function parseHTML (str, pool) {
   return new Promise((resolve, reject) => {
     const $ = cheerio.load(str, {decodeEntities: false});
@@ -52,27 +117,56 @@ function parseHTML (str, pool) {
     const arr = [];
     let isGod = true;
     let isCom = false;
-    $('.equip-prob tbody tr').each(function () {
+    const rows = []
+    const specs = []
+    $('table tbody tr').each(function (index, ele) {
+      // if (arr.length > 10) return
+      const tbs = []
+      $(ele).children().each((index, child) => {
+        tbs.push($(child).text())
+      })
+      rows.push(tbs)
       const data = [];
       isCom = $(this).hasClass('god');
       let isSpec = false;
       if (isMj) isGod = isCom;
-      $(this).children().each(function () {
+      $(this).children().each(function (index) {
         let text = $(this).text();
-        if (text.indexOf('使魔') !== -1) isGod = false;
+        if (text.indexOf('使魔') !== -1 && index !== 0) {
+          isGod = false;
+          // console.log(index, text)
+        }
         if (text.includes(`角色`) || text.includes(`皮肤`)) isSpec = true;
         data.push(text);
       });
+      if (data.length < 3) return
       data.push(isGod, isCom);
-      if (isSpec) console.log(data);
-      else arr.push(data);
+      // console.log(data, isGod, isCom, isMj)
+      if (isSpec) {
+        // console.log(data);
+        specs.push(data)
+      } else {
+        arr.push(data);
+      }
     });
-    const form = formatData(arr);
+    const isCustomSelect = rows.some(r => {
+      return r[1] === '自选装备'
+    })
+    // console.log(isCustomSelect)
+    // const toFormat = rows.map((row, index) => {
+    //   const data = [row[0], row[1], row[2]]
+    // })
+    // console.log(formatSpecial(rows))
     // saveFile(JSON.stringify(form, null, 2), 'gacha.json', err => {
     //   if (err) reject(err);
     //   else resolve();
     // });
-    resolve(form);
+    if (isCustomSelect) {
+      resolve(formatSpecial(rows, specs))
+    } else {
+      const form = formatData(arr, specs);
+      resolve(form);
+    }
   });
 }
 
@@ -80,20 +174,29 @@ function saveFile (f, p) {
   fs.writeFile(p, f, {encoding: 'utf-8'}, () => {});
 }
 
-function formatData (arr) {
+function formatData (arr, specs = []) {
   const form = [];
   let rate = 0;
   let god = 0;
   let com = 0;
   for (let e of arr) {
     let [name, _, prop, isGod, isCom] = e;
+    // console.log(e)
     rate = rate + parseInt(prop.replace('.', ''));
     if (isGod) god = rate;
     if (isCom) com = rate;
     form.push({name, rate});
   }
+  const specials = specs.map(([title, type, rateP]) => {
+    const rateNum = parseInt(parseFloat(rateP) * 1000)
+    return {
+      name: `[${type}] ${title}`,
+      rate: rateNum
+    }
+  })
   return {
     equips: form,
+    specials,
     total: rate,
     god,
     com
@@ -101,5 +204,9 @@ function formatData (arr) {
 }
 
 if (!module.parent) {
-  module.exports();
+  // module.exports();
+  catchOne('high').then(r => {
+    // console.log(r)
+    fs.writeFileSync('test.json', JSON.stringify(r, null, 2))
+  })
 }

@@ -8,15 +8,22 @@ const tail = `?region=3_1`;
 
 const pools = ['high', 'custom', 'special', 'festival'];
 
-const getUpData = async pool => {
-  const { data } = await axios.get(`${baseUrl}${pool}${tail}`);
+const getUpSingleData = async url => {
+  // console.log(url)
+  const { data } = await axios.get(url);
   const $ = cheerio.load(data, { decodeEntities: false });
   const times = data.toString().match(/\d{4}-.*:\d{2}/g);
   if (!times) return null;
   const time = times[times.length - 1];
   const [startTime, endTime] = time.split('至');
   const list = [];
-  $(`.equip-prob tbody tr`).each((index, ele) => {
+  const rows = []
+  $(`table tbody tr`).each((index, ele) => {
+    const tbs = []
+    $(ele).children().each((index, child) => {
+      tbs.push($(child).text())
+    })
+    rows.push(tbs)
     const isGod = $(ele).hasClass('god');
     const obj = { isGod };
     $(ele).children().each((index, ele) => {
@@ -27,13 +34,58 @@ const getUpData = async pool => {
     });
     list.push(obj);
   });
+  const isCustomSelect = rows.some(row => {
+    return row.includes('自选装备')
+  })
+  let index = rows.length
+  const finalData = isCustomSelect
+    ? rows.filter((r, i) => {
+      if (r[1] === '武器' || r[1] === '服装' || r[1] === '徽章') {
+        if (i < index) return true
+      }
+      if (r[1] === '自选装备' && index > i) {
+        index = i
+      }
+      return false
+    }).map(i => i[0].replace(/\[\d★\]/, ''))
+    : list.filter(i => i.isGod).map(i => i.name.replace(/\[\d★\]/, ''))
   const upData = {
     startTime,
     endTime,
-    data: list.filter(i => i.isGod).map(i => i.name.replace(/\[\d★\]/, '')),
+    // data: list.filter(i => i.isGod).map(i => i.name.replace(/\[\d★\]/, '')),
+    data: finalData,
+    // rows,
   };
   return upData;
 };
+const getUpData = async pool => {
+  let startTime, endTime
+  const all = []
+  for (let i = 0; i < 12; i++) {
+    const url = `${baseUrl}${pool}${tail}&choose_pool=${i}`
+    const resp = await getUpSingleData(url)
+    if (!resp) {
+      console.log('Got empty data', resp)
+      break
+    }
+    if (!resp.data || !resp.data.length) {
+      console.log('Got empty ups')
+      break
+    }
+    if (!startTime || (new Date(startTime) > new Date(resp.startTime))) {
+      startTime = resp.startTime
+    }
+    if (!endTime || (new Date(endTime)) < new Date(resp.endTime)) {
+      endTime = resp.endTime
+    }
+    all.push(...resp.data)
+  }
+  if (!all.length) return null
+  return {
+    startTime, endTime,
+    data: [...new Set(all)]
+  }
+}
 
 const save = async pool => {
   const upData = await getUpData(pool);
@@ -74,4 +126,12 @@ const saveAll = async () => {
 };
 
 saveAll();
-setInterval(saveAll, 4 * 60 * 60 * 1000);
+// getUpData('custom').then(r => {
+//   fs.writeFileSync('tmp.json', JSON.stringify(r, null, 2))
+// })
+// setInterval(saveAll, 4 * 60 * 60 * 1000);
+const schedule = require('../gacha/node_modules/node-schedule');
+
+const rule = new schedule.RecurrenceRule();
+rule.minute = [0, 1, 2, 10];
+schedule.scheduleJob(rule, saveAll)
