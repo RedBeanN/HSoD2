@@ -65,11 +65,11 @@ const getUpData = async pool => {
     const url = `${baseUrl}${pool}${tail}&choose_pool=${i}`
     const resp = await getUpSingleData(url)
     if (!resp) {
-      console.log('Got empty data', resp)
+      console.log('Got empty data', resp, pool)
       break
     }
     if (!resp.data || !resp.data.length) {
-      console.log('Got empty ups')
+      console.log('Got empty ups', pool)
       break
     }
     if (!startTime || (new Date(startTime) > new Date(resp.startTime))) {
@@ -102,6 +102,9 @@ const save = async pool => {
     upData.data = [...new Set(upData.data.map(i => i.replace(/×\d+/, '')))];
   }
   const poolPath = path.resolve(__dirname, `rule-data/${_pool}.json`);
+  if (!fs.existsSync(poolPath)) {
+    fs.writeFileSync(poolPath, '[]')
+  }
   const oldPool = JSON.parse(fs.readFileSync(poolPath));
   let isExisted = false;
   oldPool.forEach(log => {
