@@ -1,0 +1,78 @@
+((Vue, axios) => {
+  const columns = ['时间'];
+  const parseTime = timeStr => {
+    const [month, day, hour, minute] = timeStr.split(/\s|-|:/g);
+    return `${month}/${day} ${hour < 10 ? '0' + hour : hour}:${minute === '0' ? '00' : minute}`;
+  };
+  new Vue({
+    el: '#app',
+    data: {
+      charts: {
+        top1k: {
+          columns,
+          rows: [],
+          title: { text: '分数线' },
+        },
+      },
+      settings: {
+        legendPosition: 'top',
+        loading: false,
+        colors: ['#feefdf','#3a3a4a', '#ef593a', '#f4afd5', '#e3588f', '#fab8ae'],
+      },
+      chartSettings: { scale: [true, true] },
+      zoom: {
+        type: 'slider',
+        start: 0,
+        end: 100,
+      },
+    },
+    components: { VeLine },
+    created () {
+      this.loadData();
+    },
+    methods: {
+      async loadTop1kData () {
+        const { data } = await axios.get(`https://api-1256168079.cos.ap-chengdu.myqcloud.com/faction/20242/data.json`);
+        const rows = {};
+        const columns = ['时间']
+        for (let key in data.factions) {
+          columns.push(data.factions[key].factionName)
+          for (let d of data.factions[key].data) {
+            if (!rows[d.time]) rows[d.time] = {};
+            rows[d.time][data.factions[key].factionName] = d.point;
+          }
+        }
+        this.charts.top1k.columns = columns
+        const rowsArr = [];
+        for (let time in rows) {
+          const obj = {
+            "时间": parseTime(time),
+          };
+          for (let point in rows[time]) {
+            obj[point] = rows[time][point];
+          }
+          rowsArr.push(obj);
+        }
+        rowsArr.sort((a, b) => {
+          return new Date('2024-' + a['时间']) - new Date('2024-' + b['时间']) > 0 ? 1 : -1;
+        });
+        this.charts.top1k.rows = rowsArr;
+      },
+      async loadData () {
+        this.settings.loading = true;
+        await this.loadTop1kData();
+        this.settings.loading = false;
+      },
+      format (s) {
+        s = s.toString();
+        if (s.length < 2) return '0' + s;
+        return s;
+      },
+      getDate (d) {
+        const time = new Date(d);
+        return `${time.getMonth() + 1}-${this.format(time.getDate())} ${this.format(time.getHours())}:${this.format(time.getMinutes())}`;
+      },
+    }
+  });
+  
+  })(Vue, axios);
