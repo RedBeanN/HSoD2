@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover">
+  <title>BB机器人食用指南</title>
+  <!-- meta -->
+  <meta name="keywords" content="搞事学园,崩坏学园2,崩坏2,崩坏">
+  <meta name="author" content="红豆">
+  <link rel="shortcut icon" href="/favicon.pag" type="image/png">
+  <!-- PWA specific -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#3f51b5">
+  <!-- for iOS safari -->
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="搞事学园">
+  <link rel="stylesheet" href="/m/css/mdui.min.css">
+  <style>
+    .screenshot {
+      max-width: 400px !important;
+      width: 80%;
+    }
+  </style>
+</head>
+<body class='mdui-theme-primary-indigo mdui-theme-accent-pink'>
+  <div id="app">
+    <div class="mdui-container mdui-typo mdui-m-t-4">
+      <h1>
+        <!-- <a href="/" class="mdui-btn mdui-btn-icon mdui-ripple">
+          <i class="mdui-icon material-icons">home</i>
+        </a> -->
+        BB亲食用指南 <br><small> 更新于 2024.10.25</small>
+      </h1>
+      <blockquote>
+        <b>关于BB：</b> BB是以《Fate/Grand Order》内容为主的qq群机器人，可以查询图鉴、模拟抽卡等，目前有官方版和野生版两种。
+        <br> 目前BB为 <b>私聊免费/群聊收费</b> 模式
+        <div>
+          <p>官方版：带有官方机器人标志，稳定不失联，但是群聊中必须@才能触发，主动推送信息有限制</p>
+          <img src="/images/bb/bot_official.png" />
+          <p>野生版：有封号风险，但是大部分指令不需要@，并且可以主动推送信息(每日活动/周末/月末提醒)</p>
+        </div>
+      </blockquote>
+      <p>
+        · 本页面是BB的使用方法，如需试用可以加入qq群 
+        <a target="_blank" href="//qm.qq.com/q/4bhYP0gLlu">
+          <i class="mdui-icon material-icons">open_in_new</i> 1109718349 
+        </a><br/>
+        点击 <a href="https://bot.q.qq.com/s/6h2exhm4q?id=102164766" target="_blank">
+          <i class="mdui-icon material-icons">open_in_new</i> BB亲邀请链接
+        </a> 开始私聊或邀请官方版进群(首次邀请加群当天免费试用)
+      </p>
+      <p>
+        开通&amp;续费请使用<a href="https://afdian.com/item/d72bc7fe706b11ef959452540025c377" target="_blank">
+          <i class="mdui-icon material-icons">open_in_new</i> 爱发电
+        </a>或联系红豆(504577431)
+      </p>
+      <p>特殊说明：部分功能为官方版/野生版专有，此类功能会有特殊提示</p>
+      <p>· 由于平台限制，官方版BB所有指令在群里必须@才能触发</p>
+      <p>· 指令前缀 <kbd>/</kbd> 不是必须的，不加前缀也能使用</p>
+      <p>· 可以发送 <b>启用/禁用</b> +功能名来开关功能，具体开关见下文，野生版必须管理员才有权限开关，官方版由于平台限制及需要@触发，不需要开关</p>
+      <!-- 模拟抽卡 -->
+      <h3>模拟抽卡</h3>
+      <blockquote>
+        开关：<b>启用召唤 禁用召唤</b><br>
+        每人每3分钟限抽一次
+      </blockquote>
+      <p>
+        发送 <b>/召唤 十连</b> 进行一次十连(现在是十一连)，也可以使用 <b>十连召唤/十一连召唤</b> <br>
+        发送 <b>/召唤 百连</b> 进行一次百连，百连结果只显示抽到的四星/五星，也可以使用 <b>百连召唤</b>
+        <br>
+        关于卡池：可以使用 <b>召唤 查询</b> 查询当前卡池，使用 <b>召唤 设置 编号</b> 设置卡池。
+        <br>未设置时默认使用最新卡池，设置卡池后长期有效。
+        <br><img src="/images/bb/gacha.jpg" class="screenshot">
+      </p>
+      <!-- 查询功能 -->
+      <h3>查询功能</h3>
+      <blockquote>
+        开关：<b>启用查询 禁用查询</b><br>
+      </blockquote>
+      <p>
+        发送 <b>查询英灵/从者 从者名</b> 可以查询指定的从者，有多个可选项时需要再次发送编号查询<br>
+        例：<b>查询阿尔托莉雅</b>
+        <br><img src="/images/bb/servant.jpg" class="screenshot"><br>
+        发送 <b>查询礼装 礼装名</b> 或 <b>查询素材 素材名</b> 查询礼装/素材掉落<br/>
+        发送 <b>查询关卡 关卡名</b> 查询关卡配置<br/>
+        <img src="/images/bb/item.jpg" class="screenshot">
+        <blockquote>
+          <p>野生版：直接使用“查询”+内容时不会触发指令，而是要使用“查询从者”来查询</p>
+          <p>官方版：可以直接使用“/查询”+内容查询，会按从者→礼装的顺序查询，输入编号时也可以直接发“/查询 编号”</p>
+        </blockquote>
+      </p>
+      <!-- 玩家信息功能 -->
+      <h3>玩家信息</h3>
+      <blockquote>
+        <p>开关: <b>启用玩家信息 禁用玩家信息</b></p>
+        <p>测试中, 相关功能随时可能修改或移除</p>
+      </blockquote>
+      <h4>导入玩家信息</h4>
+      <p>
+        参考 <a href="https://docs.chaldea.center/zh/guide/import_https/" target="_blank">
+          <i class="mdui-icon material-icons">open_in_new</i> Chaldea 的抓包教程\
+        </a>获取抓包文件后保存为txt文件后, <b>私聊</b> 向BB亲发送抓包文件即可导入玩家信息<br>
+        <img src="/images/bb/import.jpg" class="screenshot">
+      </p>
+      <h4>查询玩家信息</h4>
+      <p>
+        发送 <b>我的</b> 或 <b>我的信息</b> 可以查询自己的个人信息<br/>
+        <img src="/images/bb/userdata.jpg" class="screenshot"><br/>
+        发送 <b>我的 从者名</b> 可以查询自己的从者信息<br/>
+        <img src="/images/bb/my-servant.jpg" class="screenshot"><br/>
+        发送 <b>我的 礼装名</b> 可以查询自己的礼装信息<br/>
+        <img src="/images/bb/my-ce.jpg" class="screenshot"><br/>
+        * 可以使用 <b>我推</b> 查询自己在游戏内标记为“推荐！”的从者信息<br/>
+        <img src="/images/bb/my-push.jpg" class="screenshot"><br/>
+      </p>
+      <p></p>
+      <!-- wiki -->
+      <h3>wiki</h3>
+      <blockquote>
+        开关: <b>启用wiki 禁用wiki</b>
+      </blockquote>
+      <p>
+        发送<b>wiki 内容</b>或<b>[[内容]]</b>可以查询<b>Mooncell</b>(默认)上的相关词条<br/>
+        支持的wiki有<b>Mooncell 萌娘百科 PRTS</b>, 可以发送<b>wiki设置 wiki名</b>修改默认搜索的wiki, 或使用<b>mc/prts/萌百一下 内容</b>指定wiki搜索<br/>
+        <img src="/images/bb/wiki.jpg" class="screenshot">
+      </p>
+      <!-- 喜报 -->
+      <h3>喜报/悲报</h3>
+      <blockquote>
+        开关: <b>启用喜报 禁用喜报</b>
+      </blockquote>
+      <p>
+        发送<b>喜报 内容</b>或<b>悲报 内容</b>生成一张喜报/悲报
+        <blockquote>
+          官方版由于平台审核限制不开放此功能
+        </blockquote>
+        <img src="/images/bb/xibao.jpg" class="screenshot">
+      </p>
+    </div>
+  </div>
+  <script src="/gtag.min.js" async></script>
+</body>
+</html>
